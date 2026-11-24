@@ -1,0 +1,68 @@
+
+Processing Phase1_Provenance.csv
+
+NODE DATASET
+Records: 46,773
+Malicious: 0
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot/phase1_nodes.parquet
+
+EVENT DATASET
+Records: 142,379
+Original malicious events: 0
+Contextual events: 0
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot/phase1_events.parquet
+
+SAMPLE NODE DESCRIPTIONS
+- Process named bind9 using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0
+- Process named bind9 using executable /usr/bin/dash with command line /bin/sh -e /etc/network/if-up.d/bind9 running under user ID 0.0 with effective user ID 0.0
+- Artifact of type file at path /etc/network/if-up.d/bind9 with permissions 755.0
+
+SAMPLE EVENT DESCRIPTIONS
+- Process named bind9 using executable /usr/bin/dash with command line /bin/sh -e /etc/network/if-up.d/bind9 running under user ID 0.0 with effective user ID 0.0 was triggered by Process named bind9 using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0 through operation execve. Process named bind9 using executable /usr/bin/dash with command line /bin/sh -e /etc/network/if-up.d/bind9 running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /etc/network/if-up.d/bind9 with permissions 755.0 through operation load. Process named bind9 using executable /usr/bin/dash with command line /bin/sh -e /etc/network/if-up.d/bind9 running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /bin/sh with permissions 755.0 through operation load. Process named bind9 using executable /usr/bin/dash with command line /bin/sh -e /etc/network/if-up.d/bind9 running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /lib64/ld-linux-x86-64.so.2 with permissions 755.0 through operation load.
+- Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 was triggered by Process named ethtool using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0 through operation execve. Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /etc/network/if-up.d/ethtool with permissions 755.0 through operation load. Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /bin/sh with permissions 755.0 through operation load. Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /lib64/ld-linux-x86-64.so.2 with permissions 755.0 through operation load.
+- Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 was triggered by Process named openvpn using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0 through operation execve. Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /etc/network/if-up.d/openvpn with permissions 755.0 through operation load. Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /bin/sh with permissions 755.0 through operation load. Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /lib64/ld-linux-x86-64.so.2 with permissions 755.0 through operation load.
+
+DESCRIPTION LENGTH STATISTICS
+count    142379.000000
+mean         42.973058
+std          23.484945
+min          28.000000
+25%          34.000000
+50%          34.000000
+75%          34.000000
+max         635.000000
+
+Processing Phase2_Provenance.csv
+
+NODE DATASET
+Records: 53,286
+Malicious: 332
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot/phase2_nodes.parquet
+
+EVENT DATASET
+Records: 100,892
+Original malicious events: 70
+Contextual events: 225
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot/phase2_events.parquet
+
+SAMPLE NODE DESCRIPTIONS
+- Process named ethtool using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0
+- Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0
+- Artifact of type file at path /etc/network/if-up.d/ethtool with permissions 755.0
+
+SAMPLE EVENT DESCRIPTIONS
+- Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 was triggered by Process named ethtool using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0 through operation execve. Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /etc/network/if-up.d/ethtool with permissions 755.0 through operation load. Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /bin/sh with permissions 755.0 through operation load. Process named ethtool using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/ethtool running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /lib64/ld-linux-x86-64.so.2 with permissions 755.0 through operation load.
+- Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 was triggered by Process named openvpn using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0 through operation execve. Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /etc/network/if-up.d/openvpn with permissions 755.0 through operation load. Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /bin/sh with permissions 755.0 through operation load. Process named openvpn using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/openvpn running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /lib64/ld-linux-x86-64.so.2 with permissions 755.0 through operation load.
+- Process named wpasupplicant using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/wpasupplicant running under user ID 0.0 with effective user ID 0.0 was triggered by Process named wpasupplicant using executable /usr/bin/dash running under user ID 0.0 with effective user ID 0.0 through operation execve. Process named wpasupplicant using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/wpasupplicant running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /etc/network/if-up.d/wpasupplicant with permissions 755.0 through operation load. Process named wpasupplicant using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/wpasupplicant running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /bin/sh with permissions 755.0 through operation load. Process named wpasupplicant using executable /usr/bin/dash with command line /bin/sh /etc/network/if-up.d/wpasupplicant running under user ID 0.0 with effective user ID 0.0 used Artifact of type file at path /lib64/ld-linux-x86-64.so.2 with permissions 755.0 through operation load.
+
+DESCRIPTION LENGTH STATISTICS
+count    100892.000000
+mean         50.763985
+std          31.374476
+min          28.000000
+25%          34.000000
+50%          34.000000
+75%          45.000000
+max         563.000000
+
+Preprocessing completed.

@@ -1,0 +1,44 @@
+{
+    "operation_only": {
+        "original": {
+            "conflicting_descriptions": 1,
+            "conflicting_records": 8463,
+            "conflicting_positives": 70,
+            "positive_conflict_rate": 1.0
+        },
+        "contextual": {
+            "conflicting_descriptions": 9,
+            "conflicting_records": 99289,
+            "conflicting_positives": 225,
+            "positive_conflict_rate": 1.0
+        }
+    },
+    "operation_entities": {
+        "original": {
+            "conflicting_descriptions": 0,
+            "conflicting_records": 0,
+            "conflicting_positives": 0,
+            "positive_conflict_rate": 0.0
+        },
+        "contextual": {
+            "conflicting_descriptions": 1,
+            "conflicting_records": 3,
+            "conflicting_positives": 1,
+            "positive_conflict_rate": 0.0044444444444444444
+        }
+    },
+    "full_provenance": {
+        "original": {
+            "conflicting_descriptions": 0,
+            "conflicting_records": 0,
+            "conflicting_positives": 0,
+            "positive_conflict_rate": 0.0
+        },
+        "contextual": {
+            "conflicting_descriptions": 1,
+            "conflicting_records": 3,
+            "conflicting_positives": 1,
+            "positive_conflict_rate": 0.0044444444444444444
+        }
+    }
+}

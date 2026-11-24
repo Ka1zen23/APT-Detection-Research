@@ -1,0 +1,13 @@
+{
+  "official_title": "AI-based solution to detect and mitigate APT malware",
+  "institution": "Universiti Teknologi Brunei",
+  "phase": "Provenance ablation complete; reproducibility next",
+  "status": "Active experimental analysis",
+  "status_tone": "warning",
+  "description": "An investigation of whether semantic representations of system provenance events, combined with a benign-trained autoencoder, can prioritise anomalous behaviour relevant to Advanced Persistent Threats. Detection evidence is preliminary; mitigation is not yet implemented or evaluated.",
+  "current_activity": "Consolidating the E5 provenance ablation results and preparing the E7 multiple-seed reproducibility study.",
+  "next_activity": "E7 — repeat selected configurations with seeds 42, 123 and 456 and report mean, standard deviation and individual outcomes.",
+  "primary_operating_point": "P99 of benign validation reconstruction error",
+  "implementation_note": "Roadmap activity counts describe implementation progress only. No dissertation completion percentage is estimated.",
+  "last_reviewed": "2026-11-25"
+}

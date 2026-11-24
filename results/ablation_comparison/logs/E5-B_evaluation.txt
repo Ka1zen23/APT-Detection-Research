@@ -1,0 +1,151 @@
+======================================================================
+PROVENANCE CONTEXT ABLATION
+Experiment: E5-B
+Stage: evaluate
+======================================================================
+CICAPT-IIoT MODEL EVALUATION
+Experiment: E5-B
+Best epoch: 84
+Threshold: 0.0000750217
+GPU: NVIDIA GeForce RTX 4060
+
+======================================================================
+BENIGN_TEST_ORIGINAL_LABEL
+======================================================================
+records: 21,357
+positives: 0
+alerts: 215
+threshold: 0.0000750217
+true_negatives: 21,142
+false_positives: 215
+false_negatives: 0
+true_positives: 0
+accuracy: 0.9899330430
+precision: 0.0000000000
+recall: N/A
+f1: N/A
+false_positive_rate: 0.0100669570
+specificity: 0.9899330430
+roc_auc: N/A
+average_precision: N/A
+pr_auc: N/A
+
+INFERENCE PERFORMANCE
+events: 21357.000000
+elapsed_seconds: 0.117795
+events_per_second: 181307.141206
+milliseconds_per_event: 0.005516
+
+======================================================================
+ATTACK_TEST_ORIGINAL_LABEL
+======================================================================
+records: 100,892
+positives: 70
+alerts: 11,168
+threshold: 0.0000750217
+true_negatives: 89,724
+false_positives: 11,098
+false_negatives: 0
+true_positives: 70
+accuracy: 0.8900011894
+precision: 0.0062679083
+recall: 1.0000000000
+f1: 0.0124577327
+false_positive_rate: 0.1100751820
+specificity: 0.8899248180
+roc_auc: 0.9827551810
+average_precision: 0.0187240702
+pr_auc: 0.0184204725
+
+======================================================================
+ATTACK_TEST_CONTEXTUAL_LABEL
+======================================================================
+records: 100,892
+positives: 225
+alerts: 11,168
+threshold: 0.0000750217
+true_negatives: 89,724
+false_positives: 10,943
+false_negatives: 0
+true_positives: 225
+accuracy: 0.8915374856
+precision: 0.0201468481
+recall: 1.0000000000
+f1: 0.0394979373
+false_positive_rate: 0.1087049381
+specificity: 0.8912950619
+roc_auc: 0.9568574938
+average_precision: 0.0277122551
+pr_auc: 0.0272150261
+
+======================================================================
+ATTACK TEST - SEEN DESCRIPTIONS
+======================================================================
+records: 80,100
+positives: 0
+alerts: 2,732
+threshold: 0.0000750217
+true_negatives: 77,368
+false_positives: 2,732
+false_negatives: 0
+true_positives: 0
+accuracy: 0.9658926342
+precision: 0.0000000000
+recall: N/A
+f1: N/A
+false_positive_rate: 0.0341073658
+specificity: 0.9658926342
+roc_auc: N/A
+average_precision: N/A
+pr_auc: N/A
+
+======================================================================
+ATTACK TEST - UNSEEN DESCRIPTIONS
+======================================================================
+records: 20,792
+positives: 70
+alerts: 8,436
+threshold: 0.0000750217
+true_negatives: 12,356
+false_positives: 8,366
+false_negatives: 0
+true_positives: 70
+accuracy: 0.5976337053
+precision: 0.0082977715
+recall: 1.0000000000
+f1: 0.0164589701
+false_positive_rate: 0.4037255091
+specificity: 0.5962744909
+roc_auc: 0.9162360224
+average_precision: 0.0187549126
+pr_auc: 0.0184509797
+
+PER-TACTIC RESULTS: original_label
+          tactic  positive_events  detected_events  missed_events  recall
+credentialAccess               69               69              0     1.0
+  defenceEvasion                1                1              0     1.0
+
+PER-TACTIC RESULTS: contextual_label
+          tactic  positive_events  detected_events  missed_events  recall
+           CandC                8                8              0     1.0
+      collection               62               62              0     1.0
+credentialAccess               75               75              0     1.0
+  defenceEvasion               23               23              0     1.0
+       discovery               22               22              0     1.0
+    exfiltration               11               11              0     1.0
+   initialAccess                1                1              0     1.0
+ lateralMovement                5                5              0     1.0
+     persistence               18               18              0     1.0
+
+INFERENCE PERFORMANCE
+events: 100892.000000
+elapsed_seconds: 0.074959
+events_per_second: 1345957.431850
+milliseconds_per_event: 0.000743
+
+======================================================================
+EVALUATION COMPLETED
+======================================================================
+Results saved to: /home/wajien/projects/APT-Detection-Research/results/e5b-operation-entities/evaluation
+
+ABLATION STAGE COMPLETED

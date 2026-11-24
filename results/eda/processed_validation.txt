@@ -1,0 +1,177 @@
+Processed Dataset Validation
+Tokenizer: sentence-transformers/all-MiniLM-L6-v2
+Target token limit: 256
+
+======================================================================
+phase1_nodes.parquet
+======================================================================
+Records: 46,773
+
+TEXT QUALITY
+Missing descriptions: 0
+Empty descriptions: 0
+Unique descriptions: 18,390
+Duplicate descriptions: 28,383
+Duplicate percentage: 60.68%
+
+TOKEN LENGTH STATISTICS
+Minimum: 6
+Mean: 38.06
+Median: 35.00
+95th percentile: 59.00
+99th percentile: 96.00
+Maximum: 4,178
+Records exceeding 256 tokens: 6
+Truncation percentage: 0.01%
+
+LABEL CONFLICTS: label
+Conflicting unique descriptions: 0
+Affected records: 0
+Affected positive records: 0
+Positive records exceeding token limit: 0
+
+TIMESTAMP AVAILABILITY
+seen_time: 5,029 / 46,773 (10.75%)
+start_time: 4,849 / 46,773 (10.37%)
+
+LONGEST DESCRIPTION
+Token count: 4,178
+Process named echo using executable /usr/bin/echo with command line echo /usr/lib/python3.8/__pycache__/__phello__.foo.*.py[co] /usr/lib/python3.8/__pycache__/_compression.*.py[co] /usr/lib/python3.8/__pycache__/_dummy_thread.*.py[co] /usr/lib/python3.8/__pycache__/_markupbase.*.py[co] /usr/lib/python3.8/__pycache__/_osx_support.*.py[co] /usr/lib/python3.8/__pycache__/_pydecimal.*.py[co] /usr/lib/python3.8/__pycache__/_pyio.*.py[co] /usr/lib/python3.8/__pycache__/aifc.*.py[co] /usr/lib/python3.8/__pycache__/antigravity.*.py[co] /usr/lib/python3.8/__pycache__/asynchat.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/__init__.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/__main__.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_events.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_futures.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_subprocess.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_tasks.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/constants.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/coroutines.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/events.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/exceptions.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/format_helpers.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/futures.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/locks.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/log.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/proactor_events.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/
+
+======================================================================
+phase2_nodes.parquet
+======================================================================
+Records: 53,286
+
+TEXT QUALITY
+Missing descriptions: 0
+Empty descriptions: 0
+Unique descriptions: 22,087
+Duplicate descriptions: 31,199
+Duplicate percentage: 58.55%
+
+TOKEN LENGTH STATISTICS
+Minimum: 6
+Mean: 42.13
+Median: 36.00
+95th percentile: 80.00
+99th percentile: 88.00
+Maximum: 2,974
+Records exceeding 256 tokens: 3
+Truncation percentage: 0.01%
+
+LABEL CONFLICTS: label
+Conflicting unique descriptions: 18
+Affected records: 7,697
+Affected positive records: 121
+Positive records exceeding token limit: 0
+
+TIMESTAMP AVAILABILITY
+seen_time: 12,515 / 53,286 (23.49%)
+start_time: 12,324 / 53,286 (23.13%)
+
+LONGEST DESCRIPTION
+Token count: 2,974
+Process named cp using executable /usr/bin/cp with command line cp -t /tmp/.s /home/erfan/.mozilla/firefox/qphy68q1.default-release/Telemetry.FailedProfileLocks.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/pkcs11.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/SiteSecurityServiceState.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/enumerate_devices.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/AlternateServices.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/serviceworker.txt /home/erfan/.cache/tracker/parser-version.txt /home/erfan/.cache/tracker/last-crawl.txt /home/erfan/.cache/tracker/locale-for-miner-apps.txt /home/erfan/.cache/tracker/db-version.txt /home/erfan/.cache/tracker/db-locale.txt /home/erfan/.cache/tracker/first-index.txt /home/erfan/SPADE/.travis.yml /home/erfan/SPADE/cfg/bitcoin.conf /home/erfan/SPADE/test/query/lineage/client/input-for-dsl.sh /home/erfan/SPADE/test/query/lineage/server/input-for-dsl.sh /home/erfan/SPADE/src/spade/reporter/llvm/AddMetadata/CMakeLists.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/NOTICE.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/LICENSE.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/plugins/README.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/conf/neo4j.conf /home/erfan/SPADE/lib/neo4j-community-4.1.1/labs/README.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/LICENSES.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/README.txt /home/erfan/SPADE/lib/neo4j-commun
+
+======================================================================
+phase1_events.parquet
+======================================================================
+Records: 142,379
+
+TEXT QUALITY
+Missing descriptions: 0
+Empty descriptions: 0
+Unique descriptions: 17,965
+Duplicate descriptions: 124,414
+Duplicate percentage: 87.38%
+
+TOKEN LENGTH STATISTICS
+Minimum: 49
+Mean: 116.56
+Median: 97.00
+95th percentile: 282.00
+99th percentile: 355.00
+Maximum: 12,627
+Records exceeding 256 tokens: 9,298
+Truncation percentage: 6.53%
+
+LABEL CONFLICTS: original_label
+Conflicting unique descriptions: 0
+Affected records: 0
+Affected positive records: 0
+Positive records exceeding token limit: 0
+
+LABEL CONFLICTS: contextual_label
+Conflicting unique descriptions: 0
+Affected records: 0
+Affected positive records: 0
+Positive records exceeding token limit: 0
+
+TIMESTAMP AVAILABILITY
+timestamp: 142,379 / 142,379 (100.00%)
+
+LONGEST DESCRIPTION
+Token count: 12,627
+Process named echo using executable /usr/bin/echo with command line echo /usr/lib/python3.8/__pycache__/__phello__.foo.*.py[co] /usr/lib/python3.8/__pycache__/_compression.*.py[co] /usr/lib/python3.8/__pycache__/_dummy_thread.*.py[co] /usr/lib/python3.8/__pycache__/_markupbase.*.py[co] /usr/lib/python3.8/__pycache__/_osx_support.*.py[co] /usr/lib/python3.8/__pycache__/_pydecimal.*.py[co] /usr/lib/python3.8/__pycache__/_pyio.*.py[co] /usr/lib/python3.8/__pycache__/aifc.*.py[co] /usr/lib/python3.8/__pycache__/antigravity.*.py[co] /usr/lib/python3.8/__pycache__/asynchat.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/__init__.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/__main__.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_events.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_futures.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_subprocess.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/base_tasks.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/constants.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/coroutines.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/events.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/exceptions.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/format_helpers.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/futures.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/locks.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/log.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/proactor_events.*.py[co] /usr/lib/python3.8/asyncio/__pycache__/
+
+======================================================================
+phase2_events.parquet
+======================================================================
+Records: 100,892
+
+TEXT QUALITY
+Missing descriptions: 0
+Empty descriptions: 0
+Unique descriptions: 21,577
+Duplicate descriptions: 79,315
+Duplicate percentage: 78.61%
+
+TOKEN LENGTH STATISTICS
+Minimum: 49
+Mean: 136.05
+Median: 97.00
+95th percentile: 321.00
+99th percentile: 366.00
+Maximum: 9,015
+Records exceeding 256 tokens: 15,367
+Truncation percentage: 15.23%
+
+LABEL CONFLICTS: original_label
+Conflicting unique descriptions: 0
+Affected records: 0
+Affected positive records: 0
+Positive records exceeding token limit: 69
+
+LABEL CONFLICTS: contextual_label
+Conflicting unique descriptions: 1
+Affected records: 3
+Affected positive records: 1
+Positive records exceeding token limit: 120
+
+TIMESTAMP AVAILABILITY
+timestamp: 100,892 / 100,892 (100.00%)
+
+LONGEST DESCRIPTION
+Token count: 9,015
+Process named cp using executable /usr/bin/cp with command line cp -t /tmp/.s /home/erfan/.mozilla/firefox/qphy68q1.default-release/Telemetry.FailedProfileLocks.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/pkcs11.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/SiteSecurityServiceState.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/enumerate_devices.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/AlternateServices.txt /home/erfan/.mozilla/firefox/qphy68q1.default-release/serviceworker.txt /home/erfan/.cache/tracker/parser-version.txt /home/erfan/.cache/tracker/last-crawl.txt /home/erfan/.cache/tracker/locale-for-miner-apps.txt /home/erfan/.cache/tracker/db-version.txt /home/erfan/.cache/tracker/db-locale.txt /home/erfan/.cache/tracker/first-index.txt /home/erfan/SPADE/.travis.yml /home/erfan/SPADE/cfg/bitcoin.conf /home/erfan/SPADE/test/query/lineage/client/input-for-dsl.sh /home/erfan/SPADE/test/query/lineage/server/input-for-dsl.sh /home/erfan/SPADE/src/spade/reporter/llvm/AddMetadata/CMakeLists.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/NOTICE.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/LICENSE.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/plugins/README.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/conf/neo4j.conf /home/erfan/SPADE/lib/neo4j-community-4.1.1/labs/README.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/LICENSES.txt /home/erfan/SPADE/lib/neo4j-community-4.1.1/README.txt /home/erfan/SPADE/lib/neo4j-commun
+
+======================================================================
+CROSS-PHASE OVERLAP: Nodes
+======================================================================
+Phase 2 descriptions also in Phase 1: 25,357
+Overlap percentage: 47.59%
+Positive records (label): 332
+Positive records matching Phase 1 text: 115
+
+======================================================================
+CROSS-PHASE OVERLAP: Events
+======================================================================
+Phase 2 descriptions also in Phase 1: 80,145
+Overlap percentage: 79.44%
+Positive records (original_label): 70
+Positive records matching Phase 1 text: 0
+Positive records (contextual_label): 225
+Positive records matching Phase 1 text: 1
+
+Validation completed.

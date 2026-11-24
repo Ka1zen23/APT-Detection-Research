@@ -1,0 +1,704 @@
+{
+  "experiments": [
+    {
+      "id": "B1",
+      "name": "Exact-description novelty",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Can exact novelty in verbalised event descriptions separate attack events without learning a statistical model?",
+      "hypothesis": "A purely novelty-based rule will over-alert because most attack-test descriptions are also present in benign training data.",
+      "representation": "V2 full-provenance event description (operations, entities and directed relationships)",
+      "encoder": "None",
+      "algorithm": "Exact set-membership novelty",
+      "training_strategy": "Memorise the set of 13,029 unique training descriptions.",
+      "seed": null,
+      "training_configuration": {
+        "known_descriptions": 13029,
+        "threshold": 0.5,
+        "calibration": "binary novelty rule"
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "attack_test_events": 100892,
+        "benign_test_events": 21357,
+        "primary_labels": "original edge-derived annotations",
+        "secondary_labels": "contextual connected-node indicators"
+      },
+      "results_summary": "ROC-AUC 0.897235 and Average Precision 0.003367. All 70 original positives were flagged, but 20,722 false positives produced precision of 0.337%.",
+      "interpretation": "Description novelty alone captures some attack signal, but 79.39% of attack-test descriptions were seen in training, so novelty is a weak discriminator.",
+      "limitations": "Binary scoring creates large tied blocks; the rule has no notion of semantic similarity.",
+      "source_artifacts": [
+        "results/baselines/baseline_summary.json",
+        "results/baselines/baseline_comparison.csv",
+        "results/baselines/B1_exact_novelty/attack_test_predictions.parquet"
+      ]
+    },
+    {
+      "id": "B2",
+      "name": "TF-IDF with Isolation Forest",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Does a sparse lexical representation with Isolation Forest provide a competitive anomaly baseline?",
+      "hypothesis": "TF-IDF captures token-level rarity but will struggle with semantically equivalent descriptions.",
+      "representation": "TF-IDF over 1-2 word n-grams of the V2 description",
+      "encoder": "TF-IDF (20,000 features, min_df=2)",
+      "algorithm": "Isolation Forest",
+      "training_strategy": "Fit vectoriser and Isolation Forest on 99,665 benign training events only.",
+      "seed": 42,
+      "training_configuration": {
+        "ngram_range": [1, 2],
+        "max_features": 20000,
+        "min_df": 2,
+        "n_estimators": 200,
+        "max_samples": 256,
+        "contamination": "auto"
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation scores",
+        "attack_test_events": 100892
+      },
+      "results_summary": "ROC-AUC 0.671003 and Average Precision 0.001274. At the P99 validation threshold, zero original positives and 1,445 false positives were flagged.",
+      "interpretation": "Lexical rarity is a poor proxy for malicious semantics in this representation; ranking is only modestly above chance.",
+      "limitations": "TF-IDF ignores word order and semantic similarity, and max_features truncates the vocabulary.",
+      "source_artifacts": [
+        "results/baselines/baseline_summary.json",
+        "results/baselines/baseline_comparison.csv",
+        "results/baselines/B2_tfidf_isolation_forest/attack_test_predictions.parquet"
+      ]
+    },
+    {
+      "id": "B3",
+      "name": "MiniLM with PCA reconstruction",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Can linear subspace reconstruction of frozen MiniLM embeddings identify unusual events?",
+      "hypothesis": "PCA reconstruction will capture dominant benign variation but miss nonlinear anomalies.",
+      "representation": "384-dimensional frozen MiniLM embedding",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, normalised)",
+      "algorithm": "PCA reconstruction error (32 components)",
+      "training_strategy": "Fit PCA on benign training embeddings only.",
+      "seed": 42,
+      "training_configuration": {
+        "n_components": 32,
+        "svd_solver": "randomized",
+        "explained_variance": 0.98194844
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction error",
+        "attack_test_events": 100892
+      },
+      "results_summary": "ROC-AUC 0.954165 and Average Precision 0.007092. All 70 original positives were detected with 10,778 false positives at P99.",
+      "interpretation": "Semantic embeddings improve ranking over lexical baselines, but linear compression produces a weak anomaly score and low precision.",
+      "limitations": "PCA is a linear method and its 32 components explain most benign variance, including possibly some attack signal.",
+      "source_artifacts": [
+        "results/baselines/baseline_summary.json",
+        "results/baselines/baseline_comparison.csv",
+        "results/baselines/B3_minilm_pca/attack_test_predictions.parquet"
+      ]
+    },
+    {
+      "id": "B4",
+      "name": "MiniLM with Isolation Forest",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Does Isolation Forest on frozen semantic embeddings outperform linear reconstruction?",
+      "hypothesis": "Tree-based isolation may capture nonlinear embedding outliers better than PCA.",
+      "representation": "384-dimensional frozen MiniLM embedding",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, normalised)",
+      "algorithm": "Isolation Forest",
+      "training_strategy": "Fit Isolation Forest on benign training embeddings only.",
+      "seed": 42,
+      "training_configuration": {
+        "n_estimators": 200,
+        "max_samples": 256,
+        "contamination": "auto"
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation scores",
+        "attack_test_events": 100892
+      },
+      "results_summary": "ROC-AUC 0.918413 and Average Precision 0.003858. Only 1 of 70 original positives was detected at P99, with 1,841 false positives.",
+      "interpretation": "Isolation Forest ranks many attack events highly but the validation-calibrated threshold is poorly aligned with the attack distribution.",
+      "limitations": "The P99 threshold from benign validation yields almost no recall; the result is highly operating-point dependent.",
+      "source_artifacts": [
+        "results/baselines/baseline_summary.json",
+        "results/baselines/baseline_comparison.csv",
+        "results/baselines/B4_minilm_isolation_forest/attack_test_predictions.parquet"
+      ]
+    },
+    {
+      "id": "B5",
+      "name": "Operation-frequency baseline",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "How much detection signal is available from operation-name frequency alone?",
+      "hypothesis": "Operation-only frequency will be weak because operation sequences are highly repetitive.",
+      "representation": "Operation-only description (operation names only)",
+      "encoder": "None",
+      "algorithm": "Negative log training-frequency score",
+      "training_strategy": "Estimate training operation-sequence frequencies; score unseen or rare sequences higher.",
+      "seed": null,
+      "training_configuration": {
+        "score": "-log((training_count + 1) / (N + unique + 1))",
+        "calibration": "99th percentile of benign validation scores"
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "attack_test_events": 100892,
+        "benign_test_events": 21357
+      },
+      "results_summary": "ROC-AUC 0.826134 and Average Precision 0.003212. Zero original positives were detected at P99.",
+      "interpretation": "Operation frequency alone provides weak ranking and no recall at the calibrated threshold.",
+      "limitations": "This is the reference baseline for the E5 operation-only representation and inherits its ambiguity.",
+      "source_artifacts": [
+        "results/ablation_comparison/ablation_comparison.csv",
+        "results/ablation_comparison/operation_frequency/training_frequencies.csv",
+        "results/ablation_comparison/operation_frequency/attack_test_predictions.parquet"
+      ]
+    },
+    {
+      "id": "E2-A",
+      "name": "Original frequency-preserving autoencoder",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Can a benign-trained autoencoder over frozen MiniLM embeddings detect anomalous provenance events?",
+      "hypothesis": "A bottleneck autoencoder will assign higher reconstruction error to events unlike benign training activity.",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions, 256-token limit)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Frequency-preserving training on all 99,665 benign training events.",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "optimizer": "Adam",
+        "max_epochs": 100,
+        "patience": 10,
+        "best_epoch": 65,
+        "train_samples": 99665,
+        "trainable_parameters": 107168,
+        "elapsed_seconds": 72.807888
+      },
+      "checkpoint_selection": "Best benign validation reconstruction loss; checkpoint restored at best epoch 65.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors",
+        "threshold_value": 0.00004127114516450092,
+        "attack_test_events": 100892
+      },
+      "results_summary": "ROC-AUC 0.984482 and Average Precision 0.020832. At P99, 70/70 original positives were detected with 11,332 false positives; contextual recall 100%.",
+      "interpretation": "The autoencoder substantially improves anomaly ranking over baselines, but absolute precision remains low.",
+      "limitations": "Single seed; severe class imbalance; threshold calibrated only on benign validation data.",
+      "source_artifacts": [
+        "results/e2-v2-minilm-standard/training_summary.json",
+        "results/e2-v2-minilm-standard/evaluation/evaluation_summary.json",
+        "results/autoencoder_comparison/ranking_summary.csv",
+        "results/autoencoder_comparison/threshold_comparison.csv"
+      ]
+    },
+    {
+      "id": "E2-B",
+      "name": "Unique-description training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Does deduplicating benign training descriptions reduce frequency dominance and improve anomaly ranking?",
+      "hypothesis": "Training on unique descriptions will prevent the most frequent template from dominating the reconstruction objective.",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Unique-description training: one sample per distinct benign description (13,029 samples).",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "optimizer": "Adam",
+        "max_epochs": 100,
+        "patience": 10,
+        "best_epoch": 99,
+        "train_samples": 13029,
+        "trainable_parameters": 107168,
+        "elapsed_seconds": 23.095992
+      },
+      "checkpoint_selection": "Best benign validation reconstruction loss; checkpoint restored at best epoch 99.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors",
+        "threshold_value": 0.0005167383933439851,
+        "attack_test_events": 100892
+      },
+      "results_summary": "ROC-AUC 0.987755 and Average Precision 0.026071. At P99, 70/70 original positives were detected with 5,407 false positives; contextual recall 50.67%.",
+      "interpretation": "Deduplication improves ranking and reduces false positives relative to E2-A, but contextual recall falls sharply.",
+      "limitations": "Unique sampling discards frequency information; single seed; no independent validation scenario.",
+      "source_artifacts": [
+        "results/e2b-unique/training_summary.json",
+        "results/e2b-unique/evaluation/evaluation_summary.json",
+        "results/autoencoder_comparison/ranking_summary.csv",
+        "results/autoencoder_comparison/threshold_comparison.csv"
+      ]
+    },
+    {
+      "id": "E2-C",
+      "name": "Frequency-weighted training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Does down-weighting frequent descriptions improve the benign reconstruction objective?",
+      "hypothesis": "Frequency weighting with 1/sqrt(frequency) will balance learning without discarding repeated benign behaviour.",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Frequency-preserving samples with per-description weight 1/sqrt(frequency).",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "optimizer": "Adam",
+        "max_epochs": 100,
+        "patience": 10,
+        "best_epoch": 42,
+        "train_samples": 99665,
+        "trainable_parameters": 107168,
+        "weight_formula": "1 / sqrt(description_frequency)",
+        "elapsed_seconds": 54.808254
+      },
+      "checkpoint_selection": "Best benign validation reconstruction loss; checkpoint restored at best epoch 42.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors",
+        "threshold_value": 0.000091675748990383,
+        "attack_test_events": 100892
+      },
+      "results_summary": "ROC-AUC 0.983191 and Average Precision 0.019920. At P99, 70/70 original positives were detected with 10,189 false positives; contextual recall 99.11%.",
+      "interpretation": "Frequency weighting retains recall but does not improve ranking over the original frequency-preserving model.",
+      "limitations": "Single seed; weighting formula was not tuned; results are sensitive to threshold choice.",
+      "source_artifacts": [
+        "results/e2c-weighted/training_summary.json",
+        "results/e2c-weighted/evaluation/evaluation_summary.json",
+        "results/autoencoder_comparison/ranking_summary.csv",
+        "results/autoencoder_comparison/threshold_comparison.csv"
+      ]
+    },
+    {
+      "id": "E2-D",
+      "name": "Approximately matched-update unique-description training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Can unique-description training be matched to the original optimiser-update budget while improving anomaly prioritisation?",
+      "hypothesis": "Approximately matching the number of optimiser updates will provide a fair comparison between frequency-preserving and unique-description training.",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Unique descriptions with approximately 25,350 optimiser updates (51 batches x 497 epochs).",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "optimizer": "Adam",
+        "max_epochs": 497,
+        "patience": 498,
+        "best_epoch": 479,
+        "train_samples": 13029,
+        "trainable_parameters": 107168,
+        "target_updates": 25350,
+        "completed_updates": 25347,
+        "elapsed_seconds": 109.713003
+      },
+      "checkpoint_selection": "Best benign validation reconstruction loss over the matched update budget; best checkpoint at update 24,429.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors (primary operating point)",
+        "threshold_value": 0.00027996741118840873,
+        "attack_test_events": 100892,
+        "exploratory_threshold": "P99.95 analysed retrospectively after inspecting attack-test results"
+      },
+      "results_summary": "ROC-AUC 0.995584 and Average Precision 0.109080 — the leading observed anomaly ranking. At P99: 70/70 original positives, 8,628 false positives, contextual recall 77.33%. At P99.95: 70/70, 2,339 false positives, contextual recall 49.33%.",
+      "interpretation": "Matched-update unique-description training is the strongest observed anomaly ranker and the best alert-prioritisation model, while precision remains low in absolute terms.",
+      "limitations": "Single seed; the P99.95 threshold was inspected retrospectively and is not independently validated; no deployment threshold is claimed.",
+      "source_artifacts": [
+        "results/e2d-unique-matched/training_summary.json",
+        "results/e2d-unique-matched/evaluation/evaluation_summary.json",
+        "results/autoencoder_comparison/ranking_summary.csv",
+        "results/autoencoder_comparison/threshold_comparison.csv",
+        "results/autoencoder_comparison/alert_budget_comparison.csv"
+      ]
+    },
+    {
+      "id": "E2-T",
+      "name": "Threshold sensitivity analysis",
+      "group": "autoencoder",
+      "kind": "analysis",
+      "status": "completed",
+      "research_question": "How do precision, recall, false positives and contextual recall change across validation-derived thresholds?",
+      "hypothesis": "Higher percentiles will reduce false positives at the cost of contextual recall, while original positive recall may remain high.",
+      "representation": "E2-A to E2-D predictions",
+      "encoder": "Not applicable",
+      "algorithm": "Percentile sweep over benign validation reconstruction errors",
+      "training_strategy": "Analytical study; no additional model training.",
+      "seed": null,
+      "training_configuration": {
+        "percentiles": [95, 97, 98, 99, 99.5, 99.9, 99.95, 99.99, 100]
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "evaluated_partitions": ["benign_test", "attack_test"]
+      },
+      "results_summary": "For E2-D, P99 yields 70 TP / 8,628 FP and 77.33% contextual recall; P99.95 yields 70 TP / 2,339 FP and 49.33% contextual recall.",
+      "interpretation": "Threshold choice strongly trades false-positive volume against contextual recall; P99 remains the primary experimental operating point.",
+      "limitations": "P99.95 and related high-percentile points are retrospective diagnostics, not independently validated operating points.",
+      "source_artifacts": [
+        "results/autoencoder_comparison/threshold_comparison.csv",
+        "results/e2-v2-minilm-standard/threshold_analysis/retrospective_diagnostic.json"
+      ]
+    },
+    {
+      "id": "E2-R",
+      "name": "Alert prioritisation analysis",
+      "group": "autoencoder",
+      "kind": "analysis",
+      "status": "completed",
+      "research_question": "How many original positives are recovered under fixed analyst alert budgets?",
+      "hypothesis": "Better anomaly ranking will recover more positives within small alert budgets.",
+      "representation": "E2-A to E2-D predictions",
+      "encoder": "Not applicable",
+      "algorithm": "Ranked alert-budget simulation with tie-aware expected TP",
+      "training_strategy": "Analytical study; no additional model training.",
+      "seed": null,
+      "training_configuration": {
+        "alert_budgets": [50, 100, 200, 500, 1000, 2000, 5000, 10000]
+      },
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "labels": "original edge-derived annotations",
+        "tie_handling": "expected, minimum and maximum true positives"
+      },
+      "results_summary": "E2-D recovers 46 of 70 original positives within the top 500 alerts and 58 within the top 1,000. E2-A, E2-B and E2-C recover 0, 7 and 0 respectively at 500.",
+      "interpretation": "E2-D provides materially better analyst prioritisation, but absolute precision within small budgets remains low.",
+      "limitations": "Measured only at the listed budgets; results depend on the single available seed and original annotation completeness.",
+      "source_artifacts": [
+        "results/autoencoder_comparison/alert_budget_comparison.csv",
+        "results/autoencoder_comparison/full_recall_diagnostic.csv"
+      ]
+    },
+    {
+      "id": "E5-A",
+      "name": "Provenance ablation — operation only",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "How much detection signal remains when only system operation names are represented?",
+      "hypothesis": "Operation-only representations will be highly ambiguous because many benign and malicious events share the same operation sequence.",
+      "representation": "Operation-only description (operation names without entity attributes or relationships)",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Frequency-preserving training on 99,665 benign operation-only descriptions.",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "max_epochs": 100,
+        "early_stopping": false,
+        "best_epoch": 56,
+        "train_samples": 99665,
+        "trainable_parameters": 107168,
+        "elapsed_seconds": 101.735156
+      },
+      "checkpoint_selection": "Fixed 100-epoch budget with no early stopping; best validation checkpoint retained.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors",
+        "threshold_value": 4.0604358764184667e-10
+      },
+      "results_summary": "ROC-AUC 0.826367 and Average Precision 0.003219. Zero original positives and 618 false positives at P99; contextual recall 10.22%.",
+      "interpretation": "Operation-only representations exhibit substantial ambiguity, with all 70 original positives sharing a description with 8,393 negatively labelled events.",
+      "limitations": "The representation cannot distinguish events that differ only in entities or graph structure.",
+      "source_artifacts": [
+        "results/e5a-operation-only/training_summary.json",
+        "results/e5a-operation-only/evaluation/evaluation_summary.json",
+        "results/ablation_comparison/ablation_comparison.csv",
+        "results/eda/ablation/representation_conflicts.json"
+      ]
+    },
+    {
+      "id": "E5-B",
+      "name": "Provenance ablation — operations and entities",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Do entity attributes resolve operation-only ambiguity without explicit directed relationships?",
+      "hypothesis": "Adding process and artifact attributes will eliminate observed description conflicts and improve detection.",
+      "representation": "Operations plus process and artifact attributes, without explicit directed relationships",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Frequency-preserving training on 99,665 benign entity-enriched descriptions.",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "max_epochs": 100,
+        "early_stopping": false,
+        "best_epoch": 84,
+        "train_samples": 99665,
+        "trainable_parameters": 107168,
+        "elapsed_seconds": 103.047623
+      },
+      "checkpoint_selection": "Fixed 100-epoch budget with no early stopping; best validation checkpoint retained.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors",
+        "threshold_value": 0.00007502168591599911
+      },
+      "results_summary": "ROC-AUC 0.982755 and Average Precision 0.018724. At P99: 70/70 original positives, 11,098 false positives, contextual recall 100%.",
+      "interpretation": "Entity attributes eliminate observed exact-description conflicts for original positives and produce a large detection improvement over operation-only representations.",
+      "limitations": "The representation does not encode explicit directed provenance relationships.",
+      "source_artifacts": [
+        "results/e5b-operation-entities/training_summary.json",
+        "results/e5b-operation-entities/evaluation/evaluation_summary.json",
+        "results/ablation_comparison/ablation_comparison.csv",
+        "results/eda/ablation/representation_conflicts.json"
+      ]
+    },
+    {
+      "id": "E5-C",
+      "name": "Provenance ablation — full provenance",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "research_question": "Do explicit directed provenance relationships add detection value beyond operations and entity attributes?",
+      "hypothesis": "Full provenance will improve observed Average Precision relative to the entity-based representation.",
+      "representation": "Operations, entity attributes and explicit directed provenance relationships",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Frequency-preserving training on 99,665 benign full-provenance descriptions.",
+      "seed": 42,
+      "training_configuration": {
+        "batch_size": 256,
+        "learning_rate": 0.001,
+        "max_epochs": 100,
+        "early_stopping": false,
+        "best_epoch": 99,
+        "train_samples": 99665,
+        "trainable_parameters": 107168,
+        "elapsed_seconds": 101.200200
+      },
+      "checkpoint_selection": "Fixed 100-epoch budget with no early stopping; best validation checkpoint retained.",
+      "evaluation_configuration": {
+        "threshold": "99th percentile of benign validation reconstruction errors",
+        "threshold_value": 0.000040547158278059214
+      },
+      "results_summary": "ROC-AUC 0.985507 and Average Precision 0.021743 — approximately 16.1% higher AP than E5-B. At P99: 70/70 original positives, 11,236 false positives, contextual recall 100%.",
+      "interpretation": "Full provenance achieves the best observed AP among the E5 configurations, but it does not outperform the entity-based representation on every threshold-based metric.",
+      "limitations": "The ablation measures overall representation differences, not exclusively the causal contribution of graph relationships; text ordering and formatting also differ.",
+      "source_artifacts": [
+        "results/e5c-full-provenance/training_summary.json",
+        "results/e5c-full-provenance/evaluation/evaluation_summary.json",
+        "results/ablation_comparison/ablation_comparison.csv",
+        "results/eda/ablation/representation_statistics.csv"
+      ]
+    },
+    {
+      "id": "E7",
+      "name": "Multiple-seed reproducibility",
+      "group": "reproducibility",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "Do the observed experimental improvements remain consistent across different random seeds?",
+      "hypothesis": "The E2-D ranking advantage will persist across seeds, but absolute metrics will vary.",
+      "representation": "Same as E2-D",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "training_strategy": "Repeat the selected configurations with seeds 42, 123 and 456; report mean, standard deviation and individual outcomes.",
+      "seed": null,
+      "training_configuration": {
+        "suggested_seeds": [42, 123, 456]
+      },
+      "checkpoint_selection": "Same benign-validation checkpoint rule as the original experiment.",
+      "evaluation_configuration": {
+        "metrics": ["ROC-AUC", "Average Precision", "precision", "recall", "contextual recall", "alert budget recovery"],
+        "aggregation": "mean, standard deviation, individual runs"
+      },
+      "results_summary": "Not yet executed.",
+      "interpretation": "Current results are single-seed and should not be treated as stable estimates.",
+      "limitations": "No multi-seed evidence exists yet.",
+      "source_artifacts": []
+    },
+    {
+      "id": "B6",
+      "name": "Semantic nearest-neighbour baseline",
+      "group": "baseline",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "How does a simple semantic nearest-neighbour distance compare with the autoencoder?",
+      "hypothesis": "Cosine distance to the nearest benign training embedding will provide a strong, interpretable baseline.",
+      "representation": "V2 full-provenance embedding",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+      "algorithm": "Nearest-neighbour cosine distance",
+      "training_strategy": "Store benign training embeddings; no parametric training.",
+      "seed": null,
+      "training_configuration": {},
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "threshold": "Same benign validation percentile protocol"
+      },
+      "results_summary": "Not yet executed.",
+      "interpretation": "Planned comparison to test whether the autoencoder adds value beyond embedding similarity.",
+      "limitations": "Planned only.",
+      "source_artifacts": []
+    },
+    {
+      "id": "E1",
+      "name": "V1 versus V2 verbalisation comparison",
+      "group": "representation",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "How does the earlier V1 verbalisation compare with the current V2 representation?",
+      "hypothesis": "V2's explicit relationships and entity detail will improve observed detection performance.",
+      "representation": "V1 and V2 descriptions",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+      "algorithm": "Autoencoder 384-128-32-128-384",
+      "training_strategy": "Train matched configurations on each representation.",
+      "seed": 42,
+      "training_configuration": {},
+      "checkpoint_selection": "Same validation rule per representation.",
+      "evaluation_configuration": {},
+      "results_summary": "Not yet executed.",
+      "interpretation": "Planned controlled comparison.",
+      "limitations": "Planned only.",
+      "source_artifacts": []
+    },
+    {
+      "id": "E3",
+      "name": "Chunk-aware embeddings",
+      "group": "representation",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "Can chunking long descriptions reduce information loss from the 256-token encoder limit?",
+      "hypothesis": "Chunk-aware encoding will improve detection for long provenance descriptions affected by truncation.",
+      "representation": "Chunked full-provenance descriptions",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+      "algorithm": "Chunk pooling plus autoencoder",
+      "training_strategy": "Planned.",
+      "seed": 42,
+      "training_configuration": {},
+      "checkpoint_selection": "Planned.",
+      "evaluation_configuration": {},
+      "results_summary": "Not yet executed.",
+      "interpretation": "Planned follow-up to observed truncation.",
+      "limitations": "Planned only.",
+      "source_artifacts": []
+    },
+    {
+      "id": "E4",
+      "name": "MPNet encoder comparison",
+      "group": "representation",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "Does a larger semantic encoder improve detection over MiniLM?",
+      "hypothesis": "MPNet may capture subtle semantic differences at higher computational cost.",
+      "representation": "V2 full-provenance description",
+      "encoder": "MPNet (candidate)",
+      "algorithm": "Same autoencoder architecture",
+      "training_strategy": "Planned controlled encoder comparison.",
+      "seed": 42,
+      "training_configuration": {},
+      "checkpoint_selection": "Planned.",
+      "evaluation_configuration": {},
+      "results_summary": "Not yet executed.",
+      "interpretation": "Candidate comparison, not an implemented result.",
+      "limitations": "Planned only.",
+      "source_artifacts": []
+    },
+    {
+      "id": "E6",
+      "name": "Temporal and provenance event correlation",
+      "group": "correlation",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "Can correlated event sequences improve detection beyond independent event scoring?",
+      "hypothesis": "Temporal and provenance-aware grouping will reduce isolated false positives and support incident reconstruction.",
+      "representation": "Provenance-linked event windows",
+      "encoder": "To be determined",
+      "algorithm": "Temporal/provenance correlation",
+      "training_strategy": "Planned.",
+      "seed": 42,
+      "training_configuration": {},
+      "checkpoint_selection": "Planned.",
+      "evaluation_configuration": {},
+      "results_summary": "Not yet executed.",
+      "interpretation": "Planned extension from event-level to sequence-level detection.",
+      "limitations": "Planned only.",
+      "source_artifacts": []
+    },
+    {
+      "id": "IV-1",
+      "name": "Independent attack-scenario validation",
+      "group": "validation",
+      "kind": "model",
+      "status": "planned",
+      "research_question": "Do the observed results generalise to an independent attack scenario or host?",
+      "hypothesis": "Performance may decrease under scenario shift; independent validation is required before any deployment claim.",
+      "representation": "To be determined",
+      "encoder": "To be determined",
+      "algorithm": "Selected best configuration",
+      "training_strategy": "Evaluate frozen configuration on independent data.",
+      "seed": 42,
+      "training_configuration": {},
+      "checkpoint_selection": "Frozen from primary experiment.",
+      "evaluation_configuration": {},
+      "results_summary": "Not yet executed.",
+      "interpretation": "The current attack test has been repeatedly inspected during exploratory analysis; independent evidence is absent.",
+      "limitations": "Planned only.",
+      "source_artifacts": []
+    },
+    {
+      "id": "M1",
+      "name": "Human-reviewed mitigation recommendation framework",
+      "group": "mitigation",
+      "kind": "framework",
+      "status": "planned",
+      "research_question": "Can evidence-grounded, human-reviewed mitigation recommendations be generated and evaluated?",
+      "hypothesis": "Recommendations must cite observed provenance evidence and remain subject to analyst approval.",
+      "representation": "Alert evidence and verified ATT&CK/D3FEND references",
+      "encoder": "Not applicable",
+      "algorithm": "Rule/evidence-based recommendation framework",
+      "training_strategy": "Not applicable",
+      "seed": null,
+      "training_configuration": {},
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "evaluation": "Separate from detection; mitigation effectiveness not yet established"
+      },
+      "results_summary": "Not yet implemented.",
+      "interpretation": "No automated mitigation is claimed or demonstrated.",
+      "limitations": "Planned only; requires human review and separate evaluation.",
+      "source_artifacts": []
+    },
+    {
+      "id": "D1",
+      "name": "Interactive research demonstration platform",
+      "group": "platform",
+      "kind": "platform",
+      "status": "in_progress",
+      "research_question": "Can research artifacts and findings be presented transparently to supervisors and reviewers?",
+      "hypothesis": "A read-only dashboard with explicit data provenance improves reviewability and methodological transparency.",
+      "representation": "Research artifacts exposed through a versioned read-only API",
+      "encoder": "Not applicable",
+      "algorithm": "React dashboard over FastAPI artifact service",
+      "training_strategy": "Not applicable",
+      "seed": null,
+      "training_configuration": {},
+      "checkpoint_selection": "Not applicable",
+      "evaluation_configuration": {
+        "status": "Implementation in web/; research validation pending"
+      },
+      "results_summary": "Dashboard implementation underway. It does not constitute experimental evidence.",
+      "interpretation": "Supports research communication and traceability, not detection performance.",
+      "limitations": "Not a validated research outcome; no deployment claim.",
+      "source_artifacts": ["web/README.md"]
+    }
+  ]
+}

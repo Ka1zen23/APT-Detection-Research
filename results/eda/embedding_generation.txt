@@ -1,0 +1,86 @@
+CICAPT-IIoT Semantic Embedding Generation
+Model: sentence-transformers/all-MiniLM-L6-v2
+Device: cuda
+GPU: NVIDIA GeForce RTX 4060
+PyTorch: 2.11.0+cu128
+CUDA version: 12.8
+Batch size: 64
+Maximum tokens: 256
+Embedding dimensions: 384
+Total events loaded: 243,271
+
+======================================================================
+PARTITION: TRAIN
+======================================================================
+Total records: 99,665
+Unique descriptions: 13,029
+Encoding reduction: 86.93%
+
+Embedding shape: (99665, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 145.99 MiB
+Elapsed time: 12.19 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/train_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/train_metadata.parquet
+
+======================================================================
+PARTITION: VALIDATION
+======================================================================
+Total records: 21,357
+Unique descriptions: 2,614
+Encoding reduction: 87.76%
+
+Embedding shape: (21357, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 31.28 MiB
+Elapsed time: 2.23 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/validation_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/validation_metadata.parquet
+
+======================================================================
+PARTITION: BENIGN_TEST
+======================================================================
+Total records: 21,357
+Unique descriptions: 2,658
+Encoding reduction: 87.55%
+
+Embedding shape: (21357, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 31.28 MiB
+Elapsed time: 2.29 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/benign_test_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/benign_test_metadata.parquet
+
+======================================================================
+PARTITION: ATTACK_TEST
+======================================================================
+Total records: 100,892
+Unique descriptions: 21,589
+Encoding reduction: 78.60%
+
+Embedding shape: (100892, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 147.79 MiB
+Elapsed time: 20.62 seconds
+Original positives: 70
+Contextual positives: 225
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/attack_test_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard/attack_test_metadata.parquet
+
+======================================================================
+EMBEDDING GENERATION COMPLETED
+======================================================================
+Total events: 243,271
+Total duration: 37.51 seconds
+Peak GPU memory: 388.62 MiB
+Output directory: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/v2-minilm-standard

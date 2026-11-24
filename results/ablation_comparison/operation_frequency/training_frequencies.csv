@@ -1,0 +1,15 @@
+text,frequency
+Operations: unlink.,77120
+Operations: connect.,10109
+Operations: rename; rename (read); rename (write).,7733
+Operations: execve; load; load.,2793
+Operations: execve; load; load; load.,985
+Operations: setgid.,401
+Operations: setuid.,260
+Operations: open.,175
+Operations: open; update.,40
+Operations: execve; load; load; update.,22
+Operations: connect; update.,16
+Operations: chmod.,7
+Operations: rename; rename (read); rename (write); update.,2
+Operations: execve; load.,2

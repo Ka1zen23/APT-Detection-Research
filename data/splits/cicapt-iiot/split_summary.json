@@ -1,0 +1,26 @@
+{
+    "train": {
+        "records": 99665,
+        "unique_descriptions": 13029,
+        "start_timestamp": 1701118210.496,
+        "end_timestamp": 1701360189.944
+    },
+    "validation": {
+        "records": 21357,
+        "unique_descriptions": 2614,
+        "start_timestamp": 1701360192.944,
+        "end_timestamp": 1701411863.205
+    },
+    "benign_test": {
+        "records": 21357,
+        "unique_descriptions": 2658,
+        "start_timestamp": 1701411867.203,
+        "end_timestamp": 1701463813.813
+    },
+    "attack_test": {
+        "records": 100892,
+        "unique_descriptions": 21589,
+        "start_timestamp": 1701468825.767,
+        "end_timestamp": 1701728421.462
+    }
+}

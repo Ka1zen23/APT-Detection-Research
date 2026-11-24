@@ -1,0 +1,76 @@
+{
+  "findings": [
+    {
+      "id": "F01",
+      "title": "Operation-only representations are ambiguous",
+      "research_question": "Can operation names alone distinguish malicious from benign provenance events?",
+      "observation": "All 70 original positive events share an operation-only description with 8,393 negatively labelled events. E5-A and B5 detect 0 original positives at P99.",
+      "evidence": "E5-A ROC-AUC 0.826367, AP 0.003219, recall 0% at P99. B5 ROC-AUC 0.826134, AP 0.003212, recall 0%. Representation conflict analysis: 1 conflicting description covering 8,463 records, including all 70 positives.",
+      "visualisation": "ablation",
+      "interpretation": "Operation names alone cannot separate events that differ only in entities or graph context. Entity and relationship information is necessary in this dataset.",
+      "limitations": "The conflict analysis measures exact-description collisions and does not prove that all ambiguous events are semantically indistinguishable.",
+      "related_experiments": ["B5", "E5-A"],
+      "validation_status": "preliminary"
+    },
+    {
+      "id": "F02",
+      "title": "One benign description dominates training frequency",
+      "research_question": "Is the benign training distribution dominated by a small number of recurring descriptions?",
+      "observation": "A single description occurs 72,986 times, representing approximately 73.23% of the 99,665 benign training events.",
+      "evidence": "E2-D and E5 training logs: 72,986 / 99,665 = 73.23%. Only 13,029 unique descriptions occur in training.",
+      "visualisation": "dataset",
+      "interpretation": "Frequency-preserving training can allow one recurring benign template to dominate the reconstruction objective, motivating unique-description and frequency-weighted variants.",
+      "limitations": "Frequency dominance is measured on the training partition only and may reflect the collection scenario rather than general benign behaviour.",
+      "related_experiments": ["E2-A", "E2-B", "E2-C", "E2-D"],
+      "validation_status": "preliminary"
+    },
+    {
+      "id": "F03",
+      "title": "Frequency-balanced training improves observed anomaly ranking",
+      "research_question": "Does approximately matched-update unique-description training improve anomaly ranking?",
+      "observation": "E2-D achieves ROC-AUC 0.995584 and AP 0.109080, the strongest observed ranking, compared with E2-A at 0.984482 and 0.020832.",
+      "evidence": "E2-D vs E2-A on the same attack-test partition with original labels. AP is approximately 5.2 times higher for E2-D.",
+      "visualisation": "comparison",
+      "interpretation": "Reducing frequency dominance while matching optimiser updates substantially improves anomaly ranking in this single-seed experiment.",
+      "limitations": "Only seed 42 is available. The comparison has not been repeated across seeds or independent scenarios.",
+      "related_experiments": ["E2-A", "E2-B", "E2-C", "E2-D", "E7"],
+      "validation_status": "preliminary"
+    },
+    {
+      "id": "F04",
+      "title": "Alert prioritisation is materially better for E2-D",
+      "research_question": "How many original positives are recovered within small analyst alert budgets?",
+      "observation": "E2-D identifies 46 of 70 original positives within the top 500 alerts, compared with 0 for E2-A, 7 for E2-B and 0 for E2-C.",
+      "evidence": "Tie-aware alert-budget analysis: E2-D 5/100/200/500 = 5/16/29/46 true positives; E2-A and E2-C recover none until budget 1,000.",
+      "visualisation": "alerts",
+      "interpretation": "Anomaly ranking quality has a large practical effect on analyst workload, even when threshold-based precision remains low.",
+      "limitations": "The budgets are measured points, not interpolated estimates. Absolute precision within 500 alerts is 9.2% for E2-D.",
+      "related_experiments": ["E2-A", "E2-B", "E2-C", "E2-D", "E2-R"],
+      "validation_status": "preliminary"
+    },
+    {
+      "id": "F05",
+      "title": "Full provenance improves observed Average Precision",
+      "research_question": "Do entity attributes and explicit provenance relationships improve detection over operations alone?",
+      "observation": "E5-C achieves AP 0.021743 versus 0.018724 for E5-B and 0.003219 for E5-A. The E5-C advantage over E5-B is approximately 16.1%.",
+      "evidence": "E5-C ROC-AUC 0.985507, AP 0.021743; E5-B 0.982755, 0.018724; E5-A 0.826367, 0.003219.",
+      "visualisation": "ablation",
+      "interpretation": "Full provenance provides the best observed AP among the controlled E5 configurations, while entity attributes account for most of the improvement over operations alone.",
+      "limitations": "The ablation changes multiple textual properties at once; it does not isolate the causal contribution of graph relationships. E5-C is worse than E5-B on benign FPR, attack FPR, precision and F1 at P99.",
+      "related_experiments": ["E5-A", "E5-B", "E5-C"],
+      "validation_status": "preliminary"
+    },
+    {
+      "id": "F06",
+      "title": "Threshold choice trades false positives against contextual recall",
+      "research_question": "How sensitive are operational metrics to validation-derived threshold choice?",
+      "observation": "For E2-D, moving from P99 to P99.95 reduces false positives from 8,628 to 2,339 while contextual recall falls from 77.33% to 49.33%; original recall remains 100%.",
+      "evidence": "P99 threshold 0.0002799674, precision 0.805%, benign FPR 0.754%. P99.95 threshold 0.0005867360, precision 2.906%, benign FPR 0.126%.",
+      "visualisation": "thresholds",
+      "interpretation": "Higher percentiles can substantially reduce alert volume, but the trade-off is context-dependent and must be evaluated against analyst capacity and missed-context risk.",
+      "limitations": "P99.95 was examined retrospectively after attack-test inspection and is exploratory, not an independently validated deployment threshold.",
+      "related_experiments": ["E2-D", "E2-T"],
+      "validation_status": "preliminary"
+    }
+  ]
+}

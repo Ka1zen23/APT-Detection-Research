@@ -1,0 +1,12 @@
+======================================================================
+PROVENANCE CONTEXT ABLATION
+Experiment: E5-C
+Stage: embed
+======================================================================
+Reusing existing full provenance embeddings.
+Verified train: 99,665 events
+Verified validation: 21,357 events
+Verified benign_test: 21,357 events
+Verified attack_test: 100,892 events
+
+ABLATION STAGE COMPLETED

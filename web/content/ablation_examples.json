@@ -1,0 +1,29 @@
+{
+  "event_context": "The same Phase 2 benign event, event ID 246, verbalised under each E5 representation. Descriptions are taken directly from results/eda/ablation/preprocessing_log.txt.",
+  "event_id": "246",
+  "phase": "phase2",
+  "source": "results/eda/ablation/preprocessing_log.txt",
+  "representations": [
+    {
+      "id": "E5-A",
+      "label": "Operation only",
+      "description": "Operations: execve; load; load; load.",
+      "contains": ["System operation names"],
+      "omits": ["Process attributes", "Artifact attributes", "Directed relationships"]
+    },
+    {
+      "id": "E5-B",
+      "label": "Operations and entities",
+      "description": "Operations: execve; load; load; load. Entities: Artifact; type: file; path: /bin/sh; permissions: 755. Artifact; type: file; path: /etc/network/if-up.d/ethtool; permissions: 755. Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755. Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0. Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/ethtool.",
+      "contains": ["System operation names", "Process attributes", "Artifact attributes"],
+      "omits": ["Explicit directed relationships"]
+    },
+    {
+      "id": "E5-C",
+      "label": "Full provenance",
+      "description": "Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/ethtool. P2: Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/ethtool; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.",
+      "contains": ["System operation names", "Process attributes", "Artifact attributes", "Explicit directed relationships"],
+      "omits": []
+    }
+  ]
+}

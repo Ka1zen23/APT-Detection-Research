@@ -1,0 +1,86 @@
+
+======================================================================
+OPERATION_ONLY
+======================================================================
+Counting tokens:   0%|          | 0/1 [00:00<?, ?it/s]                                                      
+PARTITION STATISTICS
+      split  events  unique_descriptions  mean_tokens  over_token_limit  original_positives_truncated  original_positives_seen
+      train   99665                   14     8.043737                 0                             0                        0
+ validation   21357                   12     7.962963                 0                             0                        0
+benign_test   21357                   11     7.950133                 0                             0                        0
+attack_test  100892                   15     8.532153                 0                             0                       70
+
+ORIGINAL LABEL CONFLICTS
+{
+    "conflicting_descriptions": 1,
+    "conflicting_records": 8463,
+    "conflicting_positives": 70,
+    "positive_conflict_rate": 1.0
+}
+
+CONTEXTUAL LABEL CONFLICTS
+{
+    "conflicting_descriptions": 9,
+    "conflicting_records": 99289,
+    "conflicting_positives": 225,
+    "positive_conflict_rate": 1.0
+}
+
+======================================================================
+OPERATION_ENTITIES
+======================================================================
+Counting tokens:   0%|          | 0/76 [00:00<?, ?it/s]Counting tokens:   3%|▎         | 2/76 [00:00<00:04, 16.23it/s]Counting tokens:  11%|█         | 8/76 [00:00<00:01, 37.72it/s]Counting tokens:  18%|█▊        | 14/76 [00:00<00:01, 46.84it/s]Counting tokens:  25%|██▌       | 19/76 [00:00<00:01, 45.36it/s]Counting tokens:  33%|███▎      | 25/76 [00:00<00:01, 40.66it/s]Counting tokens:  41%|████      | 31/76 [00:00<00:00, 45.39it/s]Counting tokens:  49%|████▊     | 37/76 [00:00<00:00, 48.48it/s]Counting tokens:  57%|█████▋    | 43/76 [00:00<00:00, 50.66it/s]Counting tokens:  64%|██████▍   | 49/76 [00:01<00:00, 41.45it/s]Counting tokens:  71%|███████   | 54/76 [00:01<00:00, 40.66it/s]Counting tokens:  78%|███████▊  | 59/76 [00:01<00:00, 41.67it/s]Counting tokens:  84%|████████▍ | 64/76 [00:01<00:00, 43.76it/s]Counting tokens:  91%|█████████ | 69/76 [00:01<00:00, 40.76it/s]Counting tokens:  99%|█████████▊| 75/76 [00:01<00:00, 44.34it/s]                                                                
+PARTITION STATISTICS
+      split  events  unique_descriptions  mean_tokens  over_token_limit  original_positives_truncated  original_positives_seen
+      train   99665                13020   101.404144               256                             0                        0
+ validation   21357                 2610   100.157747                40                             0                        0
+benign_test   21357                 2657   100.004776                24                             0                        0
+attack_test  100892                21580   107.345716               195                             0                        0
+
+ORIGINAL LABEL CONFLICTS
+{
+    "conflicting_descriptions": 0,
+    "conflicting_records": 0,
+    "conflicting_positives": 0,
+    "positive_conflict_rate": 0.0
+}
+
+CONTEXTUAL LABEL CONFLICTS
+{
+    "conflicting_descriptions": 1,
+    "conflicting_records": 3,
+    "conflicting_positives": 1,
+    "positive_conflict_rate": 0.0044444444444444444
+}
+
+======================================================================
+FULL_PROVENANCE
+======================================================================
+Counting tokens:   0%|          | 0/76 [00:00<?, ?it/s]Counting tokens:   7%|▋         | 5/76 [00:00<00:01, 44.45it/s]Counting tokens:  13%|█▎        | 10/76 [00:00<00:01, 43.59it/s]Counting tokens:  20%|█▉        | 15/76 [00:00<00:01, 42.87it/s]Counting tokens:  26%|██▋       | 20/76 [00:00<00:01, 35.60it/s]Counting tokens:  33%|███▎      | 25/76 [00:00<00:01, 38.57it/s]Counting tokens:  39%|███▉      | 30/76 [00:00<00:01, 40.61it/s]Counting tokens:  46%|████▌     | 35/76 [00:00<00:00, 41.20it/s]Counting tokens:  53%|█████▎    | 40/76 [00:01<00:01, 35.84it/s]Counting tokens:  59%|█████▉    | 45/76 [00:01<00:00, 37.43it/s]Counting tokens:  64%|██████▍   | 49/76 [00:01<00:00, 37.48it/s]Counting tokens:  70%|██████▉   | 53/76 [00:01<00:00, 37.32it/s]Counting tokens:  75%|███████▌  | 57/76 [00:01<00:00, 36.52it/s]Counting tokens:  80%|████████  | 61/76 [00:01<00:00, 32.63it/s]Counting tokens:  87%|████████▋ | 66/76 [00:01<00:00, 36.30it/s]Counting tokens:  93%|█████████▎| 71/76 [00:01<00:00, 39.16it/s]Counting tokens: 100%|██████████| 76/76 [00:01<00:00, 41.47it/s]                                                                
+PARTITION STATISTICS
+      split  events  unique_descriptions  mean_tokens  over_token_limit  original_positives_truncated  original_positives_seen
+      train   99665                13029   119.504259               327                             0                        0
+ validation   21357                 2614   117.959217                40                             0                        0
+benign_test   21357                 2658   117.760828                30                             0                        0
+attack_test  100892                21589   127.054415               283                             0                        0
+
+ORIGINAL LABEL CONFLICTS
+{
+    "conflicting_descriptions": 0,
+    "conflicting_records": 0,
+    "conflicting_positives": 0,
+    "positive_conflict_rate": 0.0
+}
+
+CONTEXTUAL LABEL CONFLICTS
+{
+    "conflicting_descriptions": 1,
+    "conflicting_records": 3,
+    "conflicting_positives": 1,
+    "positive_conflict_rate": 0.0044444444444444444
+}
+
+======================================================================
+ABLATION VALIDATION COMPLETED
+======================================================================
+Results saved to: /home/wajien/projects/APT-Detection-Research/results/eda/ablation

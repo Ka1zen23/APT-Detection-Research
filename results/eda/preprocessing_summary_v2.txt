@@ -1,0 +1,68 @@
+
+Processing Phase1_Provenance.csv
+
+NODE DATASET
+Records: 46,773
+Malicious: 0
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot-v2/phase1_nodes.parquet
+
+EVENT DATASET
+Records: 142,379
+Original malicious events: 0
+Contextual events: 0
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot-v2/phase1_events.parquet
+
+SAMPLE NODE DESCRIPTIONS
+- Process; name: bind9; executable: /usr/bin/dash; UID: 0; EUID: 0
+- Process; name: bind9; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh -e /etc/network/if-up.d/bind9
+- Artifact; type: file; path: /etc/network/if-up.d/bind9; permissions: 755
+
+SAMPLE EVENT DESCRIPTIONS
+- Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: bind9; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh -e /etc/network/if-up.d/bind9. P2: Process; name: bind9; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/bind9; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+- Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/ethtool. P2: Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/ethtool; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+- Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+
+DESCRIPTION LENGTH STATISTICS
+count    142379.000000
+mean         32.660877
+std           8.822997
+min          19.000000
+25%          29.000000
+50%          29.000000
+75%          29.000000
+max         232.000000
+
+Processing Phase2_Provenance.csv
+
+NODE DATASET
+Records: 53,286
+Malicious: 332
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot-v2/phase2_nodes.parquet
+
+EVENT DATASET
+Records: 100,892
+Original malicious events: 70
+Contextual events: 225
+Saved: /home/wajien/projects/APT-Detection-Research/data/processed/cicapt-iiot-v2/phase2_events.parquet
+
+SAMPLE NODE DESCRIPTIONS
+- Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0
+- Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/ethtool
+- Artifact; type: file; path: /etc/network/if-up.d/ethtool; permissions: 755
+
+SAMPLE EVENT DESCRIPTIONS
+- Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/ethtool. P2: Process; name: ethtool; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/ethtool; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+- Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+- Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+
+DESCRIPTION LENGTH STATISTICS
+count    100892.000000
+mean         35.528070
+std          11.582001
+min          19.000000
+25%          29.000000
+50%          29.000000
+75%          37.000000
+max         208.000000
+
+Preprocessing completed.

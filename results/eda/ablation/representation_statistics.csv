@@ -1,0 +1,13 @@
+variant,split,events,unique_descriptions,mean_tokens,p95_tokens,maximum_tokens,over_token_limit,original_positives,original_positives_truncated,contextual_positives,contextual_positives_truncated,seen_in_training,original_positives_seen,contextual_positives_seen
+operation_only,train,99665,14,8.043736517333066,19.0,21,0,0,0,0,0,99665,0,0
+operation_only,validation,21357,12,7.962962962962963,19.0,21,0,0,0,0,0,21354,0,0
+operation_only,benign_test,21357,11,7.9501334457086665,19.0,19,0,0,0,0,0,21357,0,0
+operation_only,attack_test,100892,15,8.532153193513857,19.0,21,0,70,0,225,0,100891,70,225
+operation_entities,train,99665,13020,101.40414388200472,151.0,4272,256,0,0,0,0,99665,0,0
+operation_entities,validation,21357,2610,100.15774687456103,149.0,287,40,0,0,0,0,18890,0,0
+operation_entities,benign_test,21357,2657,100.00477595167861,149.0,287,24,0,0,0,0,18857,0,0
+operation_entities,attack_test,100892,21580,107.34571621139436,172.0,3068,195,70,0,225,2,80100,0,1
+full_provenance,train,99665,13029,119.50425926854965,184.0,4306,327,0,0,0,0,99665,0,0
+full_provenance,validation,21357,2614,117.95921711850916,182.0,321,40,0,0,0,0,18890,0,0
+full_provenance,benign_test,21357,2658,117.7608278316243,182.0,321,30,0,0,0,0,18857,0,0
+full_provenance,attack_test,100892,21589,127.05441462157555,206.0,3102,283,70,0,225,4,80100,0,1

@@ -1,0 +1,99 @@
+{
+  "reports": [
+    {
+      "id": "RP01",
+      "title": "Research proposal",
+      "category": "Proposal",
+      "status": "unavailable",
+      "description": "The approved proposal document is not present in the repository.",
+      "format": "Document",
+      "available": false
+    },
+    {
+      "id": "RP02",
+      "title": "Interim progress report",
+      "category": "Progress",
+      "status": "planned",
+      "description": "No interim report artifact has been generated yet.",
+      "format": "Document",
+      "available": false
+    },
+    {
+      "id": "RP03",
+      "title": "E5 provenance ablation summary",
+      "category": "Experimental summary",
+      "status": "available",
+      "description": "Measured comparison log for B5, E5-A, E5-B and E5-C.",
+      "format": "Text log",
+      "available": true,
+      "document_key": "e5_comparison_log"
+    },
+    {
+      "id": "RP04",
+      "title": "E2-D matched-update training log",
+      "category": "Experimental summary",
+      "status": "available",
+      "description": "Full epoch-level training log for the leading autoencoder configuration.",
+      "format": "Text log",
+      "available": true,
+      "document_key": "e2d_training_log"
+    },
+    {
+      "id": "RP05",
+      "title": "E2-D evaluation report",
+      "category": "Experimental summary",
+      "status": "available",
+      "description": "Original and contextual label evaluation with per-tactic recall and inference timing.",
+      "format": "Text log",
+      "available": true,
+      "document_key": "e2d_evaluation_log"
+    },
+    {
+      "id": "RP06",
+      "title": "Baseline experiment log",
+      "category": "Experimental summary",
+      "status": "available",
+      "description": "Measured B1-B4 results and comparison table.",
+      "format": "Text log",
+      "available": true,
+      "document_key": "baseline_log"
+    },
+    {
+      "id": "RP07",
+      "title": "Methodology document",
+      "category": "Methodology",
+      "status": "unavailable",
+      "description": "A standalone methodology document is not present. The dashboard methodology view is maintained separately in web/content.",
+      "format": "Document",
+      "available": false
+    },
+    {
+      "id": "RP08",
+      "title": "Supervisor meeting notes",
+      "category": "Meeting notes",
+      "status": "unavailable",
+      "description": "No supervisor meeting notes are stored in the repository.",
+      "format": "Document",
+      "available": false
+    },
+    {
+      "id": "RP09",
+      "title": "CICAPT-IIoT provenance log readme",
+      "category": "Dataset documentation",
+      "status": "available",
+      "description": "Original readme describing the dataset provenance log fields and collection phases.",
+      "format": "Text",
+      "available": true,
+      "document_key": "dataset_readme"
+    },
+    {
+      "id": "RP10",
+      "title": "Final dissertation",
+      "category": "Dissertation",
+      "status": "planned",
+      "description": "The dissertation has not been written or deposited.",
+      "format": "PDF",
+      "available": false
+    }
+  ]
+}

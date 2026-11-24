@@ -1,0 +1,422 @@
+embedding_index,phase,event_id,timestamp,edge_count,node_ids,original_label,contextual_label,original_tactics,contextual_tactics,split,anomaly_score,prediction,threshold_ratio,text
+12443,phase1,271025.0,1701442256.581,4,"['02a4195a9866b7c9eba7405c13110dad' '562eaabc3ce7ea7ec9095ba169f79c23'
+ 'aec05964d2cf90e72554c6862abfc1bd' 'bdc2ca1d94be5a3958f6621d8b52fdb0'
+ 'f2e36100aaad8bd9dad3bac06ddbf36b']",0,0,[],[],benign_test,0.0010337225,1,2.0004756,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/avahi-autoipd. P2: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/avahi-autoipd; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12457,phase1,271043.0,1701442256.673,4,"['02a4195a9866b7c9eba7405c13110dad' '9e880d216a9ee45bbfd07d4f75d9aa3f'
+ 'aec05964d2cf90e72554c6862abfc1bd' 'b6ff23f05c586eb529c843c3d19e76f3'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0010337225,1,2.0004756,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/avahi-autoipd. P2: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/avahi-autoipd; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+17566,phase1,281308.0,1701454617.971,4,"['02a4195a9866b7c9eba7405c13110dad' '9603413bc05b7743c4f97742dfb07a54'
+ 'a54e040db71cf2b46a7dc40143d5ceca' 'aec05964d2cf90e72554c6862abfc1bd'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0010337225,1,2.0004756,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/avahi-autoipd. P2: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/avahi-autoipd; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16414,phase1,278989.0,1701451877.908,4,"['02a4195a9866b7c9eba7405c13110dad' '26bf5870fa441439ddc68fdaeac66a13'
+ 'aec05964d2cf90e72554c6862abfc1bd' 'bdc2ca1d94be5a3958f6621d8b52fdb0'
+ 'cb185b61000016506b8c8fed03d9ad7b']",0,0,[],[],benign_test,0.0010337225,1,2.0004756,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/avahi-autoipd. P2: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/avahi-autoipd; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16400,phase1,278971.0,1701451877.844,4,"['02a4195a9866b7c9eba7405c13110dad' '7e8085dc58e484a9fc38f16738693010'
+ '9071752ef28c69538256a6d171b5a769' 'aec05964d2cf90e72554c6862abfc1bd'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0010337225,1,2.0004756,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/avahi-autoipd. P2: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/avahi-autoipd; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+17580,phase1,281326.0,1701454618.019,4,"['02a4195a9866b7c9eba7405c13110dad' '26c1377a61e44fdb7ce4058f2c91ee92'
+ '6ead93dcfd85ca697b1b15cc4ddb0f3b' 'aec05964d2cf90e72554c6862abfc1bd'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0010337225,1,2.0004756,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/avahi-autoipd. P2: Process; name: avahi-autoipd; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/avahi-autoipd; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+17589,phase1,281339.0,1701454618.067,4,"['02a4195a9866b7c9eba7405c13110dad' '15180ddb518d16356e87e7c20093580a'
+ '3262d5e470853ba07944542c663c5c5c' 'bdc2ca1d94be5a3958f6621d8b52fdb0'
+ 'd46d585ba2295d19bc0e21436560b0ef']",0,0,[],[],benign_test,0.00095384556,1,1.8458965,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16422,phase1,279000.0,1701451877.964,4,"['02a4195a9866b7c9eba7405c13110dad' '0ba5204a6b67652266226d7a4d931bb3'
+ '15180ddb518d16356e87e7c20093580a' 'abd106a06cb28e35a2a4b5016efbd044'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.00095384556,1,1.8458965,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+17576,phase1,281321.0,1701454618.003,4,"['02a4195a9866b7c9eba7405c13110dad' '15180ddb518d16356e87e7c20093580a'
+ 'af02e2f9210de51ae3a9cc9578a1a7f0' 'bdc2ca1d94be5a3958f6621d8b52fdb0'
+ 'e2b9631d799728bfc89cadc831497d75']",0,0,[],[],benign_test,0.00095384556,1,1.8458965,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16410,phase1,278982.0,1701451877.888,4,"['02a4195a9866b7c9eba7405c13110dad' '10cb9ce1fa3d66ee306ba55dfc0da1f5'
+ '15180ddb518d16356e87e7c20093580a' '514db003dda51f61832d776e313051d4'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.00095384556,1,1.8458965,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12453,phase1,271039.0,1701442256.657,4,"['02a4195a9866b7c9eba7405c13110dad' '15180ddb518d16356e87e7c20093580a'
+ '5fc492cefe9063c4baa3d0c75b075267' '8da46ffc91693b8ba732db2ea183fd9c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.00095384556,1,1.8458965,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12465,phase1,271054.0,1701442256.717,4,"['02a4195a9866b7c9eba7405c13110dad' '15180ddb518d16356e87e7c20093580a'
+ '336cd8e077a104adbfe551b0d1ba7913' 'bdc2ca1d94be5a3958f6621d8b52fdb0'
+ 'ef087565858ca5adb470ba314313834c']",0,0,[],[],benign_test,0.00095384556,1,1.8458965,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/openvpn. P2: Process; name: openvpn; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/openvpn; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+21351,phase1,288919.0,1701463813.521,1,['49b747737f6ce78cf6bd5907a8bc2c69' 'b6bfc9b5140e99bbdfaed0577c704d30'],0,0,[],[],benign_test,0.0007069119,1,1.3680266,Relationships: P1 used A1; operation: open. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 1000; EUID: 0; command: sudo systemctl stop auditd.service. A1: Artifact; type: file; path: /etc/shadow; permissions: 640.
+21350,phase1,288917.0,1701463813.289,1,['49b747737f6ce78cf6bd5907a8bc2c69' 'b6bfc9b5140e99bbdfaed0577c704d30'],0,0,[],[],benign_test,0.0007069119,1,1.3680266,Relationships: P1 used A1; operation: open. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 1000; EUID: 0; command: sudo systemctl stop auditd.service. A1: Artifact; type: file; path: /etc/shadow; permissions: 640.
+7737,phase1,261592.0,1701430730.52,3,"['02a4195a9866b7c9eba7405c13110dad' '2d7c7496504f8aa3d4ea460ed2141eb6'
+ 'aade95f0ad51d3712bea946103c2c8cf' 'e01e0c29cb7f26f2507cad0105d911be']",0,0,[],[],benign_test,0.0007063565,1,1.3669518,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: find; executable: /usr/bin/find; UID: 0; EUID: 0; command: find /var/crash/. ! -name . -prune -type f ( ( -size 0 -a ! -name *.upload* -a ! -name *.drkonqi* ) -o -mtime +7 ) -exec rm -f -- {} ;. P2: Process; name: find; executable: /usr/bin/find; UID: 0; EUID: 0. A1: Artifact; type: file; path: /bin/find; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+7738,phase1,261593.0,1701430730.524,3,"['02a4195a9866b7c9eba7405c13110dad' 'e01e0c29cb7f26f2507cad0105d911be'
+ 'ee27f91739285936a7de168a6f1c7864' 'fb9d47c79b358b611394be3f2762505c']",0,0,[],[],benign_test,0.00070489955,1,1.3641323,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: find; executable: /usr/bin/find; UID: 0; EUID: 0; command: find /var/crash/. ! -name . -prune -type d -regextype posix-extended -regex .*/[0-9]{12}$ ( -mtime +7 ) -exec rm -Rf -- {} ;. P2: Process; name: find; executable: /usr/bin/find; UID: 0; EUID: 0. A1: Artifact; type: file; path: /bin/find; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+6549,phase1,259257.0,1701428006.988,3,"['02a4195a9866b7c9eba7405c13110dad' '1a45197ff6d30a152fc3dfc58eeb6c80'
+ '44639738e9db200c6b39990a53782a4b' 'd3e46fd5126e5528753550054bd8b159']",0,0,[],[],benign_test,0.00067558046,1,1.3073936,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0; command: cat /sys/class/power_supply/ACAD/online. P2: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/cat; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+6540,phase1,259242.0,1701427997.8,3,"['02a4195a9866b7c9eba7405c13110dad' 'ab172fa85ad65c4840d6f8880e938cc3'
+ 'd3e46fd5126e5528753550054bd8b159' 'e2b3816edad1ee60d250cdac9c6d45e5']",0,0,[],[],benign_test,0.00067558046,1,1.3073936,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0; command: cat /sys/class/power_supply/ACAD/online. P2: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/cat; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+7558,phase1,261229.0,1701430305.235,4,"['02a4195a9866b7c9eba7405c13110dad' '15e19ea5c4ecc4706c6b1daf1c058144'
+ '6c6edb2600be3c4ce1f803e8b1e3d44b' 'b4a36abc17c4b0ab93713c7cc32ea589'
+ 'dfabf28fafc4e34cb127cc08dd4d4f7d']",0,0,[],[],benign_test,0.00066915236,1,1.2949538,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: unattended-upgr; executable: /usr/bin/python3.8; UID: 0; EUID: 0; command: /usr/bin/python3 /usr/bin/unattended-upgrade --help. P2: Process; name: env; executable: /usr/bin/env; UID: 0; EUID: 0; command: env LC_ALL=C.UTF-8 unattended-upgrade --help. A1: Artifact; type: file; path: /usr/bin/unattended-upgrade; permissions: 755. A2: Artifact; type: file; path: /usr/bin/python3; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+18013,phase1,282192.0,1701455624.407,3,"['02a4195a9866b7c9eba7405c13110dad' '134c4ad609284666222338ab4392961d'
+ '91811478008453ee3153b931586ddf63' 'afbc4eaf137f3de319f2a0bbacae040a']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+19510,phase1,285210.0,1701459284.404,3,"['02a4195a9866b7c9eba7405c13110dad' '60860f27a16fbc5f501f14c009476ad3'
+ '91811478008453ee3153b931586ddf63' 'a0bbb7634be78939a1d3bc8c91677dd1']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+13546,phase1,273237.0,1701444884.405,3,"['02a4195a9866b7c9eba7405c13110dad' '88c5a8e63a0d9a62ab7757e17e691de1'
+ '91811478008453ee3153b931586ddf63' 'ba48d0f33d65cb400fe21079a9c866bb']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+9036,phase1,264172.0,1701433844.402,3,"['02a4195a9866b7c9eba7405c13110dad' '91811478008453ee3153b931586ddf63'
+ 'c93df8e2b2dc52c9daac41ae911dac80' 'dcb906e0f26004167dc5cc5ba3643aec']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+10490,phase1,267093.0,1701437444.403,3,"['02a4195a9866b7c9eba7405c13110dad' '071f1c6e4b74e35b42fe72115dd556fb'
+ '6f779508e4393d4135bbf4cd53b4ceb6' '91811478008453ee3153b931586ddf63']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16527,phase1,279216.0,1701452084.423,3,"['02a4195a9866b7c9eba7405c13110dad' '2b24f2a786ee8f9d7c24359255a723c3'
+ '91811478008453ee3153b931586ddf63' '9e1437c498510d021e1f32d8cf217936']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+7612,phase1,261336.0,1701430430.504,3,"['02a4195a9866b7c9eba7405c13110dad' '7bc8bd02640ff49edcdc036b608f87f0'
+ '91811478008453ee3153b931586ddf63' 'e6b455cf476fc7cc09c8f891f0f19f86']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+14960,phase1,276069.0,1701448304.72,3,"['02a4195a9866b7c9eba7405c13110dad' '27264e365cd813367c7c08fd7756a010'
+ '7ddebaa59c3f3ab7ef97de17151eccb4' '91811478008453ee3153b931586ddf63']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+11944,phase1,270013.0,1701441044.403,3,"['02a4195a9866b7c9eba7405c13110dad' '79ffe8ec980766c20f04e078c4307c0c'
+ '91811478008453ee3153b931586ddf63' 'a818446ba3e40d9a0229cb012d5bcfab']",0,0,[],[],benign_test,0.0006653223,1,1.2875419,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+20884,phase1,287967.0,1701462728.411,3,"['02a4195a9866b7c9eba7405c13110dad' '439552d11ba617f1d79d77e7e55dea64'
+ '91811478008453ee3153b931586ddf63' 'f616efdb0acb477fbf7ef844d7929b57']",0,0,[],[],benign_test,0.0006653222,1,1.2875416,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0; command: /usr/sbin/anacron -d -q -s. P2: Process; name: anacron; executable: /usr/sbin/anacron; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/sbin/anacron; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+7517,phase1,261185.0,1701430304.631,3,"['02a4195a9866b7c9eba7405c13110dad' '0b4ecadb7efbada3a7a718ba58d819ce'
+ '0eebc195b0da721fe1c33cf8f9e5b695' '3478eb63b52b54ae4e1f257bee718966']",0,0,[],[],benign_test,0.000662547,1,1.282171,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: flock; executable: /usr/bin/flock; UID: 0; EUID: 0; command: flock -w 3600 3. P2: Process; name: flock; executable: /usr/bin/flock; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/flock; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+6491,phase1,259182.0,1701427996.732,3,"['02a4195a9866b7c9eba7405c13110dad' '0b4ecadb7efbada3a7a718ba58d819ce'
+ '485d7b2ac20d71b3ac2a02727dbf4cd1' 'ca33be77a8061d07154ce5614f942b39']",0,0,[],[],benign_test,0.000662547,1,1.282171,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: flock; executable: /usr/bin/flock; UID: 0; EUID: 0; command: flock -w 3600 3. P2: Process; name: flock; executable: /usr/bin/flock; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/flock; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16418,phase1,278993.0,1701451877.908,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'da7846de6e7548754f96a7ede2468552' 'f85e9443f8f0540248625349b0f2fc86']",0,0,[],[],benign_test,0.0006482656,1,1.2545334,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_ETHERNET_PAUSE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_ETHERNET_PAUSE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17572,phase1,281314.0,1701454617.979,3,"['02a4195a9866b7c9eba7405c13110dad' '726c26e483ac388f889073633f36df54'
+ '7931225bd8f4f10604915c918b2af9cb' 'b06c786b7316deb8fe60f8003f3f2132']",0,0,[],[],benign_test,0.0006482656,1,1.2545334,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_ETHERNET_PAUSE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_ETHERNET_PAUSE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+12461,phase1,271047.0,1701442256.689,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'a39e74c481982ba6204fa644c3d49d0e' 'b686d842ba021bcaee3501a5d9a2909d']",0,0,[],[],benign_test,0.0006482656,1,1.2545334,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_ETHERNET_PAUSE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_ETHERNET_PAUSE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+12449,phase1,271031.0,1701442256.605,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'de1a49381efde665e4fdf6b94b8ce715' 'f75e8e690e96fc9217ce91b9d3a413cb']",0,0,[],[],benign_test,0.0006482656,1,1.2545334,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_ETHERNET_PAUSE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_ETHERNET_PAUSE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16406,phase1,278977.0,1701451877.856,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'bfc2f0a63fa34d72ca37d38e5729f9cb' 'd5ddf0c19788a8d1f3b3eebb32b2df2a']",0,0,[],[],benign_test,0.0006482656,1,1.2545334,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_ETHERNET_PAUSE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_ETHERNET_PAUSE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17584,phase1,281330.0,1701454618.027,3,"['02a4195a9866b7c9eba7405c13110dad' '42e1bb3beb338aa90e9a6927eca30188'
+ '567552a83dfc31636689e475468bce74' '7931225bd8f4f10604915c918b2af9cb']",0,0,[],[],benign_test,0.0006482656,1,1.2545334,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_ETHERNET_PAUSE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_ETHERNET_PAUSE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+21352,phase1,288921.0,1701463813.565,1,['3259ce88c9b11906944f73e725d2355f' '49b747737f6ce78cf6bd5907a8bc2c69'],0,0,[],[],benign_test,0.00064223784,1,1.2428684,Relationships: P1 was triggered by P2; operation: setuid. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 1000; EUID: 0; command: sudo systemctl stop auditd.service.
+21329,phase1,288881.0,1701463800.569,1,['3259ce88c9b11906944f73e725d2355f' '49b747737f6ce78cf6bd5907a8bc2c69'],0,0,[],[],benign_test,0.00064223784,1,1.2428684,Relationships: P1 was triggered by P2; operation: setuid. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 1000; EUID: 0; command: sudo systemctl stop auditd.service.
+21353,phase1,288923.0,1701463813.645,1,['3259ce88c9b11906944f73e725d2355f'],0,0,[],[],benign_test,0.00062989135,1,1.2189753,Relationships: P1 was triggered by P1; operation: setuid. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service.
+21354,phase1,288924.0,1701463813.645,1,['3259ce88c9b11906944f73e725d2355f' '5f91328d086e7c80d42e8082a3f28bd6'],0,0,[],[],benign_test,0.00062240416,1,1.204486,Relationships: P1 was triggered by P2; operation: setgid. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service.
+21349,phase1,288916.0,1701463810.641,2,"['1b1b97ef4f69d7c4f421942a206eb2da' '49b747737f6ce78cf6bd5907a8bc2c69'
+ 'b6bfc9b5140e99bbdfaed0577c704d30']",0,0,[],[],benign_test,0.0006193104,1,1.198499,Relationships: P1 was triggered by P2; operation: update. P1 used A1; operation: open. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 1000; EUID: 0; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. A1: Artifact; type: file; path: /etc/shadow; permissions: 640.
+17577,phase1,281322.0,1701454618.003,4,"['02a4195a9866b7c9eba7405c13110dad' '2ad74e63bd9d749d23c08c60f2fd3c7f'
+ '4cc8d13c967ca078820318c152445044' '8b2570bd7e5138cc8a48551559fee11c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0006153684,1,1.1908703,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12466,phase1,271055.0,1701442256.721,4,"['02a4195a9866b7c9eba7405c13110dad' '12f0a6241c05c6438476981811f16d6e'
+ '2e7212550f1c0fb50d6e8d491a500dbe' '8b2570bd7e5138cc8a48551559fee11c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0006153684,1,1.1908703,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12454,phase1,271040.0,1701442256.665,4,"['02a4195a9866b7c9eba7405c13110dad' '54fc4b3e1ad7e81a17c70ebd3ca4d331'
+ '5a9db1e6a80f4cdd6e47ca5e115d043d' '8b2570bd7e5138cc8a48551559fee11c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0006153684,1,1.1908703,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16411,phase1,278983.0,1701451877.888,4,"['02a4195a9866b7c9eba7405c13110dad' '26e2f86f1b84b07ce385822d60030de4'
+ '85298d30a005f8f806ad250f0283035e' '8b2570bd7e5138cc8a48551559fee11c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0006153684,1,1.1908703,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+17590,phase1,281340.0,1701454618.071,4,"['02a4195a9866b7c9eba7405c13110dad' '8b2570bd7e5138cc8a48551559fee11c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0' 'f2200b29eae33cdb4c1f00348fdf58d7'
+ 'fd7332d2a0f18715baeb53cef9125b7a']",0,0,[],[],benign_test,0.0006153684,1,1.1908703,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16423,phase1,279001.0,1701451877.968,4,"['02a4195a9866b7c9eba7405c13110dad' '5ce9dff1b43b7053520d34ecbd232d73'
+ '80b1ea85210880a0a91cc021f2795e65' '8b2570bd7e5138cc8a48551559fee11c'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.0006153684,1,1.1908703,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-up.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-up.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+6485,phase1,259173.0,1701427996.656,3,"['02a4195a9866b7c9eba7405c13110dad' '5061a8463bc83a84120b1a3accdbdc0e'
+ '7c5468ab9cb7e55a1527f5c8639df97c' 'c33d4dc894e7503d5561c3ec607aa2d1']",0,0,[],[],benign_test,0.00061178964,1,1.1839446,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: nm-online; executable: /usr/bin/nm-online; UID: 0; EUID: 0; command: nm-online -q --timeout 30. P2: Process; name: nm-online; executable: /usr/bin/nm-online; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/nm-online; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+7511,phase1,261176.0,1701430304.531,3,"['02a4195a9866b7c9eba7405c13110dad' '2fbd238f9eaf41ae2457372d8ec2aa10'
+ '5061a8463bc83a84120b1a3accdbdc0e' '89b023bacaabc44e24dd941b56db35b2']",0,0,[],[],benign_test,0.00061178964,1,1.1839446,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: nm-online; executable: /usr/bin/nm-online; UID: 0; EUID: 0; command: nm-online -q --timeout 30. P2: Process; name: nm-online; executable: /usr/bin/nm-online; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/nm-online; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12450,phase1,271033.0,1701442256.633,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ '9790ef025276ee27b8df0db70332f046' 'ff27c277ffa886552fc93f9bf3946e40']",0,0,[],[],benign_test,0.00060981535,1,1.1801239,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_IRQ_COALESCE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_IRQ_COALESCE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+12462,phase1,271051.0,1701442256.709,3,"['02a4195a9866b7c9eba7405c13110dad' '72f06c4cbf266e49ff1d122c17438d02'
+ '7931225bd8f4f10604915c918b2af9cb' '7ef37f8a9fbda271c1350f4cbd45d63d']",0,0,[],[],benign_test,0.00060981535,1,1.1801239,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_IRQ_COALESCE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_IRQ_COALESCE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17585,phase1,281331.0,1701454618.035,3,"['02a4195a9866b7c9eba7405c13110dad' '43ede87a759f18d1b47863f4da13651d'
+ '7931225bd8f4f10604915c918b2af9cb' 'a154681cc81bc820981b6fbb49782c64']",0,0,[],[],benign_test,0.00060981535,1,1.1801239,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_IRQ_COALESCE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_IRQ_COALESCE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16407,phase1,278979.0,1701451877.888,3,"['02a4195a9866b7c9eba7405c13110dad' '21cd9af021e9a9cd15c400c40a8ab6a7'
+ '7931225bd8f4f10604915c918b2af9cb' 'f8c3481f32b6bf2fd1daa4ed3d2197fc']",0,0,[],[],benign_test,0.00060981535,1,1.1801239,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_IRQ_COALESCE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_IRQ_COALESCE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16419,phase1,278997.0,1701451877.952,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ '9a1b46733884f649e6da2d6f40971372' 'ce656e2435d90f1c3aadf660f1f8abfe']",0,0,[],[],benign_test,0.00060981535,1,1.1801239,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_IRQ_COALESCE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_IRQ_COALESCE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17573,phase1,281315.0,1701454617.983,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ '88da0f9e77224767617e0d7c6aeca37e' 'da4d50a652bf030c1c6f1cf904907df3']",0,0,[],[],benign_test,0.00060981535,1,1.1801239,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_IRQ_COALESCE_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_IRQ_COALESCE_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+12463,phase1,271052.0,1701442256.713,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'c75dd7f4f771fe15b02187a4500d2ffa' 'f3eff19dd8a447b27ce0c43d84e7ffca']",0,0,[],[],benign_test,0.00058679766,1,1.1355797,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_DMA_RING_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_DMA_RING_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17587,phase1,281337.0,1701454618.047,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'ad62af6cc12813e05349327d6891552a' 'd933b40a98756cb6c421388f981efcd3']",0,0,[],[],benign_test,0.00058679766,1,1.1355797,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_DMA_RING_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_DMA_RING_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16408,phase1,278980.0,1701451877.888,3,"['02a4195a9866b7c9eba7405c13110dad' '0608a571afe6f46561bcc2b73d7ccc91'
+ '7931225bd8f4f10604915c918b2af9cb' 'ad49ea2f787ad873d6259c4d9d3105c6']",0,0,[],[],benign_test,0.00058679766,1,1.1355797,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_DMA_RING_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_DMA_RING_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17574,phase1,281318.0,1701454617.987,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'b4d3fbf13f636298153c814ee12dba96' 'e9482e0a886377e013e7ecbec11e97b9']",0,0,[],[],benign_test,0.00058679766,1,1.1355797,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_DMA_RING_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_DMA_RING_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16420,phase1,278998.0,1701451877.956,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ '9f7be621e4f80a061f6ecac3a7340479' 'c279b6251f454b5239461c846d9e0a13']",0,0,[],[],benign_test,0.00058679766,1,1.1355797,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_DMA_RING_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_DMA_RING_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+12451,phase1,271034.0,1701442256.641,3,"['02a4195a9866b7c9eba7405c13110dad' '04501b901809cb78fb84d11a81ef8619'
+ '7931225bd8f4f10604915c918b2af9cb' '9613cd43ec28cc3832b043bf07877079']",0,0,[],[],benign_test,0.00058679766,1,1.1355797,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_HARDWARE_DMA_RING_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_HARDWARE_DMA_RING_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+6534,phase1,259225.0,1701427997.42,4,"['02a4195a9866b7c9eba7405c13110dad' '420139f8bcc1b5434abcd24f5e6c5e93'
+ 'b4a36abc17c4b0ab93713c7cc32ea589' 'd2a1af2f8e748939e3387df04320cadd'
+ 'dfabf28fafc4e34cb127cc08dd4d4f7d']",0,0,[],[],benign_test,0.0005853416,1,1.132762,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: unattended-upgr; executable: /usr/bin/python3.8; UID: 0; EUID: 0; command: /usr/bin/python3 /usr/bin/unattended-upgrade. P2: Process; name: unattended-upgr; executable: /usr/bin/python3.8; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/unattended-upgrade; permissions: 755. A2: Artifact; type: file; path: /usr/bin/python3; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12464,phase1,271053.0,1701442256.713,3,"['02a4195a9866b7c9eba7405c13110dad' '1ea2102822fa82776ac23e88c1400c2d'
+ '7931225bd8f4f10604915c918b2af9cb' 'a2692de5dc5ce546ec4b4c9ce43eae40']",0,0,[],[],benign_test,0.0005793257,1,1.12112,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_OFFLOAD_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_OFFLOAD_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17588,phase1,281338.0,1701454618.063,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ '81c40f4dc1e47f3d9d2af1110dda070a' 'bd255567c64294dcec14e59da376da5c']",0,0,[],[],benign_test,0.0005793257,1,1.12112,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_OFFLOAD_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_OFFLOAD_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16409,phase1,278981.0,1701451877.888,3,"['02a4195a9866b7c9eba7405c13110dad' '0c4e162f05526ab82c03745f28ba1243'
+ '6c2c4d18dcd2b4f0fb2684ae13f252c9' '7931225bd8f4f10604915c918b2af9cb']",0,0,[],[],benign_test,0.0005793257,1,1.12112,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_OFFLOAD_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_OFFLOAD_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+16421,phase1,278999.0,1701451877.96,3,"['02a4195a9866b7c9eba7405c13110dad' '4aa3a0e0499c97bf78ffada1a4469e47'
+ '7931225bd8f4f10604915c918b2af9cb' 'd5c0db6a6a1dc826f81837d9ed189684']",0,0,[],[],benign_test,0.0005793257,1,1.12112,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_OFFLOAD_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_OFFLOAD_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+17575,phase1,281320.0,1701454617.991,3,"['02a4195a9866b7c9eba7405c13110dad' '7931225bd8f4f10604915c918b2af9cb'
+ 'aa84f6e280f42d7512a087914c5997fb' 'b2788c23bb44d38d59f1e7cf469e8c13']",0,0,[],[],benign_test,0.0005793257,1,1.12112,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_OFFLOAD_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_OFFLOAD_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+12452,phase1,271035.0,1701442256.645,3,"['02a4195a9866b7c9eba7405c13110dad' '0d5b8ae5a4a5aff9f36b18c4f04462c3'
+ '7931225bd8f4f10604915c918b2af9cb' 'b177bf99693a18ff0cb0e2db990137f0']",0,0,[],[],benign_test,0.0005793257,1,1.12112,"Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0; command: sed -n 
+/^IF_OFFLOAD_[A-Za-z0-9_]*=/ {
+    h;                             # hold line
+    s/^IF_OFFLOAD_//; s/=.*//; s/_/-/g;  # get name without prefix
+    y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/;  # lower-case
+    p;
+    g;                             # restore line
+    s/^[^=]*=//; s/^'\(.*\)'/\1/;  # get value
+    p;
+}. P2: Process; name: sed; executable: /usr/bin/sed; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/sed; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755."
+21331,phase1,288883.0,1701463800.577,2,"['1b1b97ef4f69d7c4f421942a206eb2da' '7229587eeb11674406b1815e1e363af5'
+ '9aff247c197067cd188be419a1e7e30c']",0,0,[],[],benign_test,0.0005411159,1,1.0471756,Relationships: P1 was triggered by P2; operation: update. P1 used A1; operation: open. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 1; command: sudo systemctl stop auditd.service. A1: Artifact; type: directory; path: /etc/sudoers.d; permissions: 755.
+6539,phase1,259241.0,1701427997.8,3,"['02a4195a9866b7c9eba7405c13110dad' 'bb530d7082803ba7b1df8d3ef987dd45'
+ 'd3e46fd5126e5528753550054bd8b159' 'e2e2d411aa2394249ea3a4b1cb8742c4']",0,0,[],[],benign_test,0.0005388567,1,1.0428038,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0; command: cat /sys/class/power_supply/ACAD/type. P2: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/cat; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+6548,phase1,259256.0,1701428006.988,3,"['02a4195a9866b7c9eba7405c13110dad' '1eec61c86c903ec83cc2e8f578901b9a'
+ '8a49683825f6ccd160494824e8e3a898' 'd3e46fd5126e5528753550054bd8b159']",0,0,[],[],benign_test,0.0005388567,1,1.0428038,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0; command: cat /sys/class/power_supply/ACAD/type. P2: Process; name: cat; executable: /usr/bin/cat; UID: 0; EUID: 0. A1: Artifact; type: file; path: /usr/bin/cat; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+12474,phase1,271071.0,1701442266.381,1,['adb45236541f2e796e2061d9bbd6db7a' 'f5d7c46c0957e6e447474e30116e9ab4'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12477,phase1,271077.0,1701442266.801,1,['adb45236541f2e796e2061d9bbd6db7a' 'ba5546fe27341d8e1b26bfe3e0bf0915'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12475,phase1,271073.0,1701442266.497,1,['adb45236541f2e796e2061d9bbd6db7a' 'dcdc88a78380f27ab3cc539b4af60eff'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12476,phase1,271075.0,1701442266.569,1,['8c1a1abd5b954cefc2b6f3745180ce2e' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12478,phase1,271079.0,1701442266.873,1,['a2d672ec7184a86f6ad337a3525baa53' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17615,phase1,281393.0,1701454629.373,1,['55f1e7f2a207e08b641aecf3ef8d1722' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16434,phase1,279024.0,1701451888.608,1,['adb45236541f2e796e2061d9bbd6db7a' 'c189bc192164c164c32a3e03aff93732'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16435,phase1,279026.0,1701451888.792,1,['198f98707fc8d9bf04c6fdabac49500f' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12483,phase1,271090.0,1701442267.577,1,['1c6cf17d04ccc21ca99f56a32fed516e' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12480,phase1,271083.0,1701442267.285,1,['84900c25cde98fb08e9656cb19a83917' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12479,phase1,271081.0,1701442266.953,1,['5e27c84a9ffb37624042dbd66aafa3d2' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12481,phase1,271086.0,1701442267.429,1,['79d0e437e1f7d1cab7efd2a408a0178a' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+12482,phase1,271088.0,1701442267.497,1,['0aec66ee3bb66fd11605aea595ec4cb0' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16433,phase1,279022.0,1701451888.524,1,['01ca9e702b781a758e8c675b44cef3cf' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16432,phase1,279020.0,1701451888.456,1,['adb45236541f2e796e2061d9bbd6db7a' 'e39090001927160b1a1539e69391f5d2'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16431,phase1,279017.0,1701451888.384,1,['049c3bf0cec1be0abb3a6ac4206fe365' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16436,phase1,279028.0,1701451888.872,1,['0412c77743fe662d609d6c017e56cc35' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16437,phase1,279030.0,1701451889.148,1,['adb45236541f2e796e2061d9bbd6db7a' 'effe0a96a2b26ce71c2bb44fccc7f02f'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16438,phase1,279032.0,1701451889.216,1,['adb45236541f2e796e2061d9bbd6db7a' 'f61e7f56b6707e36b2e8f3d5c1cf6fad'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16439,phase1,279034.0,1701451889.304,1,['8716db24586b1c37efb5070596e3cf30' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+16440,phase1,279036.0,1701451889.452,1,['2fa59c7b191fec5ea8ba44074d323c56' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17616,phase1,281395.0,1701454629.449,1,['a64c5a2175767c3d41f03ec733524ade' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17614,phase1,281391.0,1701454629.277,1,['a88223431cfa933f9e4dd936ce183aa7' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17613,phase1,281389.0,1701454628.949,1,['64d6125b82cafa613387145e2ee59d2e' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17612,phase1,281387.0,1701454628.713,1,['5981c1284f5977918928019f5e86df20' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17611,phase1,281385.0,1701454628.645,1,['6a33dea869354d453627428629595055' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17610,phase1,281383.0,1701454628.573,1,['43f5a77124cbe14b5357005ce9533496' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17609,phase1,281381.0,1701454628.453,1,['abece2dfbd359b9be4b9f16b49c0dbd6' 'adb45236541f2e796e2061d9bbd6db7a'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17608,phase1,281378.0,1701454628.381,1,['adb45236541f2e796e2061d9bbd6db7a' 'dd0b906f45f2771a530ffa77134d7bce'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+17617,phase1,281397.0,1701454629.521,1,['adb45236541f2e796e2061d9bbd6db7a' 'f467c15b7e7e869c1113ac9205d38dbf'],0,0,[],[],benign_test,0.00053871365,1,1.0425268,Relationships: A1 was generated or modified by P1; operation: connect. Entities: A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0. P1: Process; name: cups-browsed; executable: /usr/sbin/cups-browsed; UID: 0; EUID: 0; command: /usr/sbin/cups-browsed.
+21330,phase1,288882.0,1701463800.577,2,"['3259ce88c9b11906944f73e725d2355f' '4634764be6ad993a72c36b5a484696ce'
+ '9aff247c197067cd188be419a1e7e30c']",0,0,[],[],benign_test,0.0005385297,1,1.0421709,Relationships: P1 was triggered by P2; operation: update. P1 used A1; operation: open. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 1; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. A1: Artifact; type: file; path: /etc/sudoers; permissions: 440.
+12440,phase1,271021.0,1701442256.569,4,"['02a4195a9866b7c9eba7405c13110dad' '108eb4b64371a3d0012726dcf9c2150a'
+ '30d697f4bb2b52b9291f9dd5a7fa5eb8' '733f191cacce9b73359ed4cbec4522ef'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.000538242,1,1.041614,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-post-down.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-post-down.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+16395,phase1,278953.0,1701451877.772,4,"['02a4195a9866b7c9eba7405c13110dad' '108eb4b64371a3d0012726dcf9c2150a'
+ '4b90ca08555e0c9f04c62c9a0387fec0' '7946e5625933b06c177e1930431c2ef3'
+ 'bdc2ca1d94be5a3958f6621d8b52fdb0']",0,0,[],[],benign_test,0.000538242,1,1.041614,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-post-down.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-post-down.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+17561,phase1,281295.0,1701454617.879,4,"['02a4195a9866b7c9eba7405c13110dad' '108eb4b64371a3d0012726dcf9c2150a'
+ 'a1279ad29b4952d0858f1b385f236e55' 'bdc2ca1d94be5a3958f6621d8b52fdb0'
+ 'caff7ff626a9539f40a4b6a0fb330b53']",0,0,[],[],benign_test,0.000538242,1,1.041614,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. P1 used A3; operation: load. Entities: P1: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0; command: /bin/sh /etc/network/if-post-down.d/wpasupplicant. P2: Process; name: wpasupplicant; executable: /usr/bin/dash; UID: 0; EUID: 0. A1: Artifact; type: file; path: /etc/network/if-post-down.d/wpasupplicant; permissions: 755. A2: Artifact; type: file; path: /bin/sh; permissions: 755. A3: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+7751,phase1,261606.0,1701430730.816,3,"['02a4195a9866b7c9eba7405c13110dad' '24610ec1f76257ceebf3dc20f6b610f0'
+ '6b7df6cd67b406dd411e2735bc8154ba' 'f5a23fad748f373e0cc87a94c05fd1b0']",0,0,[],[],benign_test,0.0005372951,1,1.0397817,Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. P1 used A2; operation: load. Entities: P1: Process; name: file; executable: /usr/bin/file; UID: 0; EUID: 0; command: file -z -b /usr/share/dict/cracklib-small. P2: Process; name: file; executable: /usr/bin/file; UID: 0; EUID: 0. A1: Artifact; type: file; path: /bin/file; permissions: 755. A2: Artifact; type: file; path: /lib64/ld-linux-x86-64.so.2; permissions: 755.
+21332,phase1,288884.0,1701463800.577,2,"['1b1b97ef4f69d7c4f421942a206eb2da' '2996be9f11f61e5353b49c5dee6a1414'
+ '9aff247c197067cd188be419a1e7e30c']",0,0,[],[],benign_test,0.00053261814,1,1.0307307,Relationships: P1 was triggered by P2; operation: update. P1 used A1; operation: open. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 1; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. A1: Artifact; type: file; path: /etc/sudoers.d/README; permissions: 440.
+21333,phase1,288886.0,1701463800.577,2,"['1b1b97ef4f69d7c4f421942a206eb2da' '5ab9dabb1a8c286eab607c2a5569ba35'
+ '9aff247c197067cd188be419a1e7e30c']",0,0,[],[],benign_test,0.0005285328,1,1.0228246,Relationships: P1 was triggered by P2; operation: update. A1 was generated or modified by P1; operation: connect. Entities: P1: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 0; command: sudo systemctl stop auditd.service. P2: Process; name: sudo; executable: /usr/bin/sudo; UID: 0; EUID: 1; command: sudo systemctl stop auditd.service. A1: Artifact; type: network socket; remote address: 127.0.0.53; remote port: 53.0.

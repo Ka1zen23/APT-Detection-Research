@@ -1,0 +1,31 @@
+{
+    "experiment": "E2",
+    "seed": 42,
+    "gpu": "NVIDIA GeForce RTX 4060",
+    "torch_version": "2.11.0+cu128",
+    "train_samples": 99665,
+    "validation_samples": 21357,
+    "trainable_parameters": 107168,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "max_epochs": 100,
+    "patience": 10,
+    "min_delta": 1e-07,
+    "epochs_completed": 67,
+    "best_epoch": 65,
+    "best_validation_loss": 2.5363628992636222e-06,
+    "threshold_percentile": 99,
+    "threshold": 4.127114516450092e-05,
+    "validation_alerts": 214,
+    "validation_false_positive_rate": 0.010020133913939223,
+    "elapsed_seconds": 72.80788806300188,
+    "peak_gpu_memory_mib": 20.6337890625,
+    "validation_error_statistics": {
+        "min": 1.686249078147739e-07,
+        "mean": 2.5363628992636222e-06,
+        "median": 1.686249078147739e-07,
+        "p95": 8.327079740411136e-06,
+        "p99": 4.127114516450092e-05,
+        "max": 0.000488290679641068
+    }
+}

@@ -1,0 +1,109 @@
+======================================================================
+GROUND TRUTH AND CONTEXTUAL LABEL INSPECTION
+======================================================================
+
+NODE ANALYSIS
+Total nodes: 53,286
+Malicious nodes: 332
+
+EDGE ANALYSIS
+Total edges: 143,449
+original_malicious                     70 (0.0488%)
+malicious_from                        570 (0.3974%)
+malicious_to                          225 (0.1569%)
+malicious_endpoint                    570 (0.3974%)
+both_endpoints_malicious              225 (0.1569%)
+contextual_indicator                  570 (0.3974%)
+
+ORIGINAL VS CONTEXTUAL INDICATORS
+malicious_endpoint   False  True     All
+original_label                          
+0                   142879   500  143379
+1                        0    70      70
+All                 142879   570  143449
+
+CONTEXTUAL INDICATORS BY EDGE TYPE
+contextual_indicator  False  True 
+type                              
+Used                  33931    275
+WasDerivedFrom         8401     70
+WasGeneratedBy        87517    119
+WasTriggeredBy        13030    106
+
+CONTEXTUAL INDICATORS BY OPERATION
+contextual_indicator  False  True 
+operation                         
+chmod                    10     16
+connect               10769     18
+execve                12123    100
+load                  25312    200
+open                    229      5
+rename                 8396     70
+rename (read)          8396     70
+rename (write)         8396     70
+setgid                  512      0
+setuid                  292      1
+unlink                68336     15
+update                  108      5
+
+EVENT-LEVEL ANALYSIS
+Total event IDs: 100,892
+Events with explicitly malicious edges: 70
+Events with contextual indicators: 225
+
+EVENT ID TIMESTAMP CONSISTENCY
+Event IDs with multiple timestamps: 0
+
+ATTACK INFORMATION ANALYSIS
+Documented attack steps: 58
+
+Attack steps by tactic:
+Tactic Name
+collection             24
+cleanup                13
+discovery               9
+credential access       4
+exfiltration            3
+command and control     3
+persistence             1
+lateral movement        1
+
+Attack steps by technique:
+Technique Name
+find files                               13
+stage sensitive files                     6
+advanced file search and stager           4
+compress staged directory                 4
+create staging directory                  2
+add command                               2
+list os information                       2
+create a new user in linux                2
+download sandcat and lazagne              2
+dump credentials from firefox browser     2
+capture linux desktop                     2
+dump credentials from firefox             2
+exfil staged directory                    1
+linux download file and run               1
+find local users                          1
+network interface configuration           1
+scan wifi networks                        1
+system owner/user discovery               1
+check python                              1
+permission groups discovery               1
+list directory                            1
+extract password with grep                1
+add or copy content to clipboard          1
+dump history                              1
+collect arp details                       1
+start sandcat                             1
+linux download file                       1
+
+PID ASSOCIATION
+Unique attack PIDs: 58
+attack_pid_match  False  True    All
+label                               
+0                 24626     0  24626
+1                    97   116    213
+All               24723   116  24839
+
+Inspection completed.

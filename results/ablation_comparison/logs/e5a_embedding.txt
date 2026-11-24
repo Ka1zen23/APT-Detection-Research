@@ -1,0 +1,103 @@
+======================================================================
+PROVENANCE CONTEXT ABLATION
+Experiment: E5-A
+Stage: embed
+======================================================================
+CICAPT-IIoT Semantic Embedding Generation
+Model: sentence-transformers/all-MiniLM-L6-v2
+Device: cuda
+GPU: NVIDIA GeForce RTX 4060
+PyTorch: 2.11.0+cu128
+CUDA version: 12.8
+Batch size: 64
+Maximum tokens: 256
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 1426.00it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Embedding dimensions: 384
+Total events loaded: 243,271
+
+======================================================================
+PARTITION: TRAIN
+======================================================================
+Total records: 99,665
+Unique descriptions: 14
+Encoding reduction: 99.99%
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s]
+
+Embedding shape: (99665, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 145.99 MiB
+Elapsed time: 1.60 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/train_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/train_metadata.parquet
+
+======================================================================
+PARTITION: VALIDATION
+======================================================================
+Total records: 21,357
+Unique descriptions: 12
+Encoding reduction: 99.94%
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 112.06it/s]
+
+Embedding shape: (21357, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 31.28 MiB
+Elapsed time: 0.18 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/validation_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/validation_metadata.parquet
+
+======================================================================
+PARTITION: BENIGN_TEST
+======================================================================
+Total records: 21,357
+Unique descriptions: 11
+Encoding reduction: 99.95%
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 110.63it/s]
+
+Embedding shape: (21357, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 31.28 MiB
+Elapsed time: 0.13 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/benign_test_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/benign_test_metadata.parquet
+
+======================================================================
+PARTITION: ATTACK_TEST
+======================================================================
+Total records: 100,892
+Unique descriptions: 15
+Encoding reduction: 99.99%
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 42.09it/s]
+
+Embedding shape: (100892, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 147.79 MiB
+Elapsed time: 4.19 seconds
+Original positives: 70
+Contextual positives: 225
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/attack_test_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only/attack_test_metadata.parquet
+
+======================================================================
+EMBEDDING GENERATION COMPLETED
+======================================================================
+Total events: 243,271
+Total duration: 6.24 seconds
+Peak GPU memory: 101.02 MiB
+Output directory: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5a-operation-only
+Verified train: 99,665 events
+Verified validation: 21,357 events
+Verified benign_test: 21,357 events
+Verified attack_test: 100,892 events
+
+ABLATION STAGE COMPLETED

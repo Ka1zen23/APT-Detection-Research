@@ -1,0 +1,144 @@
+CICAPT-IIoT MODEL EVALUATION
+Experiment: E2
+Best epoch: 65
+Threshold: 0.0000412711
+GPU: NVIDIA GeForce RTX 4060
+
+======================================================================
+BENIGN_TEST_ORIGINAL_LABEL
+======================================================================
+records: 21,357
+positives: 0
+alerts: 222
+threshold: 0.0000412711
+true_negatives: 21,135
+false_positives: 222
+false_negatives: 0
+true_positives: 0
+accuracy: 0.9896052816
+precision: 0.0000000000
+recall: N/A
+f1: N/A
+false_positive_rate: 0.0103947184
+specificity: 0.9896052816
+roc_auc: N/A
+average_precision: N/A
+pr_auc: N/A
+
+INFERENCE PERFORMANCE
+events: 21357.000000
+elapsed_seconds: 0.130367
+events_per_second: 163822.709696
+milliseconds_per_event: 0.006104
+
+======================================================================
+ATTACK_TEST_ORIGINAL_LABEL
+======================================================================
+records: 100,892
+positives: 70
+alerts: 11,402
+threshold: 0.0000412711
+true_negatives: 89,490
+false_positives: 11,332
+false_negatives: 0
+true_positives: 70
+accuracy: 0.8876818777
+precision: 0.0061392738
+recall: 1.0000000000
+f1: 0.0122036262
+false_positive_rate: 0.1123961040
+specificity: 0.8876038960
+roc_auc: 0.9844819866
+average_precision: 0.0208322532
+pr_auc: 0.0205156863
+
+======================================================================
+ATTACK_TEST_CONTEXTUAL_LABEL
+======================================================================
+records: 100,892
+positives: 225
+alerts: 11,402
+threshold: 0.0000412711
+true_negatives: 89,490
+false_positives: 11,177
+false_negatives: 0
+true_positives: 225
+accuracy: 0.8892181739
+precision: 0.0197333801
+recall: 1.0000000000
+f1: 0.0387030188
+false_positive_rate: 0.1110294337
+specificity: 0.8889705663
+roc_auc: 0.9574898096
+average_precision: 0.0396055669
+pr_auc: 0.0377992072
+
+======================================================================
+ATTACK TEST - SEEN DESCRIPTIONS
+======================================================================
+records: 80,100
+positives: 0
+alerts: 3,009
+threshold: 0.0000412711
+true_negatives: 77,091
+false_positives: 3,009
+false_negatives: 0
+true_positives: 0
+accuracy: 0.9624344569
+precision: 0.0000000000
+recall: N/A
+f1: N/A
+false_positive_rate: 0.0375655431
+specificity: 0.9624344569
+roc_auc: N/A
+average_precision: N/A
+pr_auc: N/A
+
+======================================================================
+ATTACK TEST - UNSEEN DESCRIPTIONS
+======================================================================
+records: 20,792
+positives: 70
+alerts: 8,393
+threshold: 0.0000412711
+true_negatives: 12,399
+false_positives: 8,323
+false_negatives: 0
+true_positives: 70
+accuracy: 0.5997018084
+precision: 0.0083402836
+recall: 1.0000000000
+f1: 0.0165425972
+false_positive_rate: 0.4016504198
+specificity: 0.5983495802
+roc_auc: 0.9247204489
+average_precision: 0.0209065155
+pr_auc: 0.0205892010
+
+PER-TACTIC RESULTS: original_label
+          tactic  positive_events  detected_events  missed_events  recall
+credentialAccess               69               69              0     1.0
+  defenceEvasion                1                1              0     1.0
+
+PER-TACTIC RESULTS: contextual_label
+          tactic  positive_events  detected_events  missed_events  recall
+           CandC                8                8              0     1.0
+      collection               62               62              0     1.0
+credentialAccess               75               75              0     1.0
+  defenceEvasion               23               23              0     1.0
+       discovery               22               22              0     1.0
+    exfiltration               11               11              0     1.0
+   initialAccess                1                1              0     1.0
+ lateralMovement                5                5              0     1.0
+     persistence               18               18              0     1.0
+
+INFERENCE PERFORMANCE
+events: 100892.000000
+elapsed_seconds: 0.063103
+events_per_second: 1598848.585676
+milliseconds_per_event: 0.000625
+
+======================================================================
+EVALUATION COMPLETED
+======================================================================
+Results saved to: /home/wajien/projects/APT-Detection-Research/results/e2-v2-minilm-standard/evaluation

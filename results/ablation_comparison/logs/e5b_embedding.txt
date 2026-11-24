@@ -1,0 +1,103 @@
+======================================================================
+PROVENANCE CONTEXT ABLATION
+Experiment: E5-B
+Stage: embed
+======================================================================
+CICAPT-IIoT Semantic Embedding Generation
+Model: sentence-transformers/all-MiniLM-L6-v2
+Device: cuda
+GPU: NVIDIA GeForce RTX 4060
+PyTorch: 2.11.0+cu128
+CUDA version: 12.8
+Batch size: 64
+Maximum tokens: 256
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 1384.71it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Embedding dimensions: 384
+Total events loaded: 243,271
+
+======================================================================
+PARTITION: TRAIN
+======================================================================
+Total records: 99,665
+Unique descriptions: 13,020
+Encoding reduction: 86.94%
+Batches:   0%|          | 0/204 [00:00<?, ?it/s]Batches:   0%|          | 1/204 [00:00<02:10,  1.55it/s]Batches:   1%|▏         | 3/204 [00:00<00:45,  4.40it/s]Batches:   2%|▏         | 5/204 [00:00<00:29,  6.81it/s]Batches:   3%|▎         | 7/204 [00:01<00:21,  9.02it/s]Batches:   4%|▍         | 9/204 [00:01<00:17, 11.11it/s]Batches:   5%|▌         | 11/204 [00:01<00:14, 12.94it/s]Batches:   6%|▋         | 13/204 [00:01<00:13, 14.48it/s]Batches:   7%|▋         | 15/204 [00:01<00:11, 15.85it/s]Batches:   8%|▊         | 17/204 [00:01<00:11, 16.84it/s]Batches:   9%|▉         | 19/204 [00:01<00:10, 17.58it/s]Batches:  10%|█         | 21/204 [00:01<00:10, 18.18it/s]Batches:  12%|█▏        | 24/204 [00:01<00:09, 18.95it/s]Batches:  13%|█▎        | 26/204 [00:02<00:09, 19.15it/s]Batches:  14%|█▎        | 28/204 [00:02<00:09, 19.19it/s]Batches:  15%|█▍        | 30/204 [00:02<00:09, 19.32it/s]Batches:  16%|█▌        | 32/204 [00:02<00:08, 19.41it/s]Batches:  17%|█▋        | 34/204 [00:02<00:08, 19.37it/s]Batches:  18%|█▊        | 36/204 [00:02<00:09, 18.44it/s]Batches:  19%|█▊        | 38/204 [00:02<00:09, 17.62it/s]Batches:  20%|█▉        | 40/204 [00:02<00:09, 17.19it/s]Batches:  21%|██        | 42/204 [00:02<00:09, 17.89it/s]Batches:  22%|██▏       | 44/204 [00:03<00:08, 18.17it/s]Batches:  23%|██▎       | 47/204 [00:03<00:08, 19.12it/s]Batches:  25%|██▍       | 50/204 [00:03<00:07, 19.42it/s]Batches:  25%|██▌       | 52/204 [00:03<00:07, 19.52it/s]Batches:  27%|██▋       | 55/204 [00:03<00:07, 19.77it/s]Batches:  28%|██▊       | 58/204 [00:03<00:07, 19.86it/s]Batches:  29%|██▉       | 60/204 [00:03<00:07, 19.80it/s]Batches:  30%|███       | 62/204 [00:03<00:07, 19.76it/s]Batches:  31%|███▏      | 64/204 [00:04<00:07, 19.82it/s]Batches:  32%|███▏      | 66/204 [00:04<00:06, 19.80it/s]Batches:  34%|███▍      | 69/204 [00:04<00:06, 19.93it/s]Batches:  35%|███▌      | 72/204 [00:04<00:06, 19.92it/s]Batches:  36%|███▋      | 74/204 [00:04<00:06, 19.76it/s]Batches:  38%|███▊      | 77/204 [00:04<00:06, 20.20it/s]Batches:  39%|███▉      | 80/204 [00:04<00:05, 21.10it/s]Batches:  41%|████      | 83/204 [00:04<00:05, 21.48it/s]Batches:  42%|████▏     | 86/204 [00:05<00:05, 21.82it/s]Batches:  44%|████▎     | 89/204 [00:05<00:05, 22.02it/s]Batches:  45%|████▌     | 92/204 [00:05<00:05, 22.20it/s]Batches:  47%|████▋     | 95/204 [00:05<00:04, 22.23it/s]Batches:  48%|████▊     | 98/204 [00:05<00:04, 22.16it/s]Batches:  50%|████▉     | 101/204 [00:05<00:04, 22.45it/s]Batches:  51%|█████     | 104/204 [00:05<00:04, 22.55it/s]Batches:  52%|█████▏    | 107/204 [00:06<00:04, 22.48it/s]Batches:  54%|█████▍    | 110/204 [00:06<00:04, 22.48it/s]Batches:  55%|█████▌    | 113/204 [00:06<00:04, 22.52it/s]Batches:  57%|█████▋    | 116/204 [00:06<00:03, 22.39it/s]Batches:  58%|█████▊    | 119/204 [00:06<00:03, 22.57it/s]Batches:  60%|█████▉    | 122/204 [00:06<00:03, 22.66it/s]Batches:  61%|██████▏   | 125/204 [00:06<00:03, 22.52it/s]Batches:  63%|██████▎   | 128/204 [00:06<00:03, 22.36it/s]Batches:  64%|██████▍   | 131/204 [00:07<00:03, 22.24it/s]Batches:  66%|██████▌   | 134/204 [00:07<00:03, 22.10it/s]Batches:  67%|██████▋   | 137/204 [00:07<00:02, 22.46it/s]Batches:  69%|██████▉   | 141/204 [00:07<00:02, 25.20it/s]Batches:  71%|███████   | 145/204 [00:07<00:02, 27.58it/s]Batches:  73%|███████▎  | 149/204 [00:07<00:01, 28.57it/s]Batches:  75%|███████▌  | 153/204 [00:07<00:01, 29.63it/s]Batches:  77%|███████▋  | 157/204 [00:07<00:01, 30.76it/s]Batches:  79%|███████▉  | 161/204 [00:08<00:01, 30.95it/s]Batches:  81%|████████  | 165/204 [00:08<00:01, 31.22it/s]Batches:  83%|████████▎ | 169/204 [00:08<00:01, 31.43it/s]Batches:  85%|████████▍ | 173/204 [00:08<00:00, 31.77it/s]Batches:  87%|████████▋ | 177/204 [00:08<00:00, 32.13it/s]Batches:  89%|████████▊ | 181/204 [00:08<00:00, 32.30it/s]Batches:  91%|█████████ | 185/204 [00:08<00:00, 32.29it/s]Batches:  93%|█████████▎| 189/204 [00:08<00:00, 32.39it/s]Batches:  95%|█████████▍| 193/204 [00:09<00:00, 32.62it/s]Batches:  97%|█████████▋| 197/204 [00:09<00:00, 32.79it/s]Batches:  99%|█████████▊| 201/204 [00:09<00:00, 32.87it/s]Batches: 100%|██████████| 204/204 [00:09<00:00, 21.70it/s]
+
+Embedding shape: (99665, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 145.99 MiB
+Elapsed time: 12.59 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/train_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/train_metadata.parquet
+
+======================================================================
+PARTITION: VALIDATION
+======================================================================
+Total records: 21,357
+Unique descriptions: 2,610
+Encoding reduction: 87.78%
+Batches:   0%|          | 0/41 [00:00<?, ?it/s]Batches:   5%|▍         | 2/41 [00:00<00:02, 13.53it/s]Batches:  10%|▉         | 4/41 [00:00<00:02, 16.26it/s]Batches:  15%|█▍        | 6/41 [00:00<00:02, 17.28it/s]Batches:  20%|█▉        | 8/41 [00:00<00:01, 17.87it/s]Batches:  24%|██▍       | 10/41 [00:00<00:01, 18.20it/s]Batches:  29%|██▉       | 12/41 [00:00<00:01, 18.42it/s]Batches:  34%|███▍      | 14/41 [00:00<00:01, 18.64it/s]Batches:  41%|████▏     | 17/41 [00:00<00:01, 19.54it/s]Batches:  46%|████▋     | 19/41 [00:01<00:01, 19.35it/s]Batches:  51%|█████     | 21/41 [00:01<00:01, 18.53it/s]Batches:  56%|█████▌    | 23/41 [00:01<00:01, 17.78it/s]Batches:  61%|██████    | 25/41 [00:01<00:00, 17.82it/s]Batches:  66%|██████▌   | 27/41 [00:01<00:00, 18.16it/s]Batches:  73%|███████▎  | 30/41 [00:01<00:00, 20.71it/s]Batches:  80%|████████  | 33/41 [00:01<00:00, 23.19it/s]Batches:  90%|█████████ | 37/41 [00:01<00:00, 25.86it/s]Batches: 100%|██████████| 41/41 [00:01<00:00, 28.21it/s]Batches: 100%|██████████| 41/41 [00:01<00:00, 20.98it/s]
+
+Embedding shape: (21357, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 31.28 MiB
+Elapsed time: 2.10 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/validation_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/validation_metadata.parquet
+
+======================================================================
+PARTITION: BENIGN_TEST
+======================================================================
+Total records: 21,357
+Unique descriptions: 2,657
+Encoding reduction: 87.56%
+Batches:   0%|          | 0/42 [00:00<?, ?it/s]Batches:   5%|▍         | 2/42 [00:00<00:02, 13.56it/s]Batches:  10%|▉         | 4/42 [00:00<00:02, 16.18it/s]Batches:  14%|█▍        | 6/42 [00:00<00:02, 17.23it/s]Batches:  19%|█▉        | 8/42 [00:00<00:01, 18.06it/s]Batches:  24%|██▍       | 10/42 [00:00<00:01, 17.66it/s]Batches:  29%|██▊       | 12/42 [00:00<00:01, 17.94it/s]Batches:  33%|███▎      | 14/42 [00:00<00:01, 18.39it/s]Batches:  38%|███▊      | 16/42 [00:00<00:01, 18.72it/s]Batches:  45%|████▌     | 19/42 [00:01<00:01, 19.55it/s]Batches:  52%|█████▏    | 22/42 [00:01<00:00, 20.00it/s]Batches:  60%|█████▉    | 25/42 [00:01<00:00, 20.40it/s]Batches:  67%|██████▋   | 28/42 [00:01<00:00, 20.89it/s]Batches:  76%|███████▌  | 32/42 [00:01<00:00, 24.37it/s]Batches:  86%|████████▌ | 36/42 [00:01<00:00, 26.71it/s]Batches:  95%|█████████▌| 40/42 [00:01<00:00, 28.50it/s]Batches: 100%|██████████| 42/42 [00:01<00:00, 22.38it/s]
+
+Embedding shape: (21357, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 31.28 MiB
+Elapsed time: 2.00 seconds
+Original positives: 0
+Contextual positives: 0
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/benign_test_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/benign_test_metadata.parquet
+
+======================================================================
+PARTITION: ATTACK_TEST
+======================================================================
+Total records: 100,892
+Unique descriptions: 21,580
+Encoding reduction: 78.61%
+Batches:   0%|          | 0/338 [00:00<?, ?it/s]Batches:   1%|          | 2/338 [00:00<00:28, 11.96it/s]Batches:   1%|          | 4/338 [00:00<00:27, 12.34it/s]Batches:   2%|▏         | 6/338 [00:00<00:26, 12.74it/s]Batches:   2%|▏         | 8/338 [00:00<00:24, 13.39it/s]Batches:   3%|▎         | 10/338 [00:00<00:23, 13.96it/s]Batches:   4%|▎         | 12/338 [00:00<00:22, 14.30it/s]Batches:   4%|▍         | 14/338 [00:01<00:22, 14.33it/s]Batches:   5%|▍         | 16/338 [00:01<00:21, 15.14it/s]Batches:   5%|▌         | 18/338 [00:01<00:20, 15.63it/s]Batches:   6%|▌         | 20/338 [00:01<00:19, 16.11it/s]Batches:   7%|▋         | 22/338 [00:01<00:19, 16.47it/s]Batches:   7%|▋         | 24/338 [00:01<00:18, 16.64it/s]Batches:   8%|▊         | 26/338 [00:01<00:18, 16.50it/s]Batches:   8%|▊         | 28/338 [00:01<00:18, 16.75it/s]Batches:   9%|▉         | 30/338 [00:01<00:18, 16.84it/s]Batches:   9%|▉         | 32/338 [00:02<00:17, 17.06it/s]Batches:  10%|█         | 34/338 [00:02<00:17, 17.29it/s]Batches:  11%|█         | 36/338 [00:02<00:17, 17.32it/s]Batches:  11%|█         | 38/338 [00:02<00:17, 17.33it/s]Batches:  12%|█▏        | 40/338 [00:02<00:17, 17.52it/s]Batches:  12%|█▏        | 42/338 [00:02<00:17, 17.17it/s]Batches:  13%|█▎        | 44/338 [00:02<00:18, 15.61it/s]Batches:  14%|█▎        | 46/338 [00:02<00:19, 14.79it/s]Batches:  14%|█▍        | 48/338 [00:03<00:19, 14.54it/s]Batches:  15%|█▍        | 50/338 [00:03<00:20, 14.07it/s]Batches:  15%|█▌        | 52/338 [00:03<00:20, 13.77it/s]Batches:  16%|█▌        | 54/338 [00:03<00:19, 14.25it/s]Batches:  17%|█▋        | 56/338 [00:03<00:18, 15.03it/s]Batches:  17%|█▋        | 58/338 [00:03<00:17, 15.58it/s]Batches:  18%|█▊        | 60/338 [00:03<00:17, 16.12it/s]Batches:  18%|█▊        | 62/338 [00:03<00:16, 16.39it/s]Batches:  19%|█▉        | 64/338 [00:04<00:16, 16.83it/s]Batches:  20%|█▉        | 66/338 [00:04<00:15, 17.22it/s]Batches:  20%|██        | 68/338 [00:04<00:15, 17.24it/s]Batches:  21%|██        | 70/338 [00:04<00:15, 17.52it/s]Batches:  21%|██▏       | 72/338 [00:04<00:15, 17.63it/s]Batches:  22%|██▏       | 74/338 [00:04<00:15, 17.58it/s]Batches:  22%|██▏       | 76/338 [00:04<00:14, 17.76it/s]Batches:  23%|██▎       | 78/338 [00:04<00:14, 17.82it/s]Batches:  24%|██▎       | 80/338 [00:05<00:14, 17.94it/s]Batches:  24%|██▍       | 82/338 [00:05<00:14, 17.88it/s]Batches:  25%|██▍       | 84/338 [00:05<00:14, 17.90it/s]Batches:  25%|██▌       | 86/338 [00:05<00:14, 17.95it/s]Batches:  26%|██▌       | 88/338 [00:05<00:13, 17.88it/s]Batches:  27%|██▋       | 90/338 [00:05<00:13, 17.89it/s]Batches:  27%|██▋       | 92/338 [00:05<00:14, 16.75it/s]Batches:  28%|██▊       | 94/338 [00:05<00:15, 15.92it/s]Batches:  28%|██▊       | 96/338 [00:05<00:15, 15.94it/s]Batches:  29%|██▉       | 98/338 [00:06<00:14, 16.06it/s]Batches:  30%|██▉       | 100/338 [00:06<00:14, 16.62it/s]Batches:  30%|███       | 102/338 [00:06<00:14, 16.84it/s]Batches:  31%|███       | 104/338 [00:06<00:13, 17.04it/s]Batches:  31%|███▏      | 106/338 [00:06<00:13, 17.16it/s]Batches:  32%|███▏      | 108/338 [00:06<00:12, 17.79it/s]Batches:  33%|███▎      | 110/338 [00:06<00:12, 18.09it/s]Batches:  33%|███▎      | 112/338 [00:06<00:12, 18.21it/s]Batches:  34%|███▎      | 114/338 [00:06<00:12, 18.65it/s]Batches:  35%|███▍      | 117/338 [00:07<00:11, 19.26it/s]Batches:  36%|███▌      | 120/338 [00:07<00:11, 19.55it/s]Batches:  36%|███▋      | 123/338 [00:07<00:10, 19.84it/s]Batches:  37%|███▋      | 126/338 [00:07<00:10, 19.92it/s]Batches:  38%|███▊      | 129/338 [00:07<00:10, 20.07it/s]Batches:  39%|███▉      | 132/338 [00:07<00:10, 20.18it/s]Batches:  40%|███▉      | 135/338 [00:07<00:10, 20.06it/s]Batches:  41%|████      | 138/338 [00:08<00:09, 20.11it/s]Batches:  42%|████▏     | 141/338 [00:08<00:09, 20.07it/s]Batches:  43%|████▎     | 144/338 [00:08<00:09, 20.10it/s]Batches:  43%|████▎     | 147/338 [00:08<00:09, 19.94it/s]Batches:  44%|████▍     | 150/338 [00:08<00:09, 20.08it/s]Batches:  45%|████▌     | 153/338 [00:08<00:09, 20.15it/s]Batches:  46%|████▌     | 156/338 [00:09<00:09, 20.12it/s]Batches:  47%|████▋     | 159/338 [00:09<00:08, 20.21it/s]Batches:  48%|████▊     | 162/338 [00:09<00:08, 20.24it/s]Batches:  49%|████▉     | 165/338 [00:09<00:08, 20.11it/s]Batches:  50%|████▉     | 168/338 [00:09<00:08, 20.28it/s]Batches:  51%|█████     | 171/338 [00:09<00:08, 20.10it/s]Batches:  51%|█████▏    | 174/338 [00:09<00:08, 20.13it/s]Batches:  52%|█████▏    | 177/338 [00:10<00:08, 20.02it/s]Batches:  53%|█████▎    | 180/338 [00:10<00:07, 19.86it/s]Batches:  54%|█████▍    | 182/338 [00:10<00:07, 19.72it/s]Batches:  55%|█████▍    | 185/338 [00:10<00:07, 19.86it/s]Batches:  55%|█████▌    | 187/338 [00:10<00:07, 19.76it/s]Batches:  56%|█████▌    | 189/338 [00:10<00:07, 19.76it/s]Batches:  57%|█████▋    | 192/338 [00:10<00:07, 19.89it/s]Batches:  57%|█████▋    | 194/338 [00:10<00:07, 19.86it/s]Batches:  58%|█████▊    | 196/338 [00:11<00:07, 19.79it/s]Batches:  59%|█████▉    | 199/338 [00:11<00:06, 20.86it/s]Batches:  60%|█████▉    | 202/338 [00:11<00:06, 21.56it/s]Batches:  61%|██████    | 205/338 [00:11<00:06, 21.94it/s]Batches:  62%|██████▏   | 208/338 [00:11<00:05, 22.35it/s]Batches:  62%|██████▏   | 211/338 [00:11<00:05, 22.40it/s]Batches:  63%|██████▎   | 214/338 [00:11<00:05, 22.38it/s]Batches:  64%|██████▍   | 217/338 [00:11<00:05, 22.63it/s]Batches:  65%|██████▌   | 220/338 [00:12<00:05, 22.59it/s]Batches:  66%|██████▌   | 223/338 [00:12<00:05, 22.49it/s]Batches:  67%|██████▋   | 226/338 [00:12<00:04, 22.85it/s]Batches:  68%|██████▊   | 229/338 [00:12<00:04, 22.95it/s]Batches:  69%|██████▊   | 232/338 [00:12<00:04, 22.93it/s]Batches:  70%|██████▉   | 235/338 [00:12<00:04, 21.85it/s]Batches:  70%|███████   | 238/338 [00:12<00:04, 20.89it/s]Batches:  71%|███████▏  | 241/338 [00:13<00:04, 20.54it/s]Batches:  72%|███████▏  | 244/338 [00:13<00:04, 21.03it/s]Batches:  73%|███████▎  | 247/338 [00:13<00:04, 21.28it/s]Batches:  74%|███████▍  | 250/338 [00:13<00:04, 21.80it/s]Batches:  75%|███████▍  | 253/338 [00:13<00:03, 22.03it/s]Batches:  76%|███████▌  | 256/338 [00:13<00:03, 22.11it/s]Batches:  77%|███████▋  | 259/338 [00:13<00:03, 22.02it/s]Batches:  78%|███████▊  | 262/338 [00:14<00:03, 21.27it/s]Batches:  78%|███████▊  | 265/338 [00:14<00:03, 22.74it/s]Batches:  80%|███████▉  | 269/338 [00:14<00:02, 25.45it/s]Batches:  81%|████████  | 273/338 [00:14<00:02, 27.57it/s]Batches:  82%|████████▏ | 277/338 [00:14<00:02, 29.16it/s]Batches:  83%|████████▎ | 281/338 [00:14<00:01, 29.63it/s]Batches:  84%|████████▍ | 285/338 [00:14<00:01, 30.52it/s]Batches:  86%|████████▌ | 289/338 [00:14<00:01, 31.11it/s]Batches:  87%|████████▋ | 293/338 [00:15<00:01, 31.63it/s]Batches:  88%|████████▊ | 297/338 [00:15<00:01, 31.74it/s]Batches:  89%|████████▉ | 301/338 [00:15<00:01, 31.79it/s]Batches:  90%|█████████ | 305/338 [00:15<00:01, 32.11it/s]Batches:  91%|█████████▏| 309/338 [00:15<00:00, 32.17it/s]Batches:  93%|█████████▎| 313/338 [00:15<00:00, 32.40it/s]Batches:  94%|█████████▍| 317/338 [00:15<00:00, 32.17it/s]Batches:  95%|█████████▍| 321/338 [00:15<00:00, 32.35it/s]Batches:  96%|█████████▌| 325/338 [00:16<00:00, 32.52it/s]Batches:  97%|█████████▋| 329/338 [00:16<00:00, 32.47it/s]Batches:  99%|█████████▊| 333/338 [00:16<00:00, 33.29it/s]Batches: 100%|█████████▉| 337/338 [00:16<00:00, 34.84it/s]Batches: 100%|██████████| 338/338 [00:16<00:00, 20.66it/s]
+
+Embedding shape: (100892, 384)
+Data type: float32
+Mean vector norm: 1.000000
+Storage: 147.79 MiB
+Elapsed time: 20.52 seconds
+Original positives: 70
+Contextual positives: 225
+Saved embeddings: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/attack_test_embeddings.npy
+Saved metadata: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities/attack_test_metadata.parquet
+
+======================================================================
+EMBEDDING GENERATION COMPLETED
+======================================================================
+Total events: 243,271
+Total duration: 37.50 seconds
+Peak GPU memory: 387.67 MiB
+Output directory: /home/wajien/projects/APT-Detection-Research/data/embeddings/cicapt-iiot/e5b-operation-entities
+Verified train: 99,665 events
+Verified validation: 21,357 events
+Verified benign_test: 21,357 events
+Verified attack_test: 100,892 events
+
+ABLATION STAGE COMPLETED

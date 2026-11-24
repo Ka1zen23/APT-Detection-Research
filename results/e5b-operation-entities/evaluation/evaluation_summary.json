@@ -1,0 +1,200 @@
+{
+    "experiment": "E5-B",
+    "best_epoch": 84,
+    "threshold": 7.502168591599911e-05,
+    "threshold_percentile": 99,
+    "benign_test": {
+        "inference": {
+            "events": 21357,
+            "elapsed_seconds": 0.11779458800083376,
+            "events_per_second": 181307.14120625673,
+            "milliseconds_per_event": 0.005515502551895574
+        },
+        "original_label": {
+            "records": 21357,
+            "positives": 0,
+            "alerts": 215,
+            "threshold": 7.502168591599911e-05,
+            "true_negatives": 21142,
+            "false_positives": 215,
+            "false_negatives": 0,
+            "true_positives": 0,
+            "accuracy": 0.9899330430303882,
+            "precision": 0.0,
+            "recall": null,
+            "f1": null,
+            "false_positive_rate": 0.010066956969611837,
+            "specificity": 0.9899330430303882,
+            "roc_auc": null,
+            "average_precision": null,
+            "pr_auc": null
+        }
+    },
+    "attack_test": {
+        "inference": {
+            "events": 100892,
+            "elapsed_seconds": 0.07495927999843843,
+            "events_per_second": 1345957.4318496897,
+            "milliseconds_per_event": 0.0007429655473024466
+        },
+        "original_label": {
+            "records": 100892,
+            "positives": 70,
+            "alerts": 11168,
+            "threshold": 7.502168591599911e-05,
+            "true_negatives": 89724,
+            "false_positives": 11098,
+            "false_negatives": 0,
+            "true_positives": 70,
+            "accuracy": 0.8900011893906355,
+            "precision": 0.006267908309455587,
+            "recall": 1.0,
+            "f1": 0.012457732692649938,
+            "false_positive_rate": 0.11007518200392771,
+            "specificity": 0.8899248179960723,
+            "roc_auc": 0.9827551809837423,
+            "average_precision": 0.018724070227123298,
+            "pr_auc": 0.01842047249789422
+        },
+        "contextual_label": {
+            "records": 100892,
+            "positives": 225,
+            "alerts": 11168,
+            "threshold": 7.502168591599911e-05,
+            "true_negatives": 89724,
+            "false_positives": 10943,
+            "false_negatives": 0,
+            "true_positives": 225,
+            "accuracy": 0.8915374856281965,
+            "precision": 0.020146848137535818,
+            "recall": 1.0,
+            "f1": 0.039497937329939434,
+            "false_positive_rate": 0.108704938063119,
+            "specificity": 0.891295061936881,
+            "roc_auc": 0.9568574938493583,
+            "average_precision": 0.02771225510636618,
+            "pr_auc": 0.027215026102397684
+        },
+        "description_overlap": {
+            "seen": {
+                "records": 80100,
+                "positives": 0,
+                "alerts": 2732,
+                "threshold": 7.502168591599911e-05,
+                "true_negatives": 77368,
+                "false_positives": 2732,
+                "false_negatives": 0,
+                "true_positives": 0,
+                "accuracy": 0.9658926342072409,
+                "precision": 0.0,
+                "recall": null,
+                "f1": null,
+                "false_positive_rate": 0.03410736579275905,
+                "specificity": 0.9658926342072409,
+                "roc_auc": null,
+                "average_precision": null,
+                "pr_auc": null
+            },
+            "unseen": {
+                "records": 20792,
+                "positives": 70,
+                "alerts": 8436,
+                "threshold": 7.502168591599911e-05,
+                "true_negatives": 12356,
+                "false_positives": 8366,
+                "false_negatives": 0,
+                "true_positives": 70,
+                "accuracy": 0.5976337052712581,
+                "precision": 0.008297771455666193,
+                "recall": 1.0,
+                "f1": 0.016458970138725604,
+                "false_positive_rate": 0.40372550912074123,
+                "specificity": 0.5962744908792588,
+                "roc_auc": 0.9162360224468129,
+                "average_precision": 0.018754912571247725,
+                "pr_auc": 0.018450979730232957
+            }
+        },
+        "original_label_tactics": [
+            {
+                "tactic": "credentialAccess",
+                "positive_events": 69,
+                "detected_events": 69,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "defenceEvasion",
+                "positive_events": 1,
+                "detected_events": 1,
+                "missed_events": 0,
+                "recall": 1.0
+            }
+        ],
+        "contextual_label_tactics": [
+            {
+                "tactic": "CandC",
+                "positive_events": 8,
+                "detected_events": 8,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "collection",
+                "positive_events": 62,
+                "detected_events": 62,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "credentialAccess",
+                "positive_events": 75,
+                "detected_events": 75,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "defenceEvasion",
+                "positive_events": 23,
+                "detected_events": 23,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "discovery",
+                "positive_events": 22,
+                "detected_events": 22,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "exfiltration",
+                "positive_events": 11,
+                "detected_events": 11,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "initialAccess",
+                "positive_events": 1,
+                "detected_events": 1,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "lateralMovement",
+                "positive_events": 5,
+                "detected_events": 5,
+                "missed_events": 0,
+                "recall": 1.0
+            },
+            {
+                "tactic": "persistence",
+                "positive_events": 18,
+                "detected_events": 18,
+                "missed_events": 0,
+                "recall": 1.0
+            }
+        ]
+    }
+}

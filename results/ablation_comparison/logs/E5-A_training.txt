@@ -1,0 +1,146 @@
+======================================================================
+PROVENANCE CONTEXT ABLATION
+Experiment: E5-A
+Stage: train
+======================================================================
+Verified train: 99,665 events
+Verified validation: 21,357 events
+Verified benign_test: 21,357 events
+Verified attack_test: 100,892 events
+======================================================================
+CICAPT-IIoT AUTOENCODER TRAINING
+======================================================================
+Experiment: E2
+Device: cuda
+GPU: NVIDIA GeForce RTX 4060
+Seed: 42
+Training samples: 99,665
+Validation samples: 21,357
+Trainable parameters: 107,168
+Batch size: 256
+Learning rate: 0.001
+Maximum epochs: 100
+Early stopping patience: 101
+
+TRAINING STARTED
+
+Epoch 001/100 | Train: 0.00020731 | Validation: 0.00000530 *
+Epoch 002/100 | Train: 0.00000410 | Validation: 0.00000107 *
+Epoch 003/100 | Train: 0.00000104 | Validation: 0.00000055 *
+Epoch 004/100 | Train: 0.00000085 | Validation: 0.00000050 *
+Epoch 005/100 | Train: 0.00000074 | Validation: 0.00000040 *
+Epoch 006/100 | Train: 0.00000059 | Validation: 0.00000056
+Epoch 007/100 | Train: 0.00000042 | Validation: 0.00000030 *
+Epoch 008/100 | Train: 0.00000024 | Validation: 0.00000026 *
+Epoch 009/100 | Train: 0.00000019 | Validation: 0.00000024 *
+Epoch 010/100 | Train: 0.00000019 | Validation: 0.00000021 *
+Epoch 011/100 | Train: 0.00000017 | Validation: 0.00000021
+Epoch 012/100 | Train: 0.00000014 | Validation: 0.00000017 *
+Epoch 013/100 | Train: 0.00000020 | Validation: 0.00000013 *
+Epoch 014/100 | Train: 0.00000008 | Validation: 0.00000013 *
+Epoch 015/100 | Train: 0.00000015 | Validation: 0.00000011 *
+Epoch 016/100 | Train: 0.00000007 | Validation: 0.00000014
+Epoch 017/100 | Train: 0.00000008 | Validation: 0.00000023
+Epoch 018/100 | Train: 0.00000008 | Validation: 0.00000010 *
+Epoch 019/100 | Train: 0.00000007 | Validation: 0.00000015
+Epoch 020/100 | Train: 0.00000008 | Validation: 0.00000018
+Epoch 021/100 | Train: 0.00000006 | Validation: 0.00000013
+Epoch 022/100 | Train: 0.00000006 | Validation: 0.00000009 *
+Epoch 023/100 | Train: 0.00000005 | Validation: 0.00000010
+Epoch 024/100 | Train: 0.00000008 | Validation: 0.00000015
+Epoch 025/100 | Train: 0.00000003 | Validation: 0.00000012
+Epoch 026/100 | Train: 0.00000005 | Validation: 0.00000009 *
+Epoch 027/100 | Train: 0.00000005 | Validation: 0.00000014
+Epoch 028/100 | Train: 0.00000005 | Validation: 0.00000011
+Epoch 029/100 | Train: 0.00000005 | Validation: 0.00000010
+Epoch 030/100 | Train: 0.00000004 | Validation: 0.00000018
+Epoch 031/100 | Train: 0.00000005 | Validation: 0.00000009 *
+Epoch 032/100 | Train: 0.00000004 | Validation: 0.00000011
+Epoch 033/100 | Train: 0.00000004 | Validation: 0.00000009 *
+Epoch 034/100 | Train: 0.00000004 | Validation: 0.00000016
+Epoch 035/100 | Train: 0.00000004 | Validation: 0.00000011
+Epoch 036/100 | Train: 0.00000005 | Validation: 0.00000009
+Epoch 037/100 | Train: 0.00000003 | Validation: 0.00000010
+Epoch 038/100 | Train: 0.00000006 | Validation: 0.00000037
+Epoch 039/100 | Train: 0.00000004 | Validation: 0.00000009
+Epoch 040/100 | Train: 0.00000003 | Validation: 0.00000011
+Epoch 041/100 | Train: 0.00000004 | Validation: 0.00000012
+Epoch 042/100 | Train: 0.00000005 | Validation: 0.00000009 *
+Epoch 043/100 | Train: 0.00000002 | Validation: 0.00000009 *
+Epoch 044/100 | Train: 0.00000004 | Validation: 0.00000011
+Epoch 045/100 | Train: 0.00000003 | Validation: 0.00000012
+Epoch 046/100 | Train: 0.00000004 | Validation: 0.00000009
+Epoch 047/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 048/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 049/100 | Train: 0.00000003 | Validation: 0.00000027
+Epoch 050/100 | Train: 0.00000003 | Validation: 0.00000010
+Epoch 051/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 052/100 | Train: 0.00000010 | Validation: 0.00000008 *
+Epoch 053/100 | Train: 0.00000001 | Validation: 0.00000008
+Epoch 054/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 055/100 | Train: 0.00000003 | Validation: 0.00000011
+Epoch 056/100 | Train: 0.00000004 | Validation: 0.00000008 *
+Epoch 057/100 | Train: 0.00000003 | Validation: 0.00000008
+Epoch 058/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 059/100 | Train: 0.00000003 | Validation: 0.00000022
+Epoch 060/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 061/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 062/100 | Train: 0.00000003 | Validation: 0.00000010
+Epoch 063/100 | Train: 0.00000003 | Validation: 0.00000008
+Epoch 064/100 | Train: 0.00000003 | Validation: 0.00000016
+Epoch 065/100 | Train: 0.00000003 | Validation: 0.00000022
+Epoch 066/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 067/100 | Train: 0.00000003 | Validation: 0.00000015
+Epoch 068/100 | Train: 0.00000002 | Validation: 0.00000010
+Epoch 069/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 070/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 071/100 | Train: 0.00000004 | Validation: 0.00000009
+Epoch 072/100 | Train: 0.00000001 | Validation: 0.00000010
+Epoch 073/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 074/100 | Train: 0.00000002 | Validation: 0.00000013
+Epoch 075/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 076/100 | Train: 0.00000003 | Validation: 0.00000009
+Epoch 077/100 | Train: 0.00000002 | Validation: 0.00000010
+Epoch 078/100 | Train: 0.00000002 | Validation: 0.00000010
+Epoch 079/100 | Train: 0.00000002 | Validation: 0.00000010
+Epoch 080/100 | Train: 0.00000002 | Validation: 0.00000024
+Epoch 081/100 | Train: 0.00000003 | Validation: 0.00000010
+Epoch 082/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 083/100 | Train: 0.00000002 | Validation: 0.00000010
+Epoch 084/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 085/100 | Train: 0.00000002 | Validation: 0.00000012
+Epoch 086/100 | Train: 0.00000003 | Validation: 0.00000010
+Epoch 087/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 088/100 | Train: 0.00000001 | Validation: 0.00000008
+Epoch 089/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 090/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 091/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 092/100 | Train: 0.00000002 | Validation: 0.00000011
+Epoch 093/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 094/100 | Train: 0.00000002 | Validation: 0.00000010
+Epoch 095/100 | Train: 0.00000002 | Validation: 0.00000009
+Epoch 096/100 | Train: 0.00000002 | Validation: 0.00000011
+Epoch 097/100 | Train: 0.00000001 | Validation: 0.00000008
+Epoch 098/100 | Train: 0.00000002 | Validation: 0.00000008
+Epoch 099/100 | Train: 0.00000001 | Validation: 0.00000016
+Epoch 100/100 | Train: 0.00000002 | Validation: 0.00000008
+
+======================================================================
+TRAINING COMPLETED
+======================================================================
+Epochs completed: 100
+Best epoch: 56
+Best validation loss: 0.00000008
+Anomaly threshold: 0.0000000004
+Validation alerts: 90
+Validation false positive rate: 0.4214%
+Training duration: 101.74 seconds
+Peak GPU memory: 20.63 MiB
+Saved model: /home/wajien/projects/APT-Detection-Research/models/e5a-operation-only/autoencoder.pt
+Results directory: /home/wajien/projects/APT-Detection-Research/results/e5a-operation-only
+
+CONTROLLED TRAINING VERIFICATION
+Total optimizer updates: 39000
+Selected checkpoint updates: 21840
+
+ABLATION STAGE COMPLETED

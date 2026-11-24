@@ -1,0 +1,10 @@
+tactic,positive_events,detected_events,missed_events,recall
+CandC,8,3,5,0.375
+collection,62,32,30,0.5161290322580645
+credentialAccess,75,69,6,0.92
+defenceEvasion,23,3,20,0.13043478260869565
+discovery,22,0,22,0.0
+exfiltration,11,2,9,0.18181818181818182
+initialAccess,1,0,1,0.0
+lateralMovement,5,4,1,0.8
+persistence,18,1,17,0.05555555555555555

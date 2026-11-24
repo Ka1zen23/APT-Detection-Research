@@ -1,0 +1,3 @@
+tactic,positive_events,detected_events,missed_events,recall
+credentialAccess,69,69,0,1.0
+defenceEvasion,1,1,0,1.0

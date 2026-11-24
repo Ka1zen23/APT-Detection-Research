@@ -1,0 +1,29 @@
+{
+  "summary": "The dashboard is a read-only presentation layer. It never trains models, never executes research scripts and never writes into research artifact directories.",
+  "layers": [
+    {"title": "React research dashboard", "description": "TypeScript SPA with server-state caching, responsive layouts, light/dark/system themes and accessible data tables."},
+    {"title": "FastAPI read-only API", "description": "Versioned /api/v1 endpoints with Pydantic response models, bounded pagination and explicit availability states."},
+    {"title": "Artifact service", "description": "Central loader for JSON, CSV and Parquet outputs, with mtime-aware in-memory caching and allowlisted roots."},
+    {"title": "Research artifacts", "description": "Existing results/, data/processed/, data/splits/ and data/raw/ outputs remain the source of truth."},
+    {"title": "Maintained content", "description": "Manually curated experiment metadata, findings, roadmap, journal and limitation notes live in web/content/."}
+  ],
+  "data_flow": [
+    "Research artifacts on disk",
+    "Allowlisted artifact reader",
+    "Measured metric and dataset services",
+    "Versioned API envelope with source references",
+    "TanStack Query cache",
+    "Dashboard views and visualisations"
+  ],
+  "boundaries": [
+    "No database: existing JSON, CSV and Parquet artifacts are the primary data store.",
+    "No model checkpoint loading: checkpoints are not read or executed by the dashboard.",
+    "No arbitrary filesystem access: clients never submit paths; figures and documents use fixed allowlists.",
+    "No writes to research data: the only mutable state is an in-memory cache.",
+    "No fabricated curves or missing metrics: unavailable data is shown as unavailable."
+  ],
+  "stack": {
+    "frontend": ["React", "TypeScript", "Vite", "Tailwind CSS v4", "shadcn-style components", "Lucide React", "Recharts", "React Router", "TanStack Query", "TanStack Table"],
+    "backend": ["Python", "FastAPI", "Pydantic", "Pandas", "PyArrow", "scikit-learn"]
+  }
+}

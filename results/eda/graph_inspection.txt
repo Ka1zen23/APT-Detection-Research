@@ -1,0 +1,120 @@
+
+======================================================================
+Phase1_Provenance.csv
+======================================================================
+
+GRAPH STRUCTURE
+Total records: 222,120
+Nodes: 46,773
+Edges: 175,347
+Unique node IDs: 46,773
+Duplicate node IDs: 0
+Nodes without ID: 0
+
+EDGE INTEGRITY
+Unresolved source nodes: 0
+Unresolved destination nodes: 0
+Fully resolved edges: 175347
+
+LABEL DISTRIBUTION BY RECORD TYPE
+label                0
+type                  
+Artifact         36895
+Process           9878
+Used             22120
+WasDerivedFrom   11031
+WasGeneratedBy  136444
+WasTriggeredBy    5752
+
+MALICIOUS RECORDS BY TACTIC
+No malicious records.
+
+EVENT ID ANALYSIS
+Unique event IDs: 142,379
+Event IDs with multiple edges: 15860
+
+Edges per event ID:
+count    142379.000000
+mean          1.231551
+std           0.660832
+min           1.000000
+25%           1.000000
+50%           1.000000
+75%           1.000000
+max           4.000000
+
+EVENT TIMESTAMP RANGE
+Earliest: 2023-11-27 20:50:10.496000051+00:00
+Latest: 2023-12-01 20:50:13.812999964+00:00
+
+MALICIOUS RECORD SAMPLES
+Empty DataFrame
+Columns: [type, id, from, to, exe, name, operation, path, event id, time, label, subLabel]
+Index: []
+
+======================================================================
+Phase2_Provenance.csv
+======================================================================
+
+GRAPH STRUCTURE
+Total records: 196,735
+Nodes: 53,286
+Edges: 143,449
+Unique node IDs: 53,286
+Duplicate node IDs: 0
+Nodes without ID: 0
+
+EDGE INTEGRITY
+Unresolved source nodes: 0
+Unresolved destination nodes: 0
+Fully resolved edges: 143449
+
+LABEL DISTRIBUTION BY RECORD TYPE
+label               0    1
+type                      
+Artifact        28328  119
+Process         24626  213
+Used            34206    0
+WasDerivedFrom   8401   70
+WasGeneratedBy  87636    0
+WasTriggeredBy  13136    0
+
+MALICIOUS RECORDS BY TACTIC
+subLabel        CandC  collection  credentialAccess  defenceEvasion  discovery  exfiltration  initialAccess  lateralMovement  persistence
+type                                                                                                                                     
+Artifact            0          24                69               8          8             0              0                0           10
+Process            16          76                13              37         28            22              2               10            9
+WasDerivedFrom      0           0                69               1          0             0              0                0            0
+
+EVENT ID ANALYSIS
+Unique event IDs: 100,892
+Event IDs with multiple edges: 20780
+
+Edges per event ID:
+count    100892.000000
+mean          1.421807
+std           0.834967
+min           1.000000
+25%           1.000000
+50%           1.000000
+75%           1.000000
+max           4.000000
+
+EVENT TIMESTAMP RANGE
+Earliest: 2023-12-01 22:13:45.766999960+00:00
+Latest: 2023-12-04 22:20:21.461999893+00:00
+
+MALICIOUS RECORD SAMPLES
+   type                               id from  to           exe name operation path event id time label      subLabel
+Process a7adf29d7a6adbe7f3b86b13e27eaaae  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1 initialAccess
+Process 694bcdefa9d96fa54bd8bce6472bd11d  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1 initialAccess
+Process 6859c2e56aa19c0d822a000cbf2bae5b  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process 9e88ae06c140329e35c2ee9a3a8c5179  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process 88725476265014610a6b31c0e7d6ef80  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process 0e103d87f7f9e037d441420b62eec8d6  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process 742e40703c5659d816f0eae7f190717e  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process 1bfd3233e46398d0491599e302792d22  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process 5dc4b8bc718d69a416ff51081a2f5661  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+Process c72a32fec783bc23fd873451373cade8  NaN NaN /usr/bin/dash   sh       NaN  NaN      NaN  NaN     1    collection
+
+Graph inspection completed.

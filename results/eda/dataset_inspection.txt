@@ -1,0 +1,319 @@
+CICAPT-IIoT Dataset Inspection
+Dataset directory: /home/wajien/projects/APT-Detection-Research/data/raw/cicapt-iiot
+
+================================================================================
+FILE: Phase1_Provenance.csv
+================================================================================
+File size: 31.72 MiB
+
+Number of columns: 35
+
+Columns:
+   1. id
+   2. type
+   3. from
+   4. to
+   5. uid
+   6. egid
+   7. exe
+   8. gid
+   9. euid
+  10. name
+  11. pid
+  12. seen time
+  13. source
+  14. ppid
+  15. command line
+  16. start time
+  17. event id
+  18. time
+  19. operation
+  20. path
+  21. subtype
+  22. permissions
+  23. epoch
+  24. version
+  25. flags
+  26. local address
+  27. remote port
+  28. protocol
+  29. remote address
+  30. local port
+  31. tgid
+  32. fd
+  33. mode
+  34. label
+  35. subLabel
+
+First 5 records:
+                              id           type                             from                               to uid egid           exe gid euid  name   pid      seen time  source  ppid                          command line     start time event id           time operation                       path subtype permissions epoch version flags local address remote port protocol remote address local port tgid  fd mode label subLabel
+ac692c8152f756ee90c08b4f03aa1b0d        Process                              NaN                              NaN 0.0  0.0 /usr/bin/dash 0.0  0.0 bind9 874.0 1701118210.496 syscall 872.0                                   NaN            NaN      NaN            NaN       NaN                        NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+7b5f8ad90ec4544e537cc1fe806f3f09        Process                              NaN                              NaN 0.0  0.0 /usr/bin/dash 0.0  0.0 bind9 874.0            NaN syscall 872.0 /bin/sh -e /etc/network/if-up.d/bind9 1701118210.496      NaN            NaN       NaN                        NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+                             NaN WasTriggeredBy 7b5f8ad90ec4544e537cc1fe806f3f09 ac692c8152f756ee90c08b4f03aa1b0d NaN  NaN           NaN NaN  NaN   NaN   NaN            NaN syscall   NaN                                   NaN            NaN    255.0 1701118210.496    execve                        NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+c433d73e1b5e7bc767877f935fa88e3b       Artifact                              NaN                              NaN NaN  NaN           NaN NaN  NaN   NaN   NaN            NaN syscall   NaN                                   NaN            NaN      NaN            NaN       NaN /etc/network/if-up.d/bind9    file       755.0   0.0     0.0   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+                             NaN           Used 7b5f8ad90ec4544e537cc1fe806f3f09 c433d73e1b5e7bc767877f935fa88e3b NaN  NaN           NaN NaN  NaN   NaN   NaN            NaN syscall   NaN                                   NaN            NaN    255.0 1701118210.496      load                        NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+
+Scanning complete dataset...
+Processed 100,000 rowsProcessed 200,000 rowsProcessed 222,120 rows
+
+Total rows: 222,120
+
+Missing values:
+  id                        175,347 ( 78.94%)
+  type                            0 (  0.00%)
+  from                       46,773 ( 21.06%)
+  to                         46,773 ( 21.06%)
+  uid                       212,242 ( 95.55%)
+  egid                      212,242 ( 95.55%)
+  exe                       212,242 ( 95.55%)
+  gid                       212,242 ( 95.55%)
+  euid                      212,242 ( 95.55%)
+  name                      212,242 ( 95.55%)
+  pid                       201,211 ( 90.59%)
+  seen time                 217,091 ( 97.74%)
+  source                          0 (  0.00%)
+  ppid                      212,242 ( 95.55%)
+  command line              217,276 ( 97.82%)
+  start time                217,271 ( 97.82%)
+  event id                   46,773 ( 21.06%)
+  time                       46,773 ( 21.06%)
+  operation                  46,773 ( 21.06%)
+  path                      199,530 ( 89.83%)
+  subtype                   185,225 ( 83.39%)
+  permissions               199,530 ( 89.83%)
+  epoch                     185,225 ( 83.39%)
+  version                   185,225 ( 83.39%)
+  flags                     221,843 ( 99.88%)
+  local address             222,120 (100.00%)
+  remote port               207,816 ( 93.56%)
+  protocol                  209,424 ( 94.28%)
+  remote address            207,816 ( 93.56%)
+  local port                222,120 (100.00%)
+  tgid                      222,119 (100.00%)
+  fd                        222,119 (100.00%)
+  mode                      222,110 (100.00%)
+  label                           0 (  0.00%)
+  subLabel                        0 (  0.00%)
+
+Distribution of 'type':
+  WasGeneratedBy                           136,444 ( 61.43%)
+  Artifact                                  36,895 ( 16.61%)
+  Used                                      22,120 (  9.96%)
+  WasDerivedFrom                            11,031 (  4.97%)
+  Process                                    9,878 (  4.45%)
+  WasTriggeredBy                             5,752 (  2.59%)
+
+Distribution of 'operation':
+  unlink                                   111,099 ( 50.02%)
+  <MISSING>                                 46,773 ( 21.06%)
+  connect                                   14,304 (  6.44%)
+  rename (read)                             11,025 (  4.96%)
+  rename (write)                            11,025 (  4.96%)
+  rename                                    11,025 (  4.96%)
+  load                                      10,825 (  4.87%)
+  execve                                     4,772 (  2.15%)
+  setgid                                       546 (  0.25%)
+  setuid                                       347 (  0.16%)
+  open                                         276 (  0.12%)
+  update                                        93 (  0.04%)
+  chmod                                          9 (  0.00%)
+  create                                         1 (  0.00%)
+
+Distribution of 'subtype':
+  <MISSING>                                185,225 ( 83.39%)
+  file                                      22,407 ( 10.09%)
+  network socket                            14,304 (  6.44%)
+  link                                         170 (  0.08%)
+  directory                                     13 (  0.01%)
+  unknown                                        1 (  0.00%)
+
+Distribution of 'label':
+  0                                        222,120 (100.00%)
+
+Distribution of 'subLabel':
+  0                                        222,120 (100.00%)
+
+Distribution of 'protocol':
+  <MISSING>                                209,424 ( 94.28%)
+  tcp                                       12,696 (  5.72%)
+
+================================================================================
+FILE: Phase2_Provenance.csv
+================================================================================
+File size: 28.51 MiB
+
+Number of columns: 35
+
+Columns:
+   1. id
+   2. type
+   3. from
+   4. to
+   5. uid
+   6. egid
+   7. exe
+   8. gid
+   9. euid
+  10. name
+  11. pid
+  12. seen time
+  13. source
+  14. ppid
+  15. command line
+  16. start time
+  17. event id
+  18. time
+  19. operation
+  20. path
+  21. subtype
+  22. permissions
+  23. epoch
+  24. version
+  25. flags
+  26. local address
+  27. remote port
+  28. protocol
+  29. remote address
+  30. local port
+  31. tgid
+  32. fd
+  33. mode
+  34. label
+  35. subLabel
+
+First 5 records:
+                              id           type                             from                               to uid egid           exe gid euid    name   pid      seen time  source  ppid                         command line     start time event id           time operation                         path subtype permissions epoch version flags local address remote port protocol remote address local port tgid  fd mode label subLabel
+ca5b322fa4d4cb63aa5dd9fbd88e37e4        Process                              NaN                              NaN 0.0  0.0 /usr/bin/dash 0.0  0.0 ethtool 917.0 1701468825.767 syscall 913.0                                  NaN            NaN      NaN            NaN       NaN                          NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+e36715b62c8cdc32e47483b3600712f1        Process                              NaN                              NaN 0.0  0.0 /usr/bin/dash 0.0  0.0 ethtool 917.0            NaN syscall 913.0 /bin/sh /etc/network/if-up.d/ethtool 1701468825.767      NaN            NaN       NaN                          NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+                             NaN WasTriggeredBy e36715b62c8cdc32e47483b3600712f1 ca5b322fa4d4cb63aa5dd9fbd88e37e4 NaN  NaN           NaN NaN  NaN     NaN   NaN            NaN syscall   NaN                                  NaN            NaN    246.0 1701468825.767    execve                          NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+216f4d4893942a66d649c4e02b5722c4       Artifact                              NaN                              NaN NaN  NaN           NaN NaN  NaN     NaN   NaN            NaN syscall   NaN                                  NaN            NaN      NaN            NaN       NaN /etc/network/if-up.d/ethtool    file       755.0   0.0     0.0   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+                             NaN           Used e36715b62c8cdc32e47483b3600712f1 216f4d4893942a66d649c4e02b5722c4 NaN  NaN           NaN NaN  NaN     NaN   NaN            NaN syscall   NaN                                  NaN            NaN    246.0 1701468825.767      load                          NaN     NaN         NaN   NaN     NaN   NaN           NaN         NaN      NaN            NaN        NaN  NaN NaN  NaN     0        0
+
+Scanning complete dataset...
+Processed 100,000 rowsProcessed 196,735 rows
+
+Total rows: 196,735
+
+Missing values:
+  id                        143,449 ( 72.91%)
+  type                            0 (  0.00%)
+  from                       53,286 ( 27.09%)
+  to                         53,286 ( 27.09%)
+  uid                       171,896 ( 87.37%)
+  egid                      171,896 ( 87.37%)
+  exe                       171,896 ( 87.37%)
+  gid                       171,896 ( 87.37%)
+  euid                      171,896 ( 87.37%)
+  name                      171,896 ( 87.37%)
+  pid                       163,425 ( 83.07%)
+  seen time                 184,220 ( 93.64%)
+  source                          0 (  0.00%)
+  ppid                      171,896 ( 87.37%)
+  command line              184,411 ( 93.74%)
+  start time                184,411 ( 93.74%)
+  event id                   53,286 ( 27.09%)
+  time                       53,286 ( 27.09%)
+  operation                  53,286 ( 27.09%)
+  path                      179,093 ( 91.03%)
+  subtype                   168,288 ( 85.54%)
+  permissions               179,093 ( 91.03%)
+  epoch                     168,288 ( 85.54%)
+  version                   168,288 ( 85.54%)
+  flags                     196,501 ( 99.88%)
+  local address             196,735 (100.00%)
+  remote port               185,948 ( 94.52%)
+  protocol                  187,207 ( 95.16%)
+  remote address            185,948 ( 94.52%)
+  local port                196,735 (100.00%)
+  tgid                      196,717 ( 99.99%)
+  fd                        196,717 ( 99.99%)
+  mode                      196,709 ( 99.99%)
+  label                           0 (  0.00%)
+  subLabel                        0 (  0.00%)
+
+Distribution of 'type':
+  WasGeneratedBy                            87,636 ( 44.55%)
+  Used                                      34,206 ( 17.39%)
+  Artifact                                  28,447 ( 14.46%)
+  Process                                   24,839 ( 12.63%)
+  WasTriggeredBy                            13,136 (  6.68%)
+  WasDerivedFrom                             8,471 (  4.31%)
+
+Distribution of 'operation':
+  unlink                                    68,351 ( 34.74%)
+  <MISSING>                                 53,286 ( 27.09%)
+  load                                      25,512 ( 12.97%)
+  execve                                    12,223 (  6.21%)
+  connect                                   10,787 (  5.48%)
+  rename (read)                              8,466 (  4.30%)
+  rename (write)                             8,466 (  4.30%)
+  rename                                     8,466 (  4.30%)
+  setgid                                       512 (  0.26%)
+  setuid                                       293 (  0.15%)
+  open                                         234 (  0.12%)
+  update                                       113 (  0.06%)
+  chmod                                         26 (  0.01%)
+
+Distribution of 'subtype':
+  <MISSING>                                168,288 ( 85.54%)
+  file                                      17,344 (  8.82%)
+  network socket                            10,787 (  5.48%)
+  link                                         283 (  0.14%)
+  unknown                                       18 (  0.01%)
+  directory                                     15 (  0.01%)
+
+Distribution of 'label':
+  0                                        196,333 ( 99.80%)
+  1                                            402 (  0.20%)
+
+Distribution of 'subLabel':
+  0                                        196,333 ( 99.80%)
+  credentialAccess                             151 (  0.08%)
+  collection                                   100 (  0.05%)
+  defenceEvasion                                46 (  0.02%)
+  discovery                                     36 (  0.02%)
+  exfiltration                                  22 (  0.01%)
+  persistence                                   19 (  0.01%)
+  CandC                                         16 (  0.01%)
+  lateralMovement                               10 (  0.01%)
+  initialAccess                                  2 (  0.00%)
+
+Distribution of 'protocol':
+  <MISSING>                                187,207 ( 95.16%)
+  tcp                                        9,528 (  4.84%)
+
+================================================================================
+FILE: attack_info.csv
+================================================================================
+File size: 0.00 MiB
+
+Number of columns: 5
+
+Columns:
+   1. Time of Attack
+   2. Tactic Name
+   3. Technique Name
+   4. PID
+   5. readable_time
+
+First 5 records:
+Time of Attack Tactic Name           Technique Name   PID       readable_time
+  1701469507.0  collection create staging directory  4437 2023-12-01 18:25:07
+  1701469537.0  collection               find files  7633 2023-12-01 18:25:37
+  1701473102.0  collection               find files 11179 2023-12-01 19:25:02
+  1701477068.0  collection               find files 14421 2023-12-01 20:31:08
+  1701480800.0  collection               find files 18197 2023-12-01 21:33:20
+
+Scanning complete dataset...
+Processed 58 rows
+
+Total rows: 58
+
+Missing values:
+  Time of Attack                  0 (  0.00%)
+  Tactic Name                     0 (  0.00%)
+  Technique Name                  0 (  0.00%)
+  PID                             0 (  0.00%)
+  readable_time                   0 (  0.00%)
+
+Dataset inspection completed.
