@@ -1937,7 +1937,7 @@
     "note": "Curves are computed from stored per-event anomaly scores, then evenly downsampled for display."
   },
   "meta": {
-    "generated_at": "2026-11-25T09:06:09.464928+00:00",
+    "generated_at": "2026-11-25T09:26:52.988547+00:00",
     "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
     "data_mode": "static_snapshot",
     "warnings": [

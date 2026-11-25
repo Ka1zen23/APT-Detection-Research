@@ -9,13 +9,13 @@
       "web/content"
     ],
     "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
-    "checked_at": "2026-11-25T09:06:08.641237+00:00",
+    "checked_at": "2026-11-25T09:26:52.254178+00:00",
     "read_only": true,
     "deployment_mode": "static",
     "auth_required": false
   },
   "meta": {
-    "generated_at": "2026-11-25T09:06:08.641289+00:00",
+    "generated_at": "2026-11-25T09:26:52.254212+00:00",
     "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
     "data_mode": "static_snapshot",
     "warnings": [
