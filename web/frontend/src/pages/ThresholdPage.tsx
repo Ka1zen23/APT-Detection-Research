@@ -60,6 +60,7 @@ export function ThresholdPage() {
   return (
     <div className="space-y-5">
       <PageHeader
+        level={2}
         eyebrow="Experiments, Threshold sensitivity"
         title="Validation-derived threshold analysis"
         description="Explore the measured percentile sweep for the autoencoder variants. Thresholds are derived from benign validation reconstruction errors, never from attack-test labels."
@@ -158,8 +159,8 @@ export function ThresholdPage() {
                         <YAxis yAxisId="left" scale="log" domain={[1, "auto"]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toLocaleString()} />
                         <YAxis yAxisId="right" orientation="right" domain={[0, 100]} {...CHART_AXIS} tickFormatter={(value) => `${value}%`} />
                         <Tooltip content={<ChartTooltip formatter={(value, name) => name === "Contextual recall" ? `${Number(value).toFixed(1)}%` : Number(value).toLocaleString()} />} />
-                        <Line yAxisId="left" type="monotone" dataKey="false_positives" name="False positives" stroke="var(--error)" strokeWidth={1.5} dot={{ r: 2 }} />
-                        <Line yAxisId="right" type="monotone" dataKey="contextual_recall" name="Contextual recall" stroke="var(--warning)" strokeWidth={1.5} dot={{ r: 2 }} />
+                        <Line yAxisId="left" dataKey="false_positives" name="False positives" stroke="var(--error)" strokeOpacity={0} dot={{ r: 3, strokeOpacity: 1 }} isAnimationActive={false} />
+                        <Line yAxisId="right" dataKey="contextual_recall" name="Contextual recall" stroke="var(--warning)" strokeOpacity={0} dot={{ r: 3, strokeOpacity: 1 }} isAnimationActive={false} />
                       </LineChart>
                     </ResponsiveContainer>
                   </CardContent>

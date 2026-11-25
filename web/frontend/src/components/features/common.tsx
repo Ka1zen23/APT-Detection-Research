@@ -30,20 +30,23 @@ export function PageHeader({
   description,
   actions,
   children,
+  level = 1,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   actions?: React.ReactNode;
   children?: React.ReactNode;
+  level?: 1 | 2;
 }) {
+  const Heading = level === 1 ? "h1" : "h2";
   return (
     <header className="flex flex-col gap-4 border-b border-border pb-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0">
-          <h1 className="text-[1.75rem] font-medium leading-tight tracking-tight text-foreground md:text-[2rem]">
+          <Heading className="text-[1.75rem] font-medium leading-tight tracking-tight text-foreground md:text-[2rem]">
             {title}
-          </h1>
+          </Heading>
           {description && (
             <p className="mt-2 max-w-[68ch] text-[15px] leading-relaxed text-muted-foreground">
               {description}

@@ -1,6 +1,6 @@
-# APT Research Lab — Research Dashboard
+# APT Research Lab — Interactive Research Publication
 
-Read-only research intelligence dashboard for the Master's project **AI-based solution to detect and mitigate APT malware** at Universiti Teknologi Brunei.
+Read-only research publication for the Master's project **AI-based solution to detect and mitigate APT malware** at Universiti Teknologi Brunei.
 
 The dashboard presents existing CICAPT-IIoT provenance experiments. It does **not** train models, load checkpoints, retrain models or modify research artifacts.
 
@@ -86,21 +86,22 @@ npm run dev
 
 Open <http://127.0.0.1:5173>.
 
-The landing page at `/` is a narrative research story with the provenance lens,
-the findings and the alert-budget trade-off. The read-only evidence dashboard
-starts at `/overview`.
+The overview at `/` introduces the project; `/understand` is the 12-chapter guided
+tour. `/findings` presents the preliminary observations, `/experiments` offers
+Guided and Technical views, `/progress` follows the roadmap, and `/documentation`
+indexes the reference material. The old `/overview` link forwards to the detailed
+evidence overview at `/experiments/evidence`.
 
-The story and dashboard share one Console design system: Host Grotesk for reading,
-Atkinson Hyperlegible Mono for measured values, graphite dark by default and a
-paper light mode. Metric cards print a definition, denominator and source; the
-shared glossary is at `/glossary`.
+The publication uses Newsreader, Inter and JetBrains Mono, follows the device theme
+by default, and saves manually selected themes and experiment reading modes locally.
+The learning examples are labelled separately from measured research outputs.
+The glossary is at `/documentation/glossary`.
 
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview
 
-The preview server proxies `/api` to the local backend, so the default build works without
-additional configuration:
+The default production build uses the static snapshot and does not need a backend:
 
 ```bash
 cd web/frontend
@@ -112,7 +113,7 @@ For a separately hosted API, set `VITE_API_BASE_URL` **before building** because
 environment variables at build time:
 
 ```bash
-VITE_API_BASE_URL=https://example.edu/api/v1 npm run build
+VITE_DATA_MODE=api VITE_API_BASE_URL=https://example.edu/api/v1 npm run build
 ```
 
 ## Deployment
@@ -195,6 +196,18 @@ Frontend build and typecheck:
 cd web/frontend
 npm run build
 ```
+
+Browser tests start a production preview with the aggregate snapshot:
+
+```bash
+cd web/frontend
+npx playwright install chromium
+npm run test:e2e
+```
+
+The browser suite checks the tour demonstrations, measured references, technical
+views, legacy routes, document and figure links, mobile navigation, and automated
+accessibility in light and dark modes.
 
 ## Data sources
 

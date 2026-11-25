@@ -2,16 +2,13 @@
 /* Hallmark · waive 39b · the whole finding row is the disclosure control, 155 to 199px by design; the target is the row, not a compact button */
 /* Hallmark · waive 72 · the sidebar navigation and chart cards are deliberate scroll or clip containers; their content is clipped, not covered */
 /* Hallmark · dismissed F25 · the registry and comparison tables scroll horizontally on phones, with a visible hint and the identifying column first */
-@import "@fontsource-variable/host-grotesk";
-@import "@fontsource-variable/atkinson-hyperlegible-mono";
 @import "tailwindcss";
-@import "./hallmark/story.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Host Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Atkinson Hyperlegible Mono Variable", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
 
   --color-background: var(--background);
   --color-surface: var(--surface);

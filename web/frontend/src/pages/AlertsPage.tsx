@@ -30,6 +30,7 @@ import { formatNumber, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const MODELS = ["E2-A", "E2-B", "E2-C", "E2-D"];
+const formatExpectedCount = (value?: number | null) => formatNumber(value, value != null && !Number.isInteger(value) ? 2 : 0);
 
 export function AlertsPage() {
   const [budgetIndex, setBudgetIndex] = useState(4);
@@ -80,6 +81,7 @@ export function AlertsPage() {
   return (
     <div className="space-y-5">
       <PageHeader
+        level={2}
         eyebrow="Experiments, Alert prioritisation"
         title="Analyst alert-budget simulator"
         description="How many original malicious events are recovered if an analyst investigates only the top-ranked alerts? Only measured budget points are shown; intermediate budgets are not invented."
@@ -98,7 +100,7 @@ export function AlertsPage() {
 
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <KpiCard label="Investigating budget" value={formatNumber(budget)} metricId="alert-budget" detail="Top-N ranked alerts" tone="accent" icon={<Users className="size-4" />} />
-        <KpiCard label="E2-D expected true positives" value={formatNumber(primary?.rows.find((row) => row.budget === budget)?.expected_true_positives ?? null)} definition="Original positives inside the selected top-N alert set." detail="Measured points only" tone="success" />
+        <KpiCard label="E2-D expected true positives" value={formatExpectedCount(primary?.rows.find((row) => row.budget === budget)?.expected_true_positives)} definition="Original positives inside the selected top-N alert set, accounting for ties." detail="Measured points only" tone="success" />
         <KpiCard label="E2-D expected precision" value={formatPercent(primary?.rows.find((row) => row.budget === budget)?.expected_precision ?? null, 2)} metricId="precision" detail="Expected TP ÷ budget" tone="warning" />
         <KpiCard label="E2-D expected recall" value={formatPercent(primary?.rows.find((row) => row.budget === budget)?.expected_recall ?? null, 2)} metricId="recall" detail="Of 70 original positives" tone="warning" />
       </div>
@@ -137,6 +139,7 @@ export function AlertsPage() {
                 <button
                   key={id}
                   type="button"
+                  aria-pressed={active}
                   onClick={() => setVisibleModels((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id])}
                   className={cn(
                     "rounded border px-2 py-1 font-mono text-[12px] transition-colors",
@@ -164,7 +167,7 @@ export function AlertsPage() {
                   <div className="mt-1.5 grid grid-cols-2 gap-1 text-[12px]">
                     <div>
                       <span className="text-muted-foreground">TP</span>
-                      <div className="font-mono text-foreground">{row ? formatNumber(row.expected_true_positives) : "n/a"}</div>
+                      <div className="font-mono text-foreground">{formatExpectedCount(row?.expected_true_positives)}</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Tie range</span>
@@ -190,7 +193,7 @@ export function AlertsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Expected original true positives by alert budget</CardTitle>
-            <div className="text-xs text-muted-foreground">Measured budgets only. Higher curves recover more malicious events at the same analyst cost.</div>
+            <div className="text-xs text-muted-foreground">Only measured budgets are plotted. Higher points recover more originally annotated events at the same analyst cost.</div>
           </CardHeader>
           <CardContent className="h-[360px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -206,16 +209,15 @@ export function AlertsPage() {
                   tickFormatter={(value) => Number(value).toLocaleString()}
                 />
                 <YAxis domain={[0, 70]} {...CHART_AXIS} />
-                <Tooltip content={<ChartTooltip formatter={(value) => Number(value).toFixed(0)} labelFormatter={(label) => `Budget ${Number(label).toLocaleString()}`} />} />
+                <Tooltip content={<ChartTooltip formatter={(value) => formatExpectedCount(Number(value))} labelFormatter={(label) => `Budget ${Number(label).toLocaleString()}`} />} />
                 <Legend wrapperStyle={{ fontSize: 10 }} />
                 {payloads.filter((payload) => visibleModels.includes(payload.experiment_id)).map((payload) => (
                   <Line
                     key={payload!.experiment_id}
-                    type="monotone"
                     dataKey={payload!.experiment_id}
                     stroke={CHART_COLORS[MODELS.indexOf(payload!.experiment_id) % CHART_COLORS.length]}
-                    strokeWidth={payload!.experiment_id === "E2-D" ? 2.5 : 1.5}
-                    dot={{ r: 2.5 }}
+                    strokeOpacity={0}
+                    dot={{ r: payload!.experiment_id === "E2-D" ? 3.5 : 2.5, strokeOpacity: 1 }}
                     isAnimationActive={false}
                     name={payload!.experiment_id}
                   />

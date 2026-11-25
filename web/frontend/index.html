@@ -5,34 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A read-only research story and evidence dashboard for AI-based APT malware detection at Universiti Teknologi Brunei."
+      content="An interactive MSc research publication on AI-based APT malware detection at Universiti Teknologi Brunei."
     />
     <meta name="color-scheme" content="light dark" />
     <title>APT Research Lab · UTB</title>
     <script>
       (() => {
         try {
-          const stored = localStorage.getItem("apt-dashboard-theme") || "dark";
+          const stored = localStorage.getItem("apt-dashboard-theme");
           const dark =
             stored === "dark" ||
-            (stored === "system" &&
+            (stored !== "light" &&
               window.matchMedia("(prefers-color-scheme: dark)").matches);
           document.documentElement.classList.toggle("dark", dark);
         } catch {
-          document.documentElement.classList.add("dark");
+          document.documentElement.classList.toggle("dark", window.matchMedia("(prefers-color-scheme: dark)").matches);
         }
       })();
     </script>
   </head>
   <body class="h-full">
     <noscript>
-      <div style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; background: var(--st-paper); color: var(--st-ink); font-family: var(--st-font-body); line-height: 1.6">
-        <h1 style="font-size: var(--st-text-xl); line-height: 1.2">APT Research Lab</h1>
+      <div style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6">
+        <h1>APT Research Lab</h1>
         <p>
-          This research story renders in the browser. Enable JavaScript to read
-          the provenance lens, the six preliminary findings and the saved
-          experiment artifacts. The underlying research is an MSc project at
-          Universiti Teknologi Brunei.
+          This MSc project at Universiti Teknologi Brunei investigates whether AI can
+          learn patterns of routine computer activity and highlight unusual events for investigation.
+          Enable JavaScript to explore the methodology, preliminary findings and saved experimental evidence.
         </p>
       </div>
     </noscript>

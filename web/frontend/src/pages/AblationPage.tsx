@@ -49,14 +49,13 @@ export function AblationPage() {
       const attack = data.statistics.find((row) => row.variant === variant && row.split === "attack_test");
       return {
         id,
-        uniqueTrain: train?.unique_descriptions ?? 0,
-        uniqueAttack: attack?.unique_descriptions ?? 0,
-        positivesSeen: attack?.original_positives_seen ?? 0,
-        meanTokens: train?.mean_tokens ?? 0,
-        maxTokens: train?.maximum_tokens ?? 0,
-        truncation: attack?.over_token_limit ?? 0,
-        conflict: data.conflicts[variant]?.original.conflicting_positives ?? 0,
-        conflictingRecords: data.conflicts[variant]?.original.conflicting_records ?? 0,
+        uniqueTrain: train?.unique_descriptions,
+        uniqueAttack: attack?.unique_descriptions,
+        positivesSeen: attack?.original_positives_seen,
+        meanTokens: train?.mean_tokens,
+        maxTokens: train?.maximum_tokens,
+        truncation: attack?.over_token_limit,
+        conflictingRecords: data.conflicts[variant]?.original.conflicting_records,
       };
     });
   }, [data]);
@@ -73,15 +72,16 @@ export function AblationPage() {
   return (
     <div className="space-y-5">
       <PageHeader
+        level={2}
         eyebrow="Experiments, Provenance ablation"
         title="What does provenance context contribute?"
-        description="The E5 family holds the detector and encoder constant while changing how an event is verbalised: operations only, operations with entities, or full directed provenance."
+        description="The E5 family compares operations only, operations with entities, and full directed provenance using the same detector architecture and encoder."
         actions={<Badge variant="warning">Preliminary ablation</Badge>}
       />
 
       <InfoCallout tone="info" title="How to read this page">
-        E5-A, E5-B and E5-C hold the detector and encoder constant and change only the verbalised
-        text. Average Precision is a ranking metric; the best AP does not mean every operating-point
+        E5-A, E5-B and E5-C change complete representation configurations; they do not isolate the
+        causal contribution of graph relationships. Average Precision is a ranking metric; the best AP does not mean every operating-point
         metric improves.{" "}
         <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
           Glossary
@@ -114,7 +114,7 @@ export function AblationPage() {
         />
         <KpiCard
           label="Original positives seen in training"
-          value={<span className="text-[18px] leading-snug">E5-A 70, E5-B 0, E5-C 0</span>}
+          value={<span className="text-[18px] leading-snug">{stats.map((row) => `${row.id} ${formatNumber(row.positivesSeen)}`).join(", ")}</span>}
           definition="How many labelled positives have an exact-description match in the training set."
           detail="Exact-description overlap, by representation"
           tone="warning"
@@ -149,7 +149,7 @@ export function AblationPage() {
         <CardHeader>
           <CardTitle>Same event, three representations</CardTitle>
           <div className="text-xs text-muted-foreground">
-            Event {data.examples.event_id} ({data.examples.phase}). Descriptions are taken directly from the ablation preprocessing log.
+            {data.examples.event_context}
           </div>
         </CardHeader>
         <CardContent>
@@ -218,11 +218,11 @@ export function AblationPage() {
                     <td className="px-2.5 py-2 font-mono text-[12px] text-foreground">{row.id}</td>
                     <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.uniqueTrain)}</td>
                     <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.uniqueAttack)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.positivesSeen}</td>
-                    <td className={cn("px-2.5 py-2 text-right font-mono text-[12px]", row.conflictingRecords > 0 && "text-error")}>{formatNumber(row.conflictingRecords)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.meanTokens.toFixed(1)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.maxTokens}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.truncation}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.positivesSeen)}</td>
+                    <td className={cn("px-2.5 py-2 text-right font-mono text-[12px]", (row.conflictingRecords ?? 0) > 0 && "text-error")}>{formatNumber(row.conflictingRecords)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatDecimal(row.meanTokens, 1)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.maxTokens)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.truncation)}</td>
                   </tr>
                 ))}
               </tbody>

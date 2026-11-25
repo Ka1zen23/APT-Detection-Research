@@ -7,9 +7,9 @@ import {
   CartesianGrid,
   Cell,
   Legend,
-  Line,
-  LineChart,
   ResponsiveContainer,
+  Scatter,
+  ScatterChart,
   Tooltip,
   XAxis,
   YAxis,
@@ -46,37 +46,12 @@ import { api } from "@/services/api";
 import { useDescriptionOverlap, useExperiment, useModelComparison } from "@/hooks/queries";
 import { formatDecimal, formatDuration, formatNumber, formatPercent, formatThreshold } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import type { CurvePoint, CurvePayload } from "@/types/api";
+import type { CurvePayload } from "@/types/api";
 
 const DEFAULT_SELECTION = ["E2-D", "E5-C", "B3", "E2-A", "E5-B"];
 const MAX_SELECTION = 6;
 
 type SortKey = "average_precision" | "roc_auc" | "recall" | "precision" | "false_positives" | "contextual_recall" | "training_seconds";
-
-function combineCurves(payloads: CurvePayload[], key: "roc" | "pr") {
-  const models = payloads.filter((payload) => payload.available && payload[key]?.length);
-  if (models.length === 0) return [];
-  const grid = Array.from({ length: 51 }, (_, index) => index / 50);
-  return grid.map((x) => {
-    const point: Record<string, number | string> = { x };
-    for (const model of models) {
-      const points = model[key] as CurvePoint[];
-      const nextIndex = points.findIndex((item) => item.x >= x);
-      if (nextIndex === -1) {
-        point[model.experiment_id] = points[points.length - 1]?.y ?? 0;
-      } else if (nextIndex === 0) {
-        point[model.experiment_id] = points[0]?.y ?? 0;
-      } else {
-        const previous = points[nextIndex - 1];
-        const next = points[nextIndex];
-        const span = next.x - previous.x;
-        const ratio = span === 0 ? 0 : (x - previous.x) / span;
-        point[model.experiment_id] = previous.y + (next.y - previous.y) * ratio;
-      }
-    }
-    return point;
-  });
-}
 
 function SortButton({
   label,
@@ -132,6 +107,8 @@ export function ComparisonPage() {
       )[0],
     [models],
   );
+  const rocLeader = models.reduce<(typeof models)[number] | undefined>((best, model) =>
+    model.roc_auc != null && (best?.roc_auc == null || model.roc_auc > best.roc_auc) ? model : best, undefined);
   const selectedModels = useMemo(
     () => models.filter((model) => selected.includes(model.id)),
     [models, selected],
@@ -166,8 +143,6 @@ export function ComparisonPage() {
   const curvePayloads = curveQueries
     .map((query) => query.data)
     .filter((payload): payload is CurvePayload => Boolean(payload));
-  const rocData = combineCurves(curvePayloads, "roc");
-  const prData = combineCurves(curvePayloads, "pr");
   const operating = models.find((model) => model.id === operatingId) ?? models[0];
   const apChartData = models
     .filter((model) => model.average_precision !== null)
@@ -192,6 +167,7 @@ export function ComparisonPage() {
   return (
     <div className="space-y-5">
       <PageHeader
+        level={2}
         eyebrow="Experiments, Comparison"
         title="Model comparison"
         description="Compare 12 measured configurations. Ranking metrics are threshold-independent; threshold-based metrics use each model's recorded operating point. No curve is fabricated from summary values."
@@ -220,15 +196,15 @@ export function ComparisonPage() {
         <KpiCard
           label="Leading ROC-AUC"
           metricId="roc-auc"
-          value={formatDecimal(leader?.roc_auc, 4)}
-          detail={`${leader?.id ?? "n/a"}, threshold-independent ranking`}
+          value={formatDecimal(rocLeader?.roc_auc, 4)}
+          detail={`${rocLeader?.id ?? "n/a"}, threshold-independent ranking`}
           tone="accent"
         />
         <KpiCard
-          label="Best recall group"
+          label="Models with full recall"
           metricId="recall"
-          value="100%"
-          detail={`${fullRecall.length} models tied at their recorded operating points`}
+          value={String(fullRecall.length)}
+          detail="Recovered all originally annotated positives at their recorded operating points"
           tone="warning"
         />
         <KpiCard
@@ -447,7 +423,7 @@ export function ComparisonPage() {
 
         <TabsContent value="curves" className="space-y-4">
           <InfoCallout tone="info" title="Curves are computed from stored per-event scores">
-            Each curve is derived from the attack-test prediction Parquet and downsampled for display. AUC and AP in the API are recomputed from raw scores and match the stored summary. Shared-axis interpolation is display-only.
+            Each curve is derived from the attack-test prediction Parquet and downsampled for display. AUC and AP in the API are recomputed from raw scores. The charts show only saved sample points; intermediate values are not estimated.
           </InfoCallout>
           <div className="grid gap-4 lg:grid-cols-2">
             <Card>
@@ -456,16 +432,17 @@ export function ComparisonPage() {
               </CardHeader>
               <CardContent className="h-[340px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={rocData} margin={{ left: 0, right: 8, top: 4, bottom: 4 }}>
+                   <ScatterChart margin={{ left: 0, right: 8, top: 4, bottom: 4 }}>
                     <CartesianGrid {...CHART_GRID} />
                     <XAxis type="number" dataKey="x" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(1)} label={{ value: "False positive rate", position: "insideBottom", offset: -2, fontSize: 9, fill: "var(--muted-foreground)" }} />
-                    <YAxis type="number" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(1)} />
-                    <Tooltip content={<ChartTooltip formatter={(value) => Number(value).toFixed(3)} labelFormatter={(label) => `FPR ${Number(label).toFixed(2)}`} />} />
+                     <YAxis type="number" dataKey="y" name="True positive rate" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(1)} />
+                     <Tooltip formatter={(value) => typeof value === "number" ? value.toFixed(3) : value} />
                     <Legend wrapperStyle={{ fontSize: 10 }} />
-                    {selected.map((id, index) => (
-                      <Line key={id} type="monotone" dataKey={id} stroke={CHART_COLORS[index % CHART_COLORS.length]} dot={false} strokeWidth={1.5} isAnimationActive={false} />
-                    ))}
-                  </LineChart>
+                     {selected.map((id, index) => {
+                       const points = curvePayloads.find((payload) => payload.experiment_id === id && payload.available)?.roc;
+                       return points?.length ? <Scatter key={id} name={id} data={points} fill={CHART_COLORS[index % CHART_COLORS.length]} shape="circle" isAnimationActive={false} /> : null;
+                     })}
+                   </ScatterChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
@@ -475,16 +452,17 @@ export function ComparisonPage() {
               </CardHeader>
               <CardContent className="h-[340px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={prData} margin={{ left: 0, right: 8, top: 4, bottom: 4 }}>
+                   <ScatterChart margin={{ left: 0, right: 8, top: 4, bottom: 4 }}>
                     <CartesianGrid {...CHART_GRID} />
                     <XAxis type="number" dataKey="x" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(1)} label={{ value: "Recall", position: "insideBottom", offset: -2, fontSize: 9, fill: "var(--muted-foreground)" }} />
-                    <YAxis type="number" domain={[0, "auto"]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(3)} />
-                    <Tooltip content={<ChartTooltip formatter={(value) => Number(value).toFixed(4)} labelFormatter={(label) => `Recall ${Number(label).toFixed(2)}`} />} />
+                     <YAxis type="number" dataKey="y" name="Precision" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(2)} />
+                     <Tooltip formatter={(value) => typeof value === "number" ? value.toFixed(4) : value} />
                     <Legend wrapperStyle={{ fontSize: 10 }} />
-                    {selected.map((id, index) => (
-                      <Line key={id} type="monotone" dataKey={id} stroke={CHART_COLORS[index % CHART_COLORS.length]} dot={false} strokeWidth={1.5} isAnimationActive={false} />
-                    ))}
-                  </LineChart>
+                     {selected.map((id, index) => {
+                       const points = curvePayloads.find((payload) => payload.experiment_id === id && payload.available)?.pr;
+                       return points?.length ? <Scatter key={id} name={id} data={points} fill={CHART_COLORS[index % CHART_COLORS.length]} shape="circle" isAnimationActive={false} /> : null;
+                     })}
+                   </ScatterChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>

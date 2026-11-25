@@ -105,6 +105,7 @@ export function ExperimentDetailPage() {
   return (
     <div className="space-y-5">
       <PageHeader
+        level={2}
         eyebrow={`Experiments, ${titleCase(data.group)}`}
         title={`${data.id}, ${data.name}`}
         description={data.research_question ?? undefined}
