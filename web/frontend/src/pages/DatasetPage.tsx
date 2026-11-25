@@ -13,7 +13,6 @@ import {
 } from "recharts";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChartTooltip, CHART_AXIS, CHART_GRID } from "@/components/features/data";
 import {
   ErrorState,
@@ -42,7 +41,7 @@ function DistributionList({ items, total, color = "var(--chart-1)" }: { items: D
           <div className="mt-0.5 h-1 overflow-hidden rounded bg-elevated">
             <div className="h-full rounded" style={{ width: `${(item.count / max) * 100}%`, backgroundColor: color }} />
           </div>
-          <div className="mt-0.5 text-right font-mono text-[12px] text-muted-foreground/70">
+          <div className="mt-0.5 text-right font-mono text-[12px] text-muted-foreground">
             {total ? formatPercent(item.count / total, 1) : "n/a"}
           </div>
         </div>
@@ -155,7 +154,7 @@ export function DatasetPage() {
 
       <details className="pub-disclosure">
         <summary>Read exact daily event counts</summary>
-        <div className="pub-dataset-table">
+        <div className="pub-dataset-table" role="region" aria-label="Daily event counts table scroll area" tabIndex={0}>
           <table>
             <caption>Reconstructed events per UTC day and partition</caption>
             <thead><tr>{["UTC day", "Training", "Validation", "Benign test", "Attack test", "Total"].map((title) => <th key={title} scope="col">{title}</th>)}</tr></thead>
@@ -172,11 +171,12 @@ export function DatasetPage() {
         <Card><CardHeader><CardTitle>Top operations</CardTitle></CardHeader><CardContent><DistributionList items={topOperations} total={data.operations_total} color="var(--warning)" /></CardContent></Card>
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <CardTitle>ATT&amp;CK tactics</CardTitle>
-              <Tabs value={tacticView} onValueChange={(value) => setTacticView(value as "original" | "contextual")}>
-                <TabsList className="h-6"><TabsTrigger value="original" className="px-1.5 text-[9px]">Original</TabsTrigger><TabsTrigger value="contextual" className="px-1.5 text-[9px]">Contextual</TabsTrigger></TabsList>
-              </Tabs>
+              <div className="pub-controls" role="group" aria-label="Tactic label scheme">
+                <button type="button" className="pub-segment" aria-pressed={tacticView === "original"} onClick={() => setTacticView("original")}>Original</button>
+                <button type="button" className="pub-segment" aria-pressed={tacticView === "contextual"} onClick={() => setTacticView("contextual")}>Contextual</button>
+              </div>
             </div>
           </CardHeader>
           <CardContent><DistributionList items={tacticView === "original" ? data.tactics.original : data.tactics.contextual} total={tacticView === "original" ? counts.original_positives : counts.contextual_positives} color={tacticView === "original" ? "var(--error)" : "var(--warning)"} /></CardContent>
@@ -232,7 +232,7 @@ export function DatasetPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader><CardTitle>Representation diversity and truncation</CardTitle><div className="text-xs text-muted-foreground">Unique descriptions and encoder token-limit exceedances per ablation representation.</div></CardHeader>
-          <CardContent className="overflow-x-auto p-0">
+          <CardContent className="overflow-x-auto p-0" role="region" aria-label="Representation diversity table scroll area" tabIndex={0}>
             <table className="w-full min-w-[560px] text-xs">
               <thead><tr className="border-b border-border bg-elevated/40">{["Variant", "Split", "Events", "Unique", "Mean tok.", "Max tok.", ">256"].map((h) => <th key={h} className="px-2 py-1.5 text-right text-[9px] uppercase tracking-wider text-muted-foreground first:text-left">{h}</th>)}</tr></thead>
               <tbody>

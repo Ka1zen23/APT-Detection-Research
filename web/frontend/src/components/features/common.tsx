@@ -214,7 +214,7 @@ export function SourceNote({
   return (
     <div
       className={cn(
-        "flex min-w-0 items-start gap-1.5 text-[12px] leading-relaxed text-muted-foreground/80",
+        "flex min-w-0 items-start gap-1.5 text-[12px] leading-relaxed text-muted-foreground",
         className,
       )}
       title={source}

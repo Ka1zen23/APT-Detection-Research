@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 test("public embedding explorer shows illustrative coordinates and measured counts separately", async ({ page }) => {
   const requests: string[] = [];
@@ -45,3 +46,28 @@ test("homepage approach cues follow scrolling without opening collapsible detail
   await expect(summary.locator("..")).not.toHaveAttribute("open");
   await expect(page.getByRole("link", { name: "Explore the embedding space" })).toHaveAttribute("href", "/understand/embedding-explorer");
 });
+
+for (const [width, colorScheme] of [[320, "dark"], [1440, "light"]] as const) {
+  test(`research references are accessible in ${colorScheme} mode at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 860 });
+    await page.emulateMedia({ colorScheme, reducedMotion: "reduce" });
+    await page.goto("/documentation/dataset");
+    await page.getByRole("button", { name: "Contextual", exact: true }).press("Enter");
+    await expect(page.getByRole("button", { name: "Contextual", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await page.getByText("Read exact daily event counts").click();
+    const region = page.getByRole("region", { name: "Representation diversity table scroll area" });
+    await region.focus();
+    await expect(region).toBeFocused();
+    if (width === 320) {
+      await page.keyboard.press("ArrowRight");
+      await expect.poll(() => region.evaluate((node) => node.scrollLeft)).toBeGreaterThan(0);
+    }
+    for (const route of ["/documentation/dataset", "/documentation/methodology"]) {
+      if (route.endsWith("methodology")) await page.goto(route);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+      expect(result.violations.map(({ id, nodes }) => ({ id, targets: nodes.map((node) => node.target) }))).toEqual([]);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
+    }
+  });
+}
