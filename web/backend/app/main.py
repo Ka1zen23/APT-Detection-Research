@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import __version__
 from app.config import API_PREFIX, CORS_ORIGINS
 from app.routers import comparisons, content, dataset, experiments, overview, system
+from app.security import install_security_middleware
 
 
 @asynccontextmanager
@@ -38,9 +39,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+install_security_middleware(app)
 
 for router in (
     overview.router,

@@ -3,6 +3,7 @@ from __future__ import annotations
 import pytest
 from fastapi.testclient import TestClient
 
+from app import config
 from app.main import app
 
 
@@ -225,3 +226,48 @@ def test_cache_refresh_is_non_mutating(client: TestClient) -> None:
     payload = client.post("/api/v1/cache/refresh").json()["data"]
     assert payload["refreshed"] is True
     assert payload["filesystem_modified"] is False
+
+
+def test_health_stays_public_when_api_key_is_configured(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(config, "API_KEY", "test-secret")
+    response = client.get("/api/v1/health")
+    assert response.status_code == 200
+    assert response.json()["data"]["auth_required"] is True
+
+
+def test_protected_routes_require_api_key(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(config, "API_KEY", "test-secret")
+
+    missing = client.get("/api/v1/overview")
+    assert missing.status_code == 401
+    assert missing.json()["detail"].startswith("A valid X-API-Key")
+
+    wrong = client.get("/api/v1/overview", headers={"X-API-Key": "wrong"})
+    assert wrong.status_code == 401
+
+    accepted = client.get(
+        "/api/v1/overview", headers={"X-API-Key": "test-secret"}
+    )
+    assert accepted.status_code == 200
+    assert accepted.json()["data"]["kpis"]["events"] == 243_271
+
+
+def test_image_proxy_and_refresh_require_api_key(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(config, "API_KEY", "test-secret")
+    assert (
+        client.get("/api/v1/artifacts/figures/e2d/attack_test_original_label_roc_curve.png").status_code
+        == 401
+    )
+    assert client.post("/api/v1/cache/refresh").status_code == 401
+    assert (
+        client.post(
+            "/api/v1/cache/refresh", headers={"X-API-Key": "test-secret"}
+        ).status_code
+        == 200
+    )

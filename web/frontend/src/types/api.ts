@@ -531,4 +531,6 @@ export interface HealthData {
   last_artifact_update: string | null;
   checked_at: string;
   read_only: boolean;
+  deployment_mode?: string;
+  auth_required?: boolean;
 }

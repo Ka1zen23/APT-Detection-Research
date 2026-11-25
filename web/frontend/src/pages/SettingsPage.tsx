@@ -118,6 +118,8 @@ export function SettingsPage() {
               ["Version", health.version],
               ["API prefix", health.api_prefix],
               ["Read-only", String(health.read_only)],
+              ["Deployment mode", health.deployment_mode ?? "local"],
+              ["API key required", String(Boolean(health.auth_required))],
               ["Repository root", health.repository_root_exists ? "present" : "missing"],
               ["Checked at", formatDateTime(health.checked_at)],
             ].map(([label, value]) => (

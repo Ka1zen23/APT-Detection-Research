@@ -4,8 +4,9 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse, PlainTextResponse
 
 from app import __version__
-from app.config import API_PREFIX, ROOT
+from app.config import API_PREFIX, DEPLOYMENT_MODE, ROOT
 from app.deps import envelope, utc_now
+from app.security import auth_required
 from app.services import artifacts
 
 router = APIRouter(tags=["system"])
@@ -29,6 +30,8 @@ def health() -> dict:
             "last_artifact_update": artifacts.last_artifact_update(),
             "checked_at": utc_now(),
             "read_only": True,
+            "deployment_mode": DEPLOYMENT_MODE,
+            "auth_required": auth_required(),
         }
     )
 

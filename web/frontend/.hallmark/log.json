@@ -1,0 +1,36 @@
+[
+ {
+  "shape": "field-report",
+  "theme": "console",
+  "axes": "dark/grotesk-sans/chromatic-amber",
+  "hero": "stage",
+  "nav": "edge-aligned wordmark and one quiet action",
+  "footer": "mast",
+  "imagery": "none; live SVG provenance diagram and measured readings",
+  "photos": [],
+  "entry": "research story at / for the APT detection MSc; event 246 provenance lens, six findings, alert budget, threshold trade-off",
+  "fingerprint": {
+   "paper": "dark",
+   "display": "grotesk-sans",
+   "accent": "chromatic-amber",
+   "hero": "stage",
+   "chrome": "edge-aligned",
+   "body": "rows"
+  },
+  "sections": [
+   "hero",
+   "method trail",
+   "provenance lens",
+   "findings rows",
+   "alert budget",
+   "threshold switch",
+   "limits",
+   "footer"
+  ],
+  "signature": "provenance lens: event 246 in three representations, AP 0.0032 to 0.0217",
+  "waived": [],
+  "prompt": "Design the webpage to be very user-friendly, as much diagrams or opensource pictures if possible. Make the important findings or statements bold and flashy. Use animations to smooth the overall experience.",
+  "date": "2026-11-25",
+  "mode": "build"
+ }
+]

@@ -4,6 +4,7 @@ import {
   BarChart3,
   BookOpen,
   ClipboardList,
+  Compass,
   Cpu,
   Database,
   FileText,
@@ -36,7 +37,8 @@ export const navGroups: NavGroup[] = [
   {
     label: "Research",
     items: [
-      { label: "Overview", to: "/", icon: LayoutDashboard, description: "Research status and headline evidence" },
+      { label: "Research story", to: "/", icon: Compass, description: "Narrative walkthrough of the findings" },
+      { label: "Overview", to: "/overview", icon: LayoutDashboard, description: "Research status and headline evidence" },
       { label: "Research Objectives", to: "/objectives", icon: Target, description: "Objectives and completion state" },
       { label: "Methodology", to: "/methodology", icon: Workflow, description: "Pipeline, encoder and autoencoder" },
       { label: "Dataset Explorer", to: "/dataset", icon: Database, description: "CICAPT-IIoT structure and events" },

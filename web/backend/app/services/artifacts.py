@@ -185,6 +185,9 @@ def last_artifact_update() -> str | None:
                 continue
             if "__pycache__" in path.parts:
                 continue
+            if path.name == "dataset_profile.json":
+                # Generated deployment metadata, not a research result.
+                continue
             try:
                 mtime = path.stat().st_mtime
             except OSError:

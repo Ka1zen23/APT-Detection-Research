@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-25T08:18:13.260507+00:00",
+  "source": [
+    "data/raw/cicapt-iiot/Provenance_Logs/Phase1_Provenance.csv",
+    "data/raw/cicapt-iiot/Provenance_Logs/Phase2_Provenance.csv"
+  ],
+  "rows": {
+    "phase1": 222120,
+    "phase2": 196735
+  },
+  "total_rows": 418855,
+  "missing": [
+    {
+      "column": "local address",
+      "missing": 418855,
+      "total": 418855,
+      "percent": 100.0
+    },
+    {
+      "column": "local port",
+      "missing": 418855,
+      "total": 418855,
+      "percent": 100.0
+    },
+    {
+      "column": "tgid",
+      "missing": 418836,
+      "total": 418855,
+      "percent": 99.99546382399636
+    },
+    {
+      "column": "fd",
+      "missing": 418836,
+      "total": 418855,
+      "percent": 99.99546382399636
+    },
+    {
+      "column": "mode",
+      "missing": 418819,
+      "total": 418855,
+      "percent": 99.99140514020365
+    },
+    {
+      "column": "flags",
+      "missing": 418344,
+      "total": 418855,
+      "percent": 99.87800074011292
+    },
+    {
+      "column": "command line",
+      "missing": 401687,
+      "total": 418855,
+      "percent": 95.90120686156307
+    },
+    {
+      "column": "start time",
+      "missing": 401682,
+      "total": 418855,
+      "percent": 95.9000131310358
+    },
+    {
+      "column": "seen time",
+      "missing": 401311,
+      "total": 418855,
+      "percent": 95.8114383259123
+    },
+    {
+      "column": "protocol",
+      "missing": 396631,
+      "total": 418855,
+      "percent": 94.69410655238687
+    },
+    {
+      "column": "remote port",
+      "missing": 393764,
+      "total": 418855,
+      "percent": 94.0096214680498
+    },
+    {
+      "column": "remote address",
+      "missing": 393764,
+      "total": 418855,
+      "percent": 94.0096214680498
+    },
+    {
+      "column": "uid",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "egid",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "exe",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "gid",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "euid",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "name",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "ppid",
+      "missing": 384138,
+      "total": 418855,
+      "percent": 91.71145145694811
+    },
+    {
+      "column": "path",
+      "missing": 378623,
+      "total": 418855,
+      "percent": 90.39476668536844
+    },
+    {
+      "column": "permissions",
+      "missing": 378623,
+      "total": 418855,
+      "percent": 90.39476668536844
+    },
+    {
+      "column": "pid",
+      "missing": 364636,
+      "total": 418855,
+      "percent": 87.05542490838118
+    },
+    {
+      "column": "subtype",
+      "missing": 353513,
+      "total": 418855,
+      "percent": 84.39985197741461
+    },
+    {
+      "column": "epoch",
+      "missing": 353513,
+      "total": 418855,
+      "percent": 84.39985197741461
+    },
+    {
+      "column": "version",
+      "missing": 353513,
+      "total": 418855,
+      "percent": 84.39985197741461
+    },
+    {
+      "column": "id",
+      "missing": 318796,
+      "total": 418855,
+      "percent": 76.11130343436272
+    },
+    {
+      "column": "from",
+      "missing": 100059,
+      "total": 418855,
+      "percent": 23.888696565637275
+    },
+    {
+      "column": "to",
+      "missing": 100059,
+      "total": 418855,
+      "percent": 23.888696565637275
+    },
+    {
+      "column": "event id",
+      "missing": 100059,
+      "total": 418855,
+      "percent": 23.888696565637275
+    },
+    {
+      "column": "time",
+      "missing": 100059,
+      "total": 418855,
+      "percent": 23.888696565637275
+    },
+    {
+      "column": "operation",
+      "missing": 100059,
+      "total": 418855,
+      "percent": 23.888696565637275
+    },
+    {
+      "column": "type",
+      "missing": 0,
+      "total": 418855,
+      "percent": 0.0
+    },
+    {
+      "column": "source",
+      "missing": 0,
+      "total": 418855,
+      "percent": 0.0
+    },
+    {
+      "column": "label",
+      "missing": 0,
+      "total": 418855,
+      "percent": 0.0
+    },
+    {
+      "column": "subLabel",
+      "missing": 0,
+      "total": 418855,
+      "percent": 0.0
+    }
+  ],
+  "types": [
+    {
+      "name": "WasGeneratedBy",
+      "count": 224080
+    },
+    {
+      "name": "Artifact",
+      "count": 65342
+    },
+    {
+      "name": "Used",
+      "count": 56326
+    },
+    {
+      "name": "Process",
+      "count": 34717
+    },
+    {
+      "name": "WasDerivedFrom",
+      "count": 19502
+    },
+    {
+      "name": "WasTriggeredBy",
+      "count": 18888
+    }
+  ],
+  "operations": [
+    {
+      "name": "unlink",
+      "count": 179450
+    },
+    {
+      "name": "<missing>",
+      "count": 100059
+    },
+    {
+      "name": "load",
+      "count": 36337
+    },
+    {
+      "name": "connect",
+      "count": 25091
+    },
+    {
+      "name": "rename (read)",
+      "count": 19491
+    },
+    {
+      "name": "rename (write)",
+      "count": 19491
+    },
+    {
+      "name": "rename",
+      "count": 19491
+    },
+    {
+      "name": "execve",
+      "count": 16995
+    },
+    {
+      "name": "setgid",
+      "count": 1058
+    },
+    {
+      "name": "setuid",
+      "count": 640
+    },
+    {
+      "name": "open",
+      "count": 510
+    },
+    {
+      "name": "update",
+      "count": 206
+    },
+    {
+      "name": "chmod",
+      "count": 35
+    },
+    {
+      "name": "create",
+      "count": 1
+    }
+  ],
+  "operation_total": 418855
+}

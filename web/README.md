@@ -9,8 +9,13 @@ The dashboard presents existing CICAPT-IIoT provenance experiments. It does **no
 ```text
 web/
 ├── frontend/        React + TypeScript + Vite + Tailwind v4 + Recharts
+│   ├── api/         Vercel server-side API proxy
+│   └── vercel.json  Vercel build, routing and security configuration
 ├── backend/         FastAPI + Pydantic + Pandas + PyArrow
+│   ├── Dockerfile   Production API image
+│   └── scripts/     Dataset-profile generator
 ├── content/         Editable experiment registry, roadmap, findings, journal, reports
+├── deploy/          Vercel + Fly.io deployment guide
 ├── README.md
 └── .env.example
 ```
@@ -81,6 +86,10 @@ npm run dev
 
 Open <http://127.0.0.1:5173>.
 
+The landing page at `/` is a narrative research story with the provenance lens,
+the findings and the alert-budget trade-off. The read-only evidence dashboard
+starts at `/overview`.
+
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview
@@ -99,6 +108,44 @@ environment variables at build time:
 
 ```bash
 VITE_API_BASE_URL=https://example.edu/api/v1 npm run build
+```
+
+## Deployment
+
+The production deployment uses:
+
+- **Vercel** for the protected static frontend and a server-side `/api/v1` proxy.
+- **Fly.io** for the persistent FastAPI container containing the research artifacts.
+- **Vercel Authentication (All Deployments)** plus a private API key.
+
+The browser never receives the API key. Direct unauthenticated API requests return 401.
+
+Full instructions, protection setup, artifact updates and troubleshooting are in
+[`web/deploy/README.md`](deploy/README.md).
+
+Quick container check from the repository root:
+
+```bash
+docker build -f web/backend/Dockerfile -t apt-research-api:local .
+docker run --rm -p 8001:8000 -e APT_API_KEY=local-test-key apt-research-api:local
+```
+
+Local proxy check:
+
+```bash
+cd web/frontend
+API_ORIGIN=http://127.0.0.1:8001 \
+APT_API_KEY=local-test-key \
+npx vercel dev --local --listen 127.0.0.1:3002
+```
+
+### Dataset profile
+
+The container excludes `data/raw/`. Regenerate the aggregate profile after raw
+provenance files change:
+
+```bash
+python web/backend/scripts/build_dataset_profile.py
 ```
 
 ## Verification
@@ -123,6 +170,8 @@ Current suite covers:
 - filter correctness and page-size caps
 - figure/document allowlists and traversal rejection
 - graceful unavailable states
+- API-key authentication and public health checks
+- precomputed dataset-profile consistency and raw-data fallback
 - journal/findings/roadmap/report/environment content
 
 Frontend build and typecheck:
@@ -142,7 +191,8 @@ npm run build
 | E5 / B5 | `results/ablation_comparison/ablation_comparison.csv` |
 | Curves | stored `*_predictions.parquet` attack-test scores |
 | Dataset | `data/processed/cicapt-iiot-v2/*.parquet`, `data/splits/cicapt-iiot/*` |
-| Raw distributions | `data/raw/cicapt-iiot/Provenance_Logs/*.csv` |
+| Raw distributions (local) | `data/raw/cicapt-iiot/Provenance_Logs/*.csv` |
+| Raw distributions (deployed) | `web/content/dataset_profile.json` |
 | Environment | `requirements.txt`, per-run `training_summary.json` |
 
 Manually maintained content:
@@ -168,8 +218,9 @@ Versioned under `/api/v1`:
 - `GET /comparisons/models`, `/comparisons/ablation`, `/comparisons/description-overlap`
 - `GET /dataset/summary`, `/dataset/events`, `/dataset/events/{phase}/{event_id}`
 - `GET /findings`, `/roadmap`, `/journal`, `/reports`, `/environment`, `/methodology`, `/limitations`, `/architecture`
-- `GET /health`
+- `GET /health` — public even when API-key authentication is enabled
 - `POST /cache/refresh` — clears in-memory caches only; no filesystem changes
+- All data-bearing `/api/v1/*` routes require `X-API-Key` when `APT_API_KEY` is set.
 - `GET /artifacts/figures/{run}/{filename}`
 - `GET /artifacts/documents/{key}`
 
@@ -189,6 +240,9 @@ Versioned under `/api/v1`:
 - The ablation event-level Parquet outputs are not retained; the representation comparison uses the saved statistics, conflicts and predictions.
 - Report entries without an actual repository artifact are shown as planned or unavailable.
 - The frontend displays repository-relative artifact paths for traceability; the browser never reads those paths directly.
+- The deployed API image is built locally because processed/raw artifacts are not tracked in Git.
+- New research outputs require a Fly API image rebuild; the in-memory refresh cannot load files absent from the container.
+- Vercel Deployment Protection requires supervisor Vercel accounts for the free authentication path.
 
 ## Research limitations
 

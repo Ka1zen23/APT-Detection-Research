@@ -1,0 +1,22 @@
+# Build context: repository root
+.git
+.gitignore
+.env
+**/.env
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/*.pyc
+models/
+data/embeddings/
+data/raw/
+data/processed/cicapt-iiot/
+data/processed/cicapt-iiot-ablation/
+web/frontend/
+web/backend/tests/
+web/backend/scripts/
+web/backend/pytest.ini
+web/backend/.venv/
+notebooks/
+knowledge/
+experiments/

@@ -24,11 +24,37 @@ def _mtime_key(relative: str) -> tuple[int, int] | None:
         return None
 
 
+def _profile_from_content() -> dict[str, Any] | None:
+    profile = artifacts.read_json("web/content/dataset_profile.json")
+    if not profile:
+        return None
+    required = ("rows", "missing", "types", "operations", "operation_total")
+    if not all(key in profile for key in required):
+        return None
+    return {
+        "rows": profile["rows"],
+        "total_rows": profile.get(
+            "total_rows",
+            sum(int(value) for value in profile["rows"].values()),
+        ),
+        "missing": profile["missing"],
+        "types": profile["types"],
+        "operations": profile["operations"],
+        "operation_total": profile["operation_total"],
+    }
+
+
 def _raw_profile() -> dict[str, Any]:
     keys = {
         "phase1": _mtime_key("data/raw/cicapt-iiot/Provenance_Logs/Phase1_Provenance.csv"),
         "phase2": _mtime_key("data/raw/cicapt-iiot/Provenance_Logs/Phase2_Provenance.csv"),
     }
+    raw_available = all(value is not None for value in keys.values())
+    if not raw_available:
+        profile = _profile_from_content()
+        if profile is not None:
+            return profile
+
     with _LOCK:
         if _PROFILE_CACHE.get("keys") == keys:
             return _PROFILE_CACHE["value"]

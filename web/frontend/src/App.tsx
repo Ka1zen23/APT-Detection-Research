@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { AppShell } from "@/layouts/AppShell";
+import { StoryPage } from "@/pages/StoryPage";
 import { OverviewPage } from "@/pages/OverviewPage";
 import { ObjectivesPage } from "@/pages/ObjectivesPage";
 import { MethodologyPage } from "@/pages/MethodologyPage";
@@ -23,8 +24,9 @@ import { NotFoundPage } from "@/pages/NotFoundPage";
 export function App() {
   return (
     <Routes>
+      <Route path="/" element={<StoryPage />} />
       <Route element={<AppShell />}>
-        <Route index element={<OverviewPage />} />
+        <Route path="overview" element={<OverviewPage />} />
         <Route path="objectives" element={<ObjectivesPage />} />
         <Route path="methodology" element={<MethodologyPage />} />
         <Route path="dataset" element={<DatasetPage />} />
