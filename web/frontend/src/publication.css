@@ -168,9 +168,6 @@
 .pub-steps summary::after, .pub-disclosure > summary::after { content: "+"; margin-left: auto; color: var(--primary); font: 500 1rem var(--font-mono); }
 .pub-steps details[open] > summary::after, .pub-disclosure[open] > summary::after { content: "−"; }
 .pub-step-index { font: .78rem var(--font-mono); color: var(--primary); }
-.pub-steps[data-entered="true"] .pub-step-index { animation: pub-reveal .26s ease-out both; }
-.pub-steps[data-entered="true"] details:nth-child(2) .pub-step-index { animation-delay: .07s; }
-.pub-steps[data-entered="true"] details:nth-child(3) .pub-step-index { animation-delay: .14s; }
 .pub-steps small, .pub-paths small { display: block; margin-top: .22rem; line-height: 1.5; font-size: .85rem; font-weight: 400; color: var(--muted-foreground); }
 .pub-steps details > :not(summary) { margin: 0 0 .8rem 1.9rem; color: var(--muted-foreground); line-height: 1.65; }
 .pub-steps details > .pub-text-link { color: var(--primary); }

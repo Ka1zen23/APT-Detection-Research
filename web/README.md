@@ -119,6 +119,17 @@ labels in the attack-test partition. These endpoints are local-only and are not
 included in the public snapshot. Autoencoder reconstruction values in the tour
 are explicitly illustrative; the browser does not run the research model.
 
+Phase 4 adds `/understand/embedding-explorer` and an aggregate representation
+lens on `/documentation/dataset`. The public scatter plot is illustrative and
+does not ship event IDs, measured coordinates or vectors. Local API mode reads
+saved E5-A/B/C vectors and joins sampled events by phase and event ID. Display
+uses a common two-component PCA fitted on up to 4,096 E5-C training vectors
+(seed 42); it does not alter the model or score events. Each view keeps up to
+240 original negatives and 80 original positives from the chosen partition, so
+the sample is not suitable for estimating prevalence. Restart the API if the
+saved embedding artifacts change; projections and their PCA basis are cached in
+process.
+
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview

@@ -4,6 +4,8 @@ import type {
   ArchitectureData,
   CurvePayload,
   DatasetSummary,
+  EmbeddingProjection,
+  EmbeddingSplit,
   Envelope,
   EnvironmentData,
   EventPage,
@@ -215,6 +217,8 @@ export const api = {
       source_artifacts: string[];
     }>("/comparisons/description-overlap"),
   dataset: () => request<DatasetSummary>("/dataset/summary"),
+  embeddingProjection: (split: EmbeddingSplit) =>
+    request<EmbeddingProjection>("/dataset/events/embedding-projection", { split }),
   events: (filters: EventFilters) => request<EventPage>("/dataset/events", filters),
   event: (phase: string, eventId: string) =>
     request<Record<string, unknown>>(

@@ -20,6 +20,35 @@ def test_health(client: TestClient) -> None:
     assert payload["repository_root_exists"] is True
 
 
+def test_embedding_projection_uses_a_shared_training_basis_and_bounded_sample(client: TestClient, monkeypatch) -> None:
+    import math
+
+    endpoint = "/api/v1/dataset/events/embedding-projection"
+    response = client.get(endpoint)
+    assert response.status_code == 200
+    assert response.headers["Cache-Control"] == "no-store"
+    result = response.json()["data"]
+    points = result["points"]
+    assert result["partition"] == "attack_test"
+    assert result["source_count"] == 100_892
+    assert result["source_positive_count"] == sum(point["original_label"] for point in points) == 70
+    assert len(points) == len({(point["phase"], point["event_id"]) for point in points}) == 310
+    assert result["fit_count"] == 4096 and result["seed"] == 42
+    for point in points:
+        assert set(point) == {"phase", "event_id", "original_label", "contextual_label", "coordinates"}
+        assert set(point["coordinates"]) == {"E5-A", "E5-B", "E5-C"}
+        assert all(len(pair) == 2 and all(map(math.isfinite, pair)) for pair in point["coordinates"].values())
+    assert len({tuple(point["coordinates"]["E5-A"]) for point in points}) <= 15
+    assert len({tuple(point["coordinates"]["E5-C"]) for point in points}) > 15
+    assert client.get(endpoint).json()["data"] == result
+    validation = client.get(endpoint, params={"split": "validation"}).json()["data"]
+    assert validation["variance_ratio"] == result["variance_ratio"]
+    assert all(point["phase"] == "phase1" and point["original_label"] == 0 for point in validation["points"])
+    assert client.get(endpoint, params={"split": "../train"}).status_code == 422
+    monkeypatch.setattr(config, "DEPLOYMENT_MODE", "container")
+    assert client.get(endpoint).status_code == 404
+
+
 def test_training_comparison_exports_recorded_loss_and_bases(client: TestClient) -> None:
     payload = client.get("/api/v1/comparisons/training").json()["data"]
     runs = {run["id"]: run for run in payload["runs"]}

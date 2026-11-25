@@ -6,6 +6,7 @@ import { PublicationHome } from "@/pages/PublicationHome";
 const Tour = lazy(() => import("@/pages/ResearchTourPage").then((m) => ({ default: m.ResearchTourPage })));
 const ProvenanceExplorer = lazy(() => import("@/pages/ProvenanceExplorerPage").then((m) => ({ default: m.ProvenanceExplorerPage })));
 const PipelinePage = lazy(() => import("@/pages/PipelinePage").then((m) => ({ default: m.PipelinePage })));
+const EmbeddingExplorer = lazy(() => import("@/pages/EmbeddingExplorerPage").then((m) => ({ default: m.EmbeddingExplorerPage })));
 const Findings = lazy(() => import("@/pages/PublicationFindings").then((m) => ({ default: m.PublicationFindings })));
 const Progress = lazy(() => import("@/pages/PublicationReference").then((m) => ({ default: m.ProgressPage })));
 const Documentation = lazy(() => import("@/pages/PublicationReference").then((m) => ({ default: m.DocumentationPage })));
@@ -68,6 +69,7 @@ export function App() {
         <Route path="understand" element={<Tour />} />
         <Route path="understand/provenance-explorer" element={<ProvenanceExplorer />} />
         <Route path="understand/pipeline" element={<PipelinePage />} />
+        <Route path="understand/embedding-explorer" element={<EmbeddingExplorer />} />
         <Route path="understand/:chapter" element={<Tour />} />
         <Route path="findings" element={<Findings />} />
         <Route path="progress" element={<Progress />} />

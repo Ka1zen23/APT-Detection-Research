@@ -52,7 +52,7 @@ const chapters = [
     explanation: "An embedding is a list of numbers used to represent a description. A distance between two embeddings can indicate similarity, but it is not a judgement about whether either event is malicious.",
     takeaway: "Embeddings give the model a way to compare patterns beyond exact wording.",
     technical: "The detector uses the full embedding, not a 2D map. The diagram is conceptual; it does not use dimensionality reduction or report measured similarity scores.",
-    visual: EmbeddingDemo, links: [["Model specifications", "/documentation/architecture"]],
+    visual: EmbeddingDemo, links: [["Interactive embedding explorer", "/understand/embedding-explorer"], ["Model specifications", "/documentation/architecture"]],
   },
   {
     slug: "autoencoder", title: "How does an autoencoder learn normal behaviour?",

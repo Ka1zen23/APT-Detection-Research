@@ -121,6 +121,7 @@ export function ProvenanceDemo({ evidenceLink = true }: { evidenceLink?: boolean
       {conflict && negatives != null && <p>In the measured attack-test partition, one operation-only description covered {formatNumber(conflict.conflicting_positives)} originally positive and {formatNumber(negatives)} negatively labelled events.</p>}
       {evidenceLink && <Link className="pub-text-link" to="/experiments/ablation">Compare all three E5 results <ArrowRight size={15} /></Link>}
       <Link className="pub-text-link" to="/understand/provenance-explorer">Open the provenance graph explorer <ArrowUpRight size={15} /></Link>
+      <Link className="pub-text-link" to="/understand/embedding-explorer">Compare E5 in the embedding explorer <ArrowUpRight size={15} /></Link>
       {saved && <details className="pub-disclosure"><summary>See the example supplied with the evidence</summary><p>{data?.examples.event_context} · {data?.examples.source}</p><p>{saved.description}</p></details>}
     </div>
   </div>;

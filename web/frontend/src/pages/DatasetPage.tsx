@@ -23,6 +23,7 @@ import {
   PageHeader,
   SourceNote,
 } from "@/components/features/common";
+import { DatasetLens } from "@/components/publication/DatasetLens";
 import { useDataset } from "@/hooks/queries";
 import { formatNumber, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -58,12 +59,13 @@ export function DatasetPage() {
   if (error || !data) return <ErrorState error={error} onRetry={() => refetch()} />;
 
   const counts = data.counts;
+  const attackTest = data.class_balance.find((row) => row.partition === "Attack test");
   const partitionData = data.partitions.map((partition) => ({ name: partition.name.replace("_", " "), records: partition.records }));
   const imbalanceData = [
-    { name: "Negatives", count: 100892 - counts.original_positives, type: "neg" },
-    { name: "Contextual positives", count: counts.contextual_positives, type: "ctx" },
-    { name: "Original positives", count: counts.original_positives, type: "pos" },
-  ];
+    { name: "Original negatives", count: attackTest ? attackTest.records - attackTest.positives : 0, type: "neg" },
+    { name: "Contextual positives", count: attackTest?.contextual_positives ?? 0, type: "ctx" },
+    { name: "Original positives", count: attackTest?.positives ?? 0, type: "pos" },
+  ].filter(({ count }) => count > 0);
   const topOperations = data.operations.slice(0, 10);
 
   return (
@@ -98,6 +100,8 @@ export function DatasetPage() {
         <KpiCard label="Original positives" value={formatNumber(counts.original_positives)} metricId="original-labels" detail={`${formatPercent(counts.attack_prevalence_percent, 4, true)} of Phase 2 events, ${formatNumber(counts.contextual_positives)} contextual`} tone="error" source="results/eda/ground_truth_inspection.txt" />
       </div>
 
+      <DatasetLens data={data} />
+
       <div className="grid gap-4 lg:grid-cols-3">
         <Card>
           <CardHeader><CardTitle>Partition distribution</CardTitle><div className="text-xs text-muted-foreground">Chronological event partitions.</div></CardHeader>
@@ -114,7 +118,7 @@ export function DatasetPage() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader><CardTitle>Attack-test class imbalance</CardTitle><div className="text-xs text-muted-foreground">Log scale. Original positives are 70 of 100,892 events.</div></CardHeader>
+          <CardHeader><CardTitle>Attack-test class imbalance</CardTitle><div className="text-xs text-muted-foreground">Log scale. Contextual indicators are shown separately; counts are not additive.</div></CardHeader>
           <CardContent className="h-[230px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={imbalanceData} layout="vertical" margin={{ left: 8, right: 18, top: 4, bottom: 4 }}>
@@ -148,6 +152,19 @@ export function DatasetPage() {
           </CardContent>
         </Card>
       </div>
+
+      <details className="pub-disclosure">
+        <summary>Read exact daily event counts</summary>
+        <div className="pub-dataset-table">
+          <table>
+            <caption>Reconstructed events per UTC day and partition</caption>
+            <thead><tr>{["UTC day", "Training", "Validation", "Benign test", "Attack test", "Total"].map((title) => <th key={title} scope="col">{title}</th>)}</tr></thead>
+            <tbody>{data.timeline.map(({ date, train, validation, benign_test, attack_test, total }) => <tr key={date}>
+              <th scope="row">{date}</th>{[train, validation, benign_test, attack_test, total].map((count, index) => <td key={index}>{formatNumber(count)}</td>)}
+            </tr>)}</tbody>
+          </table>
+        </div>
+      </details>
 
       <div className="grid gap-4 lg:grid-cols-4">
         <Card><CardHeader><CardTitle>Node types</CardTitle></CardHeader><CardContent><DistributionList items={data.node_types} total={counts.nodes} /></CardContent></Card>

@@ -138,6 +138,27 @@ export interface DatasetCounts {
   attack_prevalence_percent: number;
 }
 
+export type EmbeddingVariant = "E5-A" | "E5-B" | "E5-C";
+export type EmbeddingSplit = "train" | "validation" | "benign_test" | "attack_test";
+
+export interface EmbeddingPoint {
+  phase: string;
+  event_id: string;
+  original_label: number;
+  contextual_label: number;
+  coordinates: Record<EmbeddingVariant, [number, number]>;
+}
+
+export interface EmbeddingProjection {
+  partition: EmbeddingSplit;
+  seed: number;
+  fit_count: number;
+  variance_ratio: [number, number];
+  source_count: number;
+  source_positive_count: number;
+  points: EmbeddingPoint[];
+}
+
 export interface DistributionItem {
   name: string;
   count: number;

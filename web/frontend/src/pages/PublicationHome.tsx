@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, FlaskConical, Milestone, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import { TeachingGraph } from "@/components/publication/TeachingGraph";
@@ -15,6 +15,7 @@ const approach = [
   ["Teach AI what normal looks like", "Learn the patterns that recur in examples of routine activity.", "A frozen MiniLM encoder converts descriptions to 384-dimensional vectors. An autoencoder is trained to reconstruct vectors from benign training events.", "/understand/autoencoder"],
   ["Identify unusual activity", "Bring unfamiliar patterns to an analyst’s attention for review.", "The model scores events by reconstruction error. A threshold set on separate benign validation data decides which scores are flagged. A flag is not a diagnosis.", "/understand/anomaly-detection"],
 ];
+const approachStages = ["Observe", "Represent", "Review"];
 
 const paths = [
   ["Learn how the AI works", "Take the guided tour", "/understand", Network],
@@ -33,6 +34,7 @@ function ChapterHeading({ number, label, title }: { number: string; label: strin
 
 export function PublicationHome() {
   const steps = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
   const { data: status } = useResearchStatus();
   const roadmap = useRoadmap();
   const { data: ablation } = useAblation();
@@ -47,14 +49,30 @@ export function PublicationHome() {
   const next = progress?.next;
   useEffect(() => {
     const element = steps.current;
-    if (!element || !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      element.dataset.entered = "true";
-      observer.disconnect();
-    }, { threshold: 0.45 });
-    observer.observe(element);
-    return () => observer.disconnect();
+    if (!element || !("IntersectionObserver" in window)) return;
+    const panels = Array.from(element.querySelectorAll("details"));
+    const inBand = new Set<Element>();
+    let observer: IntersectionObserver | undefined;
+    function watch() {
+      observer?.disconnect();
+      inBand.clear();
+      const height = window.innerHeight;
+      observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) inBand.add(entry.target);
+          else inBand.delete(entry.target);
+        }
+        const index = panels.reduce((latest, panel, i) => inBand.has(panel) ? i : latest, -1);
+        if (index >= 0) setActiveStep(index);
+      }, { rootMargin: `-${Math.round(height * .26)}px 0px -${Math.round(height * .73)}px 0px` });
+      panels.forEach((panel) => observer?.observe(panel));
+    }
+    watch();
+    window.addEventListener("resize", watch);
+    return () => {
+      window.removeEventListener("resize", watch);
+      observer?.disconnect();
+    };
   }, []);
   const findings = [
     { label: "Representation · E5", title: "Context changes what the AI can see.", copy: "Knowing which files and programs were involved helped the model rank annotated events ahead of others.", value: ratio(e5("E5-C"), e5("E5-A")), metric: "Average Precision with full provenance vs. operation names alone", to: "/experiments/ablation", chart: <FindingPreview title="Average Precision by representation" mode="bar" rows={["E5-A", "E5-B", "E5-C"].map((id) => ({ id, value: e5(id) }))} /> },
@@ -103,16 +121,27 @@ export function PublicationHome() {
       </section>
       <section className="pub-tinted">
         <div className="pub-wrap pub-home-section">
-          <div className="pub-split">
-            <ChapterHeading number="02" label="THE APPROACH" title="Learn what routine activity looks like." />
+          <div className="pub-split pub-approach-story">
+            <div className="pub-approach-rail" data-depth="4">
+              <ChapterHeading number="02" label="THE APPROACH" title="Learn what routine activity looks like." />
+              <nav aria-label="Approach steps" className="pub-approach-cues">
+                <span className="pub-approach-track" aria-hidden="true" data-depth="0"><i data-depth="2" style={{ transform: `scaleX(${(activeStep + 1) / 3})` }} /></span>
+                {approachStages.map((title, index) => <a key={title} href={`#approach-${index + 1}`} aria-current={activeStep === index ? "step" : undefined}
+                  onClick={() => setActiveStep(index)}><span>0{index + 1}</span> {title}</a>)}
+              </nav>
+            </div>
             <div className="pub-steps" ref={steps}>{approach.map(([title, summary, technical, to], index) =>
-              <details key={title}><summary><span className="pub-step-index">0{index + 1}</span><span><strong>{title}</strong><small>{summary}</small></span></summary><p>{technical}</p><Link className="pub-text-link" to={to}>Explore this step <ArrowRight size={15} /></Link></details>,
+              <details key={title} id={`approach-${index + 1}`} data-current={activeStep === index}><summary onFocus={() => setActiveStep(index)}><span className="pub-step-index">0{index + 1}</span><span><strong>{title}</strong><small>{summary}</small></span></summary><p>{technical}</p><Link className="pub-text-link" to={to}>Explore this step <ArrowRight size={15} /></Link></details>,
             )}</div>
           </div>
           <div className="pub-section-space">
             <Suspense fallback={<Link className="pub-text-link" to="/understand/pipeline">Open the interactive pipeline <ArrowRight size={16} /></Link>}>
               <InteractivePipeline />
             </Suspense>
+            <div className="pub-actions">
+              <Link className="pub-text-link" to="/understand/embedding-explorer">Explore the embedding space <ArrowUpRight size={15} /></Link>
+              <Link className="pub-text-link" to="/documentation/dataset">Compare dataset statistics <ArrowUpRight size={15} /></Link>
+            </div>
           </div>
         </div>
       </section>

@@ -6,7 +6,7 @@ from app import config
 from app.config import DEFAULT_EVENT_PAGE_SIZE, MAX_EVENT_PAGE_SIZE
 from app.deps import envelope
 from app.schemas import Envelope, EventPage
-from app.services import dataset, provenance
+from app.services import dataset, embedding_projection, provenance
 
 router = APIRouter(prefix="/dataset", tags=["dataset"])
 
@@ -114,3 +114,17 @@ def dataset_matched_representations(response: Response) -> dict:
     if item is None:
         raise HTTPException(status_code=404, detail="No matched pair is available in the local artifacts.")
     return envelope(item)
+
+
+@router.get("/events/embedding-projection")
+def dataset_embedding_projection(
+    response: Response,
+    split: str = Query(default="attack_test", pattern="^(train|validation|benign_test|attack_test)$"),
+) -> dict:
+    if config.DEPLOYMENT_MODE != "local":
+        raise HTTPException(status_code=404, detail="Recorded projections are available only in local mode.")
+    response.headers["Cache-Control"] = "no-store"
+    try:
+        return envelope(embedding_projection.projection(split))
+    except (OSError, ValueError):
+        raise HTTPException(status_code=503, detail="Saved embedding files are missing or inconsistent.") from None

@@ -1,7 +1,7 @@
 import { Component, lazy, Suspense, useCallback, useId, useMemo, useState, type ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PlaybackControls } from "@/components/publication/PlaybackControls";
 import type { CameraCommand } from "@/components/publication/ProvenanceScene";
 import { useStepPlayback } from "@/hooks/use-step-playback";
@@ -182,9 +182,11 @@ function GraphWorkspace({ graph }: { graph: ProvenanceGraphData }) {
 }
 
 export function ProvenanceExplorerPage() {
-  const [mode, setMode] = useState<"education" | "local">("education");
-  const [phase, setPhase] = useState("phase2");
-  const [eventId, setEventId] = useState("");
+  const incoming = useLocation().state;
+  const linkedEvent = !isStaticDataMode && typeof incoming?.event === "string" && incoming.event.length <= 80 ? incoming.event : "";
+  const [mode, setMode] = useState<"education" | "local">(linkedEvent ? "local" : "education");
+  const [phase, setPhase] = useState(linkedEvent && incoming?.phase === "phase1" ? "phase1" : "phase2");
+  const [eventId, setEventId] = useState(linkedEvent);
   const [request, setRequest] = useState<{ phase: string; id: string }>();
   const health = useQuery({ queryKey: ["health"], queryFn: api.health, enabled: !isStaticDataMode });
   const local = !isStaticDataMode && health.data?.deployment_mode === "local";
@@ -207,7 +209,7 @@ export function ProvenanceExplorerPage() {
       <label>Recorded event ID<input type="text" maxLength={80} value={eventId} required onChange={(event) => setEventId(event.target.value)} /></label>
       <button className="pub-button" type="submit">Focus event</button>
     </form>}
-    {mode === "education" && <GraphWorkspace graph={teachingGraph} />}
+    {(mode === "education" || !local) && <GraphWorkspace graph={teachingGraph} />}
     {mode === "local" && local && <>
       {recorded.isFetching && <p role="status">Reading the bounded local excerpt…</p>}
       {recorded.isError && <p role="status">{recorded.error.message}</p>}

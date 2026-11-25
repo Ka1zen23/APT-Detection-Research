@@ -41,6 +41,8 @@ def test_no_event_level_payload_is_exported() -> None:
         assert "text" not in keys, path
         assert "positive_event_id" not in keys, path
         assert "original_positive_edges" not in keys, path
+        assert "coordinates" not in keys, path
+        assert "variance_ratio" not in keys, path
 
 
 def test_comparison_visualisation_exports_are_aggregate_only() -> None:
