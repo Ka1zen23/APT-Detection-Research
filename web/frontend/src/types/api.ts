@@ -330,6 +330,7 @@ export interface AblationStatistic {
   events: number;
   unique_descriptions: number;
   mean_tokens: number;
+  p95_tokens?: number | null;
   maximum_tokens: number;
   over_token_limit: number;
   original_positives: number;
@@ -337,6 +338,33 @@ export interface AblationStatistic {
   seen_in_training: number;
   original_positives_seen: number;
   contextual_positives_seen: number;
+}
+
+export interface TrainingComparison {
+  runs: {
+    id: string;
+    label: string;
+    history: { epoch: number; train_loss: number | null; validation_loss: number | null }[];
+    history_source: string | null;
+    summary_source: string | null;
+    train_samples: number | null;
+    epochs_completed: number | null;
+    checkpoint_epoch: number | null;
+    training_seconds: number | null;
+    completed_updates: number | null;
+    checkpoint_updates: number | null;
+    updates_basis: "recorded" | "calculated" | null;
+  }[];
+  frequency: { original: number; unique: number; most_frequent: number; source: string } | null;
+}
+
+export interface ScoreHistogram {
+  experiment_id: string;
+  available: boolean;
+  rows: { lower: number; upper: number; attack_count: number | null; benign_count: number | null }[];
+  sources: string[];
+  attack_total?: number;
+  benign_total?: number;
 }
 
 export interface ConflictSummary {

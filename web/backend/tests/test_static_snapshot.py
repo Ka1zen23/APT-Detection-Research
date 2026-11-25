@@ -41,6 +41,16 @@ def test_no_event_level_payload_is_exported() -> None:
         assert "text" not in keys, path
 
 
+def test_comparison_visualisation_exports_are_aggregate_only() -> None:
+    training = json.loads((DATA / "comparisons/training.json").read_text())["data"]
+    assert all(set(row) == {"epoch", "train_loss", "validation_loss"} for run in training["runs"] for row in run["history"])
+    for suffix in "ABCD":
+        scores = json.loads((DATA / f"score-histograms/E2-{suffix}.json").read_text())["data"]
+        assert scores["available"] is True
+        assert sum(row["attack_count"] for row in scores["rows"]) == scores["attack_total"]
+        assert all(set(row) == {"lower", "upper", "attack_count", "benign_count"} for row in scores["rows"])
+
+
 def test_no_known_provenance_strings_in_public_snapshot() -> None:
     for path in PUBLIC.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in {".json", ".txt", ".js", ".html", ".css"}:

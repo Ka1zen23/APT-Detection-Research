@@ -34,10 +34,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          charts: ["recharts"],
-          markdown: ["react-markdown", "remark-gfm"],
+        onlyExplicitManualChunks: true,
+        manualChunks(id) {
+          if (/\/node_modules\/(react|react-dom|react-router|react-router-dom|scheduler)\//.test(id)) return "react-vendor";
+          if (/\/node_modules\/recharts\//.test(id)) return "charts";
+          if (/\/node_modules\/(react-markdown|remark-gfm)\//.test(id)) return "markdown";
         },
       },
     },

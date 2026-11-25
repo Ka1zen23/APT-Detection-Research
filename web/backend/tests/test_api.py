@@ -20,6 +20,33 @@ def test_health(client: TestClient) -> None:
     assert payload["repository_root_exists"] is True
 
 
+def test_training_comparison_exports_recorded_loss_and_bases(client: TestClient) -> None:
+    payload = client.get("/api/v1/comparisons/training").json()["data"]
+    runs = {run["id"]: run for run in payload["runs"]}
+    assert set(runs) == {"E2-A", "E2-B", "E2-C", "E2-D"}
+    assert len(runs["E2-D"]["history"]) == 497
+    assert runs["E2-D"]["history"][0]["epoch"] == 1
+    assert runs["E2-D"]["checkpoint_epoch"] == 479
+    assert runs["E2-D"]["completed_updates"] == 25347
+    assert runs["E2-D"]["updates_basis"] == "recorded"
+    assert runs["E2-A"]["checkpoint_updates"] == 25350
+    assert runs["E2-A"]["updates_basis"] == "calculated"
+    assert payload["frequency"]["original"] == 99665
+    assert payload["frequency"]["unique"] == 13029
+    assert payload["frequency"]["most_frequent"] == 72986
+
+
+def test_score_histogram_exports_bins_and_counts_only(client: TestClient) -> None:
+    payload = client.get("/api/v1/experiments/E2-D/score-histogram").json()["data"]
+    assert payload["available"] is True
+    assert payload["attack_total"] == sum(row["attack_count"] for row in payload["rows"]) == 100_892
+    assert payload["benign_total"] == sum(row["benign_count"] for row in payload["rows"]) == 21_357
+    assert all(set(row) == {"lower", "upper", "attack_count", "benign_count"} for row in payload["rows"])
+    assert all(left["upper"] == right["lower"] for left, right in zip(payload["rows"], payload["rows"][1:]))
+    unavailable = client.get("/api/v1/experiments/E7/score-histogram").json()["data"]
+    assert unavailable["available"] is False and not unavailable["rows"]
+
+
 def test_overview_kpis(client: TestClient) -> None:
     data = client.get("/api/v1/overview").json()["data"]
     kpis = data["kpis"]

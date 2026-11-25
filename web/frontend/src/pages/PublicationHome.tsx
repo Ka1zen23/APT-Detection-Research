@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, FlaskConical, Milestone, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import { TeachingGraph } from "@/components/publication/TeachingGraph";
+import { FindingPreview, Top500Preview } from "@/components/publication/FindingPreview";
 import { useAblation, useAlertBudgets, useDataset, useModelComparison, useResearchStatus, useRoadmap } from "@/hooks/queries";
 import { getResearchProgress } from "@/lib/research-progress";
 
@@ -55,9 +56,9 @@ export function PublicationHome() {
     return () => observer.disconnect();
   }, []);
   const findings = [
-    { label: "Representation · E5", title: "Context changes what the AI can see.", copy: "Knowing which files and programs were involved helped the model rank annotated events ahead of others.", value: ratio(e5("E5-C"), e5("E5-A")), metric: "Average Precision with full provenance vs. operation names alone", to: "/experiments/ablation" },
-    { label: "Training · E2", title: "Repetition can hide useful patterns.", copy: "Giving repeated descriptions less influence improved ranking compared with the original autoencoder in this study.", value: ratio(e2("E2-D"), e2("E2-A")), metric: "Average Precision with approximately matched-update unique-description training", to: "/experiments/E2-D" },
-    { label: "Alert ranking · E2", title: "The order of alerts matters.", copy: "When an analyst can review only a few hundred alerts, putting annotated events near the top can make investigation more useful.", value: budget && positives != null && budget.minimum_true_positives === budget.maximum_true_positives ? `${budget.minimum_true_positives} of ${positives}` : null, metric: "originally annotated positives in E2-D’s top 500 alerts", to: "/experiments/alerts" },
+    { label: "Representation · E5", title: "Context changes what the AI can see.", copy: "Knowing which files and programs were involved helped the model rank annotated events ahead of others.", value: ratio(e5("E5-C"), e5("E5-A")), metric: "Average Precision with full provenance vs. operation names alone", to: "/experiments/ablation", chart: <FindingPreview title="Average Precision by representation" mode="bar" rows={["E5-A", "E5-B", "E5-C"].map((id) => ({ id, value: e5(id) }))} /> },
+    { label: "Training · E2", title: "Repetition can hide useful patterns.", copy: "Giving repeated descriptions less influence improved ranking compared with the original autoencoder in this study.", value: ratio(e2("E2-D"), e2("E2-A")), metric: "Average Precision with approximately matched-update unique-description training", to: "/experiments/training", chart: <FindingPreview title="Average Precision by training strategy" mode="dot" rows={["E2-A", "E2-B", "E2-C", "E2-D"].map((id) => ({ id, value: e2(id) }))} /> },
+    { label: "Alert ranking · E2", title: "The order of alerts matters.", copy: "When an analyst can review only a few hundred alerts, putting annotated events near the top can make investigation more useful.", value: budget && positives != null && budget.minimum_true_positives === budget.maximum_true_positives ? `${budget.minimum_true_positives} of ${positives}` : null, metric: "originally annotated positives in E2-D’s top 500 alerts", to: "/experiments/alerts", chart: <Top500Preview maximum={positives} /> },
   ];
 
   return (
@@ -113,6 +114,7 @@ export function PublicationHome() {
           {findings.map((finding) => <article className="pub-finding-teaser" key={finding.title}>
             <p className="pub-kicker">{finding.label}</p><h3>{finding.title}</h3><p>{finding.copy}</p>
             {finding.value && <p className="pub-teaser-metric"><strong>{finding.value}</strong><span>{finding.metric}</span></p>}
+            {finding.chart}
             <Link className="pub-text-link" to={finding.to} aria-label={`Inspect the evidence: ${finding.label}`}>Inspect the evidence <ArrowUpRight size={15} /></Link>
           </article>)}
         </div>

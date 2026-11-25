@@ -1,0 +1,214 @@
+{
+  "data": {
+    "experiment_id": "E2-C",
+    "available": true,
+    "sources": [
+      "results/e2c-weighted/evaluation/attack_test_predictions.parquet",
+      "results/e2c-weighted/evaluation/benign_test_predictions.parquet"
+    ],
+    "attack_total": 100892,
+    "benign_total": 21357,
+    "rows": [
+      {
+        "lower": 0.0,
+        "upper": 1e-06,
+        "attack_count": 0,
+        "benign_count": 0
+      },
+      {
+        "lower": 1e-06,
+        "upper": 1.3459603241553642e-06,
+        "attack_count": 241,
+        "benign_count": 60
+      },
+      {
+        "lower": 1.3459603241553642e-06,
+        "upper": 1.8116091942004133e-06,
+        "attack_count": 65661,
+        "benign_count": 16587
+      },
+      {
+        "lower": 1.8116091942004133e-06,
+        "upper": 2.4383540982688266e-06,
+        "attack_count": 1805,
+        "benign_count": 373
+      },
+      {
+        "lower": 2.4383540982688266e-06,
+        "upper": 3.281927872511471e-06,
+        "attack_count": 1403,
+        "benign_count": 254
+      },
+      {
+        "lower": 3.281927872511471e-06,
+        "upper": 4.417344703140073e-06,
+        "attack_count": 4079,
+        "benign_count": 838
+      },
+      {
+        "lower": 4.417344703140073e-06,
+        "upper": 5.945570708544394e-06,
+        "attack_count": 4829,
+        "benign_count": 975
+      },
+      {
+        "lower": 5.945570708544394e-06,
+        "upper": 8.002502278161051e-06,
+        "attack_count": 4706,
+        "benign_count": 926
+      },
+      {
+        "lower": 8.002502278161051e-06,
+        "upper": 1.0771050560367691e-05,
+        "attack_count": 1402,
+        "benign_count": 284
+      },
+      {
+        "lower": 1.0771050560367691e-05,
+        "upper": 1.4497406703726315e-05,
+        "attack_count": 942,
+        "benign_count": 182
+      },
+      {
+        "lower": 1.4497406703726315e-05,
+        "upper": 1.951293422635962e-05,
+        "attack_count": 984,
+        "benign_count": 144
+      },
+      {
+        "lower": 1.951293422635962e-05,
+        "upper": 2.6263635276533353e-05,
+        "attack_count": 1183,
+        "benign_count": 175
+      },
+      {
+        "lower": 2.6263635276533353e-05,
+        "upper": 3.5349811050301094e-05,
+        "attack_count": 1420,
+        "benign_count": 192
+      },
+      {
+        "lower": 3.5349811050301094e-05,
+        "upper": 4.757944314009414e-05,
+        "attack_count": 369,
+        "benign_count": 67
+      },
+      {
+        "lower": 4.757944314009414e-05,
+        "upper": 6.404004271197282e-05,
+        "attack_count": 587,
+        "benign_count": 60
+      },
+      {
+        "lower": 6.404004271197282e-05,
+        "upper": 8.619535664753033e-05,
+        "attack_count": 832,
+        "benign_count": 64
+      },
+      {
+        "lower": 8.619535664753033e-05,
+        "upper": 0.00011601553017399714,
+        "attack_count": 826,
+        "benign_count": 37
+      },
+      {
+        "lower": 0.00011601553017399714,
+        "upper": 0.00015615230060004966,
+        "attack_count": 612,
+        "benign_count": 33
+      },
+      {
+        "lower": 0.00015615230060004966,
+        "upper": 0.0002101748011332487,
+        "attack_count": 609,
+        "benign_count": 41
+      },
+      {
+        "lower": 0.0002101748011332487,
+        "upper": 0.00028288694346259694,
+        "attack_count": 582,
+        "benign_count": 23
+      },
+      {
+        "lower": 0.00028288694346259694,
+        "upper": 0.0003807546021222372,
+        "attack_count": 1052,
+        "benign_count": 17
+      },
+      {
+        "lower": 0.0003807546021222372,
+        "upper": 0.0005124805876960931,
+        "attack_count": 1952,
+        "benign_count": 14
+      },
+      {
+        "lower": 0.0005124805876960931,
+        "upper": 0.0006897785379387658,
+        "attack_count": 2240,
+        "benign_count": 9
+      },
+      {
+        "lower": 0.0006897785379387658,
+        "upper": 0.0009284145445194745,
+        "attack_count": 997,
+        "benign_count": 2
+      },
+      {
+        "lower": 0.0009284145445194745,
+        "upper": 0.0012496091412919868,
+        "attack_count": 1221,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.0012496091412919868,
+        "upper": 0.001681924324880869,
+        "attack_count": 358,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.001681924324880869,
+        "upper": 0.0022638034095214467,
+        "attack_count": 0,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.0022638034095214467,
+        "upper": 0.003046989570903508,
+        "attack_count": 0,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.003046989570903508,
+        "upper": 0.0041011270705513005,
+        "attack_count": 0,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.0041011270705513005,
+        "upper": 0.005519954321281568,
+        "attack_count": 0,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.005519954321281568,
+        "upper": 0.00742963950759495,
+        "attack_count": 0,
+        "benign_count": 0
+      },
+      {
+        "lower": 0.00742963950759495,
+        "upper": 0.01,
+        "attack_count": 0,
+        "benign_count": 0
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T10:41:37.200386+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

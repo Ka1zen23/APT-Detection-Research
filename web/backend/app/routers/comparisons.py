@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from app.deps import envelope
-from app.services import metrics
+from app.services import metrics, visualisations
 
 router = APIRouter(prefix="/comparisons", tags=["comparisons"])
 
@@ -21,3 +21,8 @@ def compare_ablation() -> dict:
 @router.get("/description-overlap")
 def compare_description_overlap() -> dict:
     return envelope(metrics.description_overlap())
+
+
+@router.get("/training")
+def compare_training() -> dict:
+    return envelope(visualisations.training())

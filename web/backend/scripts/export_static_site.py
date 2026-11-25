@@ -29,7 +29,7 @@ sys.path.insert(0, str(BACKEND_DIR))
 
 from app import __version__  # noqa: E402
 from app.config import API_PREFIX, ROOT  # noqa: E402
-from app.services import artifacts, content, curves, dataset as dataset_service, metrics  # noqa: E402
+from app.services import artifacts, content, curves, dataset as dataset_service, metrics, visualisations  # noqa: E402
 
 CURVE_MODELS = [
     "B1",
@@ -136,6 +136,12 @@ def copy_figures() -> int:
     return count
 
 
+def write_comparison_visualisations() -> None:
+    write_json("comparisons/training.json", visualisations.training())
+    for experiment_id in THRESHOLD_MODELS:
+        write_json(f"score-histograms/{experiment_id}.json", visualisations.score_histogram(experiment_id))
+
+
 def copy_documents() -> tuple[int, dict[str, dict[str, Any]]]:
     reports = content.reports()
     keys = sorted(
@@ -193,6 +199,7 @@ def main() -> int:
     write_json("comparisons/models.json", model_comparison)
     write_json("comparisons/ablation.json", ablation)
     write_json("comparisons/description-overlap.json", metrics.description_overlap())
+    write_comparison_visualisations()
     write_json("dataset-summary.json", dataset_service.summary())
     write_json("findings.json", {"findings": content.findings(), "count": len(content.findings())})
     write_json("roadmap.json", content.roadmap())

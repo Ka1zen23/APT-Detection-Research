@@ -531,6 +531,7 @@ def ablation() -> dict[str, Any]:
                     "events": _int(record["events"]),
                     "unique_descriptions": _int(record["unique_descriptions"]),
                     "mean_tokens": _float(record["mean_tokens"]),
+                    "p95_tokens": _float(record.get("p95_tokens")),
                     "maximum_tokens": _int(record["maximum_tokens"]),
                     "over_token_limit": _int(record["over_token_limit"]),
                     "original_positives": _int(record["original_positives"]),

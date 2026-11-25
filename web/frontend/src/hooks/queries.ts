@@ -8,6 +8,8 @@ export const queryKeys = {
   experiment: (id: string) => ["experiment", id] as const,
   comparison: ["comparison"] as const,
   ablation: ["ablation"] as const,
+  trainingComparison: ["training-comparison"] as const,
+  scoreHistogram: (id: string) => ["score-histogram", id] as const,
   descriptionOverlap: ["description-overlap"] as const,
   dataset: ["dataset"] as const,
   events: (filters: EventFilters) => ["events", filters] as const,
@@ -60,6 +62,14 @@ export function useModelComparison() {
 
 export function useAblation(enabled = true) {
   return useQuery({ queryKey: queryKeys.ablation, queryFn: api.ablation, enabled });
+}
+
+export function useTrainingComparison() {
+  return useQuery({ queryKey: queryKeys.trainingComparison, queryFn: api.trainingComparison });
+}
+
+export function useScoreHistogram(id: string) {
+  return useQuery({ queryKey: queryKeys.scoreHistogram(id), queryFn: () => api.scoreHistogram(id), enabled: Boolean(id) });
 }
 
 export function useDescriptionOverlap() {

@@ -12,6 +12,7 @@ const ExperimentsLanding = lazy(() => import("@/pages/PublicationExperiments").t
 const GuidedExperimentDetail = lazy(() => import("@/pages/PublicationExperiments").then((m) => ({ default: m.GuidedExperimentDetail })));
 const GuidedComparison = lazy(() => import("@/pages/PublicationExperiments").then((m) => ({ default: m.GuidedComparison })));
 const GuidedExperimentDemo = lazy(() => import("@/pages/PublicationExperiments").then((m) => ({ default: m.GuidedExperimentDemo })));
+const TrainingEvidence = lazy(() => import("@/components/publication/TrainingEvidence").then((m) => ({ default: m.TrainingEvidence })));
 const ArtifactExplorer = lazy(() => import("@/pages/PublicationExperiments").then((m) => ({ default: m.ArtifactExplorer })));
 const Overview = lazy(() => import("@/pages/OverviewPage").then((m) => ({ default: m.OverviewPage })));
 const Registry = lazy(() => import("@/pages/ExperimentsPage").then((m) => ({ default: m.ExperimentsPage })));
@@ -71,6 +72,7 @@ export function App() {
           <Route path="registry" element={<Registry />} />
           <Route path="evidence" element={<Overview />} />
           <Route path="comparison" element={<GuidedComparison technical={<Comparison />} />} />
+          <Route path="training" element={<TrainingEvidence />} />
           <Route path="thresholds" element={<GuidedExperimentDemo kind="thresholds" technical={<Threshold />} />} />
           <Route path="alerts" element={<GuidedExperimentDemo kind="alerts" technical={<Alerts />} />} />
           <Route path="ablation" element={<GuidedExperimentDemo kind="ablation" technical={<Ablation />} />} />

@@ -15,7 +15,8 @@ import { Gauge, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
-import { ChartTooltip, CHART_AXIS, CHART_COLORS, CHART_GRID } from "@/components/features/data";
+import { ChartTooltip, CHART_AXIS, CHART_GRID } from "@/components/features/data";
+import { modelColour } from "@/lib/model-colours";
 import {
   ErrorState,
   InfoCallout,
@@ -215,7 +216,7 @@ export function AlertsPage() {
                   <Line
                     key={payload!.experiment_id}
                     dataKey={payload!.experiment_id}
-                    stroke={CHART_COLORS[MODELS.indexOf(payload!.experiment_id) % CHART_COLORS.length]}
+                     stroke={modelColour(payload.experiment_id)}
                     strokeOpacity={0}
                     dot={{ r: payload!.experiment_id === "E2-D" ? 3.5 : 2.5, strokeOpacity: 1 }}
                     isAnimationActive={false}

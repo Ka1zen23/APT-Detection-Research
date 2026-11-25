@@ -21,7 +21,9 @@ import type {
   ReportItem,
   ResearchStatus,
   Roadmap,
+  ScoreHistogram,
   ThresholdPayload,
+  TrainingComparison,
 } from "@/types/api";
 
 const configuredBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim();
@@ -64,6 +66,7 @@ function staticPath(path: string, params?: Record<string, unknown>): string {
   if (clean === "/experiments") return "experiments.json";
   if (clean === "/comparisons/models") return "comparisons/models.json";
   if (clean === "/comparisons/ablation") return "comparisons/ablation.json";
+  if (clean === "/comparisons/training") return "comparisons/training.json";
   if (clean === "/comparisons/description-overlap") {
     return "comparisons/description-overlap.json";
   }
@@ -98,6 +101,9 @@ function staticPath(path: string, params?: Record<string, unknown>): string {
     }
     if (parts.length === 3 && parts[2] === "alert-budgets") {
       return `alert-budgets/${id}.json`;
+    }
+    if (parts.length === 3 && parts[2] === "score-histogram") {
+      return `score-histograms/${id}.json`;
     }
     if (parts.length === 3 && parts[2] === "curves") {
       const label = String(params?.label ?? "original");
@@ -181,6 +187,8 @@ export const api = {
     ),
   thresholds: (id: string) =>
     request<ThresholdPayload>(`/experiments/${encodeURIComponent(id)}/thresholds`),
+  scoreHistogram: (id: string) =>
+    request<ScoreHistogram>(`/experiments/${encodeURIComponent(id)}/score-histogram`),
   alertBudgets: (id: string) =>
     request<AlertBudgetPayload>(`/experiments/${encodeURIComponent(id)}/alert-budgets`),
   curves: (id: string, label: "original" | "contextual" = "original") =>
@@ -192,6 +200,7 @@ export const api = {
   modelComparison: () =>
     request<{ models: ModelRow[]; leaderboard: ModelRow[]; note: string }>("/comparisons/models"),
   ablation: () => request<AblationData>("/comparisons/ablation"),
+  trainingComparison: () => request<TrainingComparison>("/comparisons/training"),
   descriptionOverlap: () =>
     request<{
       models: {

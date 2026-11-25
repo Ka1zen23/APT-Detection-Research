@@ -17,6 +17,7 @@ import {
 import { useAblation } from "@/hooks/queries";
 import { formatDecimal, formatNumber, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { modelColour } from "@/lib/model-colours";
 
 const REPRESENTATION_NOTES: Record<string, { summary: string; icon: typeof Layers }> = {
   "E5-A": {
@@ -270,7 +271,7 @@ export function AblationPage() {
                 <Tooltip content={<ChartTooltip formatter={(value) => Number(value).toFixed(6)} />} />
                 <Bar dataKey="AP" radius={[0, 2, 2, 0]}>
                   {apChart.map((item) => (
-                    <Cell key={item.id} fill={item.id === "E5-C" ? "var(--success)" : item.id === "E5-A" || item.id === "B5" ? "var(--error)" : "var(--primary)"} />
+                     <Cell key={item.id} fill={modelColour(item.id)} />
                   ))}
                 </Bar>
               </BarChart>

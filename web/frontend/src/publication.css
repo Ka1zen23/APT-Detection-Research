@@ -1,4 +1,5 @@
 @import "./research-progress.css";
+@import "./scientific-charts.css";
 
 @font-face {
   font-family: "Inter Variable";
@@ -46,6 +47,13 @@
   --chart-3: #4c7157;
   --chart-4: #894f79;
   --chart-5: #465e83;
+  --model-slate: #56606d;
+  --model-ocean: #226c89;
+  --model-violet: #6a578e;
+  --model-olive: #596827;
+  --model-brown: #77592e;
+  --model-stone: #495b68;
+  --model-rose: #9b4158;
   --p-brand-ink: #fff;
   --p-highlight: #93502e;
   --p-graph-bg: #ecf3ee;
@@ -75,6 +83,13 @@
   --chart-3: #b1cf8e;
   --chart-4: #e2a0cd;
   --chart-5: #a9bde7;
+  --model-slate: #a4b3c3;
+  --model-ocean: #79bede;
+  --model-violet: #c7a7ee;
+  --model-olive: #d1ce89;
+  --model-brown: #d6b47b;
+  --model-stone: #99b2b9;
+  --model-rose: #ef9c9f;
   --p-brand-ink: #122421;
   --p-highlight: #e59a6a;
   --p-graph-bg: #142721;

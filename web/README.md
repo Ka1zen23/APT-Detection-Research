@@ -103,6 +103,12 @@ An experiment step without supporting evidence is pending or unverified, rather
 than assumed complete. Tour chapters can be marked read and resumed on the same
 browser; this personal progress does not change the research roadmap.
 
+The Experiments section includes model, training, threshold, alert-budget and E5
+ablation charts with numeric tables and CSV downloads. Training histories come
+from saved E2 CSVs. Score distributions use aggregate counts in common,
+log-spaced bins within each model; the export does not include per-event scores.
+The E5 token-length profile shows saved summary statistics, not a histogram.
+
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview

@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Query
 
 from app.deps import envelope
 from app.schemas import Envelope, ExperimentSummary
-from app.services import content, curves, metrics
+from app.services import content, curves, metrics, visualisations
 
 router = APIRouter(prefix="/experiments", tags=["experiments"])
 
@@ -72,6 +72,11 @@ def experiment_alert_budgets(experiment_id: str) -> dict:
             }
         )
     return envelope({"available": True, **payload})
+
+
+@router.get("/{experiment_id}/score-histogram")
+def experiment_score_histogram(experiment_id: str) -> dict:
+    return envelope(visualisations.score_histogram(experiment_id))
 
 
 @router.get("/{experiment_id}/curves")

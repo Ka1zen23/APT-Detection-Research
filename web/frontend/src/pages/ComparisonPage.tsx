@@ -30,7 +30,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ChartTooltip,
   CHART_AXIS,
-  CHART_COLORS,
   CHART_GRID,
   ConfusionMatrix,
 } from "@/components/features/data";
@@ -46,6 +45,7 @@ import { api } from "@/services/api";
 import { useDescriptionOverlap, useExperiment, useModelComparison } from "@/hooks/queries";
 import { formatDecimal, formatDuration, formatNumber, formatPercent, formatThreshold } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { modelColour } from "@/lib/model-colours";
 import type { CurvePayload } from "@/types/api";
 
 const DEFAULT_SELECTION = ["E2-D", "E5-C", "B3", "E2-A", "E5-B"];
@@ -350,8 +350,8 @@ export function ComparisonPage() {
                     <YAxis type="category" dataKey="id" width={46} {...CHART_AXIS} />
                     <Tooltip content={<ChartTooltip formatter={(value) => Number(value).toFixed(6)} />} />
                     <Bar dataKey="AP" radius={[0, 2, 2, 0]}>
-                      {apChartData.map((item, index) => (
-                        <Cell key={item.id} fill={item.id === "E2-D" ? "var(--success)" : CHART_COLORS[index % CHART_COLORS.length]} />
+                      {apChartData.map((item) => (
+                        <Cell key={item.id} fill={modelColour(item.id)} />
                       ))}
                     </Bar>
                   </BarChart>
@@ -371,8 +371,8 @@ export function ComparisonPage() {
                     <YAxis type="category" dataKey="id" width={46} {...CHART_AXIS} />
                     <Tooltip content={<ChartTooltip formatter={(value) => Number(value).toFixed(6)} />} />
                     <Bar dataKey="ROC" radius={[0, 2, 2, 0]}>
-                      {rocChartData.map((item, index) => (
-                        <Cell key={item.id} fill={item.id === "E2-D" ? "var(--success)" : CHART_COLORS[index % CHART_COLORS.length]} />
+                      {rocChartData.map((item) => (
+                        <Cell key={item.id} fill={modelColour(item.id)} />
                       ))}
                     </Bar>
                   </BarChart>
@@ -438,9 +438,9 @@ export function ComparisonPage() {
                      <YAxis type="number" dataKey="y" name="True positive rate" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(1)} />
                      <Tooltip formatter={(value) => typeof value === "number" ? value.toFixed(3) : value} />
                     <Legend wrapperStyle={{ fontSize: 10 }} />
-                     {selected.map((id, index) => {
+                     {selected.map((id) => {
                        const points = curvePayloads.find((payload) => payload.experiment_id === id && payload.available)?.roc;
-                       return points?.length ? <Scatter key={id} name={id} data={points} fill={CHART_COLORS[index % CHART_COLORS.length]} shape="circle" isAnimationActive={false} /> : null;
+                       return points?.length ? <Scatter key={id} name={id} data={points} fill={modelColour(id)} shape="circle" isAnimationActive={false} /> : null;
                      })}
                    </ScatterChart>
                 </ResponsiveContainer>
@@ -458,9 +458,9 @@ export function ComparisonPage() {
                      <YAxis type="number" dataKey="y" name="Precision" domain={[0, 1]} {...CHART_AXIS} tickFormatter={(value) => Number(value).toFixed(2)} />
                      <Tooltip formatter={(value) => typeof value === "number" ? value.toFixed(4) : value} />
                     <Legend wrapperStyle={{ fontSize: 10 }} />
-                     {selected.map((id, index) => {
+                     {selected.map((id) => {
                        const points = curvePayloads.find((payload) => payload.experiment_id === id && payload.available)?.pr;
-                       return points?.length ? <Scatter key={id} name={id} data={points} fill={CHART_COLORS[index % CHART_COLORS.length]} shape="circle" isAnimationActive={false} /> : null;
+                       return points?.length ? <Scatter key={id} name={id} data={points} fill={modelColour(id)} shape="circle" isAnimationActive={false} /> : null;
                      })}
                    </ScatterChart>
                 </ResponsiveContainer>

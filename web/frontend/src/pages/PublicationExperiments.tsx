@@ -1,13 +1,16 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, lazy, useContext, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link, NavLink, Outlet, useMatch, useParams } from "react-router-dom";
 import { ErrorState, LoadingBlock } from "@/components/features/common";
 import { BudgetDemo, ProvenanceDemo, ThresholdDemo } from "@/components/publication/ResearchDemos";
 import { useExperiment, useExperiments, useModelComparison, useReports } from "@/hooks/queries";
-import { formatDecimal, formatNumber, formatPercent, titleCase } from "@/lib/format";
+import { formatDecimal, formatNumber, titleCase } from "@/lib/format";
 import { documentUrl, figureUrl } from "@/services/api";
-import { EvidenceBars } from "@/pages/PublicationFindings";
 import { ExperimentExecution } from "@/components/publication/ExperimentExecution";
+const ModelEvidence = lazy(() => import("@/components/publication/ModelEvidence").then((module) => ({ default: module.ModelEvidence })));
+const ThresholdEvidence = lazy(() => import("@/components/publication/ThresholdEvidence").then((module) => ({ default: module.ThresholdEvidence })));
+const AlertEvidence = lazy(() => import("@/components/publication/AlertEvidence").then((module) => ({ default: module.AlertEvidence })));
+const AblationEvidence = lazy(() => import("@/components/publication/AblationEvidence").then((module) => ({ default: module.AblationEvidence })));
 
 type View = "guided" | "technical";
 const ViewContext = createContext<View>("guided");
@@ -16,6 +19,7 @@ const viewKey = "apt-research-experiment-view";
 
 const evidenceRoutes = [
   ["Compare models", "/experiments/comparison"],
+  ["Training strategies", "/experiments/training"],
   ["Provenance context", "/experiments/ablation"],
   ["Alert budgets", "/experiments/alerts"],
   ["Alert thresholds", "/experiments/thresholds"],
@@ -31,7 +35,7 @@ export function ExperimentSection() {
   return <ViewContext.Provider value={view}>
     <div className="pub-experiment-nav" data-detail={detail && !evidenceRoutes.some(([, to]) => to === detail.pathname) ? true : undefined}>
       <nav aria-label="Experiment explorer">{evidenceRoutes.map(([title, to]) => <NavLink key={to} to={to}>{title}</NavLink>)}</nav>
-      {detail && !["registry", "evidence"].includes(detail.params.id ?? "") && <div className="pub-controls" role="group" aria-label="Experiment reading mode">{(["guided", "technical"] as const).map((next) => <button className="pub-segment" key={next} aria-pressed={view === next} onClick={() => {
+      {detail && !["registry", "evidence", "training"].includes(detail.params.id ?? "") && <div className="pub-controls" role="group" aria-label="Experiment reading mode">{(["guided", "technical"] as const).map((next) => <button className="pub-segment" key={next} aria-pressed={view === next} onClick={() => {
         setView(next);
         try { localStorage.setItem(viewKey, next); } catch { /* Keep the in-memory choice. */ }
       }}>{titleCase(next)} view</button>)}</div>}
@@ -49,6 +53,7 @@ export function ExperimentsLanding() {
       {([
         ["Does more context help?", "Compare three ways of describing the same events.", "/experiments/ablation"],
         ["Does changing the training help?", "Compare the selected models on the recorded attack test.", "/experiments/comparison"],
+        ["How did the four training strategies differ?", "Inspect recorded loss, checkpoints, updates and description frequency.", "/experiments/training"],
         ["What if the analyst can review only 500 alerts?", "See which models put annotated events within reach.", "/experiments/alerts"],
         ["What happens when we change the alert threshold?", "See how the threshold trades off missed events and false alerts.", "/experiments/thresholds"],
         ["Browse the full registry", "See all experiment IDs, configurations, results and plans.", "/experiments/registry"],
@@ -121,33 +126,18 @@ export function GuidedExperimentDetail({ technical }: { technical: React.ReactNo
   </>;
 }
 
-const metrics = {
-  average_precision: ["Average Precision", "Summarises ranking quality by rewarding models that place annotated positives early in the list."],
-  roc_auc: ["ROC-AUC", "Measures how often a positive is ranked above a negative. It can be high even when most alerts are not positives."],
-  recall: ["Recall", "The proportion of originally annotated positives flagged at each model’s recorded operating point."],
-  precision: ["Precision", "The proportion of alerts that match original positive annotations at each model’s recorded operating point."],
-  attack_fpr: ["False-positive rate", "The proportion of negatively labelled attack-test events incorrectly flagged at the recorded operating point."],
-} as const;
-
 export function GuidedComparison({ technical }: { technical: React.ReactNode }) {
   const mode = useExperimentView();
-  const [metric, setMetric] = useState<keyof typeof metrics>("average_precision");
   const { data, isLoading, error, refetch } = useModelComparison();
-  const shown = ["E2-A", "E2-B", "E2-C", "E2-D", "E5-A", "E5-B", "E5-C"];
-  const models = (data?.models ?? []).filter((model) => shown.includes(model.id));
   const leader = [...(data?.models ?? [])].filter((model) => model.average_precision != null).sort((a, b) => (b.average_precision ?? 0) - (a.average_precision ?? 0))[0];
   return <>
     <p className="pub-kicker">Comparative evaluation</p>
     <h1 className="pub-editorial-title">Which models rank annotated events higher?</h1>
     <p className="pub-lede">{leader ? `In this evaluation, ${leader.id} had the highest observed Average Precision. That does not mean it had the best operational trade-off or will rank as well elsewhere.` : "Compare how models rank annotated events and what happens at their recorded alert thresholds."}</p>
-    <div className="pub-reading pub-section-space">
-      <div className="pub-demo">
-        <label>Choose a comparison metric<select value={metric} onChange={(e) => setMetric(e.target.value as keyof typeof metrics)}>{Object.entries(metrics).map(([key, [name]]) => <option key={key} value={key}>{name}</option>)}</select></label>
-        {isLoading && <LoadingBlock rows={3} />}
-        {error && <ErrorState error={error} onRetry={() => refetch()} />}
-        {data && <EvidenceBars title={metrics[metric][0]} caption={`${metrics[metric][1]} Selected E2 and E5 runs · same Phase 2 attack-test partition, original labels.`} bars={models.map((model) => ({ label: model.id, value: model[metric], display: metric === "average_precision" || metric === "roc_auc" ? formatDecimal(model[metric], 6) : formatPercent(model[metric], 2), colour: model.id === "E2-D" || model.id === "E5-C" ? "var(--chart-1)" : "var(--chart-5)" }))} />}
-        {data && <details className="pub-disclosure"><summary>Selected metric for all available models</summary><div className="pub-prose"><ul>{data.models.filter((model) => model[metric] != null).map((model) => <li key={model.id}><Link to={`/experiments/${model.id}`}>{model.id} · {model.name}</Link>: {metric === "average_precision" || metric === "roc_auc" ? formatDecimal(model[metric], 6) : formatPercent(model[metric], 2)}</li>)}</ul></div></details>}
-      </div>
+    <div className="pub-section-space">
+      {isLoading && <LoadingBlock rows={3} />}
+      {error && <ErrorState error={error} onRetry={() => refetch()} />}
+      {data && <ModelEvidence models={data.models} />}
     </div>
     {mode === "technical" && <section className="pub-section-space" aria-label="Technical comparison">{technical}</section>}
   </>;
@@ -166,7 +156,13 @@ export function GuidedExperimentDemo({ kind, technical }: { kind: keyof typeof d
     <p className="pub-kicker">Experimental evidence · preliminary</p>
     <h1 className="pub-editorial-title">{title}</h1>
     <p className="pub-lede">{summary}</p>
-    {mode === "guided" ? <div className="pub-reading pub-section-space">{kind === "thresholds" ? <ThresholdDemo startMeasured evidenceLink={false} /> : <Visual evidenceLink={false} />}</div> : <section className="pub-section-space" aria-label="Technical evidence">{technical}</section>}
+    <div className="pub-section-space">{kind === "thresholds" ? <ThresholdEvidence /> : kind === "alerts" ? <AlertEvidence /> : <AblationEvidence />}</div>
+    {mode === "guided" ? <div className="pub-reading pub-section-space">
+      <details className="pub-disclosure">
+        <summary>{kind === "thresholds" ? "Try the educational threshold simulation" : kind === "ablation" ? "Explore the illustrative provenance example" : "Open the compact budget demo"}</summary>
+        {kind === "thresholds" ? <ThresholdDemo evidenceLink={false} /> : <Visual evidenceLink={false} />}
+      </details>
+    </div> : <section className="pub-section-space" aria-label="Technical evidence">{technical}</section>}
   </>;
 }
 
