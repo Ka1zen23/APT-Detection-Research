@@ -14,10 +14,12 @@ import type {
   JournalEntry,
   JournalEntryMeta,
   Limitation,
+  MatchedProvenanceEvents,
   MethodologyData,
   ModelRow,
   Objective,
   OverviewData,
+  ProvenanceGraphData,
   ReportItem,
   ResearchStatus,
   Roadmap,
@@ -218,6 +220,10 @@ export const api = {
     request<Record<string, unknown>>(
       `/dataset/events/${encodeURIComponent(phase)}/${encodeURIComponent(eventId)}`,
     ),
+  provenance: (phase: string, eventId: string) => request<ProvenanceGraphData>(
+    `/dataset/events/${encodeURIComponent(phase)}/${encodeURIComponent(eventId)}/graph`,
+  ),
+  matchedProvenance: () => request<MatchedProvenanceEvents>("/dataset/events/matched-representations"),
   findings: () => request<{ findings: Finding[]; count: number }>("/findings"),
   roadmap: () => request<Roadmap>("/roadmap"),
   journal: () => request<{ entries: JournalEntryMeta[] }>("/journal"),

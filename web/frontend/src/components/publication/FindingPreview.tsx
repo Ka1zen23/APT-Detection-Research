@@ -5,11 +5,12 @@ import type { CSSProperties } from "react";
 
 type PreviewRow = { id: string; value?: number | null };
 
-export function FindingPreview({ title, mode, rows, maximum }: {
+export function FindingPreview({ title, mode, rows, maximum, highlight }: {
   title: string;
   mode: "bar" | "dot" | "queue";
   rows: PreviewRow[];
   maximum?: number | null;
+  highlight?: string;
 }) {
   const available = rows.filter((row): row is { id: string; value: number } => row.value != null && Number.isFinite(row.value));
   const max = Math.max(maximum ?? 0, ...available.map(({ value }) => value), Number.EPSILON);
@@ -17,7 +18,7 @@ export function FindingPreview({ title, mode, rows, maximum }: {
   return <figure className="pub-finding-preview" data-mode={mode}>
     <figcaption>{title}</figcaption>
     {available.length ? <>
-      <ul>{available.map(({ id, value }) => <li key={id} style={{ "--preview-colour": modelColour(id) } as CSSProperties}>
+      <ul>{available.map(({ id, value }) => <li key={id} data-highlight={id === highlight || undefined} style={{ "--preview-colour": modelColour(id) } as CSSProperties}>
         <strong>{id}</strong>
         <span className="pub-preview-track" aria-hidden="true"><span style={{ width: `${100 * value / max}%` }} /></span>
         <span>{mode === "queue" && !Number.isInteger(value) ? value.toFixed(2) : value.toFixed(precision)}</span>

@@ -158,8 +158,8 @@ export function GuidedExperimentDemo({ kind, technical }: { kind: keyof typeof d
     <p className="pub-lede">{summary}</p>
     <div className="pub-section-space">{kind === "thresholds" ? <ThresholdEvidence /> : kind === "alerts" ? <AlertEvidence /> : <AblationEvidence />}</div>
     {mode === "guided" ? <div className="pub-reading pub-section-space">
-      <details className="pub-disclosure">
-        <summary>{kind === "thresholds" ? "Try the educational threshold simulation" : kind === "ablation" ? "Explore the illustrative provenance example" : "Open the compact budget demo"}</summary>
+      <details className="pub-disclosure" open={kind === "ablation" ? true : undefined}>
+        <summary>{kind === "thresholds" ? "Try the educational threshold simulation" : kind === "ablation" ? "Explore the record → description → graph transform" : "Open the compact budget demo"}</summary>
         {kind === "thresholds" ? <ThresholdDemo evidenceLink={false} /> : <Visual evidenceLink={false} />}
       </details>
     </div> : <section className="pub-section-space" aria-label="Technical evidence">{technical}</section>}

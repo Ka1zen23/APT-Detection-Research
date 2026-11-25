@@ -1,40 +1,10 @@
 import { useId, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAblation, useAlertBudgets, useDataset, useThresholds } from "@/hooks/queries";
+import { useAlertBudgets, useDataset, useThresholds } from "@/hooks/queries";
 import { formatDecimal, formatNumber, formatPercent } from "@/lib/format";
-
-const modes = [
-  ["E5-A", "Operation only", "Both read a file and copy it. Without names or links, the activities are indistinguishable."],
-  ["E5-B", "With entity attributes", "The same verbs now come with program, file, and destination names. We still do not say which entity acted on which."],
-  ["E5-C", "Full provenance", "Directed links preserve who did what to which file and where it went."],
-];
-
-export function ProvenanceDemo({ evidenceLink = true }: { evidenceLink?: boolean }) {
-  const [mode, setMode] = useState(0);
-  const { data } = useAblation();
-  const variants = [
-    ["Read → Copy", "Read → Copy"],
-    ["Read, copy · backup utility · project file · shared archive", "Read, copy · unknown process · project file · new destination"],
-    ["Backup utility → reads → project file → copied to → shared archive", "Unknown process → reads → project file → copied to → new destination"],
-  ];
-  const selected = modes[mode];
-  const metric = data?.models.find((row) => row.id === selected[0]);
-  const saved = data?.examples.representations.find((row) => row.id === selected[0]);
-  return <div className="pub-demo">
-    <p className="pub-kicker">Illustrative activities</p>
-    <div className="pub-controls" role="group" aria-label="Event representation">{modes.map(([id, label], i) => <button className="pub-segment" key={id} aria-pressed={i === mode} onClick={() => setMode(i)}>{label}</button>)}</div>
-    <div className="pub-demo-pair" aria-live="polite">
-      {variants[mode].map((description, i) => <div key={i}><strong>{i ? "Unusual activity" : "Routine activity"}</strong><p>{description}</p></div>)}
-    </div>
-    <p>{selected[2]}</p>
-    <div className="pub-measured"><p className="pub-kicker">Measured experiment · {selected[0]}</p>
-      <p>Average Precision: <strong>{formatDecimal(metric?.average_precision, 6)}</strong> · ROC-AUC: <strong>{formatDecimal(metric?.roc_auc, 6)}</strong></p>
-      {evidenceLink && <Link className="pub-text-link" to="/experiments/ablation">Compare all three E5 results <ArrowRight size={15} /></Link>}
-      {saved && <details className="pub-disclosure"><summary>See the example supplied with the evidence</summary><p>{data?.examples.event_context} · {data?.examples.source}</p><p>{saved.description}</p></details>}
-    </div>
-  </div>;
-}
+export { AutoencoderDemo } from "./AutoencoderVisual";
+export { ProvenanceDemo } from "./RepresentationTransform";
 
 const sentences = [
   { text: "A backup utility reads a project file.", near: "A backup program opens a document.", far: "A service starts a network connection." },
@@ -53,34 +23,6 @@ export function EmbeddingDemo() {
     <div aria-hidden="true" className="pub-similarity"><span>Input</span><span>Similar</span><span>Less similar</span></div>
     <div className="pub-demo-pair" aria-live="polite"><div><strong>Similar meaning</strong><p>{item.near}</p></div><div><strong>Less similar meaning</strong><p>{item.far}</p></div></div>
     <p>The diagram illustrates one way to think about distance. No model scores or projected coordinates are shown. The research uses frozen all-MiniLM-L6-v2 with 384 dimensions.</p>
-  </div>;
-}
-
-const stages = [
-  ["Input", "The model receives a numerical representation of an event."],
-  ["Compression", "It reduces the number of values while trying to retain the pattern."],
-  ["Bottleneck", "A small set of values must carry enough information for reconstruction."],
-  ["Reconstruction", "The model expands those values and compares the result with the input."],
-];
-
-export function AutoencoderDemo() {
-  const [unfamiliar, setUnfamiliar] = useState(false);
-  const [step, setStep] = useState(0);
-  const values = unfamiliar ? [35, 80, 32, 77, 28, 70] : [27, 52, 72, 62, 44, 30];
-  const reconstructed = unfamiliar ? [31, 53, 65, 58, 45, 32] : [28, 51, 69, 60, 43, 31];
-  const amounts = step === 0 ? values : step === 1 ? [47, 76, 44, 60] : step === 2 ? [52, 69] : reconstructed;
-  return <div className="pub-demo">
-    <p className="pub-kicker">Illustrative model · no measured scores</p>
-    <div className="pub-controls" role="group" aria-label="Example type">
-      <button className="pub-segment" aria-pressed={!unfamiliar} onClick={() => setUnfamiliar(false)}>Familiar benign pattern</button>
-      <button className="pub-segment" aria-pressed={unfamiliar} onClick={() => setUnfamiliar(true)}>Unfamiliar pattern</button>
-    </div>
-    <div className="pub-controls" role="group" aria-label="Autoencoder stage">{stages.map(([name], i) => <button className="pub-segment" key={name} aria-pressed={i === step} onClick={() => setStep(i)}>{i + 1}. {name}</button>)}</div>
-    <div className="pub-neural" aria-hidden="true" key={`${step}-${unfamiliar}`}>
-      {amounts.map((height, i) => <span key={i} style={{ height: `${height}%` }} />)}
-      {step === 3 && <div>{values.map((height, i) => <span key={i} style={{ height: `${height}%` }} />)}</div>}
-    </div>
-    <p aria-live="polite">{stages[step][1]} {step === 3 && (unfamiliar ? "The reconstructed values differ more from the input (outlined). That could warrant review, but unusual does not mean malicious." : "The reconstructed values stay close to the input (outlined), giving a smaller error in this illustration.")}</p>
   </div>;
 }
 

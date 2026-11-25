@@ -39,6 +39,8 @@ def test_no_event_level_payload_is_exported() -> None:
         keys = set(walk_keys(json.loads(path.read_text(encoding="utf-8"))))
         assert "node_ids" not in keys, path
         assert "text" not in keys, path
+        assert "positive_event_id" not in keys, path
+        assert "original_positive_edges" not in keys, path
 
 
 def test_comparison_visualisation_exports_are_aggregate_only() -> None:

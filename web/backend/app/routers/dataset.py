@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Response
 
+from app import config
 from app.config import DEFAULT_EVENT_PAGE_SIZE, MAX_EVENT_PAGE_SIZE
 from app.deps import envelope
 from app.schemas import Envelope, EventPage
-from app.services import dataset
+from app.services import dataset, provenance
 
 router = APIRouter(prefix="/dataset", tags=["dataset"])
 
@@ -83,4 +84,33 @@ def dataset_event_detail(phase: str, event_id: str) -> dict:
     item = dataset.event_detail(phase, event_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Event not found")
+    return envelope(item)
+
+
+def _local_graph_only(response: Response) -> None:
+    if config.DEPLOYMENT_MODE != "local":
+        raise HTTPException(status_code=404, detail="Recorded graph excerpts are available only in local mode.")
+    response.headers["Cache-Control"] = "no-store"
+
+
+@router.get("/events/{phase}/{event_id}/graph")
+def dataset_event_graph(phase: str, event_id: str, response: Response) -> dict:
+    _local_graph_only(response)
+    if phase not in {"phase1", "phase2"} or len(event_id) > 80:
+        raise HTTPException(status_code=404, detail="Event not found")
+    try:
+        item = provenance.event_graph(phase, event_id)
+    except OSError:
+        raise HTTPException(status_code=503, detail="Local raw provenance records are unavailable.") from None
+    if item is None:
+        raise HTTPException(status_code=404, detail="No recorded relationships were found for this event.")
+    return envelope(item)
+
+
+@router.get("/events/matched-representations")
+def dataset_matched_representations(response: Response) -> dict:
+    _local_graph_only(response)
+    item = provenance.matched_representation_events()
+    if item is None:
+        raise HTTPException(status_code=404, detail="No matched pair is available in the local artifacts.")
     return envelope(item)

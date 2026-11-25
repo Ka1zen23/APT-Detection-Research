@@ -39,6 +39,8 @@ export default defineConfig({
           if (/\/node_modules\/(react|react-dom|react-router|react-router-dom|scheduler)\//.test(id)) return "react-vendor";
           if (/\/node_modules\/recharts\//.test(id)) return "charts";
           if (/\/node_modules\/(react-markdown|remark-gfm)\//.test(id)) return "markdown";
+          if (id.endsWith("/node_modules/three/build/three.core.js")) return "three-core";
+          if (id.endsWith("/node_modules/three/build/three.module.js")) return "three-renderer";
         },
       },
     },

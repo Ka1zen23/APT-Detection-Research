@@ -8,6 +8,7 @@ import { getResearchProgress } from "@/lib/research-progress";
 
 const CompactResearchJourney = lazy(() => import("@/components/publication/ResearchJourney").then((module) => ({ default: module.CompactResearchJourney })));
 const UpcomingExecution = lazy(() => import("@/components/publication/ExperimentExecution").then((module) => ({ default: module.UpcomingExecution })));
+const InteractivePipeline = lazy(() => import("@/components/publication/InteractivePipeline").then((module) => ({ default: module.InteractivePipeline })));
 
 const approach = [
   ["Observe system activity", "Record which programs interact with files and other parts of the computer.", "System provenance describes entities and how they interact. The research converts these structured records into consistent descriptions.", "/understand/system-provenance"],
@@ -74,7 +75,10 @@ export function PublicationHome() {
           </div>
           <p className="pub-official"><span>OFFICIAL RESEARCH TITLE</span>{status?.official_title ?? "AI-based solution to detect and mitigate APT malware"}</p>
         </div>
-        <TeachingGraph />
+        <div className="pub-hero-visual">
+          <TeachingGraph />
+          <Link className="pub-text-link" to="/understand/provenance-explorer">Explore the provenance graph lab <ArrowUpRight size={15} /></Link>
+        </div>
       </section>
       <div className="pub-wrap pub-reading-bar">
         <span>Universiti Teknologi Brunei</span><span>Preliminary research · No unseen-campaign validation</span><a href="#problem">Start reading <ArrowDown size={15} /></a>
@@ -98,11 +102,18 @@ export function PublicationHome() {
         </div>
       </section>
       <section className="pub-tinted">
-        <div className="pub-wrap pub-home-section pub-split">
-          <ChapterHeading number="02" label="THE APPROACH" title="Learn what routine activity looks like." />
-          <div className="pub-steps" ref={steps}>{approach.map(([title, summary, technical, to], index) =>
-            <details key={title}><summary><span className="pub-step-index">0{index + 1}</span><span><strong>{title}</strong><small>{summary}</small></span></summary><p>{technical}</p><Link className="pub-text-link" to={to}>Explore this step <ArrowRight size={15} /></Link></details>,
-          )}</div>
+        <div className="pub-wrap pub-home-section">
+          <div className="pub-split">
+            <ChapterHeading number="02" label="THE APPROACH" title="Learn what routine activity looks like." />
+            <div className="pub-steps" ref={steps}>{approach.map(([title, summary, technical, to], index) =>
+              <details key={title}><summary><span className="pub-step-index">0{index + 1}</span><span><strong>{title}</strong><small>{summary}</small></span></summary><p>{technical}</p><Link className="pub-text-link" to={to}>Explore this step <ArrowRight size={15} /></Link></details>,
+            )}</div>
+          </div>
+          <div className="pub-section-space">
+            <Suspense fallback={<Link className="pub-text-link" to="/understand/pipeline">Open the interactive pipeline <ArrowRight size={16} /></Link>}>
+              <InteractivePipeline />
+            </Suspense>
+          </div>
         </div>
       </section>
       <section className="pub-wrap pub-home-section">

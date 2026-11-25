@@ -255,6 +255,48 @@ export interface EventPage {
   filters: Record<string, unknown>;
 }
 
+export type ProvenanceKind = "process" | "artifact" | "network" | "unknown";
+export type ProvenanceRelation = "Used" | "WasGeneratedBy" | "WasDerivedFrom" | "WasTriggeredBy";
+
+export interface ProvenanceNode {
+  id: string;
+  kind: ProvenanceKind;
+  label: string;
+  annotation: number | null;
+  metadata: Record<string, string>;
+}
+
+export interface ProvenanceEdge {
+  id: string;
+  source: string;
+  target: string;
+  relation: ProvenanceRelation;
+  operation: string | null;
+  timestamp: number | null;
+  annotation: number | null;
+}
+
+export interface ProvenanceGraphData {
+  phase: string;
+  event_id: string;
+  edge_count: number;
+  original_positive_edges: number;
+  limited: boolean;
+  unresolved_nodes: number;
+  nodes: ProvenanceNode[];
+  edges: ProvenanceEdge[];
+  source: string;
+}
+
+export interface MatchedProvenanceEvents {
+  phase: string;
+  partition: string;
+  operation_description: string;
+  positive_event_id: string;
+  negative_event_id: string;
+  source: string;
+}
+
 export interface ThresholdRow {
   percentile: number;
   threshold: number;

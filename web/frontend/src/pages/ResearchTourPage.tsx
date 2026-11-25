@@ -104,7 +104,11 @@ export function ResearchTourPage() {
     <p className="pub-kicker">Research tour · 12 short chapters</p>
     <h1 className="pub-editorial-title">Understand the research</h1>
     <p className="pub-lede">Follow an event from the computer’s activity log to an analyst’s alert queue. Start at the beginning or choose any topic below.</p>
-    <div className="pub-actions"><Link className="pub-button" to={`/understand/${resume?.slug ?? "apt"}`}>{resume ? "Resume reading" : "Start chapter 01"} <ArrowRight size={17} /></Link></div>
+    <div className="pub-actions">
+      <Link className="pub-button" to={`/understand/${resume?.slug ?? "apt"}`}>{resume ? "Resume reading" : "Start chapter 01"} <ArrowRight size={17} /></Link>
+      <Link className="pub-button pub-button-quiet" to="/understand/pipeline">Interactive pipeline <ArrowUpRight size={15} /></Link>
+      <Link className="pub-button pub-button-quiet" to="/understand/provenance-explorer">Provenance graph lab <ArrowUpRight size={15} /></Link>
+    </div>
     <p className="pub-tour-count"><strong>{completed.length} of {chapters.length}</strong> chapters marked read · {remaining} remaining. Saved on this browser only.</p>
     <ol className="pub-tour-index pub-section-space">
       {chapters.map((item, i) => <li key={item.slug}><Link to={`/understand/${item.slug}`}><span>{String(i + 1).padStart(2, "0")}</span>{item.title}{completed.includes(item) ? <Check size={17} aria-label="Marked read" /> : <ArrowUpRight size={17} aria-hidden="true" />}</Link></li>)}

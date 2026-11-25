@@ -47,6 +47,45 @@ def test_score_histogram_exports_bins_and_counts_only(client: TestClient) -> Non
     assert unavailable["available"] is False and not unavailable["rows"]
 
 
+def test_local_provenance_excerpt_preserves_source_directions_and_labels(client: TestClient) -> None:
+    import csv
+
+    from app.services import artifacts
+
+    response = client.get("/api/v1/dataset/events/matched-representations")
+    assert response.status_code == 200
+    assert response.headers["Cache-Control"] == "no-store"
+    pair = response.json()["data"]
+    assert pair["partition"] == "attack_test" and pair["operation_description"]
+    assert pair["negative_event_id"] != pair["positive_event_id"]
+    with artifacts.raw_phase_path(pair["phase"]).open(encoding="utf-8", newline="") as stream:
+        raw = [
+            row for row in csv.DictReader(stream)
+            if row["event id"] in {pair["negative_event_id"], pair["positive_event_id"]}
+            and row["type"] in {"Used", "WasGeneratedBy", "WasDerivedFrom", "WasTriggeredBy"}
+        ]
+    for field, positive in (("positive_event_id", True), ("negative_event_id", False)):
+        event = pair[field]
+        response = client.get(f"/api/v1/dataset/events/{pair['phase']}/{event}/graph")
+        assert response.status_code == 200
+        assert response.headers["Cache-Control"] == "no-store"
+        graph = response.json()["data"]
+        expected = [row for row in raw if row["event id"] == event]
+        assert graph["edge_count"] == len(expected)
+        assert bool(graph["original_positive_edges"]) == positive
+        assert 0 < len(graph["edges"]) <= 24
+        assert {(edge["source"], edge["relation"], edge["target"]) for edge in graph["edges"]} <= {
+            (row["from"], row["type"], row["to"]) for row in expected
+        }
+        assert all("command line" not in node["metadata"] for node in graph["nodes"])
+
+
+def test_provenance_excerpt_routes_are_disabled_outside_local_mode(client: TestClient, monkeypatch) -> None:
+    monkeypatch.setattr(config, "DEPLOYMENT_MODE", "container")
+    assert client.get("/api/v1/dataset/events/matched-representations").status_code == 404
+    assert client.get("/api/v1/dataset/events/phase2/123/graph").status_code == 404
+
+
 def test_overview_kpis(client: TestClient) -> None:
     data = client.get("/api/v1/overview").json()["data"]
     kpis = data["kpis"]

@@ -109,6 +109,16 @@ from saved E2 CSVs. Score distributions use aggregate counts in common,
 log-spaced bins within each model; the export does not include per-event scores.
 The E5 token-length profile shows saved summary statistics, not a histogram.
 
+The visual lab lives at `/understand/pipeline` and
+`/understand/provenance-explorer`. The public site includes an educational
+provenance example and a keyboard-accessible 2D view; the Three.js renderer
+loads only when a visitor opens 3D. In local API mode, recorded event IDs can
+open an excerpt of up to 24 directed relationships. Turning on the recorded
+pair in the E5 explainer retrieves an exact operation-only match across original
+labels in the attack-test partition. These endpoints are local-only and are not
+included in the public snapshot. Autoencoder reconstruction values in the tour
+are explicitly illustrative; the browser does not run the research model.
+
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview
