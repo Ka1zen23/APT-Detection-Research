@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E2-B",
+    "available": true,
+    "metrics": {
+      "id": "E2-B",
+      "name": "Unique-description training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Does deduplicating benign training descriptions reduce frequency dominance and improve anomaly ranking?",
+      "hypothesis": "Training on unique descriptions will prevent the most frequent template from dominating the reconstruction objective.",
+      "seed": 42,
+      "roc_auc": 0.9877550817990406,
+      "average_precision": 0.026070835700867982,
+      "recall": 1.0,
+      "precision": 0.012780719371918934,
+      "f1": 0.02523886785649901,
+      "true_positives": 70,
+      "false_positives": 5407,
+      "false_negatives": 0,
+      "true_negatives": 95415,
+      "benign_fpr": 0.005103713068314838,
+      "attack_fpr": 0.05362916823709111,
+      "contextual_recall": 0.5066666666666667,
+      "threshold": 0.0005167383933439851,
+      "threshold_percentile": 99.0,
+      "training_seconds": 23.0959918510016,
+      "operating_point": "Validation P99 (primary experimental operating point)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+        "note": null
+      },
+      "rank": 7
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.779050+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -96,7 +96,7 @@ function SortButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex items-center gap-1 text-[9px] uppercase tracking-wider transition-colors hover:text-foreground",
+        "inline-flex min-h-8 items-center gap-1 whitespace-nowrap text-[12px] transition-colors hover:text-foreground",
         active ? "text-foreground" : "text-muted-foreground",
         align === "right" && "ml-auto",
       )}
@@ -192,36 +192,50 @@ export function ComparisonPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Experiments · Comparison"
+        eyebrow="Experiments, Comparison"
         title="Model comparison"
         description="Compare 12 measured configurations. Ranking metrics are threshold-independent; threshold-based metrics use each model's recorded operating point. No curve is fabricated from summary values."
         actions={<Badge variant="outline">{models.length} models</Badge>}
       />
 
+      <InfoCallout tone="info" title="How to read this page">
+        ROC-AUC and Average Precision rank across all thresholds. Threshold metrics use each model's
+        recorded operating point. The leading AP and the leading ROC-AUC can come from different
+        models.{" "}
+        <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
+          Glossary
+        </Link>
+        .
+      </InfoCallout>
+
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <KpiCard
           label="Leading Average Precision"
+          metricId="average-precision"
           value={formatDecimal(leader?.average_precision, 4)}
-          detail={<><span className="font-mono text-foreground">{leader?.id}</span> · leading anomaly ranker</>}
+          detail={<><span className="font-mono text-foreground">{leader?.id}</span>, leading anomaly ranker</>}
           tone="success"
           source="results/autoencoder_comparison/ranking_summary.csv"
         />
         <KpiCard
           label="Leading ROC-AUC"
+          metricId="roc-auc"
           value={formatDecimal(leader?.roc_auc, 4)}
-          detail={`${leader?.id ?? "—"} · threshold-independent ranking`}
+          detail={`${leader?.id ?? "n/a"}, threshold-independent ranking`}
           tone="accent"
         />
         <KpiCard
           label="Best recall group"
+          metricId="recall"
           value="100%"
           detail={`${fullRecall.length} models tied at their recorded operating points`}
           tone="warning"
         />
         <KpiCard
           label="Models with zero precision"
+          definition="Models whose recorded operating point raises no true positives."
           value={String(zeroPrecision.length)}
-          detail={zeroPrecision.map((model) => model.id).join(" · ") || "None"}
+          detail={zeroPrecision.map((model) => model.id).join(", ") || "None"}
           tone="error"
         />
       </div>
@@ -242,7 +256,7 @@ export function ComparisonPage() {
                 type="button"
                 onClick={() => toggle(model.id)}
                 className={cn(
-                  "inline-flex items-center gap-1.5 rounded border px-2 py-1 font-mono text-[10px] transition-colors",
+                  "inline-flex min-h-8 items-center gap-1.5 rounded border px-2 py-1 font-mono text-[12px] transition-colors",
                   active
                     ? "border-primary/40 bg-primary/10 text-primary"
                     : "border-border bg-surface text-muted-foreground hover:border-primary/30 hover:text-foreground",
@@ -251,13 +265,13 @@ export function ComparisonPage() {
               >
                 {active && <Check className="size-2.5" />}
                 {model.id}
-                <span className="hidden text-[9px] opacity-70 sm:inline">
+                <span className="hidden text-[12px] opacity-70 sm:inline">
                   {formatDecimal(model.average_precision, 3)}
                 </span>
               </button>
             );
           })}
-          <span className="ml-auto self-center text-[9px] text-muted-foreground">
+          <span className="ml-auto self-center text-[12px] text-muted-foreground">
             {selected.length}/{MAX_SELECTION} selected
           </span>
         </CardContent>
@@ -267,16 +281,19 @@ export function ComparisonPage() {
         <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
           <div>
             <div className="text-sm font-semibold text-foreground">Measured model leaderboard</div>
-            <div className="text-[10px] text-muted-foreground">Click a column to sort. Click a row to set the confusion-matrix model.</div>
+            <div className="text-[12px] text-muted-foreground">Click a column to sort. Click a row to set the confusion-matrix model.</div>
           </div>
-          <Badge variant="outline">Attack test · original labels</Badge>
+          <Badge variant="outline">Attack test, original labels</Badge>
         </div>
+        <p className="px-4 pb-2 text-[12px] text-muted-foreground sm:hidden">
+          Scroll horizontally to see every column.
+        </p>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[980px] text-xs">
             <thead>
               <tr className="border-b border-border bg-elevated/40">
-                <th className="px-3 py-2 text-left text-[9px] uppercase tracking-wider text-muted-foreground">ID</th>
-                <th className="px-3 py-2 text-left text-[9px] uppercase tracking-wider text-muted-foreground">Model</th>
+                <th className="px-3 py-2 text-left text-[12px] text-muted-foreground">ID</th>
+                <th className="px-3 py-2 text-left text-[12px] text-muted-foreground">Model</th>
                 <th className="px-3 py-2 text-right">
                   <SortButton label="AP" active={sortKey === "average_precision"} desc={sortDesc} onClick={() => sort("average_precision")} />
                 </th>
@@ -310,25 +327,25 @@ export function ComparisonPage() {
                   )}
                   onClick={() => setOperatingId(model.id)}
                 >
-                  <td className="px-3 py-2 font-mono text-[10px] text-primary">
+                  <td className="px-3 py-2 font-mono text-[12px] text-primary">
                     <Link to={`/experiments/${model.id}`} onClick={(event) => event.stopPropagation()} className="hover:underline">
                       {model.id}
                     </Link>
                   </td>
-                  <td className="max-w-[260px] truncate px-3 py-2 text-[11px] text-foreground">{model.name}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular text-foreground">{formatDecimal(model.average_precision, 4)}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular">{formatDecimal(model.roc_auc, 4)}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular">{formatPercent(model.recall, 1)}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular">{formatPercent(model.precision, 3)}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular">{formatNumber(model.false_positives)}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular">{formatPercent(model.contextual_recall, 1)}</td>
-                  <td className="px-3 py-2 text-right font-mono text-[10px] tabular text-muted-foreground">{formatDuration(model.training_seconds)}</td>
+                  <td className="max-w-[260px] truncate px-3 py-2 text-[13px] text-foreground">{model.name}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular text-foreground">{formatDecimal(model.average_precision, 4)}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular">{formatDecimal(model.roc_auc, 4)}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular">{formatPercent(model.recall, 1)}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular">{formatPercent(model.precision, 3)}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular">{formatNumber(model.false_positives)}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular">{formatPercent(model.contextual_recall, 1)}</td>
+                  <td className="px-3 py-2 text-right font-mono text-[12px] tabular text-muted-foreground">{formatDuration(model.training_seconds)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="border-t border-border px-3 py-2 text-[9px] leading-relaxed text-muted-foreground">
+        <div className="border-t border-border px-3 py-2 text-[12px] leading-relaxed text-muted-foreground">
           B5 uses operation-frequency scoring; E2-T/E2-R are analytical studies and are not trained models, so they are excluded from this ranking. The "best recall group" includes models at different thresholds.
         </div>
       </Card>
@@ -416,11 +433,11 @@ export function ComparisonPage() {
                   .sort((a, b) => (b.contextual_recall ?? 0) - (a.contextual_recall ?? 0))
                   .map((model) => (
                     <div key={model.id} className="flex items-center gap-2">
-                      <span className="w-12 font-mono text-[10px] text-muted-foreground">{model.id}</span>
+                      <span className="w-12 font-mono text-[12px] text-muted-foreground">{model.id}</span>
                       <div className="h-1.5 flex-1 overflow-hidden rounded bg-elevated">
                         <div className="h-full bg-primary" style={{ width: `${(model.contextual_recall ?? 0) * 100}%` }} />
                       </div>
-                      <span className="w-12 text-right font-mono text-[10px] text-foreground">{formatPercent(model.contextual_recall, 1)}</span>
+                      <span className="w-12 text-right font-mono text-[12px] text-foreground">{formatPercent(model.contextual_recall, 1)}</span>
                     </div>
                   ))}
               </CardContent>
@@ -435,7 +452,7 @@ export function ComparisonPage() {
           <div className="grid gap-4 lg:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>ROC curves — original labels</CardTitle>
+                <CardTitle>ROC curves, original labels</CardTitle>
               </CardHeader>
               <CardContent className="h-[340px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -454,7 +471,7 @@ export function ComparisonPage() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>Precision-recall curves — original labels</CardTitle>
+                <CardTitle>Precision-recall curves, original labels</CardTitle>
               </CardHeader>
               <CardContent className="h-[340px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -474,7 +491,7 @@ export function ComparisonPage() {
           </div>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {curvePayloads.map((payload) => (
-              <div key={payload.experiment_id} className="rounded border border-border px-3 py-2 text-[10px]">
+              <div key={payload.experiment_id} className="rounded border border-border px-3 py-2 text-[12px]">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-foreground">{payload.experiment_id}</span>
                   <Badge variant="outline">{payload.label}</Badge>
@@ -507,10 +524,10 @@ export function ComparisonPage() {
                 fn={operating.false_negatives}
                 tn={operating.true_negatives}
               />
-              <div className="grid grid-cols-2 gap-2 text-[10px]">
+              <div className="grid grid-cols-2 gap-2 text-[12px]">
                 {[
                   ["Threshold", formatThreshold(operating.threshold)],
-                  ["Operating point", operating.operating_point ?? "—"],
+                  ["Operating point", operating.operating_point ?? "n/a"],
                   ["Precision", formatPercent(operating.precision, 3)],
                   ["Recall", formatPercent(operating.recall, 2)],
                   ["F1", formatPercent(operating.f1, 3)],
@@ -540,8 +557,8 @@ export function ComparisonPage() {
                     const item = seen[key];
                     return (
                       <div key={key} className="rounded border border-border p-2.5">
-                        <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{key}</div>
-                        <div className="mt-1 space-y-1 text-[10px]">
+                        <div className="text-[12px] text-muted-foreground">{key}</div>
+                        <div className="mt-1 space-y-1 text-[12px]">
                           <div className="flex justify-between"><span className="text-muted-foreground">Records</span><span className="font-mono text-foreground">{formatNumber(item?.records ?? null)}</span></div>
                           <div className="flex justify-between"><span className="text-muted-foreground">Positives</span><span className="font-mono text-foreground">{formatNumber(item?.positives ?? null)}</span></div>
                           <div className="flex justify-between"><span className="text-muted-foreground">Recall</span><span className="font-mono text-foreground">{formatPercent(item?.recall ?? null, 1)}</span></div>
@@ -559,7 +576,7 @@ export function ComparisonPage() {
               <CardHeader>
                 <CardTitle>Interpretation guardrails</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-[11px] leading-relaxed text-muted-foreground">
+              <CardContent className="space-y-2 text-[13px] leading-relaxed text-muted-foreground">
                 <p><TrendingUp className="mr-1 inline size-3 text-success" /> E2-D leads on AP (0.1091) and ROC-AUC (0.9956), but precision is still 0.805% at P99.</p>
                 <p><Layers className="mr-1 inline size-3 text-primary" /> E5-C has higher AP than E5-B but is worse on benign FPR, attack FPR, precision and F1 at P99.</p>
                 <p><Info className="mr-1 inline size-3 text-warning" /> Recall values at different thresholds are not directly comparable without checking the operating point.</p>
@@ -586,7 +603,7 @@ export function ComparisonPage() {
                 <thead>
                   <tr className="border-b border-border bg-elevated/40">
                     {["Model", "Subgroup", "Records", "Positives", "Alerts", "Precision", "Recall", "FPR", "ROC-AUC", "AP"].map((header) => (
-                      <th key={header} className="px-2.5 py-2 text-right text-[9px] uppercase tracking-wider text-muted-foreground first:text-left">{header}</th>
+                      <th key={header} className="px-2.5 py-2 text-right text-[12px] text-muted-foreground first:text-left">{header}</th>
                     ))}
                   </tr>
                 </thead>
@@ -596,18 +613,18 @@ export function ComparisonPage() {
                       const item = model[key];
                       return (
                         <tr key={`${model.id}-${key}`} className="border-b border-border last:border-0">
-                          <td className="px-2.5 py-2 font-mono text-[10px] text-primary">
+                          <td className="px-2.5 py-2 font-mono text-[12px] text-primary">
                             <Link to={`/experiments/${model.id}`} className="hover:underline">{model.id}</Link>
                           </td>
-                          <td className="px-2.5 py-2 text-right text-[10px] text-muted-foreground">{key}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(item.records)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(item.positives)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(item.alerts)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(item.precision, 3)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(item.recall, 2)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(item.false_positive_rate, 2)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatDecimal(item.roc_auc, 4)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatDecimal(item.average_precision, 4)}</td>
+                          <td className="px-2.5 py-2 text-right text-[12px] text-muted-foreground">{key}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(item.records)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(item.positives)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(item.alerts)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(item.precision, 3)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(item.recall, 2)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(item.false_positive_rate, 2)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatDecimal(item.roc_auc, 4)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatDecimal(item.average_precision, 4)}</td>
                         </tr>
                       );
                     }),
@@ -616,12 +633,12 @@ export function ComparisonPage() {
               </table>
             </CardContent>
           </Card>
-          <div className="text-[10px] leading-relaxed text-muted-foreground">
+          <div className="text-[12px] leading-relaxed text-muted-foreground">
             {overlapData?.note}
           </div>
           <div className="flex flex-wrap gap-2">
             {(overlapData?.source_artifacts ?? []).map((source) => (
-              <Badge key={source} variant="outline" className="font-mono text-[9px]">{source}</Badge>
+              <Badge key={source} variant="outline" className="font-mono text-[12px]">{source}</Badge>
             ))}
           </div>
         </TabsContent>
@@ -639,20 +656,20 @@ export function ComparisonPage() {
                 <thead>
                   <tr className="border-b border-border">
                     {["ID", "Representation", "Encoder", "Algorithm", "Threshold", "Operating point", "Seed"].map((header) => (
-                      <th key={header} className="px-2 py-2 text-left text-[9px] uppercase tracking-wider text-muted-foreground">{header}</th>
+                      <th key={header} className="px-2 py-2 text-left text-[12px] text-muted-foreground">{header}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {selectedModels.map((model) => (
                     <tr key={model.id} className="border-b border-border last:border-0">
-                      <td className="px-2 py-2 font-mono text-[10px] text-primary">{model.id}</td>
-                      <td className="max-w-[220px] px-2 py-2 text-[10px] text-muted-foreground">{model.representation}</td>
-                      <td className="max-w-[180px] px-2 py-2 text-[10px] text-muted-foreground">{model.encoder}</td>
-                      <td className="max-w-[180px] px-2 py-2 text-[10px] text-muted-foreground">{model.algorithm}</td>
-                      <td className="px-2 py-2 font-mono text-[9px] text-foreground">{formatThreshold(model.threshold)}</td>
-                      <td className="px-2 py-2 text-[10px] text-muted-foreground">{model.operating_point}</td>
-                      <td className="px-2 py-2 font-mono text-[10px]">{model.seed ?? "—"}</td>
+                      <td className="px-2 py-2 font-mono text-[12px] text-primary">{model.id}</td>
+                      <td className="max-w-[220px] px-2 py-2 text-[12px] text-muted-foreground">{model.representation}</td>
+                      <td className="max-w-[180px] px-2 py-2 text-[12px] text-muted-foreground">{model.encoder}</td>
+                      <td className="max-w-[180px] px-2 py-2 text-[12px] text-muted-foreground">{model.algorithm}</td>
+                      <td className="px-2 py-2 font-mono text-[12px] text-foreground">{formatThreshold(model.threshold)}</td>
+                      <td className="px-2 py-2 text-[12px] text-muted-foreground">{model.operating_point}</td>
+                      <td className="px-2 py-2 font-mono text-[12px]">{model.seed ?? "n/a"}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -670,7 +687,7 @@ export function ComparisonPage() {
         />
         <div className="mt-2 flex flex-wrap gap-2">
           {curvePayloads.map((payload) => (
-            <Badge key={payload.experiment_id} variant="outline" className="font-mono text-[9px]">
+            <Badge key={payload.experiment_id} variant="outline" className="font-mono text-[12px]">
               {payload.experiment_id}: {payload.source}
             </Badge>
           ))}

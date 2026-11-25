@@ -26,6 +26,12 @@ import type {
 
 const configuredBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim();
 const API_BASE = configuredBase ? configuredBase.replace(/\/$/, "") : "/api/v1";
+const configuredMode = (import.meta.env.VITE_DATA_MODE as string | undefined)?.trim().toLowerCase();
+export const DATA_MODE = configuredMode || (import.meta.env.PROD ? "static" : "api");
+export const isStaticDataMode = DATA_MODE === "static";
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
+const STATIC_DATA_ROOT = `${BASE_PATH}/data`;
+const STATIC_ARTIFACT_ROOT = `${BASE_PATH}/artifacts`;
 
 export class ApiError extends Error {
   status: number;
@@ -48,7 +54,82 @@ function buildQuery(params?: Record<string, unknown>): string {
   return encoded ? `?${encoded}` : "";
 }
 
+function staticPath(path: string, params?: Record<string, unknown>): string {
+  const clean = path.replace(/\/+$/, "");
+  const parts = clean.split("/").filter(Boolean);
+
+  if (clean === "/overview") return "overview.json";
+  if (clean === "/status") return "status.json";
+  if (clean === "/objectives") return "objectives.json";
+  if (clean === "/experiments") return "experiments.json";
+  if (clean === "/comparisons/models") return "comparisons/models.json";
+  if (clean === "/comparisons/ablation") return "comparisons/ablation.json";
+  if (clean === "/comparisons/description-overlap") {
+    return "comparisons/description-overlap.json";
+  }
+  if (clean === "/dataset/summary") return "dataset-summary.json";
+  if (clean.startsWith("/dataset/events")) {
+    throw new ApiError(
+      "Event-level provenance is not included in the static cloud deployment.",
+      410,
+    );
+  }
+  if (clean === "/findings") return "findings.json";
+  if (clean === "/roadmap") return "roadmap.json";
+  if (clean === "/journal") return "journal.json";
+  if (clean === "/reports") return "reports.json";
+  if (clean === "/environment") return "environment.json";
+  if (clean === "/methodology") return "methodology.json";
+  if (clean === "/limitations") return "limitations.json";
+  if (clean === "/architecture") return "architecture.json";
+  if (clean === "/health") return "health.json";
+
+  if (parts[0] === "experiments" && parts[1]) {
+    const id = decodeURIComponent(parts[1]);
+    if (parts.length === 2) return `experiments/${id}.json`;
+    if (parts.length === 3 && parts[2] === "metrics") {
+      return `experiments/${id}/metrics.json`;
+    }
+    if (parts.length === 3 && parts[2] === "figures") {
+      return `experiments/${id}/figures.json`;
+    }
+    if (parts.length === 3 && parts[2] === "thresholds") {
+      return `thresholds/${id}.json`;
+    }
+    if (parts.length === 3 && parts[2] === "alert-budgets") {
+      return `alert-budgets/${id}.json`;
+    }
+    if (parts.length === 3 && parts[2] === "curves") {
+      const label = String(params?.label ?? "original");
+      return `curves/${id}-${label}.json`;
+    }
+  }
+
+  if (parts[0] === "journal" && parts[1]) {
+    return `journal/${decodeURIComponent(parts[1])}.json`;
+  }
+
+  throw new ApiError(`No static snapshot exists for ${path}`, 404);
+}
+
+async function staticRequest<T>(path: string, params?: Record<string, unknown>): Promise<T> {
+  const relative = staticPath(path, params);
+  const response = await fetch(`${STATIC_DATA_ROOT}/${relative}`, {
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) {
+    throw new ApiError(
+      `The static data snapshot is missing ${relative}. Regenerate it with export_static_site.py.`,
+      response.status,
+    );
+  }
+  const payload = (await response.json()) as Envelope<T>;
+  return payload.data;
+}
+
 async function request<T>(path: string, params?: Record<string, unknown>): Promise<T> {
+  if (isStaticDataMode) return staticRequest<T>(path, params);
+
   const response = await fetch(`${API_BASE}${path}${buildQuery(params)}`, {
     headers: { Accept: "application/json" },
   });
@@ -144,6 +225,21 @@ export const api = {
   architecture: () => request<ArchitectureData>("/architecture"),
   health: () => request<HealthData>("/health"),
   refreshCache: async () => {
+    if (isStaticDataMode) {
+      return {
+        data: {
+          refreshed: false,
+          scope: "Static aggregate snapshot",
+          filesystem_modified: false,
+        },
+        meta: {
+          generated_at: new Date().toISOString(),
+          last_artifact_update: null,
+          data_mode: "static_snapshot",
+          warnings: ["Static snapshots update only after re-export and redeploy."],
+        },
+      } as Envelope<Record<string, unknown>>;
+    }
     const response = await fetch(`${API_BASE}/cache/refresh`, { method: "POST" });
     if (!response.ok) throw new ApiError("Cache refresh failed", response.status);
     return (await response.json()) as Envelope<Record<string, unknown>>;
@@ -152,9 +248,16 @@ export const api = {
 
 export function figureUrl(key: string): string {
   const [run, ...rest] = key.split(":");
-  return `${API_BASE}/artifacts/figures/${encodeURIComponent(run)}/${encodeURIComponent(rest.join(":"))}`;
+  const filename = rest.join(":");
+  if (isStaticDataMode) {
+    return `${STATIC_ARTIFACT_ROOT}/figures/${encodeURIComponent(run)}/${encodeURIComponent(filename)}`;
+  }
+  return `${API_BASE}/artifacts/figures/${encodeURIComponent(run)}/${encodeURIComponent(filename)}`;
 }
 
 export function documentUrl(key: string): string {
+  if (isStaticDataMode) {
+    return `${STATIC_ARTIFACT_ROOT}/documents/${encodeURIComponent(key)}.txt`;
+  }
   return `${API_BASE}/artifacts/documents/${encodeURIComponent(key)}`;
 }

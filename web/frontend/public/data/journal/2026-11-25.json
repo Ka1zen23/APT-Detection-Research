@@ -1,0 +1,27 @@
+{
+  "data": {
+    "slug": "2026-11-25",
+    "date": "2026-11-25",
+    "title": "Provenance ablation and alert-prioritisation analysis",
+    "summary": "Completed the E5 representation ablation, consolidated E2 threshold and alert-budget analyses, and prepared the reproducibility study.",
+    "status": "completed",
+    "experiments": [
+      "E5-A",
+      "E5-B",
+      "E5-C",
+      "E2-D",
+      "E2-T",
+      "E2-R"
+    ],
+    "body": "## Activities completed\n\n- Completed the controlled E5 provenance representation ablation across operation-only (E5-A), operations plus entity attributes (E5-B) and full directed provenance (E5-C).\n- Consolidated the E2-D threshold sensitivity results for validation percentiles P95 through P100.\n- Consolidated the tie-aware alert-prioritisation analysis for E2-A through E2-D.\n- Reviewed per-tactic recall, seen/unseen description performance and representation conflicts.\n- Began the read-only research dashboard under `web/` to make the artifacts reviewable by supervisors.\n\n## Experiments executed\n\n- **E5-A**: operation-only autoencoder, seed 42, 100 epochs.\n- **E5-B**: operations and entity attributes, seed 42, 100 epochs.\n- **E5-C**: full provenance, seed 42, 100 epochs.\n- **E2-T**: analytical percentile sweep over the existing E2 predictions.\n- **E2-R**: analytical alert-budget simulation over the existing E2 predictions.\n\n## Findings\n\n- Operation-only representations are highly ambiguous: all 70 original positives share a description with 8,393 negatively labelled events.\n- Adding entity attributes eliminates the observed exact-description conflicts for original positives and raises AP from 0.003219 to 0.018724.\n- Full provenance reaches AP 0.021743, approximately 16.1% above the entity-based representation, but is slightly worse on benign FPR, attack FPR, precision and F1 at P99.\n- E2-D remains the leading anomaly ranker (ROC-AUC 0.995584, AP 0.109080) and recovers 46 of 70 original positives within the top 500 alerts.\n- The P99.95 threshold reduces E2-D false positives from 8,628 to 2,339 but reduces contextual recall from 77.33% to 49.33%.\n\n## Problems encountered\n\n- The ablation changes text length, ordering and formatting alongside content, so it cannot isolate the causal effect of relationships alone.\n- The full-provenance test set contains 283 descriptions above the 256-token encoder limit.\n- Original positives remain concentrated in two ATT&CK tactics (69 credentialAccess, 1 defenceEvasion), limiting per-tactic conclusions.\n\n## Solutions implemented\n\n- Interpreted E5 as an overall representation comparison rather than a pure relationship ablation.\n- Kept original and contextual label metrics separate in every report.\n- Labelled the P99.95 operating point as retrospective and exploratory.\n- Retained P99 as the primary experimental operating point.\n\n## Decisions made\n\n- E2-D is the leading observed model but is not designated for deployment.\n- No threshold will be selected solely from attack-test performance.\n- The next experiment is E7 multiple-seed reproducibility with seeds 42, 123 and 456.\n- Current findings remain preliminary until multi-seed and independent-scenario evidence is available.\n\n## Remaining questions\n\n- Do the E2-D improvements persist across random seeds?\n- Does full provenance retain its AP advantage under a matched text-length control?\n- How much of the contextual-label recall gap is caused by annotation coverage rather than model error?\n- Can temporal correlation reduce the false-positive volume without sacrificing original-positive recall?\n\n## Next steps\n\n1. Run E7 with seeds 42, 123 and 456.\n2. Report mean, standard deviation and individual outcomes for ROC-AUC, AP, precision, recall and alert-budget recovery.\n3. Design an independent attack-scenario validation protocol.\n4. Investigate chunk-aware embeddings for descriptions above the token limit.\n\n## Related artifacts\n\n- `results/ablation_comparison/ablation_comparison.csv`\n- `results/ablation_comparison/alert_budget_comparison.csv`\n- `results/eda/ablation/representation_statistics.csv`\n- `results/eda/ablation/representation_conflicts.json`\n- `results/autoencoder_comparison/threshold_comparison.csv`\n- `results/autoencoder_comparison/alert_budget_comparison.csv`\n- `results/e2d-unique-matched/evaluation/evaluation_summary.json`\n",
+    "artifact": "web/content/journal/2026-11-25.md"
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:10.160328+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

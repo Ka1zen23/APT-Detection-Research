@@ -1,0 +1,69 @@
+{
+  "data": {
+    "experiment_id": "E2-C",
+    "figures": [
+      {
+        "key": "e2c:attack_test_contextual_label_confusion_matrix.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_confusion_matrix.png",
+        "title": "attack test contextual label confusion matrix"
+      },
+      {
+        "key": "e2c:attack_test_contextual_label_pr_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_pr_curve.png",
+        "title": "attack test contextual label pr curve"
+      },
+      {
+        "key": "e2c:attack_test_contextual_label_roc_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_roc_curve.png",
+        "title": "attack test contextual label roc curve"
+      },
+      {
+        "key": "e2c:attack_test_contextual_label_score_distribution.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_score_distribution.png",
+        "title": "attack test contextual label score distribution"
+      },
+      {
+        "key": "e2c:attack_test_original_label_confusion_matrix.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_confusion_matrix.png",
+        "title": "attack test original label confusion matrix"
+      },
+      {
+        "key": "e2c:attack_test_original_label_pr_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_pr_curve.png",
+        "title": "attack test original label pr curve"
+      },
+      {
+        "key": "e2c:attack_test_original_label_roc_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_roc_curve.png",
+        "title": "attack test original label roc curve"
+      },
+      {
+        "key": "e2c:attack_test_original_label_score_distribution.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_score_distribution.png",
+        "title": "attack test original label score distribution"
+      },
+      {
+        "key": "e2c:benign_test_original_label_confusion_matrix.png",
+        "run": "e2c",
+        "filename": "benign_test_original_label_confusion_matrix.png",
+        "title": "benign test original label confusion matrix"
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.798330+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

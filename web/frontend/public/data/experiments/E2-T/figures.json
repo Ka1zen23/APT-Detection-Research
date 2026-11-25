@@ -1,0 +1,14 @@
+{
+  "data": {
+    "experiment_id": "E2-T",
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.838154+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

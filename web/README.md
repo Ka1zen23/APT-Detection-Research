@@ -9,13 +9,13 @@ The dashboard presents existing CICAPT-IIoT provenance experiments. It does **no
 ```text
 web/
 ├── frontend/        React + TypeScript + Vite + Tailwind v4 + Recharts
-│   ├── api/         Vercel server-side API proxy
-│   └── vercel.json  Vercel build, routing and security configuration
-├── backend/         FastAPI + Pydantic + Pandas + PyArrow
-│   ├── Dockerfile   Production API image
-│   └── scripts/     Dataset-profile generator
+│   ├── public/data/ Aggregate JSON snapshot for the static deployment
+│   ├── public/artifacts/ Figures and allowlisted report texts
+│   └── vercel.json  Vercel build, SPA routing and security headers
+├── backend/         FastAPI + Pydantic + Pandas + PyArrow (local API)
+│   └── scripts/     Static exporter and dataset-profile generator
 ├── content/         Editable experiment registry, roadmap, findings, journal, reports
-├── deploy/          Vercel + Fly.io deployment guide
+├── deploy/          Static Vercel deployment guide
 ├── README.md
 └── .env.example
 ```
@@ -90,6 +90,11 @@ The landing page at `/` is a narrative research story with the provenance lens,
 the findings and the alert-budget trade-off. The read-only evidence dashboard
 starts at `/overview`.
 
+The story and dashboard share one Console design system: Host Grotesk for reading,
+Atkinson Hyperlegible Mono for measured values, graphite dark by default and a
+paper light mode. Metric cards print a definition, denominator and source; the
+shared glossary is at `/glossary`.
+
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview
@@ -112,37 +117,45 @@ VITE_API_BASE_URL=https://example.edu/api/v1 npm run build
 
 ## Deployment
 
-The production deployment uses:
+The public cloud deployment is a **static Vercel site** with aggregate data only:
 
-- **Vercel** for the protected static frontend and a server-side `/api/v1` proxy.
-- **Fly.io** for the persistent FastAPI container containing the research artifacts.
-- **Vercel Authentication (All Deployments)** plus a private API key.
+- no runtime API
+- no Fly.io container
+- no event-level provenance
+- no `data/processed/` or `data/raw/`
 
-The browser never receives the API key. Direct unauthenticated API requests return 401.
-
-Full instructions, protection setup, artifact updates and troubleshooting are in
-[`web/deploy/README.md`](deploy/README.md).
-
-Quick container check from the repository root:
+Generate the snapshot:
 
 ```bash
-docker build -f web/backend/Dockerfile -t apt-research-api:local .
-docker run --rm -p 8001:8000 -e APT_API_KEY=local-test-key apt-research-api:local
-```
-
-Local proxy check:
-
-```bash
+python web/backend/scripts/export_static_site.py
 cd web/frontend
-API_ORIGIN=http://127.0.0.1:8001 \
-APT_API_KEY=local-test-key \
-npx vercel dev --local --listen 127.0.0.1:3002
+npm run build
 ```
+
+Vercel project settings:
+
+```text
+Root Directory: web/frontend
+Framework: Vite
+Install Command: npm ci
+Build Command: npm run build
+Output Directory: dist
+```
+
+No environment variables or secrets are required. Full instructions, privacy notes, updates and
+troubleshooting are in [`web/deploy/README.md`](deploy/README.md).
+
+### Static data modes
+
+- `npm run dev` uses the local FastAPI API by default.
+- Production builds use the exported static snapshot by default.
+- Force either mode with `VITE_DATA_MODE=api` or `VITE_DATA_MODE=static`.
+
+The event explorer is not part of the static deployment. Dataset aggregates remain visible.
 
 ### Dataset profile
 
-The container excludes `data/raw/`. Regenerate the aggregate profile after raw
-provenance files change:
+The static exporter can use the aggregate raw-data profile when `data/raw/` is unavailable:
 
 ```bash
 python web/backend/scripts/build_dataset_profile.py
@@ -172,6 +185,7 @@ Current suite covers:
 - graceful unavailable states
 - API-key authentication and public health checks
 - precomputed dataset-profile consistency and raw-data fallback
+- static snapshot manifest and provenance-exclusion checks
 - journal/findings/roadmap/report/environment content
 
 Frontend build and typecheck:
@@ -224,6 +238,10 @@ Versioned under `/api/v1`:
 - `GET /artifacts/figures/{run}/{filename}`
 - `GET /artifacts/documents/{key}`
 
+The cloud deployment is static and does not call these API routes. The local FastAPI API remains
+available for full research exploration, including event-level pages that are excluded from the
+public snapshot.
+
 ## Data integrity rules
 
 - Original edge-derived positives and contextual connected-node indicators are displayed separately.
@@ -240,9 +258,9 @@ Versioned under `/api/v1`:
 - The ablation event-level Parquet outputs are not retained; the representation comparison uses the saved statistics, conflicts and predictions.
 - Report entries without an actual repository artifact are shown as planned or unavailable.
 - The frontend displays repository-relative artifact paths for traceability; the browser never reads those paths directly.
-- The deployed API image is built locally because processed/raw artifacts are not tracked in Git.
-- New research outputs require a Fly API image rebuild; the in-memory refresh cannot load files absent from the container.
-- Vercel Deployment Protection requires supervisor Vercel accounts for the free authentication path.
+- The cloud deployment is a static aggregate snapshot; event-level provenance is intentionally excluded.
+- New research outputs require re-running the exporter and redeploying the static site.
+- The static site is public unless Vercel Authentication is enabled separately.
 
 ## Research limitations
 

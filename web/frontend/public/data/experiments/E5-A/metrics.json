@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E5-A",
+    "available": true,
+    "metrics": {
+      "id": "E5-A",
+      "name": "Provenance ablation \u2014 operation only",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "representation": "Operation-only description (operation names without entity attributes or relationships)",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "How much detection signal remains when only system operation names are represented?",
+      "hypothesis": "Operation-only representations will be highly ambiguous because many benign and malicious events share the same operation sequence.",
+      "seed": 42,
+      "roc_auc": 0.8263672611136458,
+      "average_precision": 0.0032185387833923397,
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "true_positives": 0,
+      "false_positives": 618,
+      "false_negatives": 70,
+      "true_negatives": 100204,
+      "benign_fpr": 0.0031839677857376973,
+      "attack_fpr": 0.006129614568248993,
+      "contextual_recall": 0.10222222222222223,
+      "threshold": 4.0604358764184667e-10,
+      "threshold_percentile": 99.0,
+      "training_seconds": 101.73515614299686,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "note": null
+      },
+      "rank": 10
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.878390+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

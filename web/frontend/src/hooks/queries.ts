@@ -153,6 +153,10 @@ export function useAlertBudgets(id: string) {
   });
 }
 
+export function useBudgets(id: string) {
+  return useAlertBudgets(id);
+}
+
 export function useCurves(id: string, label: "original" | "contextual") {
   return useQuery({
     queryKey: queryKeys.curves(id, label),

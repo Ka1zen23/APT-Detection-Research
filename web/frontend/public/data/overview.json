@@ -1,0 +1,1967 @@
+{
+  "data": {
+    "research": {
+      "official_title": "AI-based solution to detect and mitigate APT malware",
+      "institution": "Universiti Teknologi Brunei",
+      "phase": "Provenance ablation complete; reproducibility next",
+      "status": "Active experimental analysis",
+      "status_tone": "warning",
+      "description": "An investigation of whether semantic representations of system provenance events, combined with a benign-trained autoencoder, can prioritise anomalous behaviour relevant to Advanced Persistent Threats. Detection evidence is preliminary; mitigation is not yet implemented or evaluated.",
+      "current_activity": "Consolidating the E5 provenance ablation results and preparing the E7 multiple-seed reproducibility study.",
+      "next_activity": "E7 \u2014 repeat selected configurations with seeds 42, 123 and 456 and report mean, standard deviation and individual outcomes.",
+      "primary_operating_point": "P99 of benign validation reconstruction error",
+      "implementation_note": "Roadmap activity counts describe implementation progress only. No dissertation completion percentage is estimated.",
+      "last_reviewed": "2026-11-25"
+    },
+    "dataset": {
+      "counts": {
+        "raw_records": 418855,
+        "phase1_raw_records": 222120,
+        "phase2_raw_records": 196735,
+        "nodes": 100059,
+        "edges": 318796,
+        "events": 243271,
+        "phase1_events": 142379,
+        "phase2_events": 100892,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "attack_prevalence_percent": 0.06938112040597867
+      },
+      "partitions": [
+        {
+          "name": "train",
+          "records": 99665,
+          "unique_descriptions": 13029,
+          "start_timestamp": 1701118210.496,
+          "end_timestamp": 1701360189.944
+        },
+        {
+          "name": "validation",
+          "records": 21357,
+          "unique_descriptions": 2614,
+          "start_timestamp": 1701360192.944,
+          "end_timestamp": 1701411863.205
+        },
+        {
+          "name": "benign_test",
+          "records": 21357,
+          "unique_descriptions": 2658,
+          "start_timestamp": 1701411867.203,
+          "end_timestamp": 1701463813.813
+        },
+        {
+          "name": "attack_test",
+          "records": 100892,
+          "unique_descriptions": 21589,
+          "start_timestamp": 1701468825.767,
+          "end_timestamp": 1701728421.462
+        }
+      ],
+      "class_balance": [
+        {
+          "partition": "Training",
+          "records": 99665,
+          "positives": 0,
+          "note": "Benign only"
+        },
+        {
+          "partition": "Validation",
+          "records": 21357,
+          "positives": 0,
+          "note": "Benign calibration"
+        },
+        {
+          "partition": "Benign test",
+          "records": 21357,
+          "positives": 0,
+          "note": "Benign only"
+        },
+        {
+          "partition": "Attack test",
+          "records": 100892,
+          "positives": 70,
+          "contextual_positives": 225,
+          "note": "Original prevalence \u22480.0694%"
+        }
+      ],
+      "node_types": [
+        {
+          "name": "Artifact",
+          "count": 65342
+        },
+        {
+          "name": "Process",
+          "count": 34717
+        }
+      ],
+      "record_types": [
+        {
+          "name": "WasGeneratedBy",
+          "count": 224080
+        },
+        {
+          "name": "Artifact",
+          "count": 65342
+        },
+        {
+          "name": "Used",
+          "count": 56326
+        },
+        {
+          "name": "Process",
+          "count": 34717
+        },
+        {
+          "name": "WasDerivedFrom",
+          "count": 19502
+        },
+        {
+          "name": "WasTriggeredBy",
+          "count": 18888
+        }
+      ],
+      "edge_types": [
+        {
+          "name": "WasGeneratedBy",
+          "count": 224080
+        },
+        {
+          "name": "Used",
+          "count": 56326
+        },
+        {
+          "name": "WasDerivedFrom",
+          "count": 19502
+        },
+        {
+          "name": "WasTriggeredBy",
+          "count": 18888
+        }
+      ],
+      "operations": [
+        {
+          "name": "unlink",
+          "count": 179450
+        },
+        {
+          "name": "<missing>",
+          "count": 100059
+        },
+        {
+          "name": "load",
+          "count": 36337
+        },
+        {
+          "name": "connect",
+          "count": 25091
+        },
+        {
+          "name": "rename (read)",
+          "count": 19491
+        },
+        {
+          "name": "rename (write)",
+          "count": 19491
+        },
+        {
+          "name": "rename",
+          "count": 19491
+        },
+        {
+          "name": "execve",
+          "count": 16995
+        },
+        {
+          "name": "setgid",
+          "count": 1058
+        },
+        {
+          "name": "setuid",
+          "count": 640
+        },
+        {
+          "name": "open",
+          "count": 510
+        },
+        {
+          "name": "update",
+          "count": 206
+        },
+        {
+          "name": "chmod",
+          "count": 35
+        },
+        {
+          "name": "create",
+          "count": 1
+        }
+      ],
+      "operations_total": 418855,
+      "tactics": {
+        "original": [
+          {
+            "name": "credentialAccess",
+            "count": 69
+          },
+          {
+            "name": "defenceEvasion",
+            "count": 1
+          }
+        ],
+        "contextual": [
+          {
+            "name": "credentialAccess",
+            "count": 75
+          },
+          {
+            "name": "collection",
+            "count": 62
+          },
+          {
+            "name": "defenceEvasion",
+            "count": 23
+          },
+          {
+            "name": "discovery",
+            "count": 22
+          },
+          {
+            "name": "persistence",
+            "count": 18
+          },
+          {
+            "name": "exfiltration",
+            "count": 11
+          },
+          {
+            "name": "CandC",
+            "count": 8
+          },
+          {
+            "name": "lateralMovement",
+            "count": 5
+          },
+          {
+            "name": "initialAccess",
+            "count": 1
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2023-11-27",
+          "total": 5636,
+          "train": 5636,
+          "validation": 0,
+          "benign_test": 0,
+          "attack_test": 0
+        },
+        {
+          "date": "2023-11-28",
+          "total": 33997,
+          "train": 33997,
+          "validation": 0,
+          "benign_test": 0,
+          "attack_test": 0
+        },
+        {
+          "date": "2023-11-29",
+          "total": 35923,
+          "train": 35923,
+          "validation": 0,
+          "benign_test": 0,
+          "attack_test": 0
+        },
+        {
+          "date": "2023-11-30",
+          "total": 35836,
+          "train": 24109,
+          "validation": 11727,
+          "benign_test": 0,
+          "attack_test": 0
+        },
+        {
+          "date": "2023-12-01",
+          "total": 35172,
+          "train": 0,
+          "validation": 9630,
+          "benign_test": 21357,
+          "attack_test": 4185
+        },
+        {
+          "date": "2023-12-02",
+          "total": 37206,
+          "train": 0,
+          "validation": 0,
+          "benign_test": 0,
+          "attack_test": 37206
+        },
+        {
+          "date": "2023-12-03",
+          "total": 30947,
+          "train": 0,
+          "validation": 0,
+          "benign_test": 0,
+          "attack_test": 30947
+        },
+        {
+          "date": "2023-12-04",
+          "total": 28554,
+          "train": 0,
+          "validation": 0,
+          "benign_test": 0,
+          "attack_test": 28554
+        }
+      ],
+      "missing_values": [
+        {
+          "column": "local address",
+          "missing": 418855,
+          "total": 418855,
+          "percent": 100.0
+        },
+        {
+          "column": "local port",
+          "missing": 418855,
+          "total": 418855,
+          "percent": 100.0
+        },
+        {
+          "column": "tgid",
+          "missing": 418836,
+          "total": 418855,
+          "percent": 99.99546382399636
+        },
+        {
+          "column": "fd",
+          "missing": 418836,
+          "total": 418855,
+          "percent": 99.99546382399636
+        },
+        {
+          "column": "mode",
+          "missing": 418819,
+          "total": 418855,
+          "percent": 99.99140514020365
+        },
+        {
+          "column": "flags",
+          "missing": 418344,
+          "total": 418855,
+          "percent": 99.87800074011292
+        },
+        {
+          "column": "command line",
+          "missing": 401687,
+          "total": 418855,
+          "percent": 95.90120686156307
+        },
+        {
+          "column": "start time",
+          "missing": 401682,
+          "total": 418855,
+          "percent": 95.9000131310358
+        },
+        {
+          "column": "seen time",
+          "missing": 401311,
+          "total": 418855,
+          "percent": 95.8114383259123
+        },
+        {
+          "column": "protocol",
+          "missing": 396631,
+          "total": 418855,
+          "percent": 94.69410655238687
+        },
+        {
+          "column": "remote port",
+          "missing": 393764,
+          "total": 418855,
+          "percent": 94.0096214680498
+        },
+        {
+          "column": "remote address",
+          "missing": 393764,
+          "total": 418855,
+          "percent": 94.0096214680498
+        },
+        {
+          "column": "uid",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "egid",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "exe",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "gid",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "euid",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "name",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "ppid",
+          "missing": 384138,
+          "total": 418855,
+          "percent": 91.71145145694811
+        },
+        {
+          "column": "path",
+          "missing": 378623,
+          "total": 418855,
+          "percent": 90.39476668536844
+        },
+        {
+          "column": "permissions",
+          "missing": 378623,
+          "total": 418855,
+          "percent": 90.39476668536844
+        },
+        {
+          "column": "pid",
+          "missing": 364636,
+          "total": 418855,
+          "percent": 87.05542490838118
+        },
+        {
+          "column": "subtype",
+          "missing": 353513,
+          "total": 418855,
+          "percent": 84.39985197741461
+        },
+        {
+          "column": "epoch",
+          "missing": 353513,
+          "total": 418855,
+          "percent": 84.39985197741461
+        },
+        {
+          "column": "version",
+          "missing": 353513,
+          "total": 418855,
+          "percent": 84.39985197741461
+        },
+        {
+          "column": "id",
+          "missing": 318796,
+          "total": 418855,
+          "percent": 76.11130343436272
+        },
+        {
+          "column": "from",
+          "missing": 100059,
+          "total": 418855,
+          "percent": 23.888696565637275
+        },
+        {
+          "column": "to",
+          "missing": 100059,
+          "total": 418855,
+          "percent": 23.888696565637275
+        },
+        {
+          "column": "event id",
+          "missing": 100059,
+          "total": 418855,
+          "percent": 23.888696565637275
+        },
+        {
+          "column": "time",
+          "missing": 100059,
+          "total": 418855,
+          "percent": 23.888696565637275
+        },
+        {
+          "column": "operation",
+          "missing": 100059,
+          "total": 418855,
+          "percent": 23.888696565637275
+        },
+        {
+          "column": "type",
+          "missing": 0,
+          "total": 418855,
+          "percent": 0.0
+        },
+        {
+          "column": "source",
+          "missing": 0,
+          "total": 418855,
+          "percent": 0.0
+        },
+        {
+          "column": "label",
+          "missing": 0,
+          "total": 418855,
+          "percent": 0.0
+        },
+        {
+          "column": "subLabel",
+          "missing": 0,
+          "total": 418855,
+          "percent": 0.0
+        }
+      ],
+      "representation": [
+        {
+          "variant": "operation_only",
+          "split": "train",
+          "events": 99665,
+          "unique_descriptions": 14,
+          "mean_tokens": 8.043736517333066,
+          "p95_tokens": 19.0,
+          "maximum_tokens": 21,
+          "over_token_limit": 0,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 99665,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "operation_only",
+          "split": "validation",
+          "events": 21357,
+          "unique_descriptions": 12,
+          "mean_tokens": 7.962962962962963,
+          "p95_tokens": 19.0,
+          "maximum_tokens": 21,
+          "over_token_limit": 0,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 21354,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "operation_only",
+          "split": "benign_test",
+          "events": 21357,
+          "unique_descriptions": 11,
+          "mean_tokens": 7.9501334457086665,
+          "p95_tokens": 19.0,
+          "maximum_tokens": 19,
+          "over_token_limit": 0,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 21357,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "operation_only",
+          "split": "attack_test",
+          "events": 100892,
+          "unique_descriptions": 15,
+          "mean_tokens": 8.532153193513857,
+          "p95_tokens": 19.0,
+          "maximum_tokens": 21,
+          "over_token_limit": 0,
+          "original_positives": 70,
+          "contextual_positives": 225,
+          "seen_in_training": 100891,
+          "original_positives_seen": 70,
+          "contextual_positives_seen": 225
+        },
+        {
+          "variant": "operation_entities",
+          "split": "train",
+          "events": 99665,
+          "unique_descriptions": 13020,
+          "mean_tokens": 101.40414388200472,
+          "p95_tokens": 151.0,
+          "maximum_tokens": 4272,
+          "over_token_limit": 256,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 99665,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "operation_entities",
+          "split": "validation",
+          "events": 21357,
+          "unique_descriptions": 2610,
+          "mean_tokens": 100.15774687456103,
+          "p95_tokens": 149.0,
+          "maximum_tokens": 287,
+          "over_token_limit": 40,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 18890,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "operation_entities",
+          "split": "benign_test",
+          "events": 21357,
+          "unique_descriptions": 2657,
+          "mean_tokens": 100.00477595167861,
+          "p95_tokens": 149.0,
+          "maximum_tokens": 287,
+          "over_token_limit": 24,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 18857,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "operation_entities",
+          "split": "attack_test",
+          "events": 100892,
+          "unique_descriptions": 21580,
+          "mean_tokens": 107.34571621139436,
+          "p95_tokens": 172.0,
+          "maximum_tokens": 3068,
+          "over_token_limit": 195,
+          "original_positives": 70,
+          "contextual_positives": 225,
+          "seen_in_training": 80100,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 1
+        },
+        {
+          "variant": "full_provenance",
+          "split": "train",
+          "events": 99665,
+          "unique_descriptions": 13029,
+          "mean_tokens": 119.50425926854965,
+          "p95_tokens": 184.0,
+          "maximum_tokens": 4306,
+          "over_token_limit": 327,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 99665,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "full_provenance",
+          "split": "validation",
+          "events": 21357,
+          "unique_descriptions": 2614,
+          "mean_tokens": 117.95921711850916,
+          "p95_tokens": 182.0,
+          "maximum_tokens": 321,
+          "over_token_limit": 40,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 18890,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "full_provenance",
+          "split": "benign_test",
+          "events": 21357,
+          "unique_descriptions": 2658,
+          "mean_tokens": 117.7608278316243,
+          "p95_tokens": 182.0,
+          "maximum_tokens": 321,
+          "over_token_limit": 30,
+          "original_positives": 0,
+          "contextual_positives": 0,
+          "seen_in_training": 18857,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 0
+        },
+        {
+          "variant": "full_provenance",
+          "split": "attack_test",
+          "events": 100892,
+          "unique_descriptions": 21589,
+          "mean_tokens": 127.05441462157555,
+          "p95_tokens": 206.0,
+          "maximum_tokens": 3102,
+          "over_token_limit": 283,
+          "original_positives": 70,
+          "contextual_positives": 225,
+          "seen_in_training": 80100,
+          "original_positives_seen": 0,
+          "contextual_positives_seen": 1
+        }
+      ],
+      "duplicates": [
+        {
+          "variant": "operation_only",
+          "split": "train",
+          "events": 99665,
+          "unique": 14,
+          "duplicates": 99651,
+          "duplicate_percent": 99.98595294235689
+        },
+        {
+          "variant": "operation_only",
+          "split": "validation",
+          "events": 21357,
+          "unique": 12,
+          "duplicates": 21345,
+          "duplicate_percent": 99.94381233319287
+        },
+        {
+          "variant": "operation_only",
+          "split": "benign_test",
+          "events": 21357,
+          "unique": 11,
+          "duplicates": 21346,
+          "duplicate_percent": 99.94849463876012
+        },
+        {
+          "variant": "operation_only",
+          "split": "attack_test",
+          "events": 100892,
+          "unique": 15,
+          "duplicates": 100877,
+          "duplicate_percent": 99.98513261705585
+        },
+        {
+          "variant": "operation_entities",
+          "split": "train",
+          "events": 99665,
+          "unique": 13020,
+          "duplicates": 86645,
+          "duplicate_percent": 86.93623639191291
+        },
+        {
+          "variant": "operation_entities",
+          "split": "validation",
+          "events": 21357,
+          "unique": 2610,
+          "duplicates": 18747,
+          "duplicate_percent": 87.77918246944796
+        },
+        {
+          "variant": "operation_entities",
+          "split": "benign_test",
+          "events": 21357,
+          "unique": 2657,
+          "duplicates": 18700,
+          "duplicate_percent": 87.55911410778667
+        },
+        {
+          "variant": "operation_entities",
+          "split": "attack_test",
+          "events": 100892,
+          "unique": 21580,
+          "duplicates": 79312,
+          "duplicate_percent": 78.61079173769971
+        },
+        {
+          "variant": "full_provenance",
+          "split": "train",
+          "events": 99665,
+          "unique": 13029,
+          "duplicates": 86636,
+          "duplicate_percent": 86.92720614057092
+        },
+        {
+          "variant": "full_provenance",
+          "split": "validation",
+          "events": 21357,
+          "unique": 2614,
+          "duplicates": 18743,
+          "duplicate_percent": 87.76045324717892
+        },
+        {
+          "variant": "full_provenance",
+          "split": "benign_test",
+          "events": 21357,
+          "unique": 2658,
+          "duplicates": 18699,
+          "duplicate_percent": 87.55443180221941
+        },
+        {
+          "variant": "full_provenance",
+          "split": "attack_test",
+          "events": 100892,
+          "unique": 21589,
+          "duplicates": 79303,
+          "duplicate_percent": 78.60187130793324
+        }
+      ],
+      "truncation": [
+        {
+          "variant": "operation_only",
+          "split": "train",
+          "events": 99665,
+          "over_token_limit": 0,
+          "truncation_percent": 0.0,
+          "maximum_tokens": 21,
+          "mean_tokens": 8.043736517333066
+        },
+        {
+          "variant": "operation_only",
+          "split": "validation",
+          "events": 21357,
+          "over_token_limit": 0,
+          "truncation_percent": 0.0,
+          "maximum_tokens": 21,
+          "mean_tokens": 7.962962962962963
+        },
+        {
+          "variant": "operation_only",
+          "split": "benign_test",
+          "events": 21357,
+          "over_token_limit": 0,
+          "truncation_percent": 0.0,
+          "maximum_tokens": 19,
+          "mean_tokens": 7.9501334457086665
+        },
+        {
+          "variant": "operation_only",
+          "split": "attack_test",
+          "events": 100892,
+          "over_token_limit": 0,
+          "truncation_percent": 0.0,
+          "maximum_tokens": 21,
+          "mean_tokens": 8.532153193513857
+        },
+        {
+          "variant": "operation_entities",
+          "split": "train",
+          "events": 99665,
+          "over_token_limit": 256,
+          "truncation_percent": 0.25686048261676614,
+          "maximum_tokens": 4272,
+          "mean_tokens": 101.40414388200472
+        },
+        {
+          "variant": "operation_entities",
+          "split": "validation",
+          "events": 21357,
+          "over_token_limit": 40,
+          "truncation_percent": 0.1872922226904528,
+          "maximum_tokens": 287,
+          "mean_tokens": 100.15774687456103
+        },
+        {
+          "variant": "operation_entities",
+          "split": "benign_test",
+          "events": 21357,
+          "over_token_limit": 24,
+          "truncation_percent": 0.11237533361427167,
+          "maximum_tokens": 287,
+          "mean_tokens": 100.00477595167861
+        },
+        {
+          "variant": "operation_entities",
+          "split": "attack_test",
+          "events": 100892,
+          "over_token_limit": 195,
+          "truncation_percent": 0.19327597827379772,
+          "maximum_tokens": 3068,
+          "mean_tokens": 107.34571621139436
+        },
+        {
+          "variant": "full_provenance",
+          "split": "train",
+          "events": 99665,
+          "over_token_limit": 327,
+          "truncation_percent": 0.3280991320925099,
+          "maximum_tokens": 4306,
+          "mean_tokens": 119.50425926854965
+        },
+        {
+          "variant": "full_provenance",
+          "split": "validation",
+          "events": 21357,
+          "over_token_limit": 40,
+          "truncation_percent": 0.1872922226904528,
+          "maximum_tokens": 321,
+          "mean_tokens": 117.95921711850916
+        },
+        {
+          "variant": "full_provenance",
+          "split": "benign_test",
+          "events": 21357,
+          "over_token_limit": 30,
+          "truncation_percent": 0.1404691670178396,
+          "maximum_tokens": 321,
+          "mean_tokens": 117.7608278316243
+        },
+        {
+          "variant": "full_provenance",
+          "split": "attack_test",
+          "events": 100892,
+          "over_token_limit": 283,
+          "truncation_percent": 0.28049795821274237,
+          "maximum_tokens": 3102,
+          "mean_tokens": 127.05441462157555
+        }
+      ],
+      "overlap": {
+        "training_vs_validation": {
+          "matching": 18890,
+          "percent": 88.45
+        },
+        "training_vs_benign_test": {
+          "matching": 18857,
+          "percent": 88.29
+        },
+        "training_vs_attack_test": {
+          "matching": 80100,
+          "percent": 79.39
+        },
+        "attack_test_seen": 80100,
+        "attack_test_unseen": 20792,
+        "seen_positives": 0,
+        "unseen_positives": 70
+      },
+      "sources": [
+        "data/processed/cicapt-iiot-v2/phase1_events.parquet",
+        "data/processed/cicapt-iiot-v2/phase2_events.parquet",
+        "data/splits/cicapt-iiot/split_summary.json",
+        "results/eda/dataset_inspection.txt",
+        "results/eda/ablation/representation_statistics.csv",
+        "results/e2d-unique-matched/evaluation/evaluation_summary.json"
+      ]
+    },
+    "kpis": {
+      "raw_records": 418855,
+      "events": 243271,
+      "original_positives": 70,
+      "contextual_positives": 225,
+      "completed_experiments": 14,
+      "completed_models": 12,
+      "completed_analyses": 2,
+      "best_roc_auc": {
+        "value": 0.9955844387704498,
+        "experiment_id": "E2-D",
+        "experiment_ids": [
+          "E2-D"
+        ],
+        "tied_count": 1
+      },
+      "best_average_precision": {
+        "value": 0.10907981276799296,
+        "experiment_id": "E2-D",
+        "experiment_ids": [
+          "E2-D"
+        ],
+        "tied_count": 1
+      },
+      "best_recall": {
+        "value": 1.0,
+        "experiment_id": "E2-D",
+        "experiment_ids": [
+          "E2-D",
+          "E2-B",
+          "E5-C",
+          "E2-A",
+          "E2-C",
+          "E5-B",
+          "B3",
+          "B1"
+        ],
+        "tied_count": 8
+      }
+    },
+    "leaderboard": [
+      {
+        "id": "E2-D",
+        "name": "Approximately matched-update unique-description training",
+        "group": "autoencoder",
+        "kind": "model",
+        "status": "completed",
+        "representation": "V2 full-provenance event description",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Can unique-description training be matched to the original optimiser-update budget while improving anomaly prioritisation?",
+        "hypothesis": "Approximately matching the number of optimiser updates will provide a fair comparison between frequency-preserving and unique-description training.",
+        "seed": 42,
+        "roc_auc": 0.9955844387704498,
+        "average_precision": 0.10907981276799296,
+        "recall": 1.0,
+        "precision": 0.008047827086686594,
+        "f1": 0.01596715328467153,
+        "true_positives": 70,
+        "false_positives": 8628,
+        "false_negatives": 0,
+        "true_negatives": 92194,
+        "benign_fpr": 0.0075385119632907244,
+        "attack_fpr": 0.08557656067128207,
+        "contextual_recall": 0.7733333333333333,
+        "threshold": 0.00027996741118840873,
+        "threshold_percentile": 99.0,
+        "training_seconds": 109.71300278799754,
+        "operating_point": "Validation P99 (primary experimental operating point)",
+        "availability": {
+          "status": "available",
+          "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+          "note": null
+        },
+        "rank": 1
+      },
+      {
+        "id": "E2-B",
+        "name": "Unique-description training",
+        "group": "autoencoder",
+        "kind": "model",
+        "status": "completed",
+        "representation": "V2 full-provenance event description",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Does deduplicating benign training descriptions reduce frequency dominance and improve anomaly ranking?",
+        "hypothesis": "Training on unique descriptions will prevent the most frequent template from dominating the reconstruction objective.",
+        "seed": 42,
+        "roc_auc": 0.9877550817990406,
+        "average_precision": 0.026070835700867982,
+        "recall": 1.0,
+        "precision": 0.012780719371918934,
+        "f1": 0.02523886785649901,
+        "true_positives": 70,
+        "false_positives": 5407,
+        "false_negatives": 0,
+        "true_negatives": 95415,
+        "benign_fpr": 0.005103713068314838,
+        "attack_fpr": 0.05362916823709111,
+        "contextual_recall": 0.5066666666666667,
+        "threshold": 0.0005167383933439851,
+        "threshold_percentile": 99.0,
+        "training_seconds": 23.0959918510016,
+        "operating_point": "Validation P99 (primary experimental operating point)",
+        "availability": {
+          "status": "available",
+          "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+          "note": null
+        },
+        "rank": 2
+      },
+      {
+        "id": "E5-C",
+        "name": "Provenance ablation \u2014 full provenance",
+        "group": "ablation",
+        "kind": "model",
+        "status": "completed",
+        "representation": "Operations, entity attributes and explicit directed provenance relationships",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Do explicit directed provenance relationships add detection value beyond operations and entity attributes?",
+        "hypothesis": "Full provenance will improve observed Average Precision relative to the entity-based representation.",
+        "seed": 42,
+        "roc_auc": 0.9855065646103316,
+        "average_precision": 0.021742598294833555,
+        "recall": 1.0,
+        "precision": 0.006191402794976119,
+        "f1": 0.01230661040787623,
+        "true_positives": 70,
+        "false_positives": 11236,
+        "false_negatives": 0,
+        "true_negatives": 89586,
+        "benign_fpr": 0.010488364470665356,
+        "attack_fpr": 0.11144393088809983,
+        "contextual_recall": 1.0,
+        "threshold": 4.0547158278059214e-05,
+        "threshold_percentile": 99.0,
+        "training_seconds": 101.2002000479988,
+        "operating_point": "Validation P99",
+        "availability": {
+          "status": "available",
+          "artifact": "results/ablation_comparison/ablation_comparison.csv",
+          "note": null
+        },
+        "rank": 3
+      },
+      {
+        "id": "E2-A",
+        "name": "Original frequency-preserving autoencoder",
+        "group": "autoencoder",
+        "kind": "model",
+        "status": "completed",
+        "representation": "V2 full-provenance event description",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions, 256-token limit)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Can a benign-trained autoencoder over frozen MiniLM embeddings detect anomalous provenance events?",
+        "hypothesis": "A bottleneck autoencoder will assign higher reconstruction error to events unlike benign training activity.",
+        "seed": 42,
+        "roc_auc": 0.9844819866412376,
+        "average_precision": 0.020832253230628553,
+        "recall": 1.0,
+        "precision": 0.006139273811611998,
+        "f1": 0.012203626220362623,
+        "true_positives": 70,
+        "false_positives": 11332,
+        "false_negatives": 0,
+        "true_negatives": 89490,
+        "benign_fpr": 0.01039471835932013,
+        "attack_fpr": 0.11239610402491519,
+        "contextual_recall": 1.0,
+        "threshold": 4.1271146328653775e-05,
+        "threshold_percentile": 99.0,
+        "training_seconds": 72.80788806300188,
+        "operating_point": "Validation P99 (primary experimental operating point)",
+        "availability": {
+          "status": "available",
+          "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+          "note": null
+        },
+        "rank": 4
+      },
+      {
+        "id": "E2-C",
+        "name": "Frequency-weighted training",
+        "group": "autoencoder",
+        "kind": "model",
+        "status": "completed",
+        "representation": "V2 full-provenance event description",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Does down-weighting frequent descriptions improve the benign reconstruction objective?",
+        "hypothesis": "Frequency weighting with 1/sqrt(frequency) will balance learning without discarding repeated benign behaviour.",
+        "seed": 42,
+        "roc_auc": 0.9831907435168628,
+        "average_precision": 0.019920058695862292,
+        "recall": 1.0,
+        "precision": 0.006823277122526562,
+        "f1": 0.013554071062058283,
+        "true_positives": 70,
+        "false_positives": 10189,
+        "false_negatives": 0,
+        "true_negatives": 90633,
+        "benign_fpr": 0.007819450297326403,
+        "attack_fpr": 0.10105929261470711,
+        "contextual_recall": 0.9911111111111112,
+        "threshold": 9.1675748990383e-05,
+        "threshold_percentile": 99.0,
+        "training_seconds": 54.808253560000594,
+        "operating_point": "Validation P99 (primary experimental operating point)",
+        "availability": {
+          "status": "available",
+          "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+          "note": null
+        },
+        "rank": 5
+      },
+      {
+        "id": "E5-B",
+        "name": "Provenance ablation \u2014 operations and entities",
+        "group": "ablation",
+        "kind": "model",
+        "status": "completed",
+        "representation": "Operations plus process and artifact attributes, without explicit directed relationships",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Do entity attributes resolve operation-only ambiguity without explicit directed relationships?",
+        "hypothesis": "Adding process and artifact attributes will eliminate observed description conflicts and improve detection.",
+        "seed": 42,
+        "roc_auc": 0.9827551809837423,
+        "average_precision": 0.018724070227123298,
+        "recall": 1.0,
+        "precision": 0.006267908309455587,
+        "f1": 0.012457732692649938,
+        "true_positives": 70,
+        "false_positives": 11098,
+        "false_negatives": 0,
+        "true_negatives": 89724,
+        "benign_fpr": 0.010066956969611837,
+        "attack_fpr": 0.11007518200392771,
+        "contextual_recall": 1.0,
+        "threshold": 7.502168591599911e-05,
+        "threshold_percentile": 99.0,
+        "training_seconds": 103.04762292099986,
+        "operating_point": "Validation P99",
+        "availability": {
+          "status": "available",
+          "artifact": "results/ablation_comparison/ablation_comparison.csv",
+          "note": null
+        },
+        "rank": 6
+      }
+    ],
+    "roadmap": {
+      "milestones": [
+        {
+          "id": "R01",
+          "title": "Research environment setup",
+          "phase": "Foundation",
+          "status": "completed",
+          "description": "WSL2 Ubuntu, Python 3.12, CUDA-enabled PyTorch and the research dependency stack.",
+          "dependencies": [],
+          "evidence": [
+            "README.md"
+          ]
+        },
+        {
+          "id": "R02",
+          "title": "Semantic embedding proof of concept",
+          "phase": "Foundation",
+          "status": "completed",
+          "description": "Frozen MiniLM embeddings validated on synthetic descriptions.",
+          "dependencies": [
+            "R01"
+          ],
+          "evidence": [
+            "src/test_embeddings.py"
+          ]
+        },
+        {
+          "id": "R03",
+          "title": "Autoencoder proof of concept",
+          "phase": "Foundation",
+          "status": "completed",
+          "description": "384-128-32-128-384 autoencoder trained on synthetic benign descriptions.",
+          "dependencies": [
+            "R02"
+          ],
+          "evidence": [
+            "src/train_demo.py",
+            "models/autoencoder_demo.pt"
+          ]
+        },
+        {
+          "id": "R04",
+          "title": "Dataset acquisition",
+          "phase": "Dataset",
+          "status": "completed",
+          "description": "CICAPT-IIoT provenance logs and supplementary material acquired.",
+          "dependencies": [
+            "R01"
+          ],
+          "evidence": [
+            "data/raw/cicapt-iiot/"
+          ]
+        },
+        {
+          "id": "R05",
+          "title": "Dataset inspection",
+          "phase": "Dataset",
+          "status": "completed",
+          "description": "Schema, label distribution, missing values and file integrity inspected.",
+          "dependencies": [
+            "R04"
+          ],
+          "evidence": [
+            "results/eda/dataset_inspection.txt"
+          ]
+        },
+        {
+          "id": "R06",
+          "title": "Provenance graph analysis",
+          "phase": "Dataset",
+          "status": "completed",
+          "description": "Nodes, edges and unresolved references checked for both collection phases.",
+          "dependencies": [
+            "R05"
+          ],
+          "evidence": [
+            "results/eda/graph_inspection.txt"
+          ]
+        },
+        {
+          "id": "R07",
+          "title": "Ground-truth analysis",
+          "phase": "Dataset",
+          "status": "completed",
+          "description": "Original malicious edges and connected-node contextual indicators analysed separately.",
+          "dependencies": [
+            "R06"
+          ],
+          "evidence": [
+            "results/eda/ground_truth_inspection.txt"
+          ]
+        },
+        {
+          "id": "R08",
+          "title": "V1 and V2 verbalisation",
+          "phase": "Methodology",
+          "status": "completed",
+          "description": "Deterministic natural-language event descriptions implemented and validated.",
+          "dependencies": [
+            "R06"
+          ],
+          "evidence": [
+            "src/verbalizer_v1.py",
+            "src/verbalizer_v2.py",
+            "results/eda/preprocessing_summary_v2.txt"
+          ]
+        },
+        {
+          "id": "R09",
+          "title": "Chronological dataset splitting",
+          "phase": "Methodology",
+          "status": "completed",
+          "description": "Leakage-aware chronological train, validation, benign-test and attack-test partitions.",
+          "dependencies": [
+            "R08"
+          ],
+          "evidence": [
+            "data/splits/cicapt-iiot/split_summary.json"
+          ]
+        },
+        {
+          "id": "R10",
+          "title": "Embedding generation",
+          "phase": "Methodology",
+          "status": "completed",
+          "description": "Frozen MiniLM embeddings generated for all event partitions.",
+          "dependencies": [
+            "R08",
+            "R09"
+          ],
+          "evidence": [
+            "results/eda/embedding_generation.txt"
+          ]
+        },
+        {
+          "id": "R11",
+          "title": "Initial autoencoder training",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "E2-A benign-trained frequency-preserving autoencoder.",
+          "dependencies": [
+            "R10"
+          ],
+          "evidence": [
+            "results/e2-v2-minilm-standard/training_summary.json"
+          ]
+        },
+        {
+          "id": "R12",
+          "title": "Baseline comparisons",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "B1 exact novelty, B2 TF-IDF/Isolation Forest, B3 PCA and B4 embedding/Isolation Forest.",
+          "dependencies": [
+            "R10"
+          ],
+          "evidence": [
+            "results/baselines/baseline_summary.json"
+          ]
+        },
+        {
+          "id": "R13",
+          "title": "Threshold sensitivity",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "Validation-derived percentile sweep for E2 configurations.",
+          "dependencies": [
+            "R11"
+          ],
+          "evidence": [
+            "results/autoencoder_comparison/threshold_comparison.csv"
+          ]
+        },
+        {
+          "id": "R14",
+          "title": "Frequency-balanced training",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "E2-B unique-description and E2-C frequency-weighted variants.",
+          "dependencies": [
+            "R11"
+          ],
+          "evidence": [
+            "results/e2b-unique/",
+            "results/e2c-weighted/"
+          ]
+        },
+        {
+          "id": "R15",
+          "title": "Approximately matched-update training",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "E2-D unique-description training matched to the original optimiser-update budget.",
+          "dependencies": [
+            "R14"
+          ],
+          "evidence": [
+            "results/e2d-unique-matched/training_summary.json"
+          ]
+        },
+        {
+          "id": "R16",
+          "title": "Alert prioritisation",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "Tie-aware analyst alert-budget analysis for E2-A to E2-D.",
+          "dependencies": [
+            "R15"
+          ],
+          "evidence": [
+            "results/autoencoder_comparison/alert_budget_comparison.csv"
+          ]
+        },
+        {
+          "id": "R17",
+          "title": "Provenance representation ablation",
+          "phase": "Experiments",
+          "status": "completed",
+          "description": "E5-A operation-only, E5-B entity-enriched and E5-C full-provenance comparison.",
+          "dependencies": [
+            "R09",
+            "R10"
+          ],
+          "evidence": [
+            "results/ablation_comparison/ablation_comparison.csv"
+          ]
+        },
+        {
+          "id": "R18",
+          "title": "E7 multiple-seed reproducibility",
+          "phase": "Validation",
+          "status": "next",
+          "description": "Repeat selected experiments with seeds 42, 123 and 456; report mean, standard deviation and individual outcomes.",
+          "dependencies": [
+            "R15",
+            "R17"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R19",
+          "title": "B6 semantic nearest-neighbour baseline",
+          "phase": "Experiments",
+          "status": "planned",
+          "description": "Compare cosine nearest-neighbour distance with the autoencoder.",
+          "dependencies": [
+            "R10"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R20",
+          "title": "E1 V1 versus V2 verbalisation comparison",
+          "phase": "Experiments",
+          "status": "planned",
+          "description": "Controlled comparison of earlier and current verbalisations.",
+          "dependencies": [
+            "R08"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R21",
+          "title": "E3 chunk-aware embeddings",
+          "phase": "Experiments",
+          "status": "planned",
+          "description": "Reduce information loss for descriptions exceeding the encoder token limit.",
+          "dependencies": [
+            "R08"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R22",
+          "title": "E4 MPNet encoder comparison",
+          "phase": "Experiments",
+          "status": "planned",
+          "description": "Compare a larger encoder under a matched configuration.",
+          "dependencies": [
+            "R10"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R23",
+          "title": "E6 temporal and provenance event correlation",
+          "phase": "Experiments",
+          "status": "planned",
+          "description": "Move from independent event scoring toward correlated sequences and incident reconstruction.",
+          "dependencies": [
+            "R15"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R24",
+          "title": "Independent attack-scenario validation",
+          "phase": "Validation",
+          "status": "planned",
+          "description": "Evaluate a frozen configuration on an independent scenario or host.",
+          "dependencies": [
+            "R18"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R25",
+          "title": "M1 human-reviewed mitigation framework",
+          "phase": "Mitigation",
+          "status": "planned",
+          "description": "Evidence-grounded mitigation recommendations requiring analyst approval.",
+          "dependencies": [
+            "R23",
+            "R24"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "R26",
+          "title": "D1 interactive research demonstration platform",
+          "phase": "Dissemination",
+          "status": "in_progress",
+          "description": "Read-only dashboard over real research artifacts. Implementation is not a validated research outcome.",
+          "dependencies": [
+            "R17"
+          ],
+          "evidence": [
+            "web/"
+          ]
+        },
+        {
+          "id": "R27",
+          "title": "Dissertation writing and final evaluation",
+          "phase": "Dissemination",
+          "status": "planned",
+          "description": "Final synthesis, limitations, independent evaluation and dissertation submission.",
+          "dependencies": [
+            "R18",
+            "R24",
+            "R25"
+          ],
+          "evidence": []
+        }
+      ],
+      "counts": {
+        "completed": 17,
+        "next": 1,
+        "planned": 8,
+        "in_progress": 1
+      },
+      "total": 27,
+      "next_milestone": {
+        "id": "R18",
+        "title": "E7 multiple-seed reproducibility",
+        "phase": "Validation",
+        "status": "next",
+        "description": "Repeat selected experiments with seeds 42, 123 and 456; report mean, standard deviation and individual outcomes.",
+        "dependencies": [
+          "R15",
+          "R17"
+        ],
+        "evidence": []
+      }
+    },
+    "findings": [
+      {
+        "id": "F01",
+        "title": "Operation-only representations are ambiguous",
+        "research_question": "Can operation names alone distinguish malicious from benign provenance events?",
+        "observation": "All 70 original positive events share an operation-only description with 8,393 negatively labelled events. E5-A and B5 detect 0 original positives at P99.",
+        "evidence": "E5-A ROC-AUC 0.826367, AP 0.003219, recall 0% at P99. B5 ROC-AUC 0.826134, AP 0.003212, recall 0%. Representation conflict analysis: 1 conflicting description covering 8,463 records, including all 70 positives.",
+        "visualisation": "ablation",
+        "interpretation": "Operation names alone cannot separate events that differ only in entities or graph context. Entity and relationship information is necessary in this dataset.",
+        "limitations": "The conflict analysis measures exact-description collisions and does not prove that all ambiguous events are semantically indistinguishable.",
+        "related_experiments": [
+          "B5",
+          "E5-A"
+        ],
+        "validation_status": "preliminary"
+      },
+      {
+        "id": "F02",
+        "title": "One benign description dominates training frequency",
+        "research_question": "Is the benign training distribution dominated by a small number of recurring descriptions?",
+        "observation": "A single description occurs 72,986 times, representing approximately 73.23% of the 99,665 benign training events.",
+        "evidence": "E2-D and E5 training logs: 72,986 / 99,665 = 73.23%. Only 13,029 unique descriptions occur in training.",
+        "visualisation": "dataset",
+        "interpretation": "Frequency-preserving training can allow one recurring benign template to dominate the reconstruction objective, motivating unique-description and frequency-weighted variants.",
+        "limitations": "Frequency dominance is measured on the training partition only and may reflect the collection scenario rather than general benign behaviour.",
+        "related_experiments": [
+          "E2-A",
+          "E2-B",
+          "E2-C",
+          "E2-D"
+        ],
+        "validation_status": "preliminary"
+      },
+      {
+        "id": "F03",
+        "title": "Frequency-balanced training improves observed anomaly ranking",
+        "research_question": "Does approximately matched-update unique-description training improve anomaly ranking?",
+        "observation": "E2-D achieves ROC-AUC 0.995584 and AP 0.109080, the strongest observed ranking, compared with E2-A at 0.984482 and 0.020832.",
+        "evidence": "E2-D vs E2-A on the same attack-test partition with original labels. AP is approximately 5.2 times higher for E2-D.",
+        "visualisation": "comparison",
+        "interpretation": "Reducing frequency dominance while matching optimiser updates substantially improves anomaly ranking in this single-seed experiment.",
+        "limitations": "Only seed 42 is available. The comparison has not been repeated across seeds or independent scenarios.",
+        "related_experiments": [
+          "E2-A",
+          "E2-B",
+          "E2-C",
+          "E2-D",
+          "E7"
+        ],
+        "validation_status": "preliminary"
+      },
+      {
+        "id": "F04",
+        "title": "Alert prioritisation is materially better for E2-D",
+        "research_question": "How many original positives are recovered within small analyst alert budgets?",
+        "observation": "E2-D identifies 46 of 70 original positives within the top 500 alerts, compared with 0 for E2-A, 7 for E2-B and 0 for E2-C.",
+        "evidence": "Tie-aware alert-budget analysis: E2-D 5/100/200/500 = 5/16/29/46 true positives; E2-A and E2-C recover none until budget 1,000.",
+        "visualisation": "alerts",
+        "interpretation": "Anomaly ranking quality has a large practical effect on analyst workload, even when threshold-based precision remains low.",
+        "limitations": "The budgets are measured points, not interpolated estimates. Absolute precision within 500 alerts is 9.2% for E2-D.",
+        "related_experiments": [
+          "E2-A",
+          "E2-B",
+          "E2-C",
+          "E2-D",
+          "E2-R"
+        ],
+        "validation_status": "preliminary"
+      },
+      {
+        "id": "F05",
+        "title": "Full provenance improves observed Average Precision",
+        "research_question": "Do entity attributes and explicit provenance relationships improve detection over operations alone?",
+        "observation": "E5-C achieves AP 0.021743 versus 0.018724 for E5-B and 0.003219 for E5-A. The E5-C advantage over E5-B is approximately 16.1%.",
+        "evidence": "E5-C ROC-AUC 0.985507, AP 0.021743; E5-B 0.982755, 0.018724; E5-A 0.826367, 0.003219.",
+        "visualisation": "ablation",
+        "interpretation": "Full provenance provides the best observed AP among the controlled E5 configurations, while entity attributes account for most of the improvement over operations alone.",
+        "limitations": "The ablation changes multiple textual properties at once; it does not isolate the causal contribution of graph relationships. E5-C is worse than E5-B on benign FPR, attack FPR, precision and F1 at P99.",
+        "related_experiments": [
+          "E5-A",
+          "E5-B",
+          "E5-C"
+        ],
+        "validation_status": "preliminary"
+      },
+      {
+        "id": "F06",
+        "title": "Threshold choice trades false positives against contextual recall",
+        "research_question": "How sensitive are operational metrics to validation-derived threshold choice?",
+        "observation": "For E2-D, moving from P99 to P99.95 reduces false positives from 8,628 to 2,339 while contextual recall falls from 77.33% to 49.33%; original recall remains 100%.",
+        "evidence": "P99 threshold 0.0002799674, precision 0.805%, benign FPR 0.754%. P99.95 threshold 0.0005867360, precision 2.906%, benign FPR 0.126%.",
+        "visualisation": "thresholds",
+        "interpretation": "Higher percentiles can substantially reduce alert volume, but the trade-off is context-dependent and must be evaluated against analyst capacity and missed-context risk.",
+        "limitations": "P99.95 was examined retrospectively after attack-test inspection and is exploratory, not an independently validated deployment threshold.",
+        "related_experiments": [
+          "E2-D",
+          "E2-T"
+        ],
+        "validation_status": "preliminary"
+      }
+    ],
+    "limitations": [
+      {
+        "id": "L01",
+        "category": "Data",
+        "severity": "high",
+        "title": "Severe class imbalance",
+        "detail": "The attack test contains 70 original positive events among 100,892 events (approximately 0.0694%). Precision is therefore highly sensitive to false positives.",
+        "mitigation": "Report precision-recall metrics, alert budgets and false-positive counts rather than accuracy alone."
+      },
+      {
+        "id": "L02",
+        "category": "Labels",
+        "severity": "high",
+        "title": "Only 70 original positive annotations",
+        "detail": "All original-positive conclusions depend on 70 edge-derived annotations. A small number of missed or mislabelled events could materially change recall estimates.",
+        "mitigation": "Treat results as preliminary and seek annotation review or additional scenarios."
+      },
+      {
+        "id": "L03",
+        "category": "Labels",
+        "severity": "high",
+        "title": "Positives concentrated in two tactics",
+        "detail": "Original positives comprise 69 credentialAccess events and 1 defenceEvasion event. Detection performance for other MITRE ATT&CK tactics is not established by original labels.",
+        "mitigation": "Use contextual tactics only as derived indicators and collect broader labelled scenarios."
+      },
+      {
+        "id": "L04",
+        "category": "Labels",
+        "severity": "high",
+        "title": "Contextual labels are derived indicators",
+        "detail": "The 225 contextual positives are derived from connected provenance nodes, not independent ground-truth event annotations.",
+        "mitigation": "Keep original and contextual metrics separate; never present contextual recall as confirmed attack detection."
+      },
+      {
+        "id": "L05",
+        "category": "Methodology",
+        "severity": "high",
+        "title": "Repeated exploratory evaluation of Phase 2",
+        "detail": "The attack-test partition has been inspected repeatedly across variants and thresholds, creating selection and overfitting risk.",
+        "mitigation": "Label retrospective analyses explicitly and require independent scenario validation."
+      }
+    ],
+    "journal": [
+      {
+        "slug": "2026-11-25",
+        "date": "2026-11-25",
+        "title": "Provenance ablation and alert-prioritisation analysis",
+        "summary": "Completed the E5 representation ablation, consolidated E2 threshold and alert-budget analyses, and prepared the reproducibility study.",
+        "status": "completed",
+        "experiments": [
+          "E5-A",
+          "E5-B",
+          "E5-C",
+          "E2-D",
+          "E2-T",
+          "E2-R"
+        ],
+        "body": "## Activities completed\n\n- Completed the controlled E5 provenance representation ablation across operation-only (E5-A), operations plus entity attributes (E5-B) and full directed provenance (E5-C).\n- Consolidated the E2-D threshold sensitivity results for validation percentiles P95 through P100.\n- Consolidated the tie-aware alert-prioritisation analysis for E2-A through E2-D.\n- Reviewed per-tactic recall, seen/unseen description performance and representation conflicts.\n- Began the read-only research dashboard under `web/` to make the artifacts reviewable by supervisors.\n\n## Experiments executed\n\n- **E5-A**: operation-only autoencoder, seed 42, 100 epochs.\n- **E5-B**: operations and entity attributes, seed 42, 100 epochs.\n- **E5-C**: full provenance, seed 42, 100 epochs.\n- **E2-T**: analytical percentile sweep over the existing E2 predictions.\n- **E2-R**: analytical alert-budget simulation over the existing E2 predictions.\n\n## Findings\n\n- Operation-only representations are highly ambiguous: all 70 original positives share a description with 8,393 negatively labelled events.\n- Adding entity attributes eliminates the observed exact-description conflicts for original positives and raises AP from 0.003219 to 0.018724.\n- Full provenance reaches AP 0.021743, approximately 16.1% above the entity-based representation, but is slightly worse on benign FPR, attack FPR, precision and F1 at P99.\n- E2-D remains the leading anomaly ranker (ROC-AUC 0.995584, AP 0.109080) and recovers 46 of 70 original positives within the top 500 alerts.\n- The P99.95 threshold reduces E2-D false positives from 8,628 to 2,339 but reduces contextual recall from 77.33% to 49.33%.\n\n## Problems encountered\n\n- The ablation changes text length, ordering and formatting alongside content, so it cannot isolate the causal effect of relationships alone.\n- The full-provenance test set contains 283 descriptions above the 256-token encoder limit.\n- Original positives remain concentrated in two ATT&CK tactics (69 credentialAccess, 1 defenceEvasion), limiting per-tactic conclusions.\n\n## Solutions implemented\n\n- Interpreted E5 as an overall representation comparison rather than a pure relationship ablation.\n- Kept original and contextual label metrics separate in every report.\n- Labelled the P99.95 operating point as retrospective and exploratory.\n- Retained P99 as the primary experimental operating point.\n\n## Decisions made\n\n- E2-D is the leading observed model but is not designated for deployment.\n- No threshold will be selected solely from attack-test performance.\n- The next experiment is E7 multiple-seed reproducibility with seeds 42, 123 and 456.\n- Current findings remain preliminary until multi-seed and independent-scenario evidence is available.\n\n## Remaining questions\n\n- Do the E2-D improvements persist across random seeds?\n- Does full provenance retain its AP advantage under a matched text-length control?\n- How much of the contextual-label recall gap is caused by annotation coverage rather than model error?\n- Can temporal correlation reduce the false-positive volume without sacrificing original-positive recall?\n\n## Next steps\n\n1. Run E7 with seeds 42, 123 and 456.\n2. Report mean, standard deviation and individual outcomes for ROC-AUC, AP, precision, recall and alert-budget recovery.\n3. Design an independent attack-scenario validation protocol.\n4. Investigate chunk-aware embeddings for descriptions above the token limit.\n\n## Related artifacts\n\n- `results/ablation_comparison/ablation_comparison.csv`\n- `results/ablation_comparison/alert_budget_comparison.csv`\n- `results/eda/ablation/representation_statistics.csv`\n- `results/eda/ablation/representation_conflicts.json`\n- `results/autoencoder_comparison/threshold_comparison.csv`\n- `results/autoencoder_comparison/alert_budget_comparison.csv`\n- `results/e2d-unique-matched/evaluation/evaluation_summary.json`\n",
+        "artifact": "web/content/journal/2026-11-25.md"
+      }
+    ],
+    "upcoming": [
+      {
+        "id": "E7",
+        "name": "Multiple-seed reproducibility",
+        "group": "reproducibility",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "Do the observed experimental improvements remain consistent across different random seeds?",
+        "hypothesis": "The E2-D ranking advantage will persist across seeds, but absolute metrics will vary.",
+        "representation": "Same as E2-D",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "training_strategy": "Repeat the selected configurations with seeds 42, 123 and 456; report mean, standard deviation and individual outcomes.",
+        "seed": null,
+        "training_configuration": {
+          "suggested_seeds": [
+            42,
+            123,
+            456
+          ]
+        },
+        "checkpoint_selection": "Same benign-validation checkpoint rule as the original experiment.",
+        "evaluation_configuration": {
+          "metrics": [
+            "ROC-AUC",
+            "Average Precision",
+            "precision",
+            "recall",
+            "contextual recall",
+            "alert budget recovery"
+          ],
+          "aggregation": "mean, standard deviation, individual runs"
+        },
+        "results_summary": "Not yet executed.",
+        "interpretation": "Current results are single-seed and should not be treated as stable estimates.",
+        "limitations": "No multi-seed evidence exists yet.",
+        "source_artifacts": []
+      },
+      {
+        "id": "B6",
+        "name": "Semantic nearest-neighbour baseline",
+        "group": "baseline",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "How does a simple semantic nearest-neighbour distance compare with the autoencoder?",
+        "hypothesis": "Cosine distance to the nearest benign training embedding will provide a strong, interpretable baseline.",
+        "representation": "V2 full-provenance embedding",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+        "algorithm": "Nearest-neighbour cosine distance",
+        "training_strategy": "Store benign training embeddings; no parametric training.",
+        "seed": null,
+        "training_configuration": {},
+        "checkpoint_selection": "Not applicable",
+        "evaluation_configuration": {
+          "threshold": "Same benign validation percentile protocol"
+        },
+        "results_summary": "Not yet executed.",
+        "interpretation": "Planned comparison to test whether the autoencoder adds value beyond embedding similarity.",
+        "limitations": "Planned only.",
+        "source_artifacts": []
+      },
+      {
+        "id": "E1",
+        "name": "V1 versus V2 verbalisation comparison",
+        "group": "representation",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "How does the earlier V1 verbalisation compare with the current V2 representation?",
+        "hypothesis": "V2's explicit relationships and entity detail will improve observed detection performance.",
+        "representation": "V1 and V2 descriptions",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+        "algorithm": "Autoencoder 384-128-32-128-384",
+        "training_strategy": "Train matched configurations on each representation.",
+        "seed": 42,
+        "training_configuration": {},
+        "checkpoint_selection": "Same validation rule per representation.",
+        "evaluation_configuration": {},
+        "results_summary": "Not yet executed.",
+        "interpretation": "Planned controlled comparison.",
+        "limitations": "Planned only.",
+        "source_artifacts": []
+      },
+      {
+        "id": "E3",
+        "name": "Chunk-aware embeddings",
+        "group": "representation",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "Can chunking long descriptions reduce information loss from the 256-token encoder limit?",
+        "hypothesis": "Chunk-aware encoding will improve detection for long provenance descriptions affected by truncation.",
+        "representation": "Chunked full-provenance descriptions",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+        "algorithm": "Chunk pooling plus autoencoder",
+        "training_strategy": "Planned.",
+        "seed": 42,
+        "training_configuration": {},
+        "checkpoint_selection": "Planned.",
+        "evaluation_configuration": {},
+        "results_summary": "Not yet executed.",
+        "interpretation": "Planned follow-up to observed truncation.",
+        "limitations": "Planned only.",
+        "source_artifacts": []
+      },
+      {
+        "id": "E4",
+        "name": "MPNet encoder comparison",
+        "group": "representation",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "Does a larger semantic encoder improve detection over MiniLM?",
+        "hypothesis": "MPNet may capture subtle semantic differences at higher computational cost.",
+        "representation": "V2 full-provenance description",
+        "encoder": "MPNet (candidate)",
+        "algorithm": "Same autoencoder architecture",
+        "training_strategy": "Planned controlled encoder comparison.",
+        "seed": 42,
+        "training_configuration": {},
+        "checkpoint_selection": "Planned.",
+        "evaluation_configuration": {},
+        "results_summary": "Not yet executed.",
+        "interpretation": "Candidate comparison, not an implemented result.",
+        "limitations": "Planned only.",
+        "source_artifacts": []
+      },
+      {
+        "id": "E6",
+        "name": "Temporal and provenance event correlation",
+        "group": "correlation",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "Can correlated event sequences improve detection beyond independent event scoring?",
+        "hypothesis": "Temporal and provenance-aware grouping will reduce isolated false positives and support incident reconstruction.",
+        "representation": "Provenance-linked event windows",
+        "encoder": "To be determined",
+        "algorithm": "Temporal/provenance correlation",
+        "training_strategy": "Planned.",
+        "seed": 42,
+        "training_configuration": {},
+        "checkpoint_selection": "Planned.",
+        "evaluation_configuration": {},
+        "results_summary": "Not yet executed.",
+        "interpretation": "Planned extension from event-level to sequence-level detection.",
+        "limitations": "Planned only.",
+        "source_artifacts": []
+      },
+      {
+        "id": "IV-1",
+        "name": "Independent attack-scenario validation",
+        "group": "validation",
+        "kind": "model",
+        "status": "planned",
+        "research_question": "Do the observed results generalise to an independent attack scenario or host?",
+        "hypothesis": "Performance may decrease under scenario shift; independent validation is required before any deployment claim.",
+        "representation": "To be determined",
+        "encoder": "To be determined",
+        "algorithm": "Selected best configuration",
+        "training_strategy": "Evaluate frozen configuration on independent data.",
+        "seed": 42,
+        "training_configuration": {},
+        "checkpoint_selection": "Frozen from primary experiment.",
+        "evaluation_configuration": {},
+        "results_summary": "Not yet executed.",
+        "interpretation": "The current attack test has been repeatedly inspected during exploratory analysis; independent evidence is absent.",
+        "limitations": "Planned only.",
+        "source_artifacts": []
+      },
+      {
+        "id": "M1",
+        "name": "Human-reviewed mitigation recommendation framework",
+        "group": "mitigation",
+        "kind": "framework",
+        "status": "planned",
+        "research_question": "Can evidence-grounded, human-reviewed mitigation recommendations be generated and evaluated?",
+        "hypothesis": "Recommendations must cite observed provenance evidence and remain subject to analyst approval.",
+        "representation": "Alert evidence and verified ATT&CK/D3FEND references",
+        "encoder": "Not applicable",
+        "algorithm": "Rule/evidence-based recommendation framework",
+        "training_strategy": "Not applicable",
+        "seed": null,
+        "training_configuration": {},
+        "checkpoint_selection": "Not applicable",
+        "evaluation_configuration": {
+          "evaluation": "Separate from detection; mitigation effectiveness not yet established"
+        },
+        "results_summary": "Not yet implemented.",
+        "interpretation": "No automated mitigation is claimed or demonstrated.",
+        "limitations": "Planned only; requires human review and separate evaluation.",
+        "source_artifacts": []
+      },
+      {
+        "id": "D1",
+        "name": "Interactive research demonstration platform",
+        "group": "platform",
+        "kind": "platform",
+        "status": "in_progress",
+        "research_question": "Can research artifacts and findings be presented transparently to supervisors and reviewers?",
+        "hypothesis": "A read-only dashboard with explicit data provenance improves reviewability and methodological transparency.",
+        "representation": "Research artifacts exposed through a versioned read-only API",
+        "encoder": "Not applicable",
+        "algorithm": "React dashboard over FastAPI artifact service",
+        "training_strategy": "Not applicable",
+        "seed": null,
+        "training_configuration": {},
+        "checkpoint_selection": "Not applicable",
+        "evaluation_configuration": {
+          "status": "Implementation in web/; research validation pending"
+        },
+        "results_summary": "Dashboard implementation underway. It does not constitute experimental evidence.",
+        "interpretation": "Supports research communication and traceability, not detection performance.",
+        "limitations": "Not a validated research outcome; no deployment claim.",
+        "source_artifacts": [
+          "web/README.md"
+        ]
+      }
+    ],
+    "counts": {
+      "completed": 14,
+      "in_progress": 1,
+      "planned": 8,
+      "total_experiments": 23,
+      "reports_available": 5
+    },
+    "status": {
+      "official_title": "AI-based solution to detect and mitigate APT malware",
+      "institution": "Universiti Teknologi Brunei",
+      "phase": "Provenance ablation complete; reproducibility next",
+      "status": "Active experimental analysis",
+      "status_tone": "warning",
+      "description": "An investigation of whether semantic representations of system provenance events, combined with a benign-trained autoencoder, can prioritise anomalous behaviour relevant to Advanced Persistent Threats. Detection evidence is preliminary; mitigation is not yet implemented or evaluated.",
+      "current_activity": "Consolidating the E5 provenance ablation results and preparing the E7 multiple-seed reproducibility study.",
+      "next_activity": "E7 \u2014 repeat selected configurations with seeds 42, 123 and 456 and report mean, standard deviation and individual outcomes.",
+      "primary_operating_point": "P99 of benign validation reconstruction error",
+      "implementation_note": "Roadmap activity counts describe implementation progress only. No dissertation completion percentage is estimated.",
+      "last_reviewed": "2026-11-25"
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.608244+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

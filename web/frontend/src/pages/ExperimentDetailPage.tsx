@@ -38,8 +38,8 @@ function ConfigTable({ config }: { config: Record<string, unknown> }) {
     <div className="divide-y divide-border rounded border border-border">
       {entries.map(([key, value]) => (
         <div key={key} className="flex items-start justify-between gap-4 px-3 py-1.5">
-          <span className="font-mono text-[10px] text-muted-foreground">{key}</span>
-          <span className="max-w-[62%] break-words text-right font-mono text-[10px] text-foreground">
+          <span className="font-mono text-[12px] text-muted-foreground">{key}</span>
+          <span className="max-w-[62%] break-words text-right font-mono text-[12px] text-foreground">
             {Array.isArray(value) ? value.join(", ") : String(value)}
           </span>
         </div>
@@ -60,7 +60,7 @@ function FigureCard({
       <DialogTrigger asChild>
         <button type="button" className="group overflow-hidden rounded-md border border-border bg-surface text-left">
           <div className="flex items-center justify-between border-b border-border px-2.5 py-1.5">
-            <span className="truncate text-[10px] font-medium text-foreground">{title}</span>
+            <span className="truncate text-[12px] font-medium text-foreground">{title}</span>
             <ImageIcon className="size-3 text-muted-foreground transition-colors group-hover:text-primary" />
           </div>
           <img src={src} alt={title} className="aspect-[4/3] w-full object-contain p-2" loading="lazy" />
@@ -69,7 +69,7 @@ function FigureCard({
       <DialogContent className="max-w-4xl">
         <DialogTitle className="text-xs">{title}</DialogTitle>
         <img src={src} alt={title} className="max-h-[70vh] w-full object-contain" />
-        <div className="text-[10px] text-muted-foreground">
+        <div className="text-[12px] text-muted-foreground">
           Figure served directly from the measured evaluation artifact. No chart is regenerated or
           interpolated in the browser.
         </div>
@@ -105,8 +105,8 @@ export function ExperimentDetailPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow={`Experiments · ${titleCase(data.group)}`}
-        title={`${data.id} — ${data.name}`}
+        eyebrow={`Experiments, ${titleCase(data.group)}`}
+        title={`${data.id}, ${data.name}`}
         description={data.research_question ?? undefined}
         actions={
           <>
@@ -142,10 +142,21 @@ export function ExperimentDetailPage() {
         </InfoCallout>
       )}
 
+      <InfoCallout tone="info" title="How to read this experiment">
+        ROC-AUC and Average Precision rank across all thresholds. Precision, recall and false-positive
+        rates use the recorded operating point, so check the threshold and seed. Contextual recall is a
+        derived indicator, not independent ground truth.{" "}
+        <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
+          Glossary
+        </Link>
+        .
+      </InfoCallout>
+
       {metrics && metrics.roc_auc !== null ? (
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <KpiCard
             label="ROC-AUC"
+            metricId="roc-auc"
             value={formatDecimal(metrics.roc_auc, 4)}
             detail="Threshold-independent ranking"
             source="results/autoencoder_comparison/ranking_summary.csv"
@@ -153,6 +164,7 @@ export function ExperimentDetailPage() {
           />
           <KpiCard
             label="Average Precision"
+            metricId="average-precision"
             value={formatDecimal(metrics.average_precision, 4)}
             detail="Precision-recall summary"
             source="results/autoencoder_comparison/ranking_summary.csv"
@@ -160,31 +172,36 @@ export function ExperimentDetailPage() {
           />
           <KpiCard
             label="Precision at operating point"
+            metricId="precision"
             value={formatPercent(metrics.precision, 3)}
-            detail={`${metrics.true_positives ?? "—"} TP · ${metrics.false_positives?.toLocaleString() ?? "—"} FP`}
+            detail={`${metrics.true_positives ?? "n/a"} TP, ${metrics.false_positives?.toLocaleString() ?? "n/a"} FP`}
             source="results/autoencoder_comparison/threshold_comparison.csv"
             tone="warning"
           />
           <KpiCard
             label="Recall at operating point"
+            metricId="recall"
             value={formatPercent(metrics.recall, 2)}
             detail={`${metrics.operating_point ?? "Recorded operating point"}`}
             source="results/autoencoder_comparison/threshold_comparison.csv"
           />
           <KpiCard
             label="Contextual recall"
+            metricId="contextual-recall"
             value={formatPercent(metrics.contextual_recall, 2)}
-            detail="Derived indicator — not independent ground truth"
+            detail="Derived indicator, not independent ground truth"
             tone="warning"
           />
           <KpiCard
             label="Benign false-positive rate"
+            metricId="benign-fpr"
             value={formatPercent(metrics.benign_fpr, 3)}
             detail="False positives on the benign test partition"
           />
           <KpiCard
             label="Threshold"
             value={formatThreshold(metrics.threshold)}
+            definition="Calibrated from benign validation reconstruction errors."
             detail={
               metrics.threshold_percentile
                 ? `Validation P${metrics.threshold_percentile}`
@@ -194,6 +211,7 @@ export function ExperimentDetailPage() {
           <KpiCard
             label="Training duration"
             value={formatDuration(metrics.training_seconds)}
+            definition="Wall-clock training time for this run. It is not a performance metric."
             detail={data.seed ? `Seed ${data.seed}` : "Seed not recorded"}
           />
         </div>
@@ -220,19 +238,19 @@ export function ExperimentDetailPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-xs leading-relaxed">
                 <div>
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">Hypothesis</div>
+                  <div className="text-[12px] text-muted-foreground">Hypothesis</div>
                   <p className="mt-1 text-foreground">{data.hypothesis}</p>
                 </div>
                 <div>
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">Results summary</div>
+                  <div className="text-[12px] text-muted-foreground">Results summary</div>
                   <p className="mt-1 text-muted-foreground">{data.results_summary}</p>
                 </div>
                 <div>
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">Interpretation</div>
+                  <div className="text-[12px] text-muted-foreground">Interpretation</div>
                   <p className="mt-1 text-muted-foreground">{data.interpretation}</p>
                 </div>
                 <div>
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">Limitations</div>
+                  <div className="text-[12px] text-muted-foreground">Limitations</div>
                   <p className="mt-1 text-muted-foreground">{data.limitations}</p>
                 </div>
               </CardContent>
@@ -251,8 +269,8 @@ export function ExperimentDetailPage() {
                   ["Random seed", data.seed === null ? "Not applicable / not recorded" : String(data.seed)],
                 ].map(([label, value]) => (
                   <div key={label} className="border-b border-border pb-2 last:border-0">
-                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</div>
-                    <div className="mt-0.5 text-[11px] leading-relaxed text-foreground">{value}</div>
+                    <div className="text-[12px] text-muted-foreground">{label}</div>
+                    <div className="mt-0.5 text-[13px] leading-relaxed text-foreground">{value}</div>
                   </div>
                 ))}
               </CardContent>
@@ -298,7 +316,7 @@ export function ExperimentDetailPage() {
               <div className="grid gap-4 lg:grid-cols-2">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Attack test — original annotations</CardTitle>
+                    <CardTitle>Attack test, original annotations</CardTitle>
                     <div className="text-xs text-muted-foreground">
                       Edge-derived ground truth. Primary evaluation labels.
                     </div>
@@ -310,7 +328,7 @@ export function ExperimentDetailPage() {
                       fn={original.false_negatives ?? null}
                       tn={original.true_negatives ?? null}
                     />
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-[10px]">
+                    <div className="mt-3 grid grid-cols-2 gap-2 text-[12px]">
                       <div className="rounded border border-border px-2 py-1.5">
                         <span className="text-muted-foreground">Precision</span>
                         <div className="font-mono text-foreground">{formatPercent(original.precision ?? null, 3)}</div>
@@ -324,7 +342,7 @@ export function ExperimentDetailPage() {
                 </Card>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Attack test — contextual indicators</CardTitle>
+                    <CardTitle>Attack test, contextual indicators</CardTitle>
                     <div className="text-xs text-muted-foreground">
                       Derived from connected provenance nodes. Secondary, non-independent evidence.
                     </div>
@@ -337,7 +355,7 @@ export function ExperimentDetailPage() {
                       tn={contextual?.true_negatives ?? null}
                       positiveLabel="Contextual positive"
                     />
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-[10px]">
+                    <div className="mt-3 grid grid-cols-2 gap-2 text-[12px]">
                       <div className="rounded border border-border px-2 py-1.5">
                         <span className="text-muted-foreground">Contextual recall</span>
                         <div className="font-mono text-foreground">{formatPercent(contextual?.recall ?? null, 2)}</div>
@@ -362,10 +380,10 @@ export function ExperimentDetailPage() {
                       if (!item) return null;
                       return (
                         <div key={key} className="rounded border border-border p-3">
-                          <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                          <div className="text-[12px] font-medium text-muted-foreground">
                             {key} in training
                           </div>
-                          <div className="mt-1 grid grid-cols-2 gap-2 text-[10px]">
+                          <div className="mt-1 grid grid-cols-2 gap-2 text-[12px]">
                             <div>
                               <span className="text-muted-foreground">Events</span>
                               <div className="font-mono">{Number(item.records ?? 0).toLocaleString()}</div>
@@ -398,19 +416,19 @@ export function ExperimentDetailPage() {
                   <CardContent className="space-y-2">
                     {evaluation.attack_test.original_label_tactics.map((tactic) => (
                       <div key={tactic.tactic} className="flex items-center gap-2">
-                        <span className="w-36 font-mono text-[10px] text-muted-foreground">{tactic.tactic}</span>
+                        <span className="w-36 font-mono text-[12px] text-muted-foreground">{tactic.tactic}</span>
                         <div className="h-1.5 flex-1 overflow-hidden rounded bg-elevated">
                           <div
                             className="h-full bg-success"
                             style={{ width: `${tactic.recall * 100}%` }}
                           />
                         </div>
-                        <span className="w-24 text-right font-mono text-[10px] text-foreground">
+                        <span className="w-24 text-right font-mono text-[12px] text-foreground">
                           {tactic.detected_events}/{tactic.positive_events}
                         </span>
                       </div>
                     ))}
-                    <div className="text-[10px] text-muted-foreground">
+                    <div className="text-[12px] text-muted-foreground">
                       Original positives are concentrated in two tactics, so per-tactic conclusions are
                       limited.
                     </div>
@@ -456,7 +474,7 @@ export function ExperimentDetailPage() {
                     </div>
                   ))
                 )}
-                <div className="pt-2 text-[10px] leading-relaxed text-muted-foreground">
+                <div className="pt-2 text-[12px] leading-relaxed text-muted-foreground">
                   Paths are repository-relative. The browser never reads the filesystem directly; the
                   read-only API resolves only allowlisted roots.
                 </div>
@@ -466,7 +484,7 @@ export function ExperimentDetailPage() {
               <CardHeader>
                 <CardTitle>Data traceability</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-[11px] leading-relaxed text-muted-foreground">
+              <CardContent className="space-y-2 text-[13px] leading-relaxed text-muted-foreground">
                 <p>
                   Summary metrics come from the artifact-specific JSON/CSV files. Per-event scores and
                   confusion matrices are not reconstructed from rounded summary values.

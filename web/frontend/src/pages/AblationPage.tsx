@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ArrowRight, Boxes, GitBranch, Layers } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -72,36 +73,50 @@ export function AblationPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Experiments · Provenance ablation"
+        eyebrow="Experiments, Provenance ablation"
         title="What does provenance context contribute?"
         description="The E5 family holds the detector and encoder constant while changing how an event is verbalised: operations only, operations with entities, or full directed provenance."
         actions={<Badge variant="warning">Preliminary ablation</Badge>}
       />
 
+      <InfoCallout tone="info" title="How to read this page">
+        E5-A, E5-B and E5-C hold the detector and encoder constant and change only the verbalised
+        text. Average Precision is a ranking metric; the best AP does not mean every operating-point
+        metric improves.{" "}
+        <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
+          Glossary
+        </Link>
+        .
+      </InfoCallout>
+
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <KpiCard
           label="E5-C Average Precision"
+          metricId="average-precision"
           value={formatDecimal(byId["E5-C"]?.average_precision, 4)}
-          detail="Full provenance · best E5 result"
+          detail="Full provenance, best E5 result"
           tone="success"
           source="results/ablation_comparison/ablation_comparison.csv"
         />
         <KpiCard
           label="AP uplift over E5-B"
-          value={data.derived.e5c_over_e5b_ap_uplift_percent ? `+${data.derived.e5c_over_e5b_ap_uplift_percent.toFixed(1)}%` : "—"}
+          value={data.derived.e5c_over_e5b_ap_uplift_percent ? `+${data.derived.e5c_over_e5b_ap_uplift_percent.toFixed(1)}%` : "n/a"}
+          definition="Relative gain from E5-B to E5-C. It is not a percentage-point gain."
           detail="Derived from measured AP values"
           tone="accent"
         />
         <KpiCard
           label="Operation-only conflicting negatives"
           value={formatNumber(data.derived.operation_only_conflicting_negative_events)}
-          detail="Share one description with all 70 positives"
+          definition="Negative events sharing one exact operation-only description with all 70 positives."
+          detail="Exact-description collision, not semantic equivalence"
           tone="error"
         />
         <KpiCard
           label="Original positives seen in training"
-          value="E5-A 70 · E5-B 0 · E5-C 0"
-          detail="Exact-description overlap with training"
+          value={<span className="text-[18px] leading-snug">E5-A 70, E5-B 0, E5-C 0</span>}
+          definition="How many labelled positives have an exact-description match in the training set."
+          detail="Exact-description overlap, by representation"
           tone="warning"
         />
       </div>
@@ -114,15 +129,15 @@ export function AblationPage() {
             <Card key={id} className={cn("p-4", representation === id && "border-primary/40")}>
               <div className="flex items-center gap-2">
                 <Icon className="size-4 text-primary" />
-                <span className="font-mono text-[11px] font-medium text-foreground">{id}</span>
+                <span className="font-mono text-[13px] font-medium text-foreground">{id}</span>
                 <Badge variant="outline" className="ml-auto">{id === "E5-A" ? "Operation only" : id === "E5-B" ? "Operations + entities" : "Full provenance"}</Badge>
               </div>
-              <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">{note.summary}</p>
-              <div className="mt-3 grid grid-cols-2 gap-1.5 text-[10px]">
+              <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{note.summary}</p>
+              <div className="mt-3 grid grid-cols-2 gap-1.5 text-[12px]">
                 <div className="rounded border border-border px-2 py-1.5"><span className="text-muted-foreground">AP</span><div className="font-mono text-foreground">{formatDecimal(model?.average_precision, 4)}</div></div>
                 <div className="rounded border border-border px-2 py-1.5"><span className="text-muted-foreground">ROC-AUC</span><div className="font-mono text-foreground">{formatDecimal(model?.roc_auc, 4)}</div></div>
               </div>
-              <button type="button" onClick={() => setRepresentation(id)} className="mt-3 inline-flex items-center gap-1 text-[10px] text-primary hover:underline">
+              <button type="button" onClick={() => setRepresentation(id)} className="mt-3 inline-flex items-center gap-1 text-[12px] text-primary hover:underline">
                 Compare verbalisations <ArrowRight className="size-3" />
               </button>
             </Card>
@@ -145,11 +160,11 @@ export function AblationPage() {
                 type="button"
                 onClick={() => setRepresentation(item.id)}
                 className={cn(
-                  "rounded border px-2.5 py-1 font-mono text-[10px] transition-colors",
+                  "rounded border px-2.5 py-1 font-mono text-[12px] transition-colors",
                   representation === item.id ? "border-primary/50 bg-primary/10 text-primary" : "border-border text-muted-foreground hover:text-foreground",
                 )}
               >
-                {item.id} · {item.label}
+                {item.id}, {item.label}
               </button>
             ))}
           </div>
@@ -157,21 +172,21 @@ export function AblationPage() {
             <div className="mt-3 grid gap-3 lg:grid-cols-[1.5fr_1fr]">
               <div className="rounded-md border border-border bg-elevated/40 p-3">
                 <div className="mb-1.5 flex items-center justify-between">
-                  <span className="text-[10px] font-medium text-foreground">{selectedExample.label}</span>
+                  <span className="text-[12px] font-medium text-foreground">{selectedExample.label}</span>
                   <Badge variant="outline">{selectedExample.description.length} chars</Badge>
                 </div>
-                <p className="break-words font-mono text-[10px] leading-relaxed text-muted-foreground">{selectedExample.description}</p>
+                <p className="break-words font-mono text-[12px] leading-relaxed text-muted-foreground">{selectedExample.description}</p>
               </div>
               <div className="space-y-2">
                 <div className="rounded border border-success/20 bg-success/5 p-2.5">
-                  <div className="text-[9px] uppercase tracking-wider text-success">Contains</div>
-                  <ul className="mt-1 space-y-0.5 text-[10px] text-muted-foreground">
+                  <div className="text-[12px] text-success">Contains</div>
+                  <ul className="mt-1 space-y-0.5 text-[12px] text-muted-foreground">
                     {selectedExample.contains.map((item) => <li key={item}>+ {item}</li>)}
                   </ul>
                 </div>
                 <div className="rounded border border-border bg-elevated/50 p-2.5">
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">Omits</div>
-                  <ul className="mt-1 space-y-0.5 text-[10px] text-muted-foreground">
+                  <div className="text-[12px] text-muted-foreground">Omits</div>
+                  <ul className="mt-1 space-y-0.5 text-[12px] text-muted-foreground">
                     {selectedExample.omits.length ? selectedExample.omits.map((item) => <li key={item}>− {item}</li>) : <li>Nothing in this representation</li>}
                   </ul>
                 </div>
@@ -193,21 +208,21 @@ export function AblationPage() {
               <thead>
                 <tr className="border-b border-border bg-elevated/40">
                   {["Model", "Unique train", "Unique attack", "Positives seen", "Conflicting records", "Mean tokens", "Max tokens", "Attack >256"].map((header) => (
-                    <th key={header} className="px-2.5 py-2 text-right text-[9px] uppercase tracking-wider text-muted-foreground first:text-left">{header}</th>
+                    <th key={header} className="px-2.5 py-2 text-right text-[12px] text-muted-foreground first:text-left">{header}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {stats.map((row) => (
                   <tr key={row.id} className="border-b border-border last:border-0">
-                    <td className="px-2.5 py-2 font-mono text-[10px] text-foreground">{row.id}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(row.uniqueTrain)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(row.uniqueAttack)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[10px]">{row.positivesSeen}</td>
-                    <td className={cn("px-2.5 py-2 text-right font-mono text-[10px]", row.conflictingRecords > 0 && "text-error")}>{formatNumber(row.conflictingRecords)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[10px]">{row.meanTokens.toFixed(1)}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[10px]">{row.maxTokens}</td>
-                    <td className="px-2.5 py-2 text-right font-mono text-[10px]">{row.truncation}</td>
+                    <td className="px-2.5 py-2 font-mono text-[12px] text-foreground">{row.id}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.uniqueTrain)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.uniqueAttack)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.positivesSeen}</td>
+                    <td className={cn("px-2.5 py-2 text-right font-mono text-[12px]", row.conflictingRecords > 0 && "text-error")}>{formatNumber(row.conflictingRecords)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.meanTokens.toFixed(1)}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.maxTokens}</td>
+                    <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.truncation}</td>
                   </tr>
                 ))}
               </tbody>
@@ -225,10 +240,10 @@ export function AblationPage() {
               return (
                 <div key={id} className="rounded border border-border px-2.5 py-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] text-foreground">{id}</span>
-                    <span className="font-mono text-[10px] text-muted-foreground">{formatDecimal(model?.average_precision, 4)} AP</span>
+                    <span className="font-mono text-[12px] text-foreground">{id}</span>
+                    <span className="font-mono text-[12px] text-muted-foreground">{formatDecimal(model?.average_precision, 4)} AP</span>
                   </div>
-                  <div className="mt-1 flex gap-3 text-[9px] text-muted-foreground">
+                  <div className="mt-1 flex gap-3 text-[12px] text-muted-foreground">
                     <span>ROC {formatDecimal(model?.roc_auc, 3)}</span>
                     <span>Recall {formatPercent(model?.recall, 1)}</span>
                     <span>FP {formatNumber(model?.false_positives)}</span>
@@ -269,7 +284,7 @@ export function AblationPage() {
           <InfoCallout tone="info" title="What the ablation cannot isolate">
             The three representations also differ in text length, ordering and formatting. The experiment measures overall representation differences, not the isolated causal effect of adding graph edges.
           </InfoCallout>
-          <div className="rounded-md border border-border p-3 text-[11px] leading-relaxed text-muted-foreground">
+          <div className="rounded-md border border-border p-3 text-[13px] leading-relaxed text-muted-foreground">
             <span className="font-medium text-foreground">Finding F05:</span> Full provenance achieves better observed AP than operation-only and entity-based representations in this controlled E5 experiment. This remains preliminary and single-seed.
           </div>
         </div>
@@ -283,8 +298,8 @@ export function AblationPage() {
         <CardContent className="grid gap-3 md:grid-cols-3">
           {Object.entries(data.conflicts).map(([variant, conflict]) => (
             <div key={variant} className="rounded border border-border p-3">
-              <div className="font-mono text-[10px] text-foreground">{variant}</div>
-              <div className="mt-1.5 space-y-1 text-[10px]">
+              <div className="font-mono text-[12px] text-foreground">{variant}</div>
+              <div className="mt-1.5 space-y-1 text-[12px]">
                 <div className="flex justify-between"><span className="text-muted-foreground">Conflicting descriptions</span><span className="font-mono">{conflict.original.conflicting_descriptions}</span></div>
                 <div className="flex justify-between"><span className="text-muted-foreground">Conflicting records</span><span className="font-mono">{formatNumber(conflict.original.conflicting_records)}</span></div>
                 <div className="flex justify-between"><span className="text-muted-foreground">Conflicting positives</span><span className={cn("font-mono", conflict.original.conflicting_positives > 0 && "text-error")}>{conflict.original.conflicting_positives}</span></div>

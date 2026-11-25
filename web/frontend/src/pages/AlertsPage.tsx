@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { useQueries } from "@tanstack/react-query";
 import {
   CartesianGrid,
@@ -79,17 +80,27 @@ export function AlertsPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Experiments · Alert prioritisation"
+        eyebrow="Experiments, Alert prioritisation"
         title="Analyst alert-budget simulator"
         description="How many original malicious events are recovered if an analyst investigates only the top-ranked alerts? Only measured budget points are shown; intermediate budgets are not invented."
         actions={<Badge variant="outline">Tie-aware analysis</Badge>}
       />
 
+      <InfoCallout tone="info" title="How to read this page">
+        The budget is review capacity, not a threshold. Only measured budget points are shown.
+        Precision is expected true positives divided by the budget; recall is divided by the 70
+        original positives.{" "}
+        <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
+          Glossary
+        </Link>
+        .
+      </InfoCallout>
+
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        <KpiCard label="Investigating budget" value={formatNumber(budget)} detail="Top-N ranked alerts" tone="accent" icon={<Users className="size-3.5" />} />
-        <KpiCard label="E2-D expected true positives" value={formatNumber(primary?.rows.find((row) => row.budget === budget)?.expected_true_positives ?? null)} detail="Within the selected alert budget" tone="success" />
-        <KpiCard label="E2-D expected precision" value={formatPercent(primary?.rows.find((row) => row.budget === budget)?.expected_precision ?? null, 2)} detail="Expected TP ÷ budget" tone="warning" />
-        <KpiCard label="E2-D expected recall" value={formatPercent(primary?.rows.find((row) => row.budget === budget)?.expected_recall ?? null, 2)} detail="Of 70 original positives" tone="warning" />
+        <KpiCard label="Investigating budget" value={formatNumber(budget)} metricId="alert-budget" detail="Top-N ranked alerts" tone="accent" icon={<Users className="size-4" />} />
+        <KpiCard label="E2-D expected true positives" value={formatNumber(primary?.rows.find((row) => row.budget === budget)?.expected_true_positives ?? null)} definition="Original positives inside the selected top-N alert set." detail="Measured points only" tone="success" />
+        <KpiCard label="E2-D expected precision" value={formatPercent(primary?.rows.find((row) => row.budget === budget)?.expected_precision ?? null, 2)} metricId="precision" detail="Expected TP ÷ budget" tone="warning" />
+        <KpiCard label="E2-D expected recall" value={formatPercent(primary?.rows.find((row) => row.budget === budget)?.expected_recall ?? null, 2)} metricId="recall" detail="Of 70 original positives" tone="warning" />
       </div>
 
       <Card>
@@ -109,7 +120,7 @@ export function AlertsPage() {
               onValueChange={(value) => setBudgetIndex(value[0])}
               aria-label="Alert budget"
             />
-            <div className="mt-2 flex justify-between font-mono text-[9px] text-muted-foreground">
+            <div className="mt-2 flex justify-between font-mono text-[12px] text-muted-foreground">
               {budgets.map((value) => (
                 <button key={value} type="button" onClick={() => setBudgetIndex(budgets.indexOf(value))} className={cn(value === budget && "font-semibold text-primary")}>
                   {value >= 1000 ? `${value / 1000}k` : value}
@@ -119,7 +130,7 @@ export function AlertsPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="mr-1 text-[10px] text-muted-foreground">Models:</span>
+            <span className="mr-1 text-[12px] text-muted-foreground">Models:</span>
             {MODELS.map((id) => {
               const active = visibleModels.includes(id);
               return (
@@ -128,7 +139,7 @@ export function AlertsPage() {
                   type="button"
                   onClick={() => setVisibleModels((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id])}
                   className={cn(
-                    "rounded border px-2 py-1 font-mono text-[10px] transition-colors",
+                    "rounded border px-2 py-1 font-mono text-[12px] transition-colors",
                     active ? "border-primary/40 bg-primary/10 text-primary" : "border-border text-muted-foreground hover:text-foreground",
                   )}
                 >
@@ -145,27 +156,27 @@ export function AlertsPage() {
               return (
                 <div key={payload!.experiment_id} className={cn("rounded-md border border-border p-2.5", hidden && "opacity-40")}>
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-medium text-foreground">{payload!.experiment_id}</span>
+                    <span className="font-mono text-[12px] font-medium text-foreground">{payload!.experiment_id}</span>
                     <Badge variant={payload!.experiment_id === "E2-D" ? "success" : "outline"}>
                       {payload!.experiment_id === "E2-D" ? "Leading" : "Comparison"}
                     </Badge>
                   </div>
-                  <div className="mt-1.5 grid grid-cols-2 gap-1 text-[10px]">
+                  <div className="mt-1.5 grid grid-cols-2 gap-1 text-[12px]">
                     <div>
                       <span className="text-muted-foreground">TP</span>
-                      <div className="font-mono text-foreground">{row ? formatNumber(row.expected_true_positives) : "—"}</div>
+                      <div className="font-mono text-foreground">{row ? formatNumber(row.expected_true_positives) : "n/a"}</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Tie range</span>
-                      <div className="font-mono text-foreground">{row ? `${row.minimum_true_positives}–${row.maximum_true_positives}` : "—"}</div>
+                      <div className="font-mono text-foreground">{row ? `${row.minimum_true_positives} to ${row.maximum_true_positives}` : "n/a"}</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Precision</span>
-                      <div className="font-mono text-foreground">{row ? formatPercent(row.expected_precision, 2) : "—"}</div>
+                      <div className="font-mono text-foreground">{row ? formatPercent(row.expected_precision, 2) : "n/a"}</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Recall</span>
-                      <div className="font-mono text-foreground">{row ? formatPercent(row.expected_recall, 1) : "—"}</div>
+                      <div className="font-mono text-foreground">{row ? formatPercent(row.expected_recall, 1) : "n/a"}</div>
                     </div>
                   </div>
                 </div>
@@ -216,7 +227,7 @@ export function AlertsPage() {
         <div className="space-y-4">
           <Card>
             <CardHeader><CardTitle>Analyst workload interpretation</CardTitle></CardHeader>
-            <CardContent className="space-y-2 text-[11px] leading-relaxed text-muted-foreground">
+            <CardContent className="space-y-2 text-[13px] leading-relaxed text-muted-foreground">
               <p><Users className="mr-1 inline size-3 text-primary" /> At a 500-alert budget, E2-D recovers 46 of 70 original positives, while E2-B recovers 7 and E2-A/E2-C recover 0.</p>
               <p>Expected precision at 500 alerts is 9.2% for E2-D: about 46 true alerts among 500 investigations. This is a triage result, not autonomous classification.</p>
               <p>At 2,000 alerts, all four models recover at least 64 of 70, but the analyst cost is four times larger.</p>
@@ -227,7 +238,7 @@ export function AlertsPage() {
           </Card>
           <Card>
             <CardHeader><CardTitle>What this analysis does not show</CardTitle></CardHeader>
-            <CardContent className="text-[11px] leading-relaxed text-muted-foreground">
+            <CardContent className="text-[13px] leading-relaxed text-muted-foreground">
               It does not measure analyst decision quality, investigation time, mitigation success or alert fatigue. It also uses a single seed and a repeatedly inspected attack scenario.
             </CardContent>
           </Card>
@@ -244,20 +255,20 @@ export function AlertsPage() {
             <thead>
               <tr className="border-b border-border bg-elevated/40">
                 {["Budget", ...MODELS.flatMap((id) => [`${id} TP`, `${id} precision`])].map((header) => (
-                  <th key={header} className="px-2.5 py-2 text-right text-[9px] uppercase tracking-wider text-muted-foreground first:text-left">{header}</th>
+                  <th key={header} className="px-2.5 py-2 text-right text-[12px] text-muted-foreground first:text-left">{header}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {budgets.map((value) => (
                 <tr key={value} onClick={() => setBudgetIndex(budgets.indexOf(value))} className={cn("cursor-pointer border-b border-border last:border-0 hover:bg-elevated/50", value === budget && "bg-primary/5")}>
-                  <td className="px-2.5 py-2 font-mono text-[10px] text-foreground">{formatNumber(value)}</td>
+                  <td className="px-2.5 py-2 font-mono text-[12px] text-foreground">{formatNumber(value)}</td>
                   {MODELS.map((id) => {
                     const payload = payloads.find((item) => item?.experiment_id === id);
                     const row = payload?.rows.find((item) => item.budget === value);
                     return [
-                      <td key={`${id}-${value}-tp`} className="px-2.5 py-2 text-right font-mono text-[10px]">{row ? formatNumber(row.expected_true_positives) : "—"}</td>,
-                      <td key={`${id}-${value}-p`} className="px-2.5 py-2 text-right font-mono text-[10px]">{row ? formatPercent(row.expected_precision, 2) : "—"}</td>,
+                      <td key={`${id}-${value}-tp`} className="px-2.5 py-2 text-right font-mono text-[12px]">{row ? formatNumber(row.expected_true_positives) : "n/a"}</td>,
+                      <td key={`${id}-${value}-p`} className="px-2.5 py-2 text-right font-mono text-[12px]">{row ? formatPercent(row.expected_precision, 2) : "n/a"}</td>,
                     ];
                   })}
                 </tr>

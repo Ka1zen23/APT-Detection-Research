@@ -9,6 +9,20 @@
     />
     <meta name="color-scheme" content="light dark" />
     <title>APT Research Lab · UTB</title>
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem("apt-dashboard-theme") || "dark";
+          const dark =
+            stored === "dark" ||
+            (stored === "system" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+        } catch {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
   </head>
   <body class="h-full">
     <noscript>

@@ -1,0 +1,35 @@
+{
+  "data": {
+    "id": "E1",
+    "name": "V1 versus V2 verbalisation comparison",
+    "group": "representation",
+    "kind": "model",
+    "status": "planned",
+    "research_question": "How does the earlier V1 verbalisation compare with the current V2 representation?",
+    "hypothesis": "V2's explicit relationships and entity detail will improve observed detection performance.",
+    "representation": "V1 and V2 descriptions",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+    "algorithm": "Autoencoder 384-128-32-128-384",
+    "training_strategy": "Train matched configurations on each representation.",
+    "seed": 42,
+    "training_configuration": {},
+    "checkpoint_selection": "Same validation rule per representation.",
+    "evaluation_configuration": {},
+    "results_summary": "Not yet executed.",
+    "interpretation": "Planned controlled comparison.",
+    "limitations": "Planned only.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.966211+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "B5",
+    "available": true,
+    "metrics": {
+      "id": "B5",
+      "name": "Operation-frequency baseline",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "representation": "Operation-only description (operation names only)",
+      "encoder": "None",
+      "algorithm": "Negative log training-frequency score",
+      "research_question": "How much detection signal is available from operation-name frequency alone?",
+      "hypothesis": "Operation-only frequency will be weak because operation sequences are highly repetitive.",
+      "seed": null,
+      "roc_auc": 0.8261341770645296,
+      "average_precision": 0.00321159845843274,
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "true_positives": 0,
+      "false_positives": 1130,
+      "false_negatives": 70,
+      "true_negatives": 99692,
+      "benign_fpr": 0.006133820293112329,
+      "attack_fpr": 0.011207871297931007,
+      "contextual_recall": 0.10222222222222223,
+      "threshold": 4.616063979418644,
+      "threshold_percentile": 99.0,
+      "training_seconds": null,
+      "operating_point": "Validation P99 (frequency baseline)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "note": null
+      },
+      "rank": 5
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.739315+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

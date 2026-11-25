@@ -22,8 +22,11 @@ function Progress({
   return (
     <div className={cn("h-1.5 w-full overflow-hidden rounded-full bg-elevated", className)}>
       <div
-        className={cn("h-full bg-primary transition-all", indicatorClassName)}
-        style={{ width: `${Math.max(0, Math.min(100, value))}%` }}
+        className={cn("h-full bg-primary transition-transform", indicatorClassName)}
+        style={{
+          transform: `scaleX(${Math.max(0, Math.min(100, value)) / 100})`,
+          transformOrigin: "left center",
+        }}
       />
     </div>
   );

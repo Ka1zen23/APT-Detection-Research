@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   CartesianGrid,
   Line,
@@ -59,7 +60,7 @@ export function ThresholdPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Experiments · Threshold sensitivity"
+        eyebrow="Experiments, Threshold sensitivity"
         title="Validation-derived threshold analysis"
         description="Explore the measured percentile sweep for the autoencoder variants. Thresholds are derived from benign validation reconstruction errors, never from attack-test labels."
         actions={
@@ -74,6 +75,16 @@ export function ThresholdPage() {
         }
       />
 
+      <InfoCallout tone="info" title="How to read this page">
+        Metrics use original labels at the selected percentile. P99 is the primary operating point;
+        P99.95 is retrospective. Precision is low because only 70 of 100,892 attack-test events are
+        original positives.{" "}
+        <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
+          Glossary
+        </Link>
+        .
+      </InfoCallout>
+
       {!data.available ? (
         <InfoCallout tone="neutral" title="Threshold sweep unavailable">
           {data.reason}
@@ -87,7 +98,7 @@ export function ThresholdPage() {
                 type="button"
                 onClick={() => setSelectedPercentile(row.percentile)}
                 className={cn(
-                  "rounded border px-2.5 py-1 font-mono text-[10px] transition-colors",
+                  "inline-flex min-h-8 items-center rounded border px-2.5 py-1 font-mono text-[12px] transition-colors",
                   selectedPercentile === row.percentile
                     ? "border-primary/50 bg-primary/10 text-primary"
                     : "border-border bg-surface text-muted-foreground hover:text-foreground",
@@ -97,7 +108,7 @@ export function ThresholdPage() {
                 {row.exploratory && <span className="ml-1 text-warning">*</span>}
               </button>
             ))}
-            <span className="self-center text-[9px] text-muted-foreground">
+            <span className="self-center text-[12px] text-muted-foreground">
               <span className="text-warning">*</span> retrospective exploratory point (≥P99.95)
             </span>
           </div>
@@ -105,20 +116,20 @@ export function ThresholdPage() {
           {selected && (
             <>
               <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-                <KpiCard label="Anomaly threshold" value={formatThreshold(selected.threshold)} detail={`${experimentId} · ${percentileLabel(selected.percentile)}`} source="results/autoencoder_comparison/threshold_comparison.csv" />
-                <KpiCard label="True positives" value={formatNumber(selected.true_positives)} detail={`${formatPercent(selected.recall, 2)} original recall`} tone="success" />
-                <KpiCard label="False positives" value={formatNumber(selected.false_positives)} detail={`${formatNumber(selected.total_alerts)} total alerts`} tone="error" />
-                <KpiCard label="Precision" value={formatPercent(selected.precision, 3)} detail={`F1 ${formatPercent(selected.f1, 3)}`} tone="warning" />
-                <KpiCard label="Benign false-positive rate" value={formatPercent(selected.benign_fpr, 3)} detail={`${formatNumber(selected.benign_false_positives)} benign-test alerts`} />
-                <KpiCard label="Attack-scenario false-positive rate" value={formatPercent(selected.attack_fpr, 3)} detail="Among negatively annotated attack-test events" />
-                <KpiCard label="Contextual recall" value={formatPercent(selected.contextual_recall, 2)} detail={`${formatNumber(selected.contextual_true_positives)} of 225 derived indicators`} tone="warning" />
-                <KpiCard label="Validation FPR" value={formatPercent(selected.validation_fpr, 3)} detail="By construction near 1−percentile/100" />
+                <KpiCard label="Anomaly threshold" value={formatThreshold(selected.threshold)} definition="Calibrated from benign validation errors at the selected percentile." detail={`${experimentId}, ${percentileLabel(selected.percentile)}`} source="results/autoencoder_comparison/threshold_comparison.csv" />
+                <KpiCard label="True positives" value={formatNumber(selected.true_positives)} definition="Original positives at or above the selected threshold." detail={`${formatPercent(selected.recall, 2)} original recall`} tone="success" />
+                <KpiCard label="False positives" value={formatNumber(selected.false_positives)} definition="Negatively labelled events at or above the selected threshold." detail={`${formatNumber(selected.total_alerts)} total alerts`} tone="error" />
+                <KpiCard label="Precision" value={formatPercent(selected.precision, 3)} metricId="precision" detail={`F1 ${formatPercent(selected.f1, 3)}`} tone="warning" />
+                <KpiCard label="Benign false-positive rate" value={formatPercent(selected.benign_fpr, 3)} metricId="benign-fpr" detail={`${formatNumber(selected.benign_false_positives)} benign-test alerts`} />
+                <KpiCard label="Attack-scenario false-positive rate" value={formatPercent(selected.attack_fpr, 3)} metricId="attack-fpr" detail="Among negatively annotated attack-test events" />
+                <KpiCard label="Contextual recall" value={formatPercent(selected.contextual_recall, 2)} metricId="contextual-recall" detail={`${formatNumber(selected.contextual_true_positives)} of 225 derived indicators`} tone="warning" />
+                <KpiCard label="Validation FPR" value={formatPercent(selected.validation_fpr, 3)} definition="A calibration check, not a performance result. It sits near 1 minus the percentile." detail="Selected percentile is the calibration target" />
               </div>
 
               <div className="grid gap-4 lg:grid-cols-[1fr_1.1fr]">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Confusion matrix — {percentileLabel(selected.percentile)}</CardTitle>
+                    <CardTitle>Confusion matrix, {percentileLabel(selected.percentile)}</CardTitle>
                     <div className="text-xs text-muted-foreground">
                       Measured from the attack-test partition with original labels.
                     </div>
@@ -176,15 +187,15 @@ export function ThresholdPage() {
                         ["Contextual recall", formatPercent(p99.contextual_recall, 2), formatPercent(p9995.contextual_recall, 2)],
                       ].map(([label, left, right]) => (
                         <div key={label} className="rounded border border-border p-2.5">
-                          <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</div>
+                          <div className="text-[12px] text-muted-foreground">{label}</div>
                           <div className="mt-1 flex items-baseline justify-between gap-2">
-                            <div><span className="font-mono text-[9px] text-muted-foreground">P99 </span><span className="font-mono text-xs text-foreground">{left}</span></div>
-                            <div><span className="font-mono text-[9px] text-muted-foreground">P99.95 </span><span className="font-mono text-xs text-foreground">{right}</span></div>
+                            <div><span className="font-mono text-[12px] text-muted-foreground">P99 </span><span className="font-mono text-xs text-foreground">{left}</span></div>
+                            <div><span className="font-mono text-[12px] text-muted-foreground">P99.95 </span><span className="font-mono text-xs text-foreground">{right}</span></div>
                           </div>
                         </div>
                       ))}
                     </div>
-                    <InfoCallout tone="warning" className="mt-3" title="Exploratory diagnostic — not a deployment decision">
+                    <InfoCallout tone="warning" className="mt-3" title="Exploratory diagnostic, not a deployment decision">
                       The higher percentile reduces false positives substantially but sacrifices contextual recall. It was selected retrospectively and has not been independently validated. No threshold should be chosen solely from attack-test performance.
                     </InfoCallout>
                   </CardContent>
@@ -193,15 +204,18 @@ export function ThresholdPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>All measured percentile rows — {experimentId}</CardTitle>
+                  <CardTitle>All measured percentile rows, {experimentId}</CardTitle>
                   <div className="text-xs text-muted-foreground">Each row is a directly measured sweep point, not an interpolated value.</div>
                 </CardHeader>
+                <p className="px-5 pb-2 text-[12px] text-muted-foreground sm:hidden">
+                  Scroll horizontally to see every column.
+                </p>
                 <CardContent className="overflow-x-auto p-0">
                   <table className="w-full min-w-[900px] text-xs">
                     <thead>
                       <tr className="border-b border-border bg-elevated/40">
                         {["Percentile", "Threshold", "TP", "FP", "FN", "Precision", "Recall", "F1", "Benign FPR", "Attack FPR", "Ctx recall", "Alerts"].map((label) => (
-                          <th key={label} className="px-2.5 py-2 text-right text-[9px] uppercase tracking-wider text-muted-foreground first:text-left">{label}</th>
+                          <th key={label} className="px-2.5 py-2 text-right text-[12px] text-muted-foreground first:text-left">{label}</th>
                         ))}
                       </tr>
                     </thead>
@@ -215,21 +229,21 @@ export function ThresholdPage() {
                             selectedPercentile === row.percentile && "bg-primary/5",
                           )}
                         >
-                          <td className="px-2.5 py-2 font-mono text-[10px] text-foreground">
+                          <td className="px-2.5 py-2 font-mono text-[12px] text-foreground">
                             {percentileLabel(row.percentile)}
                             {row.exploratory && <span className="ml-1 text-warning">*</span>}
                           </td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[9px]">{formatThreshold(row.threshold)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{row.true_positives}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(row.false_positives)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{row.false_negatives}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(row.precision, 3)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(row.recall, 1)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(row.f1, 3)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(row.benign_fpr, 3)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(row.attack_fpr, 2)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatPercent(row.contextual_recall, 1)}</td>
-                          <td className="px-2.5 py-2 text-right font-mono text-[10px]">{formatNumber(row.total_alerts)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatThreshold(row.threshold)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.true_positives}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.false_positives)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{row.false_negatives}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(row.precision, 3)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(row.recall, 1)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(row.f1, 3)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(row.benign_fpr, 3)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(row.attack_fpr, 2)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatPercent(row.contextual_recall, 1)}</td>
+                          <td className="px-2.5 py-2 text-right font-mono text-[12px]">{formatNumber(row.total_alerts)}</td>
                         </tr>
                       ))}
                     </tbody>

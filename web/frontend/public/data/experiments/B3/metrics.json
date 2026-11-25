@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "B3",
+    "available": true,
+    "metrics": {
+      "id": "B3",
+      "name": "MiniLM with PCA reconstruction",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "representation": "384-dimensional frozen MiniLM embedding",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, normalised)",
+      "algorithm": "PCA reconstruction error (32 components)",
+      "research_question": "Can linear subspace reconstruction of frozen MiniLM embeddings identify unusual events?",
+      "hypothesis": "PCA reconstruction will capture dominant benign variation but miss nonlinear anomalies.",
+      "seed": 42,
+      "roc_auc": 0.9541647656265497,
+      "average_precision": 0.007092356671794484,
+      "recall": 1.0,
+      "precision": 0.006452802359882006,
+      "f1": 0.012822861329913903,
+      "true_positives": 70,
+      "false_positives": 10778,
+      "false_negatives": 0,
+      "true_negatives": 90044,
+      "benign_fpr": 0.008474973076742989,
+      "attack_fpr": 0.10690127154787646,
+      "contextual_recall": 0.9822222222222222,
+      "threshold": 0.00011217684368602931,
+      "threshold_percentile": 99.0,
+      "training_seconds": 1.7427844779995212,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/baselines/baseline_comparison.csv",
+        "note": null
+      },
+      "rank": 3
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.699705+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E5-C",
+    "available": true,
+    "metrics": {
+      "id": "E5-C",
+      "name": "Provenance ablation \u2014 full provenance",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "representation": "Operations, entity attributes and explicit directed provenance relationships",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Do explicit directed provenance relationships add detection value beyond operations and entity attributes?",
+      "hypothesis": "Full provenance will improve observed Average Precision relative to the entity-based representation.",
+      "seed": 42,
+      "roc_auc": 0.9855065646103316,
+      "average_precision": 0.021742598294833555,
+      "recall": 1.0,
+      "precision": 0.006191402794976119,
+      "f1": 0.01230661040787623,
+      "true_positives": 70,
+      "false_positives": 11236,
+      "false_negatives": 0,
+      "true_negatives": 89586,
+      "benign_fpr": 0.010488364470665356,
+      "attack_fpr": 0.11144393088809983,
+      "contextual_recall": 1.0,
+      "threshold": 4.0547158278059214e-05,
+      "threshold_percentile": 99.0,
+      "training_seconds": 101.2002000479988,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "note": null
+      },
+      "rank": 12
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.916974+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

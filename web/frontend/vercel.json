@@ -5,19 +5,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "trailingSlash": false,
-  "regions": ["sin1"],
-  "functions": {
-    "api/proxy.js": {
-      "maxDuration": 30
-    }
-  },
   "rewrites": [
     {
-      "source": "/api/v1/:path(.*)",
-      "destination": "/api/proxy?path=:path"
-    },
-    {
-      "source": "/:path((?!api/|assets/|src/|@vite/|@react-refresh|node_modules/|robots\\.txt|favicon\\.ico).*)",
+      "source": "/:path((?!data/|artifacts/|assets/|src/|@vite/|@react-refresh|node_modules/|robots\\.txt|favicon\\.ico).*)",
       "destination": "/index.html"
     }
   ],

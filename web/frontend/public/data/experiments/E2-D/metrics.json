@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E2-D",
+    "available": true,
+    "metrics": {
+      "id": "E2-D",
+      "name": "Approximately matched-update unique-description training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Can unique-description training be matched to the original optimiser-update budget while improving anomaly prioritisation?",
+      "hypothesis": "Approximately matching the number of optimiser updates will provide a fair comparison between frequency-preserving and unique-description training.",
+      "seed": 42,
+      "roc_auc": 0.9955844387704498,
+      "average_precision": 0.10907981276799296,
+      "recall": 1.0,
+      "precision": 0.008047827086686594,
+      "f1": 0.01596715328467153,
+      "true_positives": 70,
+      "false_positives": 8628,
+      "false_negatives": 0,
+      "true_negatives": 92194,
+      "benign_fpr": 0.0075385119632907244,
+      "attack_fpr": 0.08557656067128207,
+      "contextual_recall": 0.7733333333333333,
+      "threshold": 0.00027996741118840873,
+      "threshold_percentile": 99.0,
+      "training_seconds": 109.71300278799754,
+      "operating_point": "Validation P99 (primary experimental operating point)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+        "note": null
+      },
+      "rank": 9
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.818496+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

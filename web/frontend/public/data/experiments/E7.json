@@ -1,0 +1,51 @@
+{
+  "data": {
+    "id": "E7",
+    "name": "Multiple-seed reproducibility",
+    "group": "reproducibility",
+    "kind": "model",
+    "status": "planned",
+    "research_question": "Do the observed experimental improvements remain consistent across different random seeds?",
+    "hypothesis": "The E2-D ranking advantage will persist across seeds, but absolute metrics will vary.",
+    "representation": "Same as E2-D",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+    "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+    "training_strategy": "Repeat the selected configurations with seeds 42, 123 and 456; report mean, standard deviation and individual outcomes.",
+    "seed": null,
+    "training_configuration": {
+      "suggested_seeds": [
+        42,
+        123,
+        456
+      ]
+    },
+    "checkpoint_selection": "Same benign-validation checkpoint rule as the original experiment.",
+    "evaluation_configuration": {
+      "metrics": [
+        "ROC-AUC",
+        "Average Precision",
+        "precision",
+        "recall",
+        "contextual recall",
+        "alert budget recovery"
+      ],
+      "aggregation": "mean, standard deviation, individual runs"
+    },
+    "results_summary": "Not yet executed.",
+    "interpretation": "Current results are single-seed and should not be treated as stable estimates.",
+    "limitations": "No multi-seed evidence exists yet.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.926471+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

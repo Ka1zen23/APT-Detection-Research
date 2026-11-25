@@ -15,6 +15,7 @@ import { Select } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTheme } from "@/hooks/use-theme";
 import { useHealth, useRefreshData, useResearchStatus } from "@/hooks/queries";
+import { isStaticDataMode } from "@/services/api";
 import { flatNav } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 import { formatDateTime, relativeTime } from "@/lib/format";
@@ -42,7 +43,7 @@ function Breadcrumbs() {
   }
 
   return (
-    <nav aria-label="Breadcrumb" className="hidden items-center gap-1 text-[11px] text-muted-foreground sm:flex">
+    <nav aria-label="Breadcrumb" className="hidden items-center gap-1 text-[13px] text-muted-foreground sm:flex">
       <Link to="/" className="transition-colors hover:text-foreground">
         Research
       </Link>
@@ -73,7 +74,7 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
 
   return (
     <>
-      <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/95 px-3 backdrop-blur md:px-5">
+      <header className="flex h-16 shrink-0 items-center gap-3 border-b border-border bg-background px-4 md:px-6 lg:px-8">
         <div className="md:hidden">
           <SidebarToggleButton onClick={onOpenNav} />
         </div>
@@ -82,11 +83,11 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="hidden h-8 items-center gap-2 rounded-md border border-border bg-surface px-2.5 text-[11px] text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground sm:flex"
+            className="hidden h-9 items-center gap-2 rounded-md border border-border bg-surface px-3 text-[13px] text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground sm:flex"
           >
-            <Search className="size-3.5" />
+            <Search className="size-4" />
             <span>Search research…</span>
-            <kbd className="ml-2 rounded border border-border bg-elevated px-1 py-0.5 font-mono text-[9px]">
+            <kbd className="ml-2 rounded border border-border bg-elevated px-1.5 py-0.5 font-mono text-[11px]">
               ⌘K
             </kbd>
           </button>
@@ -109,7 +110,7 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
                     health?.status === "ok" ? "bg-success" : "bg-error",
                   )}
                 />
-                <span className="text-[10px] text-muted-foreground">
+                <span className="text-[12px] text-muted-foreground">
                   {health?.status === "ok" ? "API live" : "API offline"}
                 </span>
               </div>
@@ -124,7 +125,7 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
             <TooltipTrigger asChild>
               <div className="hidden items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 xl:flex">
                 <span className="size-1.5 rounded-full bg-warning" />
-                <span className="max-w-40 truncate text-[10px] text-muted-foreground">
+                <span className="max-w-44 truncate text-[12px] text-muted-foreground">
                   {research?.status ?? "Research active"}
                 </span>
               </div>
@@ -133,7 +134,7 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
           </Tooltip>
 
           <div
-            className="hidden items-center gap-1 text-[10px] text-muted-foreground lg:flex"
+            className="hidden items-center gap-1 text-[12px] text-muted-foreground lg:flex"
             title={formatDateTime(health?.last_artifact_update)}
           >
             <span>Updated {relativeTime(health?.last_artifact_update)}</span>
@@ -144,14 +145,22 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
               <Button
                 variant="ghost"
                 size="icon-sm"
-                onClick={() => refresh.mutate()}
-                disabled={refresh.isPending}
-                aria-label="Refresh research data"
+                onClick={() => (isStaticDataMode ? window.location.reload() : refresh.mutate())}
+                disabled={!isStaticDataMode && refresh.isPending}
+                aria-label={isStaticDataMode ? "Reload static snapshot" : "Refresh research data"}
               >
-                {refresh.isPending ? <Loader2 className="animate-spin" /> : <RefreshCw />}
+                {!isStaticDataMode && refresh.isPending ? (
+                  <Loader2 className="animate-spin motion-reduce:animate-none" />
+                ) : (
+                  <RefreshCw />
+                )}
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Clear the in-memory cache and refetch all research data.</TooltipContent>
+            <TooltipContent>
+              {isStaticDataMode
+                ? "Reload the static snapshot. New research data requires a new export and redeploy."
+                : "Clear the in-memory cache and refetch all research data."}
+            </TooltipContent>
           </Tooltip>
 
           <Button
@@ -175,7 +184,7 @@ export function Topbar({ onOpenNav }: { onOpenNav: () => void }) {
             <Select
               value={theme}
               onChange={(event) => setTheme(event.target.value as "light" | "dark" | "system")}
-              className="h-8 w-[94px] pl-7 text-[10px]"
+              className="h-9 w-[104px] pl-7 text-[12px]"
               aria-label="Theme"
             >
               <option value="light">Light</option>

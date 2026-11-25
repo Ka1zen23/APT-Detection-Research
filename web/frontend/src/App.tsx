@@ -12,6 +12,7 @@ import { ThresholdPage } from "@/pages/ThresholdPage";
 import { AlertsPage } from "@/pages/AlertsPage";
 import { AblationPage } from "@/pages/AblationPage";
 import { FindingsPage } from "@/pages/FindingsPage";
+import { GlossaryPage } from "@/pages/GlossaryPage";
 import { RoadmapPage } from "@/pages/RoadmapPage";
 import { JournalPage } from "@/pages/JournalPage";
 import { ReportsPage } from "@/pages/ReportsPage";
@@ -37,6 +38,7 @@ export function App() {
         <Route path="alerts" element={<AlertsPage />} />
         <Route path="ablation" element={<AblationPage />} />
         <Route path="findings" element={<FindingsPage />} />
+        <Route path="glossary" element={<GlossaryPage />} />
         <Route path="roadmap" element={<RoadmapPage />} />
         <Route path="journal" element={<JournalPage />} />
         <Route path="journal/:slug" element={<JournalPage />} />

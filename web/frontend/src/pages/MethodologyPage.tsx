@@ -55,7 +55,7 @@ export function MethodologyPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Research · Methodology"
+        eyebrow="Research, Methodology"
         title="Implemented pipeline and model architecture"
         description="The current method converts provenance events into text, encodes them with a frozen sentence transformer, and measures reconstruction error with a benign-trained autoencoder. Planned components are labelled separately."
         actions={<Badge variant="success">Implemented core</Badge>}
@@ -75,7 +75,7 @@ export function MethodologyPage() {
                   <div className="flex flex-col items-center">
                     <span
                       className={cn(
-                        "grid size-6 shrink-0 place-items-center rounded border font-mono text-[9px]",
+                        "grid size-6 shrink-0 place-items-center rounded border font-mono text-[12px]",
                         isImplemented
                           ? "border-success/25 bg-success/5 text-success"
                           : "border-border bg-elevated text-muted-foreground",
@@ -92,7 +92,7 @@ export function MethodologyPage() {
                         {isImplemented ? "Implemented" : "Planned"}
                       </Badge>
                     </div>
-                    <div className="mt-0.5 text-[10px] leading-relaxed text-muted-foreground">
+                    <div className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">
                       {step.description}
                     </div>
                   </div>
@@ -102,12 +102,12 @@ export function MethodologyPage() {
           </CardContent>
         </Card>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
-          <div className="rounded-md border border-success/20 bg-success/5 px-3 py-2 text-[10px] text-muted-foreground">
-            <span className="font-medium text-success">{implemented.length} implemented</span> · covers
+          <div className="rounded-md border border-success/20 bg-success/5 px-3 py-2 text-[12px] text-muted-foreground">
+            <span className="font-medium text-success">{implemented.length} implemented</span>, covers
             event-level detection through alert prioritisation.
           </div>
-          <div className="rounded-md border border-border bg-elevated px-3 py-2 text-[10px] text-muted-foreground">
-            <span className="font-medium text-foreground">{planned.length} planned</span> · correlation,
+          <div className="rounded-md border border-border bg-elevated px-3 py-2 text-[12px] text-muted-foreground">
+            <span className="font-medium text-foreground">{planned.length} planned</span>, correlation,
             incident reconstruction, mitigation and human review are future work.
           </div>
         </div>
@@ -137,8 +137,8 @@ export function MethodologyPage() {
                 ["Revision", data.encoder.revision ?? "Not recorded"],
               ].map(([label, value]) => (
                 <div key={label} className="rounded border border-border px-2.5 py-2">
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</div>
-                  <div className="mt-0.5 text-[11px] text-foreground">{value}</div>
+                  <div className="text-[12px] text-muted-foreground">{label}</div>
+                  <div className="mt-0.5 text-[13px] text-foreground">{value}</div>
                 </div>
               ))}
             </div>
@@ -169,8 +169,8 @@ export function MethodologyPage() {
               ["Threshold rule", data.autoencoder.threshold_rule],
             ].map(([label, value]) => (
               <div key={label} className="flex items-start justify-between gap-3 border-b border-border pb-1.5 last:border-0">
-                <span className="text-[10px] text-muted-foreground">{label}</span>
-                <span className="max-w-[60%] text-right text-[11px] text-foreground">{value}</span>
+                <span className="text-[12px] text-muted-foreground">{label}</span>
+                <span className="max-w-[60%] text-right text-[13px] text-foreground">{value}</span>
               </div>
             ))}
           </CardContent>
@@ -207,8 +207,8 @@ export function MethodologyPage() {
                   )}
                   style={{ height: `${Math.max(18, size / 6)}px` }}
                 />
-                <span className="font-mono text-[10px] font-medium text-foreground">{size}</span>
-                <span className="text-[8px] uppercase tracking-wider text-muted-foreground">
+                <span className="font-mono text-[12px] font-medium text-foreground">{size}</span>
+                <span className="text-[12px] text-muted-foreground">
                   {index === 0 || index === 4 ? "semantic" : index === 2 ? "bottleneck" : "hidden"}
                 </span>
               </button>
@@ -220,13 +220,13 @@ export function MethodologyPage() {
                 Layer {selected.index + 1}
               </Badge>
               <span className="text-xs font-semibold text-foreground">{selected.role}</span>
-              <span className="ml-auto font-mono text-[10px] text-muted-foreground">
+              <span className="ml-auto font-mono text-[12px] text-muted-foreground">
                 {data.autoencoder.architecture[selected.index]} units
               </span>
             </div>
             <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{selected.description}</p>
           </div>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-[10px] text-muted-foreground">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-[12px] text-muted-foreground">
             <span className="font-mono">embedding → 128 → 32 → 128 → embedding</span>
             <span className="text-muted-foreground/50">|</span>
             <span>MSE over 384 dimensions = anomaly score</span>
@@ -246,9 +246,9 @@ export function MethodologyPage() {
           <CardContent className="divide-y divide-border">
             {data.glossary.map((item) => (
               <div key={item.term} className="py-2.5 first:pt-0 last:pb-0">
-                <div className="text-[11px] font-semibold text-foreground">{item.term}</div>
-                <div className="mt-0.5 text-[11px] font-medium text-muted-foreground">{item.plain}</div>
-                <div className="mt-1 text-[10px] leading-relaxed text-muted-foreground">{item.detail}</div>
+                <div className="text-[13px] font-semibold text-foreground">{item.term}</div>
+                <div className="mt-0.5 text-[13px] font-medium text-muted-foreground">{item.plain}</div>
+                <div className="mt-1 text-[12px] leading-relaxed text-muted-foreground">{item.detail}</div>
               </div>
             ))}
           </CardContent>
@@ -263,10 +263,10 @@ export function MethodologyPage() {
             <CardContent className="space-y-2">
               {Object.entries(data.training_partitions).map(([partition, description]) => (
                 <div key={partition} className="rounded border border-border px-2.5 py-2">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+                  <div className="font-mono text-[12px] text-muted-foreground">
                     {partition.replace("_", " ")}
                   </div>
-                  <div className="mt-0.5 text-[11px] text-foreground">{description}</div>
+                  <div className="mt-0.5 text-[13px] text-foreground">{description}</div>
                 </div>
               ))}
               <InfoCallout tone="warning" title="Original vs contextual labels">
@@ -284,8 +284,8 @@ export function MethodologyPage() {
             </CardHeader>
             <CardContent className="space-y-2 text-xs leading-relaxed text-muted-foreground">
               <p>
-                The methodology is evaluated through B1–B5 baselines, E2-A–E2-D autoencoder variants, the
-                E2-T/E2-R analyses and the E5-A–E5-C representation ablation.
+                The methodology is evaluated through B1 to B5 baselines, E2-A to E2-D autoencoder variants, the
+                E2-T/E2-R analyses and the E5-A to E5-C representation ablation.
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {["E2-D", "E5-C", "B5"].map((id) => (

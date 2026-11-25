@@ -14,7 +14,7 @@ export function ObjectivesPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Research · Objectives"
+        eyebrow="Research, Objectives"
         title="Research objectives and implementation state"
         description="The project investigates semantic provenance representations and benign-trained anomaly detection. Objectives are marked by what the repository actually demonstrates, not by what is planned."
         actions={<Badge variant="warning">Preliminary evidence</Badge>}
@@ -38,7 +38,7 @@ export function ObjectivesPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[10px] text-muted-foreground">{objective.id}</span>
+                    <span className="font-mono text-[12px] text-muted-foreground">{objective.id}</span>
                     <h2 className="text-sm font-semibold text-foreground">{objective.title}</h2>
                     <StatusBadge status={objective.status === "implemented" ? "completed" : objective.status} />
                   </div>
@@ -46,8 +46,8 @@ export function ObjectivesPage() {
                     {objective.description}
                   </p>
                   <div className="mt-2 rounded border border-border bg-elevated/60 px-2.5 py-2">
-                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground">Evidence state</div>
-                    <div className="mt-0.5 text-[11px] leading-relaxed text-foreground">{objective.evidence}</div>
+                    <div className="text-[12px] text-muted-foreground">Evidence state</div>
+                    <div className="mt-0.5 text-[13px] leading-relaxed text-foreground">{objective.evidence}</div>
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-1">
                     {objective.experiments.map((id) => (

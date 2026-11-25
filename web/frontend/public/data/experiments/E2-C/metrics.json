@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E2-C",
+    "available": true,
+    "metrics": {
+      "id": "E2-C",
+      "name": "Frequency-weighted training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Does down-weighting frequent descriptions improve the benign reconstruction objective?",
+      "hypothesis": "Frequency weighting with 1/sqrt(frequency) will balance learning without discarding repeated benign behaviour.",
+      "seed": 42,
+      "roc_auc": 0.9831907435168628,
+      "average_precision": 0.019920058695862292,
+      "recall": 1.0,
+      "precision": 0.006823277122526562,
+      "f1": 0.013554071062058283,
+      "true_positives": 70,
+      "false_positives": 10189,
+      "false_negatives": 0,
+      "true_negatives": 90633,
+      "benign_fpr": 0.007819450297326403,
+      "attack_fpr": 0.10105929261470711,
+      "contextual_recall": 0.9911111111111112,
+      "threshold": 9.1675748990383e-05,
+      "threshold_percentile": 99.0,
+      "training_seconds": 54.808253560000594,
+      "operating_point": "Validation P99 (primary experimental operating point)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+        "note": null
+      },
+      "rank": 8
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.798055+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

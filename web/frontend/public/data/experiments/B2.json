@@ -1,0 +1,99 @@
+{
+  "data": {
+    "id": "B2",
+    "name": "TF-IDF with Isolation Forest",
+    "group": "baseline",
+    "kind": "model",
+    "status": "completed",
+    "research_question": "Does a sparse lexical representation with Isolation Forest provide a competitive anomaly baseline?",
+    "hypothesis": "TF-IDF captures token-level rarity but will struggle with semantically equivalent descriptions.",
+    "representation": "TF-IDF over 1-2 word n-grams of the V2 description",
+    "encoder": "TF-IDF (20,000 features, min_df=2)",
+    "algorithm": "Isolation Forest",
+    "training_strategy": "Fit vectoriser and Isolation Forest on 99,665 benign training events only.",
+    "seed": 42,
+    "training_configuration": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "max_features": 20000,
+      "min_df": 2,
+      "n_estimators": 200,
+      "max_samples": 256,
+      "contamination": "auto"
+    },
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "threshold": "99th percentile of benign validation scores",
+      "attack_test_events": 100892
+    },
+    "results_summary": "ROC-AUC 0.671003 and Average Precision 0.001274. At the P99 validation threshold, zero original positives and 1,445 false positives were flagged.",
+    "interpretation": "Lexical rarity is a poor proxy for malicious semantics in this representation; ranking is only modestly above chance.",
+    "limitations": "TF-IDF ignores word order and semantic similarity, and max_features truncates the vocabulary.",
+    "source_artifacts": [
+      "results/baselines/baseline_summary.json",
+      "results/baselines/baseline_comparison.csv",
+      "results/baselines/B2_tfidf_isolation_forest/attack_test_predictions.parquet"
+    ],
+    "metrics": {
+      "id": "B2",
+      "name": "TF-IDF with Isolation Forest",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "representation": "TF-IDF over 1-2 word n-grams of the V2 description",
+      "encoder": "TF-IDF (20,000 features, min_df=2)",
+      "algorithm": "Isolation Forest",
+      "research_question": "Does a sparse lexical representation with Isolation Forest provide a competitive anomaly baseline?",
+      "hypothesis": "TF-IDF captures token-level rarity but will struggle with semantically equivalent descriptions.",
+      "seed": 42,
+      "roc_auc": 0.671002927365626,
+      "average_precision": 0.001274086144417932,
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "true_positives": 0,
+      "false_positives": 1445,
+      "false_negatives": 70,
+      "true_negatives": 99377,
+      "benign_fpr": 0.008896380577796507,
+      "attack_fpr": 0.014332189403106465,
+      "contextual_recall": 0.27111111111111114,
+      "threshold": 0.4930337016087606,
+      "threshold_percentile": 99.0,
+      "training_seconds": 9.929760208997322,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/baselines/baseline_comparison.csv",
+        "note": null
+      },
+      "rank": 2
+    },
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/baselines/baseline_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/baselines/baseline_comparison.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/baselines/B2_tfidf_isolation_forest/attack_test_predictions.parquet",
+        "status": "available"
+      }
+    ],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.671692+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

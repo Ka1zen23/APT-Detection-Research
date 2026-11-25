@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E2-A",
+    "available": true,
+    "metrics": {
+      "id": "E2-A",
+      "name": "Original frequency-preserving autoencoder",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions, 256-token limit)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Can a benign-trained autoencoder over frozen MiniLM embeddings detect anomalous provenance events?",
+      "hypothesis": "A bottleneck autoencoder will assign higher reconstruction error to events unlike benign training activity.",
+      "seed": 42,
+      "roc_auc": 0.9844819866412376,
+      "average_precision": 0.020832253230628553,
+      "recall": 1.0,
+      "precision": 0.006139273811611998,
+      "f1": 0.012203626220362623,
+      "true_positives": 70,
+      "false_positives": 11332,
+      "false_negatives": 0,
+      "true_negatives": 89490,
+      "benign_fpr": 0.01039471835932013,
+      "attack_fpr": 0.11239610402491519,
+      "contextual_recall": 1.0,
+      "threshold": 4.1271146328653775e-05,
+      "threshold_percentile": 99.0,
+      "training_seconds": 72.80788806300188,
+      "operating_point": "Validation P99 (primary experimental operating point)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+        "note": null
+      },
+      "rank": 6
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.758581+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

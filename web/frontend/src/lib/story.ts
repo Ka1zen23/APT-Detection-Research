@@ -147,7 +147,7 @@ export const FINDINGS: FindingStory[] = [
   {
     id: "F05",
     reading: "+16.1%",
-    readingLabel: "average precision over the entity representation",
+    readingLabel: "relative average precision over entities",
     claim: "Relationships add signal beyond entities.",
     evidence: "Average precision 0.0217 against 0.0187, on the same event text.",
     detailEvidence:

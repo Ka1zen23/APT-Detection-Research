@@ -1,0 +1,35 @@
+{
+  "data": {
+    "id": "E4",
+    "name": "MPNet encoder comparison",
+    "group": "representation",
+    "kind": "model",
+    "status": "planned",
+    "research_question": "Does a larger semantic encoder improve detection over MiniLM?",
+    "hypothesis": "MPNet may capture subtle semantic differences at higher computational cost.",
+    "representation": "V2 full-provenance description",
+    "encoder": "MPNet (candidate)",
+    "algorithm": "Same autoencoder architecture",
+    "training_strategy": "Planned controlled encoder comparison.",
+    "seed": 42,
+    "training_configuration": {},
+    "checkpoint_selection": "Planned.",
+    "evaluation_configuration": {},
+    "results_summary": "Not yet executed.",
+    "interpretation": "Candidate comparison, not an implemented result.",
+    "limitations": "Planned only.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.005696+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

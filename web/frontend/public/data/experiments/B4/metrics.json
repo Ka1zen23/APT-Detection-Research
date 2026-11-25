@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "B4",
+    "available": true,
+    "metrics": {
+      "id": "B4",
+      "name": "MiniLM with Isolation Forest",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "representation": "384-dimensional frozen MiniLM embedding",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, normalised)",
+      "algorithm": "Isolation Forest",
+      "research_question": "Does Isolation Forest on frozen semantic embeddings outperform linear reconstruction?",
+      "hypothesis": "Tree-based isolation may capture nonlinear embedding outliers better than PCA.",
+      "seed": 42,
+      "roc_auc": 0.9184126480331674,
+      "average_precision": 0.003858136776402213,
+      "recall": 0.014285714285714285,
+      "precision": 0.0005428881650380022,
+      "f1": 0.0010460251046025104,
+      "true_positives": 1,
+      "false_positives": 1841,
+      "false_negatives": 69,
+      "true_negatives": 98981,
+      "benign_fpr": 0.007304396684927658,
+      "attack_fpr": 0.018259903592469897,
+      "contextual_recall": 0.07111111111111111,
+      "threshold": 0.6626221423076426,
+      "threshold_percentile": 99.0,
+      "training_seconds": 1.817028333000053,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/baselines/baseline_comparison.csv",
+        "note": null
+      },
+      "rank": 4
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.719302+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

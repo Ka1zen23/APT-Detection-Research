@@ -1,0 +1,51 @@
+{
+  "data": {
+    "experiment_id": "B1",
+    "label": "original",
+    "available": true,
+    "computed_roc_auc": 0.8972347305151653,
+    "computed_average_precision": 0.003366679492112351,
+    "roc": [
+      {
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "x": 0.20553053896966933,
+        "y": 1.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0
+      }
+    ],
+    "pr": [
+      {
+        "x": 0.0,
+        "y": 1.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.003366679492112351
+      },
+      {
+        "x": 1.0,
+        "y": 0.0006938112040597867
+      }
+    ],
+    "source": "results/baselines/B1_exact_novelty/attack_test_predictions.parquet",
+    "points": {
+      "roc_raw": 3,
+      "pr_raw": 3
+    },
+    "note": "Curves are computed from stored per-event anomaly scores, then evenly downsampled for display."
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.158491+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

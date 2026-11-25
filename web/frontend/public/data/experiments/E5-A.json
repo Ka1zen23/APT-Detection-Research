@@ -1,0 +1,395 @@
+{
+  "data": {
+    "id": "E5-A",
+    "name": "Provenance ablation \u2014 operation only",
+    "group": "ablation",
+    "kind": "model",
+    "status": "completed",
+    "research_question": "How much detection signal remains when only system operation names are represented?",
+    "hypothesis": "Operation-only representations will be highly ambiguous because many benign and malicious events share the same operation sequence.",
+    "representation": "Operation-only description (operation names without entity attributes or relationships)",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+    "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+    "training_strategy": "Frequency-preserving training on 99,665 benign operation-only descriptions.",
+    "seed": 42,
+    "training_configuration": {
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "early_stopping": false,
+      "best_epoch": 56,
+      "train_samples": 99665,
+      "trainable_parameters": 107168,
+      "elapsed_seconds": 101.735156
+    },
+    "checkpoint_selection": "Fixed 100-epoch budget with no early stopping; best validation checkpoint retained.",
+    "evaluation_configuration": {
+      "threshold": "99th percentile of benign validation reconstruction errors",
+      "threshold_value": 4.0604358764184667e-10
+    },
+    "results_summary": "ROC-AUC 0.826367 and Average Precision 0.003219. Zero original positives and 618 false positives at P99; contextual recall 10.22%.",
+    "interpretation": "Operation-only representations exhibit substantial ambiguity, with all 70 original positives sharing a description with 8,393 negatively labelled events.",
+    "limitations": "The representation cannot distinguish events that differ only in entities or graph structure.",
+    "source_artifacts": [
+      "results/e5a-operation-only/training_summary.json",
+      "results/e5a-operation-only/evaluation/evaluation_summary.json",
+      "results/ablation_comparison/ablation_comparison.csv",
+      "results/eda/ablation/representation_conflicts.json"
+    ],
+    "metrics": {
+      "id": "E5-A",
+      "name": "Provenance ablation \u2014 operation only",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "representation": "Operation-only description (operation names without entity attributes or relationships)",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "How much detection signal remains when only system operation names are represented?",
+      "hypothesis": "Operation-only representations will be highly ambiguous because many benign and malicious events share the same operation sequence.",
+      "seed": 42,
+      "roc_auc": 0.8263672611136458,
+      "average_precision": 0.0032185387833923397,
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "true_positives": 0,
+      "false_positives": 618,
+      "false_negatives": 70,
+      "true_negatives": 100204,
+      "benign_fpr": 0.0031839677857376973,
+      "attack_fpr": 0.006129614568248993,
+      "contextual_recall": 0.10222222222222223,
+      "threshold": 4.0604358764184667e-10,
+      "threshold_percentile": 99.0,
+      "training_seconds": 101.73515614299686,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "note": null
+      },
+      "rank": 10
+    },
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/e5a-operation-only/training_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/e5a-operation-only/evaluation/evaluation_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/eda/ablation/representation_conflicts.json",
+        "status": "available"
+      }
+    ],
+    "training_summary": {
+      "experiment": "E5-A",
+      "seed": 42,
+      "gpu": "NVIDIA GeForce RTX 4060",
+      "torch_version": "2.11.0+cu128",
+      "train_samples": 99665,
+      "validation_samples": 21357,
+      "trainable_parameters": 107168,
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "patience": 101,
+      "min_delta": 1e-07,
+      "epochs_completed": 100,
+      "best_epoch": 56,
+      "best_validation_loss": 8.148851549094616e-08,
+      "threshold_percentile": 99,
+      "threshold": 4.0604358764184667e-10,
+      "validation_alerts": 90,
+      "validation_false_positive_rate": 0.004214075010535188,
+      "elapsed_seconds": 101.73515614299686,
+      "peak_gpu_memory_mib": 20.6337890625,
+      "validation_error_statistics": {
+        "min": 5.0534881834707335e-11,
+        "mean": 8.148851549094616e-08,
+        "median": 5.0534881834707335e-11,
+        "p95": 1.281871275793378e-10,
+        "p99": 4.0604358764184667e-10,
+        "max": 0.0013034645235165954
+      },
+      "representation": "operation_only",
+      "training_strategy": "frequency_preserving",
+      "early_stopping": false,
+      "optimizer_updates_per_epoch": 390,
+      "total_optimizer_updates": 39000,
+      "checkpoint_optimizer_updates": 21840
+    },
+    "evaluation_summary": {
+      "experiment": "E5-A",
+      "best_epoch": 56,
+      "threshold": 4.0604358764184667e-10,
+      "threshold_percentile": 99,
+      "benign_test": {
+        "inference": {
+          "events": 21357,
+          "elapsed_seconds": 0.11059363499953179,
+          "events_per_second": 193112.37938865484,
+          "milliseconds_per_event": 0.00517833192861974
+        },
+        "original_label": {
+          "records": 21357,
+          "positives": 0,
+          "alerts": 68,
+          "threshold": 4.0604358764184667e-10,
+          "true_negatives": 21289,
+          "false_positives": 68,
+          "false_negatives": 0,
+          "true_positives": 0,
+          "accuracy": 0.9968160322142623,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.0031839677857376973,
+          "specificity": 0.9968160322142623,
+          "roc_auc": null,
+          "average_precision": null,
+          "pr_auc": null
+        }
+      },
+      "attack_test": {
+        "inference": {
+          "events": 100892,
+          "elapsed_seconds": 0.06705087700174772,
+          "events_per_second": 1504708.1337559565,
+          "milliseconds_per_event": 0.0006645807100835321
+        },
+        "original_label": {
+          "records": 100892,
+          "positives": 70,
+          "alerts": 618,
+          "threshold": 4.0604358764184667e-10,
+          "true_negatives": 100204,
+          "false_positives": 618,
+          "false_negatives": 70,
+          "true_positives": 0,
+          "accuracy": 0.9931808270229553,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positive_rate": 0.006129614568248993,
+          "specificity": 0.993870385431751,
+          "roc_auc": 0.8263672611136458,
+          "average_precision": 0.0032185387833923397,
+          "pr_auc": 0.0016092693916961698
+        },
+        "contextual_label": {
+          "records": 100892,
+          "positives": 225,
+          "alerts": 618,
+          "threshold": 4.0604358764184667e-10,
+          "true_negatives": 100072,
+          "false_positives": 595,
+          "false_negatives": 202,
+          "true_positives": 23,
+          "accuracy": 0.9921004638623478,
+          "precision": 0.0372168284789644,
+          "recall": 0.10222222222222223,
+          "f1": 0.054567022538552785,
+          "false_positive_rate": 0.005910576455044851,
+          "specificity": 0.9940894235449551,
+          "roc_auc": 0.8550045419275654,
+          "average_precision": 0.05178753953157981,
+          "pr_auc": 0.04112718633345578
+        },
+        "description_overlap": {
+          "seen": {
+            "records": 100891,
+            "positives": 70,
+            "alerts": 617,
+            "threshold": 4.0604358764184667e-10,
+            "true_negatives": 100204,
+            "false_positives": 617,
+            "false_negatives": 70,
+            "true_positives": 0,
+            "accuracy": 0.993190671120318,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "false_positive_rate": 0.0061197567966991,
+            "specificity": 0.9938802432033009,
+            "roc_auc": 0.8263754574939746,
+            "average_precision": 0.0032186867757954753,
+            "pr_auc": 0.0016093433878977376
+          },
+          "unseen": {
+            "records": 1,
+            "positives": 0,
+            "alerts": 1,
+            "threshold": 4.0604358764184667e-10,
+            "true_negatives": 0,
+            "false_positives": 1,
+            "false_negatives": 0,
+            "true_positives": 0,
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": null,
+            "false_positive_rate": 1.0,
+            "specificity": 0.0,
+            "roc_auc": null,
+            "average_precision": null,
+            "pr_auc": null
+          }
+        },
+        "original_label_tactics": [
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 69,
+            "detected_events": 0,
+            "missed_events": 69,
+            "recall": 0.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 1,
+            "detected_events": 0,
+            "missed_events": 1,
+            "recall": 0.0
+          }
+        ],
+        "contextual_label_tactics": [
+          {
+            "tactic": "CandC",
+            "positive_events": 8,
+            "detected_events": 0,
+            "missed_events": 8,
+            "recall": 0.0
+          },
+          {
+            "tactic": "collection",
+            "positive_events": 62,
+            "detected_events": 16,
+            "missed_events": 46,
+            "recall": 0.25806451612903225
+          },
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 75,
+            "detected_events": 0,
+            "missed_events": 75,
+            "recall": 0.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 23,
+            "detected_events": 0,
+            "missed_events": 23,
+            "recall": 0.0
+          },
+          {
+            "tactic": "discovery",
+            "positive_events": 22,
+            "detected_events": 1,
+            "missed_events": 21,
+            "recall": 0.045454545454545456
+          },
+          {
+            "tactic": "exfiltration",
+            "positive_events": 11,
+            "detected_events": 0,
+            "missed_events": 11,
+            "recall": 0.0
+          },
+          {
+            "tactic": "initialAccess",
+            "positive_events": 1,
+            "detected_events": 0,
+            "missed_events": 1,
+            "recall": 0.0
+          },
+          {
+            "tactic": "lateralMovement",
+            "positive_events": 5,
+            "detected_events": 0,
+            "missed_events": 5,
+            "recall": 0.0
+          },
+          {
+            "tactic": "persistence",
+            "positive_events": 18,
+            "detected_events": 6,
+            "missed_events": 12,
+            "recall": 0.3333333333333333
+          }
+        ]
+      }
+    },
+    "figures": [
+      {
+        "key": "e5a:attack_test_contextual_label_confusion_matrix.png",
+        "run": "e5a",
+        "filename": "attack_test_contextual_label_confusion_matrix.png",
+        "title": "attack test contextual label confusion matrix"
+      },
+      {
+        "key": "e5a:attack_test_contextual_label_pr_curve.png",
+        "run": "e5a",
+        "filename": "attack_test_contextual_label_pr_curve.png",
+        "title": "attack test contextual label pr curve"
+      },
+      {
+        "key": "e5a:attack_test_contextual_label_roc_curve.png",
+        "run": "e5a",
+        "filename": "attack_test_contextual_label_roc_curve.png",
+        "title": "attack test contextual label roc curve"
+      },
+      {
+        "key": "e5a:attack_test_contextual_label_score_distribution.png",
+        "run": "e5a",
+        "filename": "attack_test_contextual_label_score_distribution.png",
+        "title": "attack test contextual label score distribution"
+      },
+      {
+        "key": "e5a:attack_test_original_label_confusion_matrix.png",
+        "run": "e5a",
+        "filename": "attack_test_original_label_confusion_matrix.png",
+        "title": "attack test original label confusion matrix"
+      },
+      {
+        "key": "e5a:attack_test_original_label_pr_curve.png",
+        "run": "e5a",
+        "filename": "attack_test_original_label_pr_curve.png",
+        "title": "attack test original label pr curve"
+      },
+      {
+        "key": "e5a:attack_test_original_label_roc_curve.png",
+        "run": "e5a",
+        "filename": "attack_test_original_label_roc_curve.png",
+        "title": "attack test original label roc curve"
+      },
+      {
+        "key": "e5a:attack_test_original_label_score_distribution.png",
+        "run": "e5a",
+        "filename": "attack_test_original_label_score_distribution.png",
+        "title": "attack test original label score distribution"
+      },
+      {
+        "key": "e5a:benign_test_original_label_confusion_matrix.png",
+        "run": "e5a",
+        "filename": "benign_test_original_label_confusion_matrix.png",
+        "title": "benign test original label confusion matrix"
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.869510+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

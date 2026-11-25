@@ -1,0 +1,35 @@
+{
+  "data": {
+    "id": "E6",
+    "name": "Temporal and provenance event correlation",
+    "group": "correlation",
+    "kind": "model",
+    "status": "planned",
+    "research_question": "Can correlated event sequences improve detection beyond independent event scoring?",
+    "hypothesis": "Temporal and provenance-aware grouping will reduce isolated false positives and support incident reconstruction.",
+    "representation": "Provenance-linked event windows",
+    "encoder": "To be determined",
+    "algorithm": "Temporal/provenance correlation",
+    "training_strategy": "Planned.",
+    "seed": 42,
+    "training_configuration": {},
+    "checkpoint_selection": "Planned.",
+    "evaluation_configuration": {},
+    "results_summary": "Not yet executed.",
+    "interpretation": "Planned extension from event-level to sequence-level detection.",
+    "limitations": "Planned only.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.026466+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

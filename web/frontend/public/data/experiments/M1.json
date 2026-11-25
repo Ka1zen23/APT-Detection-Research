@@ -1,0 +1,37 @@
+{
+  "data": {
+    "id": "M1",
+    "name": "Human-reviewed mitigation recommendation framework",
+    "group": "mitigation",
+    "kind": "framework",
+    "status": "planned",
+    "research_question": "Can evidence-grounded, human-reviewed mitigation recommendations be generated and evaluated?",
+    "hypothesis": "Recommendations must cite observed provenance evidence and remain subject to analyst approval.",
+    "representation": "Alert evidence and verified ATT&CK/D3FEND references",
+    "encoder": "Not applicable",
+    "algorithm": "Rule/evidence-based recommendation framework",
+    "training_strategy": "Not applicable",
+    "seed": null,
+    "training_configuration": {},
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "evaluation": "Separate from detection; mitigation effectiveness not yet established"
+    },
+    "results_summary": "Not yet implemented.",
+    "interpretation": "No automated mitigation is claimed or demonstrated.",
+    "limitations": "Planned only; requires human review and separate evaluation.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.065523+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

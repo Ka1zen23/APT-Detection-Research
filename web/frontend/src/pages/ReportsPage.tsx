@@ -26,7 +26,7 @@ export function ReportsPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Documentation · Reports"
+        eyebrow="Documentation, Reports"
         title="Report library"
         description="Available experimental logs and planned documents. No report, PDF or supervisor note is invented when the artifact is absent."
         actions={<Badge variant="outline">{data.available} available</Badge>}
@@ -47,7 +47,7 @@ export function ReportsPage() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-[9px] text-muted-foreground">{report.id}</span>
+                  <span className="font-mono text-[12px] text-muted-foreground">{report.id}</span>
                   <h2 className="text-sm font-semibold text-foreground">{report.title}</h2>
                   <Badge variant={statusVariant(report)}>{report.status}</Badge>
                   <Badge variant="outline">{report.category}</Badge>
@@ -73,11 +73,11 @@ export function ReportsPage() {
         ))}
       </div>
 
-      <Card className="p-4">
+      <Card className="p-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <div className="text-xs font-semibold text-foreground">Need the full research context?</div>
-            <div className="text-[10px] text-muted-foreground">The dashboard's methodology and limitation views are maintained separately from report documents.</div>
+            <div className="text-[12px] text-muted-foreground">The dashboard's methodology and limitation views are maintained separately from report documents.</div>
           </div>
           <div className="flex gap-2">
             <Button asChild variant="outline" size="sm"><Link to="/methodology">Methodology</Link></Button>
@@ -142,13 +142,13 @@ function DocumentPreview({
       <DialogContent className="max-w-4xl">
         <DialogTitle>{preview?.title}</DialogTitle>
         <div className="flex items-center justify-between">
-          <div className="text-[10px] text-muted-foreground">Original text artifact · served read-only</div>
+          <div className="text-[12px] text-muted-foreground">Original text artifact, served read-only</div>
           <Button variant="ghost" size="icon-sm" onClick={close} aria-label="Close preview"><X /></Button>
         </div>
         {loading && <div className="py-8 text-xs text-muted-foreground">Loading artifact…</div>}
         {error && <EmptyState title="Preview unavailable" description={error} />}
         {text && (
-          <pre className="max-h-[65vh] overflow-auto rounded border border-border bg-elevated/50 p-3 font-mono text-[10px] leading-relaxed text-foreground whitespace-pre-wrap">
+          <pre className="max-h-[65vh] overflow-auto rounded border border-border bg-elevated/50 p-3 font-mono text-[12px] leading-relaxed text-foreground whitespace-pre-wrap">
             {text}
           </pre>
         )}

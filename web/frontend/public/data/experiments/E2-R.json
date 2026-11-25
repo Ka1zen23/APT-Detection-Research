@@ -1,0 +1,61 @@
+{
+  "data": {
+    "id": "E2-R",
+    "name": "Alert prioritisation analysis",
+    "group": "autoencoder",
+    "kind": "analysis",
+    "status": "completed",
+    "research_question": "How many original positives are recovered under fixed analyst alert budgets?",
+    "hypothesis": "Better anomaly ranking will recover more positives within small alert budgets.",
+    "representation": "E2-A to E2-D predictions",
+    "encoder": "Not applicable",
+    "algorithm": "Ranked alert-budget simulation with tie-aware expected TP",
+    "training_strategy": "Analytical study; no additional model training.",
+    "seed": null,
+    "training_configuration": {
+      "alert_budgets": [
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000
+      ]
+    },
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "labels": "original edge-derived annotations",
+      "tie_handling": "expected, minimum and maximum true positives"
+    },
+    "results_summary": "E2-D recovers 46 of 70 original positives within the top 500 alerts and 58 within the top 1,000. E2-A, E2-B and E2-C recover 0, 7 and 0 respectively at 500.",
+    "interpretation": "E2-D provides materially better analyst prioritisation, but absolute precision within small budgets remains low.",
+    "limitations": "Measured only at the listed budgets; results depend on the single available seed and original annotation completeness.",
+    "source_artifacts": [
+      "results/autoencoder_comparison/alert_budget_comparison.csv",
+      "results/autoencoder_comparison/full_recall_diagnostic.csv"
+    ],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/autoencoder_comparison/alert_budget_comparison.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/autoencoder_comparison/full_recall_diagnostic.csv",
+        "status": "available"
+      }
+    ],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.849369+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

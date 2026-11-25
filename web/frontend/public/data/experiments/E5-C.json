@@ -1,0 +1,395 @@
+{
+  "data": {
+    "id": "E5-C",
+    "name": "Provenance ablation \u2014 full provenance",
+    "group": "ablation",
+    "kind": "model",
+    "status": "completed",
+    "research_question": "Do explicit directed provenance relationships add detection value beyond operations and entity attributes?",
+    "hypothesis": "Full provenance will improve observed Average Precision relative to the entity-based representation.",
+    "representation": "Operations, entity attributes and explicit directed provenance relationships",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+    "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+    "training_strategy": "Frequency-preserving training on 99,665 benign full-provenance descriptions.",
+    "seed": 42,
+    "training_configuration": {
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "early_stopping": false,
+      "best_epoch": 99,
+      "train_samples": 99665,
+      "trainable_parameters": 107168,
+      "elapsed_seconds": 101.2002
+    },
+    "checkpoint_selection": "Fixed 100-epoch budget with no early stopping; best validation checkpoint retained.",
+    "evaluation_configuration": {
+      "threshold": "99th percentile of benign validation reconstruction errors",
+      "threshold_value": 4.0547158278059214e-05
+    },
+    "results_summary": "ROC-AUC 0.985507 and Average Precision 0.021743 \u2014 approximately 16.1% higher AP than E5-B. At P99: 70/70 original positives, 11,236 false positives, contextual recall 100%.",
+    "interpretation": "Full provenance achieves the best observed AP among the E5 configurations, but it does not outperform the entity-based representation on every threshold-based metric.",
+    "limitations": "The ablation measures overall representation differences, not exclusively the causal contribution of graph relationships; text ordering and formatting also differ.",
+    "source_artifacts": [
+      "results/e5c-full-provenance/training_summary.json",
+      "results/e5c-full-provenance/evaluation/evaluation_summary.json",
+      "results/ablation_comparison/ablation_comparison.csv",
+      "results/eda/ablation/representation_statistics.csv"
+    ],
+    "metrics": {
+      "id": "E5-C",
+      "name": "Provenance ablation \u2014 full provenance",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "representation": "Operations, entity attributes and explicit directed provenance relationships",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Do explicit directed provenance relationships add detection value beyond operations and entity attributes?",
+      "hypothesis": "Full provenance will improve observed Average Precision relative to the entity-based representation.",
+      "seed": 42,
+      "roc_auc": 0.9855065646103316,
+      "average_precision": 0.021742598294833555,
+      "recall": 1.0,
+      "precision": 0.006191402794976119,
+      "f1": 0.01230661040787623,
+      "true_positives": 70,
+      "false_positives": 11236,
+      "false_negatives": 0,
+      "true_negatives": 89586,
+      "benign_fpr": 0.010488364470665356,
+      "attack_fpr": 0.11144393088809983,
+      "contextual_recall": 1.0,
+      "threshold": 4.0547158278059214e-05,
+      "threshold_percentile": 99.0,
+      "training_seconds": 101.2002000479988,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "note": null
+      },
+      "rank": 12
+    },
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/e5c-full-provenance/training_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/e5c-full-provenance/evaluation/evaluation_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/eda/ablation/representation_statistics.csv",
+        "status": "available"
+      }
+    ],
+    "training_summary": {
+      "experiment": "E5-C",
+      "seed": 42,
+      "gpu": "NVIDIA GeForce RTX 4060",
+      "torch_version": "2.11.0+cu128",
+      "train_samples": 99665,
+      "validation_samples": 21357,
+      "trainable_parameters": 107168,
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "patience": 101,
+      "min_delta": 1e-07,
+      "epochs_completed": 100,
+      "best_epoch": 99,
+      "best_validation_loss": 2.30006048695941e-06,
+      "threshold_percentile": 99,
+      "threshold": 4.0547158278059214e-05,
+      "validation_alerts": 214,
+      "validation_false_positive_rate": 0.010020133913939223,
+      "elapsed_seconds": 101.2002000479988,
+      "peak_gpu_memory_mib": 20.6337890625,
+      "validation_error_statistics": {
+        "min": 1.1086935813864329e-07,
+        "mean": 2.30006048695941e-06,
+        "median": 1.1086966367201967e-07,
+        "p95": 8.237992915383074e-06,
+        "p99": 4.0547158278059214e-05,
+        "max": 0.0005533965304493904
+      },
+      "representation": "full_provenance",
+      "training_strategy": "frequency_preserving",
+      "early_stopping": false,
+      "optimizer_updates_per_epoch": 390,
+      "total_optimizer_updates": 39000,
+      "checkpoint_optimizer_updates": 38610
+    },
+    "evaluation_summary": {
+      "experiment": "E5-C",
+      "best_epoch": 99,
+      "threshold": 4.0547158278059214e-05,
+      "threshold_percentile": 99,
+      "benign_test": {
+        "inference": {
+          "events": 21357,
+          "elapsed_seconds": 0.1201339889994415,
+          "events_per_second": 177776.4992062262,
+          "milliseconds_per_event": 0.005625040455093951
+        },
+        "original_label": {
+          "records": 21357,
+          "positives": 0,
+          "alerts": 224,
+          "threshold": 4.0547158278059214e-05,
+          "true_negatives": 21133,
+          "false_positives": 224,
+          "false_negatives": 0,
+          "true_positives": 0,
+          "accuracy": 0.9895116355293346,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.010488364470665356,
+          "specificity": 0.9895116355293346,
+          "roc_auc": null,
+          "average_precision": null,
+          "pr_auc": null
+        }
+      },
+      "attack_test": {
+        "inference": {
+          "events": 100892,
+          "elapsed_seconds": 0.07467182600157685,
+          "events_per_second": 1351138.7815515515,
+          "milliseconds_per_event": 0.0007401164215356703
+        },
+        "original_label": {
+          "records": 100892,
+          "positives": 70,
+          "alerts": 11306,
+          "threshold": 4.0547158278059214e-05,
+          "true_negatives": 89586,
+          "false_positives": 11236,
+          "false_negatives": 0,
+          "true_positives": 70,
+          "accuracy": 0.8886333901597748,
+          "precision": 0.006191402794976119,
+          "recall": 1.0,
+          "f1": 0.01230661040787623,
+          "false_positive_rate": 0.11144393088809983,
+          "specificity": 0.8885560691119002,
+          "roc_auc": 0.9855065646103316,
+          "average_precision": 0.021742598294833555,
+          "pr_auc": 0.021368117362705958
+        },
+        "contextual_label": {
+          "records": 100892,
+          "positives": 225,
+          "alerts": 11306,
+          "threshold": 4.0547158278059214e-05,
+          "true_negatives": 89586,
+          "false_positives": 11081,
+          "false_negatives": 0,
+          "true_positives": 225,
+          "accuracy": 0.8901696863973357,
+          "precision": 0.01990093755528038,
+          "recall": 1.0,
+          "f1": 0.0390252363194866,
+          "false_positive_rate": 0.11007579445101175,
+          "specificity": 0.8899242055489882,
+          "roc_auc": 0.9583553255342422,
+          "average_precision": 0.04530410304680548,
+          "pr_auc": 0.042500807708394955
+        },
+        "description_overlap": {
+          "seen": {
+            "records": 80100,
+            "positives": 0,
+            "alerts": 2964,
+            "threshold": 4.0547158278059214e-05,
+            "true_negatives": 77136,
+            "false_positives": 2964,
+            "false_negatives": 0,
+            "true_positives": 0,
+            "accuracy": 0.962996254681648,
+            "precision": 0.0,
+            "recall": null,
+            "f1": null,
+            "false_positive_rate": 0.03700374531835206,
+            "specificity": 0.962996254681648,
+            "roc_auc": null,
+            "average_precision": null,
+            "pr_auc": null
+          },
+          "unseen": {
+            "records": 20792,
+            "positives": 70,
+            "alerts": 8342,
+            "threshold": 4.0547158278059214e-05,
+            "true_negatives": 12450,
+            "false_positives": 8272,
+            "false_negatives": 0,
+            "true_positives": 70,
+            "accuracy": 0.6021546748749519,
+            "precision": 0.008391273076000958,
+            "recall": 1.0,
+            "f1": 0.016642891107941038,
+            "false_positive_rate": 0.3991892674452273,
+            "specificity": 0.6008107325547727,
+            "roc_auc": 0.9295876018586181,
+            "average_precision": 0.02177819448759589,
+            "pr_auc": 0.0214032776278324
+          }
+        },
+        "original_label_tactics": [
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 69,
+            "detected_events": 69,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 1,
+            "detected_events": 1,
+            "missed_events": 0,
+            "recall": 1.0
+          }
+        ],
+        "contextual_label_tactics": [
+          {
+            "tactic": "CandC",
+            "positive_events": 8,
+            "detected_events": 8,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "collection",
+            "positive_events": 62,
+            "detected_events": 62,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 75,
+            "detected_events": 75,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 23,
+            "detected_events": 23,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "discovery",
+            "positive_events": 22,
+            "detected_events": 22,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "exfiltration",
+            "positive_events": 11,
+            "detected_events": 11,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "initialAccess",
+            "positive_events": 1,
+            "detected_events": 1,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "lateralMovement",
+            "positive_events": 5,
+            "detected_events": 5,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "persistence",
+            "positive_events": 18,
+            "detected_events": 18,
+            "missed_events": 0,
+            "recall": 1.0
+          }
+        ]
+      }
+    },
+    "figures": [
+      {
+        "key": "e5c:attack_test_contextual_label_confusion_matrix.png",
+        "run": "e5c",
+        "filename": "attack_test_contextual_label_confusion_matrix.png",
+        "title": "attack test contextual label confusion matrix"
+      },
+      {
+        "key": "e5c:attack_test_contextual_label_pr_curve.png",
+        "run": "e5c",
+        "filename": "attack_test_contextual_label_pr_curve.png",
+        "title": "attack test contextual label pr curve"
+      },
+      {
+        "key": "e5c:attack_test_contextual_label_roc_curve.png",
+        "run": "e5c",
+        "filename": "attack_test_contextual_label_roc_curve.png",
+        "title": "attack test contextual label roc curve"
+      },
+      {
+        "key": "e5c:attack_test_contextual_label_score_distribution.png",
+        "run": "e5c",
+        "filename": "attack_test_contextual_label_score_distribution.png",
+        "title": "attack test contextual label score distribution"
+      },
+      {
+        "key": "e5c:attack_test_original_label_confusion_matrix.png",
+        "run": "e5c",
+        "filename": "attack_test_original_label_confusion_matrix.png",
+        "title": "attack test original label confusion matrix"
+      },
+      {
+        "key": "e5c:attack_test_original_label_pr_curve.png",
+        "run": "e5c",
+        "filename": "attack_test_original_label_pr_curve.png",
+        "title": "attack test original label pr curve"
+      },
+      {
+        "key": "e5c:attack_test_original_label_roc_curve.png",
+        "run": "e5c",
+        "filename": "attack_test_original_label_roc_curve.png",
+        "title": "attack test original label roc curve"
+      },
+      {
+        "key": "e5c:attack_test_original_label_score_distribution.png",
+        "run": "e5c",
+        "filename": "attack_test_original_label_score_distribution.png",
+        "title": "attack test original label score distribution"
+      },
+      {
+        "key": "e5c:benign_test_original_label_confusion_matrix.png",
+        "run": "e5c",
+        "filename": "benign_test_original_label_confusion_matrix.png",
+        "title": "benign test original label confusion matrix"
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.908588+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "data": {
+    "models": [
+      {
+        "id": "E2-A",
+        "name": "Original frequency-preserving autoencoder",
+        "seen": {
+          "records": 80100,
+          "positives": 0,
+          "alerts": 3009,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 0.03756554307116105,
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "unseen": {
+          "records": 20792,
+          "positives": 70,
+          "alerts": 8393,
+          "precision": 0.008340283569641367,
+          "recall": 1.0,
+          "false_positive_rate": 0.4016504198436444,
+          "roc_auc": 0.9247204489362583,
+          "average_precision": 0.020906515532887998
+        }
+      },
+      {
+        "id": "E2-B",
+        "name": "Unique-description training",
+        "seen": {
+          "records": 80100,
+          "positives": 0,
+          "alerts": 885,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 0.011048689138576779,
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "unseen": {
+          "records": 20792,
+          "positives": 70,
+          "alerts": 4592,
+          "precision": 0.01524390243902439,
+          "recall": 1.0,
+          "false_positive_rate": 0.21822217932631985,
+          "roc_auc": 0.943760944200091,
+          "average_precision": 0.027374274567609495
+        }
+      },
+      {
+        "id": "E2-C",
+        "name": "Frequency-weighted training",
+        "seen": {
+          "records": 80100,
+          "positives": 0,
+          "alerts": 2283,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 0.02850187265917603,
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "unseen": {
+          "records": 20792,
+          "positives": 70,
+          "alerts": 7976,
+          "precision": 0.008776328986960883,
+          "recall": 1.0,
+          "false_positive_rate": 0.3815268796448219,
+          "roc_auc": 0.9182731948102087,
+          "average_precision": 0.01992344581419439
+        }
+      },
+      {
+        "id": "E2-D",
+        "name": "Approximately matched-update unique-description training",
+        "seen": {
+          "records": 80100,
+          "positives": 0,
+          "alerts": 1248,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 0.015580524344569288,
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "unseen": {
+          "records": 20792,
+          "positives": 70,
+          "alerts": 7450,
+          "precision": 0.009395973154362415,
+          "recall": 1.0,
+          "false_positive_rate": 0.35614322941800985,
+          "roc_auc": 0.9785445420326224,
+          "average_precision": 0.10908828843043833
+        }
+      },
+      {
+        "id": "E5-A",
+        "name": "Provenance ablation \u2014 operation only",
+        "seen": {
+          "records": 100891,
+          "positives": 70,
+          "alerts": 617,
+          "precision": 0.0,
+          "recall": 0.0,
+          "false_positive_rate": 0.0061197567966991,
+          "roc_auc": 0.8263754574939746,
+          "average_precision": 0.0032186867757954753
+        },
+        "unseen": {
+          "records": 1,
+          "positives": 0,
+          "alerts": 1,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 1.0,
+          "roc_auc": null,
+          "average_precision": null
+        }
+      },
+      {
+        "id": "E5-B",
+        "name": "Provenance ablation \u2014 operations and entities",
+        "seen": {
+          "records": 80100,
+          "positives": 0,
+          "alerts": 2732,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 0.03410736579275905,
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "unseen": {
+          "records": 20792,
+          "positives": 70,
+          "alerts": 8436,
+          "precision": 0.008297771455666193,
+          "recall": 1.0,
+          "false_positive_rate": 0.40372550912074123,
+          "roc_auc": 0.9162360224468129,
+          "average_precision": 0.018754912571247725
+        }
+      },
+      {
+        "id": "E5-C",
+        "name": "Provenance ablation \u2014 full provenance",
+        "seen": {
+          "records": 80100,
+          "positives": 0,
+          "alerts": 2964,
+          "precision": 0.0,
+          "recall": null,
+          "false_positive_rate": 0.03700374531835206,
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "unseen": {
+          "records": 20792,
+          "positives": 70,
+          "alerts": 8342,
+          "precision": 0.008391273076000958,
+          "recall": 1.0,
+          "false_positive_rate": 0.3991892674452273,
+          "roc_auc": 0.9295876018586181,
+          "average_precision": 0.02177819448759589
+        }
+      }
+    ],
+    "note": "Seen/unseen is an exact-description overlap diagnostic. Models whose attack test contains no positive events in a subgroup have no defined recall for that subgroup.",
+    "source_artifacts": [
+      "results/e2-v2-minilm-standard/evaluation/evaluation_summary.json",
+      "results/e2b-unique/evaluation/evaluation_summary.json",
+      "results/e2c-weighted/evaluation/evaluation_summary.json",
+      "results/e2d-unique-matched/evaluation/evaluation_summary.json",
+      "results/e5a-operation-only/evaluation/evaluation_summary.json",
+      "results/e5b-operation-entities/evaluation/evaluation_summary.json",
+      "results/e5c-full-provenance/evaluation/evaluation_summary.json"
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.630307+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

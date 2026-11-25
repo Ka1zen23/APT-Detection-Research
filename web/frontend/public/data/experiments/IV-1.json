@@ -1,0 +1,35 @@
+{
+  "data": {
+    "id": "IV-1",
+    "name": "Independent attack-scenario validation",
+    "group": "validation",
+    "kind": "model",
+    "status": "planned",
+    "research_question": "Do the observed results generalise to an independent attack scenario or host?",
+    "hypothesis": "Performance may decrease under scenario shift; independent validation is required before any deployment claim.",
+    "representation": "To be determined",
+    "encoder": "To be determined",
+    "algorithm": "Selected best configuration",
+    "training_strategy": "Evaluate frozen configuration on independent data.",
+    "seed": 42,
+    "training_configuration": {},
+    "checkpoint_selection": "Frozen from primary experiment.",
+    "evaluation_configuration": {},
+    "results_summary": "Not yet executed.",
+    "interpretation": "The current attack test has been repeatedly inspected during exploratory analysis; independent evidence is absent.",
+    "limitations": "Planned only.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.045900+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

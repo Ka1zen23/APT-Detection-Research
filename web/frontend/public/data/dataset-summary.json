@@ -1,0 +1,939 @@
+{
+  "data": {
+    "counts": {
+      "raw_records": 418855,
+      "phase1_raw_records": 222120,
+      "phase2_raw_records": 196735,
+      "nodes": 100059,
+      "edges": 318796,
+      "events": 243271,
+      "phase1_events": 142379,
+      "phase2_events": 100892,
+      "original_positives": 70,
+      "contextual_positives": 225,
+      "attack_prevalence_percent": 0.06938112040597867
+    },
+    "partitions": [
+      {
+        "name": "train",
+        "records": 99665,
+        "unique_descriptions": 13029,
+        "start_timestamp": 1701118210.496,
+        "end_timestamp": 1701360189.944
+      },
+      {
+        "name": "validation",
+        "records": 21357,
+        "unique_descriptions": 2614,
+        "start_timestamp": 1701360192.944,
+        "end_timestamp": 1701411863.205
+      },
+      {
+        "name": "benign_test",
+        "records": 21357,
+        "unique_descriptions": 2658,
+        "start_timestamp": 1701411867.203,
+        "end_timestamp": 1701463813.813
+      },
+      {
+        "name": "attack_test",
+        "records": 100892,
+        "unique_descriptions": 21589,
+        "start_timestamp": 1701468825.767,
+        "end_timestamp": 1701728421.462
+      }
+    ],
+    "class_balance": [
+      {
+        "partition": "Training",
+        "records": 99665,
+        "positives": 0,
+        "note": "Benign only"
+      },
+      {
+        "partition": "Validation",
+        "records": 21357,
+        "positives": 0,
+        "note": "Benign calibration"
+      },
+      {
+        "partition": "Benign test",
+        "records": 21357,
+        "positives": 0,
+        "note": "Benign only"
+      },
+      {
+        "partition": "Attack test",
+        "records": 100892,
+        "positives": 70,
+        "contextual_positives": 225,
+        "note": "Original prevalence \u22480.0694%"
+      }
+    ],
+    "node_types": [
+      {
+        "name": "Artifact",
+        "count": 65342
+      },
+      {
+        "name": "Process",
+        "count": 34717
+      }
+    ],
+    "record_types": [
+      {
+        "name": "WasGeneratedBy",
+        "count": 224080
+      },
+      {
+        "name": "Artifact",
+        "count": 65342
+      },
+      {
+        "name": "Used",
+        "count": 56326
+      },
+      {
+        "name": "Process",
+        "count": 34717
+      },
+      {
+        "name": "WasDerivedFrom",
+        "count": 19502
+      },
+      {
+        "name": "WasTriggeredBy",
+        "count": 18888
+      }
+    ],
+    "edge_types": [
+      {
+        "name": "WasGeneratedBy",
+        "count": 224080
+      },
+      {
+        "name": "Used",
+        "count": 56326
+      },
+      {
+        "name": "WasDerivedFrom",
+        "count": 19502
+      },
+      {
+        "name": "WasTriggeredBy",
+        "count": 18888
+      }
+    ],
+    "operations": [
+      {
+        "name": "unlink",
+        "count": 179450
+      },
+      {
+        "name": "<missing>",
+        "count": 100059
+      },
+      {
+        "name": "load",
+        "count": 36337
+      },
+      {
+        "name": "connect",
+        "count": 25091
+      },
+      {
+        "name": "rename (read)",
+        "count": 19491
+      },
+      {
+        "name": "rename (write)",
+        "count": 19491
+      },
+      {
+        "name": "rename",
+        "count": 19491
+      },
+      {
+        "name": "execve",
+        "count": 16995
+      },
+      {
+        "name": "setgid",
+        "count": 1058
+      },
+      {
+        "name": "setuid",
+        "count": 640
+      },
+      {
+        "name": "open",
+        "count": 510
+      },
+      {
+        "name": "update",
+        "count": 206
+      },
+      {
+        "name": "chmod",
+        "count": 35
+      },
+      {
+        "name": "create",
+        "count": 1
+      }
+    ],
+    "operations_total": 418855,
+    "tactics": {
+      "original": [
+        {
+          "name": "credentialAccess",
+          "count": 69
+        },
+        {
+          "name": "defenceEvasion",
+          "count": 1
+        }
+      ],
+      "contextual": [
+        {
+          "name": "credentialAccess",
+          "count": 75
+        },
+        {
+          "name": "collection",
+          "count": 62
+        },
+        {
+          "name": "defenceEvasion",
+          "count": 23
+        },
+        {
+          "name": "discovery",
+          "count": 22
+        },
+        {
+          "name": "persistence",
+          "count": 18
+        },
+        {
+          "name": "exfiltration",
+          "count": 11
+        },
+        {
+          "name": "CandC",
+          "count": 8
+        },
+        {
+          "name": "lateralMovement",
+          "count": 5
+        },
+        {
+          "name": "initialAccess",
+          "count": 1
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "date": "2023-11-27",
+        "total": 5636,
+        "train": 5636,
+        "validation": 0,
+        "benign_test": 0,
+        "attack_test": 0
+      },
+      {
+        "date": "2023-11-28",
+        "total": 33997,
+        "train": 33997,
+        "validation": 0,
+        "benign_test": 0,
+        "attack_test": 0
+      },
+      {
+        "date": "2023-11-29",
+        "total": 35923,
+        "train": 35923,
+        "validation": 0,
+        "benign_test": 0,
+        "attack_test": 0
+      },
+      {
+        "date": "2023-11-30",
+        "total": 35836,
+        "train": 24109,
+        "validation": 11727,
+        "benign_test": 0,
+        "attack_test": 0
+      },
+      {
+        "date": "2023-12-01",
+        "total": 35172,
+        "train": 0,
+        "validation": 9630,
+        "benign_test": 21357,
+        "attack_test": 4185
+      },
+      {
+        "date": "2023-12-02",
+        "total": 37206,
+        "train": 0,
+        "validation": 0,
+        "benign_test": 0,
+        "attack_test": 37206
+      },
+      {
+        "date": "2023-12-03",
+        "total": 30947,
+        "train": 0,
+        "validation": 0,
+        "benign_test": 0,
+        "attack_test": 30947
+      },
+      {
+        "date": "2023-12-04",
+        "total": 28554,
+        "train": 0,
+        "validation": 0,
+        "benign_test": 0,
+        "attack_test": 28554
+      }
+    ],
+    "missing_values": [
+      {
+        "column": "local address",
+        "missing": 418855,
+        "total": 418855,
+        "percent": 100.0
+      },
+      {
+        "column": "local port",
+        "missing": 418855,
+        "total": 418855,
+        "percent": 100.0
+      },
+      {
+        "column": "tgid",
+        "missing": 418836,
+        "total": 418855,
+        "percent": 99.99546382399636
+      },
+      {
+        "column": "fd",
+        "missing": 418836,
+        "total": 418855,
+        "percent": 99.99546382399636
+      },
+      {
+        "column": "mode",
+        "missing": 418819,
+        "total": 418855,
+        "percent": 99.99140514020365
+      },
+      {
+        "column": "flags",
+        "missing": 418344,
+        "total": 418855,
+        "percent": 99.87800074011292
+      },
+      {
+        "column": "command line",
+        "missing": 401687,
+        "total": 418855,
+        "percent": 95.90120686156307
+      },
+      {
+        "column": "start time",
+        "missing": 401682,
+        "total": 418855,
+        "percent": 95.9000131310358
+      },
+      {
+        "column": "seen time",
+        "missing": 401311,
+        "total": 418855,
+        "percent": 95.8114383259123
+      },
+      {
+        "column": "protocol",
+        "missing": 396631,
+        "total": 418855,
+        "percent": 94.69410655238687
+      },
+      {
+        "column": "remote port",
+        "missing": 393764,
+        "total": 418855,
+        "percent": 94.0096214680498
+      },
+      {
+        "column": "remote address",
+        "missing": 393764,
+        "total": 418855,
+        "percent": 94.0096214680498
+      },
+      {
+        "column": "uid",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "egid",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "exe",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "gid",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "euid",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "name",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "ppid",
+        "missing": 384138,
+        "total": 418855,
+        "percent": 91.71145145694811
+      },
+      {
+        "column": "path",
+        "missing": 378623,
+        "total": 418855,
+        "percent": 90.39476668536844
+      },
+      {
+        "column": "permissions",
+        "missing": 378623,
+        "total": 418855,
+        "percent": 90.39476668536844
+      },
+      {
+        "column": "pid",
+        "missing": 364636,
+        "total": 418855,
+        "percent": 87.05542490838118
+      },
+      {
+        "column": "subtype",
+        "missing": 353513,
+        "total": 418855,
+        "percent": 84.39985197741461
+      },
+      {
+        "column": "epoch",
+        "missing": 353513,
+        "total": 418855,
+        "percent": 84.39985197741461
+      },
+      {
+        "column": "version",
+        "missing": 353513,
+        "total": 418855,
+        "percent": 84.39985197741461
+      },
+      {
+        "column": "id",
+        "missing": 318796,
+        "total": 418855,
+        "percent": 76.11130343436272
+      },
+      {
+        "column": "from",
+        "missing": 100059,
+        "total": 418855,
+        "percent": 23.888696565637275
+      },
+      {
+        "column": "to",
+        "missing": 100059,
+        "total": 418855,
+        "percent": 23.888696565637275
+      },
+      {
+        "column": "event id",
+        "missing": 100059,
+        "total": 418855,
+        "percent": 23.888696565637275
+      },
+      {
+        "column": "time",
+        "missing": 100059,
+        "total": 418855,
+        "percent": 23.888696565637275
+      },
+      {
+        "column": "operation",
+        "missing": 100059,
+        "total": 418855,
+        "percent": 23.888696565637275
+      },
+      {
+        "column": "type",
+        "missing": 0,
+        "total": 418855,
+        "percent": 0.0
+      },
+      {
+        "column": "source",
+        "missing": 0,
+        "total": 418855,
+        "percent": 0.0
+      },
+      {
+        "column": "label",
+        "missing": 0,
+        "total": 418855,
+        "percent": 0.0
+      },
+      {
+        "column": "subLabel",
+        "missing": 0,
+        "total": 418855,
+        "percent": 0.0
+      }
+    ],
+    "representation": [
+      {
+        "variant": "operation_only",
+        "split": "train",
+        "events": 99665,
+        "unique_descriptions": 14,
+        "mean_tokens": 8.043736517333066,
+        "p95_tokens": 19.0,
+        "maximum_tokens": 21,
+        "over_token_limit": 0,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 99665,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_only",
+        "split": "validation",
+        "events": 21357,
+        "unique_descriptions": 12,
+        "mean_tokens": 7.962962962962963,
+        "p95_tokens": 19.0,
+        "maximum_tokens": 21,
+        "over_token_limit": 0,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 21354,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_only",
+        "split": "benign_test",
+        "events": 21357,
+        "unique_descriptions": 11,
+        "mean_tokens": 7.9501334457086665,
+        "p95_tokens": 19.0,
+        "maximum_tokens": 19,
+        "over_token_limit": 0,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 21357,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_only",
+        "split": "attack_test",
+        "events": 100892,
+        "unique_descriptions": 15,
+        "mean_tokens": 8.532153193513857,
+        "p95_tokens": 19.0,
+        "maximum_tokens": 21,
+        "over_token_limit": 0,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "seen_in_training": 100891,
+        "original_positives_seen": 70,
+        "contextual_positives_seen": 225
+      },
+      {
+        "variant": "operation_entities",
+        "split": "train",
+        "events": 99665,
+        "unique_descriptions": 13020,
+        "mean_tokens": 101.40414388200472,
+        "p95_tokens": 151.0,
+        "maximum_tokens": 4272,
+        "over_token_limit": 256,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 99665,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_entities",
+        "split": "validation",
+        "events": 21357,
+        "unique_descriptions": 2610,
+        "mean_tokens": 100.15774687456103,
+        "p95_tokens": 149.0,
+        "maximum_tokens": 287,
+        "over_token_limit": 40,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18890,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_entities",
+        "split": "benign_test",
+        "events": 21357,
+        "unique_descriptions": 2657,
+        "mean_tokens": 100.00477595167861,
+        "p95_tokens": 149.0,
+        "maximum_tokens": 287,
+        "over_token_limit": 24,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18857,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_entities",
+        "split": "attack_test",
+        "events": 100892,
+        "unique_descriptions": 21580,
+        "mean_tokens": 107.34571621139436,
+        "p95_tokens": 172.0,
+        "maximum_tokens": 3068,
+        "over_token_limit": 195,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "seen_in_training": 80100,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 1
+      },
+      {
+        "variant": "full_provenance",
+        "split": "train",
+        "events": 99665,
+        "unique_descriptions": 13029,
+        "mean_tokens": 119.50425926854965,
+        "p95_tokens": 184.0,
+        "maximum_tokens": 4306,
+        "over_token_limit": 327,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 99665,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "full_provenance",
+        "split": "validation",
+        "events": 21357,
+        "unique_descriptions": 2614,
+        "mean_tokens": 117.95921711850916,
+        "p95_tokens": 182.0,
+        "maximum_tokens": 321,
+        "over_token_limit": 40,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18890,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "full_provenance",
+        "split": "benign_test",
+        "events": 21357,
+        "unique_descriptions": 2658,
+        "mean_tokens": 117.7608278316243,
+        "p95_tokens": 182.0,
+        "maximum_tokens": 321,
+        "over_token_limit": 30,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18857,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "full_provenance",
+        "split": "attack_test",
+        "events": 100892,
+        "unique_descriptions": 21589,
+        "mean_tokens": 127.05441462157555,
+        "p95_tokens": 206.0,
+        "maximum_tokens": 3102,
+        "over_token_limit": 283,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "seen_in_training": 80100,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 1
+      }
+    ],
+    "duplicates": [
+      {
+        "variant": "operation_only",
+        "split": "train",
+        "events": 99665,
+        "unique": 14,
+        "duplicates": 99651,
+        "duplicate_percent": 99.98595294235689
+      },
+      {
+        "variant": "operation_only",
+        "split": "validation",
+        "events": 21357,
+        "unique": 12,
+        "duplicates": 21345,
+        "duplicate_percent": 99.94381233319287
+      },
+      {
+        "variant": "operation_only",
+        "split": "benign_test",
+        "events": 21357,
+        "unique": 11,
+        "duplicates": 21346,
+        "duplicate_percent": 99.94849463876012
+      },
+      {
+        "variant": "operation_only",
+        "split": "attack_test",
+        "events": 100892,
+        "unique": 15,
+        "duplicates": 100877,
+        "duplicate_percent": 99.98513261705585
+      },
+      {
+        "variant": "operation_entities",
+        "split": "train",
+        "events": 99665,
+        "unique": 13020,
+        "duplicates": 86645,
+        "duplicate_percent": 86.93623639191291
+      },
+      {
+        "variant": "operation_entities",
+        "split": "validation",
+        "events": 21357,
+        "unique": 2610,
+        "duplicates": 18747,
+        "duplicate_percent": 87.77918246944796
+      },
+      {
+        "variant": "operation_entities",
+        "split": "benign_test",
+        "events": 21357,
+        "unique": 2657,
+        "duplicates": 18700,
+        "duplicate_percent": 87.55911410778667
+      },
+      {
+        "variant": "operation_entities",
+        "split": "attack_test",
+        "events": 100892,
+        "unique": 21580,
+        "duplicates": 79312,
+        "duplicate_percent": 78.61079173769971
+      },
+      {
+        "variant": "full_provenance",
+        "split": "train",
+        "events": 99665,
+        "unique": 13029,
+        "duplicates": 86636,
+        "duplicate_percent": 86.92720614057092
+      },
+      {
+        "variant": "full_provenance",
+        "split": "validation",
+        "events": 21357,
+        "unique": 2614,
+        "duplicates": 18743,
+        "duplicate_percent": 87.76045324717892
+      },
+      {
+        "variant": "full_provenance",
+        "split": "benign_test",
+        "events": 21357,
+        "unique": 2658,
+        "duplicates": 18699,
+        "duplicate_percent": 87.55443180221941
+      },
+      {
+        "variant": "full_provenance",
+        "split": "attack_test",
+        "events": 100892,
+        "unique": 21589,
+        "duplicates": 79303,
+        "duplicate_percent": 78.60187130793324
+      }
+    ],
+    "truncation": [
+      {
+        "variant": "operation_only",
+        "split": "train",
+        "events": 99665,
+        "over_token_limit": 0,
+        "truncation_percent": 0.0,
+        "maximum_tokens": 21,
+        "mean_tokens": 8.043736517333066
+      },
+      {
+        "variant": "operation_only",
+        "split": "validation",
+        "events": 21357,
+        "over_token_limit": 0,
+        "truncation_percent": 0.0,
+        "maximum_tokens": 21,
+        "mean_tokens": 7.962962962962963
+      },
+      {
+        "variant": "operation_only",
+        "split": "benign_test",
+        "events": 21357,
+        "over_token_limit": 0,
+        "truncation_percent": 0.0,
+        "maximum_tokens": 19,
+        "mean_tokens": 7.9501334457086665
+      },
+      {
+        "variant": "operation_only",
+        "split": "attack_test",
+        "events": 100892,
+        "over_token_limit": 0,
+        "truncation_percent": 0.0,
+        "maximum_tokens": 21,
+        "mean_tokens": 8.532153193513857
+      },
+      {
+        "variant": "operation_entities",
+        "split": "train",
+        "events": 99665,
+        "over_token_limit": 256,
+        "truncation_percent": 0.25686048261676614,
+        "maximum_tokens": 4272,
+        "mean_tokens": 101.40414388200472
+      },
+      {
+        "variant": "operation_entities",
+        "split": "validation",
+        "events": 21357,
+        "over_token_limit": 40,
+        "truncation_percent": 0.1872922226904528,
+        "maximum_tokens": 287,
+        "mean_tokens": 100.15774687456103
+      },
+      {
+        "variant": "operation_entities",
+        "split": "benign_test",
+        "events": 21357,
+        "over_token_limit": 24,
+        "truncation_percent": 0.11237533361427167,
+        "maximum_tokens": 287,
+        "mean_tokens": 100.00477595167861
+      },
+      {
+        "variant": "operation_entities",
+        "split": "attack_test",
+        "events": 100892,
+        "over_token_limit": 195,
+        "truncation_percent": 0.19327597827379772,
+        "maximum_tokens": 3068,
+        "mean_tokens": 107.34571621139436
+      },
+      {
+        "variant": "full_provenance",
+        "split": "train",
+        "events": 99665,
+        "over_token_limit": 327,
+        "truncation_percent": 0.3280991320925099,
+        "maximum_tokens": 4306,
+        "mean_tokens": 119.50425926854965
+      },
+      {
+        "variant": "full_provenance",
+        "split": "validation",
+        "events": 21357,
+        "over_token_limit": 40,
+        "truncation_percent": 0.1872922226904528,
+        "maximum_tokens": 321,
+        "mean_tokens": 117.95921711850916
+      },
+      {
+        "variant": "full_provenance",
+        "split": "benign_test",
+        "events": 21357,
+        "over_token_limit": 30,
+        "truncation_percent": 0.1404691670178396,
+        "maximum_tokens": 321,
+        "mean_tokens": 117.7608278316243
+      },
+      {
+        "variant": "full_provenance",
+        "split": "attack_test",
+        "events": 100892,
+        "over_token_limit": 283,
+        "truncation_percent": 0.28049795821274237,
+        "maximum_tokens": 3102,
+        "mean_tokens": 127.05441462157555
+      }
+    ],
+    "overlap": {
+      "training_vs_validation": {
+        "matching": 18890,
+        "percent": 88.45
+      },
+      "training_vs_benign_test": {
+        "matching": 18857,
+        "percent": 88.29
+      },
+      "training_vs_attack_test": {
+        "matching": 80100,
+        "percent": 79.39
+      },
+      "attack_test_seen": 80100,
+      "attack_test_unseen": 20792,
+      "seen_positives": 0,
+      "unseen_positives": 70
+    },
+    "sources": [
+      "data/processed/cicapt-iiot-v2/phase1_events.parquet",
+      "data/processed/cicapt-iiot-v2/phase2_events.parquet",
+      "data/splits/cicapt-iiot/split_summary.json",
+      "results/eda/dataset_inspection.txt",
+      "results/eda/ablation/representation_statistics.csv",
+      "results/e2d-unique-matched/evaluation/evaluation_summary.json"
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.631521+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

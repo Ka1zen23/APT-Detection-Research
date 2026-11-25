@@ -58,6 +58,9 @@ function StoryFooter() {
               <li>
                 <Link to="/journal">Journal</Link>
               </li>
+              <li>
+                <Link to="/glossary">Metric glossary</Link>
+              </li>
             </ul>
           </div>
 

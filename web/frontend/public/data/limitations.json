@@ -1,0 +1,138 @@
+{
+  "data": {
+    "limitations": [
+      {
+        "id": "L01",
+        "category": "Data",
+        "severity": "high",
+        "title": "Severe class imbalance",
+        "detail": "The attack test contains 70 original positive events among 100,892 events (approximately 0.0694%). Precision is therefore highly sensitive to false positives.",
+        "mitigation": "Report precision-recall metrics, alert budgets and false-positive counts rather than accuracy alone."
+      },
+      {
+        "id": "L02",
+        "category": "Labels",
+        "severity": "high",
+        "title": "Only 70 original positive annotations",
+        "detail": "All original-positive conclusions depend on 70 edge-derived annotations. A small number of missed or mislabelled events could materially change recall estimates.",
+        "mitigation": "Treat results as preliminary and seek annotation review or additional scenarios."
+      },
+      {
+        "id": "L03",
+        "category": "Labels",
+        "severity": "high",
+        "title": "Positives concentrated in two tactics",
+        "detail": "Original positives comprise 69 credentialAccess events and 1 defenceEvasion event. Detection performance for other MITRE ATT&CK tactics is not established by original labels.",
+        "mitigation": "Use contextual tactics only as derived indicators and collect broader labelled scenarios."
+      },
+      {
+        "id": "L04",
+        "category": "Labels",
+        "severity": "high",
+        "title": "Contextual labels are derived indicators",
+        "detail": "The 225 contextual positives are derived from connected provenance nodes, not independent ground-truth event annotations.",
+        "mitigation": "Keep original and contextual metrics separate; never present contextual recall as confirmed attack detection."
+      },
+      {
+        "id": "L05",
+        "category": "Methodology",
+        "severity": "high",
+        "title": "Repeated exploratory evaluation of Phase 2",
+        "detail": "The attack-test partition has been inspected repeatedly across variants and thresholds, creating selection and overfitting risk.",
+        "mitigation": "Label retrospective analyses explicitly and require independent scenario validation."
+      },
+      {
+        "id": "L06",
+        "category": "Validation",
+        "severity": "high",
+        "title": "Limited independent generalisation evidence",
+        "detail": "There is one attack scenario from one collection environment. No independent host or scenario validation exists.",
+        "mitigation": "Run IV-1 on independent data before any deployment claim."
+      },
+      {
+        "id": "L07",
+        "category": "Reproducibility",
+        "severity": "high",
+        "title": "Single-seed experimental results",
+        "detail": "Every trained configuration uses seed 42 only. Mean performance and variance are unknown.",
+        "mitigation": "Complete E7 with seeds 42, 123 and 456 and report mean, standard deviation and individual outcomes."
+      },
+      {
+        "id": "L08",
+        "category": "Detection",
+        "severity": "high",
+        "title": "Low absolute precision",
+        "detail": "Even the leading E2-D model has precision of 0.805% at P99 and 2.906% at the exploratory P99.95 threshold.",
+        "mitigation": "Frame output as alert prioritisation, not autonomous malware classification."
+      },
+      {
+        "id": "L09",
+        "category": "Representation",
+        "severity": "medium",
+        "title": "Potential representation ambiguity",
+        "detail": "Operation-only descriptions produce exact conflicts for all 70 positives. Full provenance reduces observed conflicts but semantic ambiguity may remain.",
+        "mitigation": "Investigate representation ablations and semantic nearest-neighbour baselines."
+      },
+      {
+        "id": "L10",
+        "category": "Representation",
+        "severity": "medium",
+        "title": "Token truncation",
+        "detail": "The encoder limit is 256 tokens. In full provenance, 327 training, 40 validation, 30 benign-test and 283 attack-test descriptions exceed the limit.",
+        "mitigation": "Study chunk-aware embeddings (E3) and report truncation rates with results."
+      },
+      {
+        "id": "L11",
+        "category": "Training",
+        "severity": "medium",
+        "title": "Training description frequency imbalance",
+        "detail": "One benign description accounts for 73.23% of training events, which can dominate the reconstruction objective.",
+        "mitigation": "Use unique-description or frequency-weighted training and report the trade-offs."
+      },
+      {
+        "id": "L12",
+        "category": "Representation",
+        "severity": "medium",
+        "title": "Ablation changes formatting as well as content",
+        "detail": "E5-A, E5-B and E5-C differ in text ordering, length and formatting in addition to entities and relationships.",
+        "mitigation": "Interpret the ablation as an overall representation comparison, not a pure causal estimate."
+      },
+      {
+        "id": "L13",
+        "category": "Deployment",
+        "severity": "medium",
+        "title": "Offline provenance graph processing",
+        "detail": "The pipeline operates on pre-collected provenance logs rather than a live streaming graph. End-to-end latency is not measured.",
+        "mitigation": "Do not generalise inference microbenchmarks to production throughput."
+      },
+      {
+        "id": "L14",
+        "category": "Deployment",
+        "severity": "medium",
+        "title": "Inference measurements exclude preprocessing",
+        "detail": "Reported events-per-second figures measure model inference only and exclude verbalisation, embedding generation and graph reconstruction.",
+        "mitigation": "Measure end-to-end pipeline latency separately."
+      },
+      {
+        "id": "L15",
+        "category": "Mitigation",
+        "severity": "high",
+        "title": "Mitigation effectiveness not established",
+        "detail": "No automated mitigation component has been implemented or evaluated. Detection scores cannot demonstrate response effectiveness.",
+        "mitigation": "Evaluate human-reviewed mitigation recommendations separately and require analyst approval."
+      }
+    ],
+    "counts": {
+      "high": 9,
+      "medium": 6
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.640282+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

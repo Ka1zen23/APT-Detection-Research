@@ -1,0 +1,37 @@
+{
+  "data": {
+    "id": "B6",
+    "name": "Semantic nearest-neighbour baseline",
+    "group": "baseline",
+    "kind": "model",
+    "status": "planned",
+    "research_question": "How does a simple semantic nearest-neighbour distance compare with the autoencoder?",
+    "hypothesis": "Cosine distance to the nearest benign training embedding will provide a strong, interpretable baseline.",
+    "representation": "V2 full-provenance embedding",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen)",
+    "algorithm": "Nearest-neighbour cosine distance",
+    "training_strategy": "Store benign training embeddings; no parametric training.",
+    "seed": null,
+    "training_configuration": {},
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "threshold": "Same benign validation percentile protocol"
+    },
+    "results_summary": "Not yet executed.",
+    "interpretation": "Planned comparison to test whether the autoencoder adds value beyond embedding similarity.",
+    "limitations": "Planned only.",
+    "source_artifacts": [],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.946488+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "data": {
+    "available": true,
+    "experiment_id": "E2-C",
+    "source": "results/autoencoder_comparison/alert_budget_comparison.csv",
+    "rows": [
+      {
+        "budget": 50,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0,
+        "minimum_recall": 0.0,
+        "maximum_recall": 0.0
+      },
+      {
+        "budget": 100,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0,
+        "minimum_recall": 0.0,
+        "maximum_recall": 0.0
+      },
+      {
+        "budget": 200,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0,
+        "minimum_recall": 0.0,
+        "maximum_recall": 0.0
+      },
+      {
+        "budget": 500,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0,
+        "minimum_recall": 0.0,
+        "maximum_recall": 0.0
+      },
+      {
+        "budget": 1000,
+        "expected_true_positives": 2.0,
+        "minimum_true_positives": 2,
+        "maximum_true_positives": 2,
+        "expected_precision": 0.002,
+        "expected_recall": 0.02857142857142857,
+        "minimum_recall": 0.02857142857142857,
+        "maximum_recall": 0.02857142857142857
+      },
+      {
+        "budget": 2000,
+        "expected_true_positives": 64.0,
+        "minimum_true_positives": 64,
+        "maximum_true_positives": 64,
+        "expected_precision": 0.032,
+        "expected_recall": 0.9142857142857143,
+        "minimum_recall": 0.9142857142857143,
+        "maximum_recall": 0.9142857142857143
+      },
+      {
+        "budget": 5000,
+        "expected_true_positives": 69.0,
+        "minimum_true_positives": 69,
+        "maximum_true_positives": 69,
+        "expected_precision": 0.0138,
+        "expected_recall": 0.9857142857142858,
+        "minimum_recall": 0.9857142857142858,
+        "maximum_recall": 0.9857142857142858
+      },
+      {
+        "budget": 10000,
+        "expected_true_positives": 70.0,
+        "minimum_true_positives": 70,
+        "maximum_true_positives": 70,
+        "expected_precision": 0.007,
+        "expected_recall": 1.0,
+        "minimum_recall": 1.0,
+        "maximum_recall": 1.0
+      }
+    ],
+    "note": "Only measured budget points are returned. No intermediate budgets are interpolated."
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.108529+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

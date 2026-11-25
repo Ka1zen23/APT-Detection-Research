@@ -1,0 +1,49 @@
+{
+  "data": {
+    "experiment_id": "E5-B",
+    "available": true,
+    "metrics": {
+      "id": "E5-B",
+      "name": "Provenance ablation \u2014 operations and entities",
+      "group": "ablation",
+      "kind": "model",
+      "status": "completed",
+      "representation": "Operations plus process and artifact attributes, without explicit directed relationships",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Do entity attributes resolve operation-only ambiguity without explicit directed relationships?",
+      "hypothesis": "Adding process and artifact attributes will eliminate observed description conflicts and improve detection.",
+      "seed": 42,
+      "roc_auc": 0.9827551809837423,
+      "average_precision": 0.018724070227123298,
+      "recall": 1.0,
+      "precision": 0.006267908309455587,
+      "f1": 0.012457732692649938,
+      "true_positives": 70,
+      "false_positives": 11098,
+      "false_negatives": 0,
+      "true_negatives": 89724,
+      "benign_fpr": 0.010066956969611837,
+      "attack_fpr": 0.11007518200392771,
+      "contextual_recall": 1.0,
+      "threshold": 7.502168591599911e-05,
+      "threshold_percentile": 99.0,
+      "training_seconds": 103.04762292099986,
+      "operating_point": "Validation P99",
+      "availability": {
+        "status": "available",
+        "artifact": "results/ablation_comparison/ablation_comparison.csv",
+        "note": null
+      },
+      "rank": 11
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.898341+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

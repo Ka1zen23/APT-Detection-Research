@@ -1,5 +1,44 @@
 [
  {
+  "shape": "console dashboard shell and data pages",
+  "theme": "console",
+  "axes": "dark/grotesk-sans/chromatic-amber",
+  "hero": "app shell, not a marketing hero",
+  "nav": "sidebar with breadcrumb topbar",
+  "footer": "in-main colophon",
+  "imagery": "live charts and measured readings",
+  "photos": [],
+  "entry": "whole-site Console redesign: readable type, padded metric cards, metric definitions and denominators, glossary, new charts on Overview, Experiments and Findings",
+  "fingerprint": {
+   "paper": "dark",
+   "display": "grotesk-sans",
+   "accent": "chromatic-amber",
+   "hero": "app",
+   "chrome": "sidebar",
+   "body": "charts"
+  },
+  "sections": [
+   "overview metrics and charts",
+   "experiments scatter",
+   "findings mini charts",
+   "glossary",
+   "comparison",
+   "threshold",
+   "alerts",
+   "dataset",
+   "ablation",
+   "documentation and system pages"
+  ],
+  "signature": "metric cards with definition, denominator and source, plus the story provenance lens",
+  "waived": [
+   "39b",
+   "72"
+  ],
+  "prompt": "More graphs. I am seeing more numbers, questionable data without explanation. Data being on the very left of a card with no padding. I want you to change the whole website with the dashboards included.",
+  "date": "2026-11-25",
+  "mode": "build"
+ },
+ {
   "shape": "field-report",
   "theme": "console",
   "axes": "dark/grotesk-sans/chromatic-amber",

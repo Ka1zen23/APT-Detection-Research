@@ -1,0 +1,85 @@
+CICAPT-IIoT BASELINE EXPERIMENTS
+Random seed: 42
+Validation percentile: 99
+Loaded train: 99,665 events
+Loaded validation: 21,357 events
+Loaded benign_test: 21,357 events
+Loaded attack_test: 100,892 events
+
+============================================================
+B1_exact_novelty
+============================================================
+Threshold: 0.5000000000
+True positives: 70
+False positives: 20,722
+False negatives: 0
+Precision: 0.003367
+Recall: 1.000000
+F1: 0.006711
+ROC-AUC: 0.897235
+AP: 0.003367
+Attack FPR: 0.205531
+Benign test FPR: 0.117058
+Elapsed: 0.03s
+
+============================================================
+B2_tfidf_isolation_forest
+============================================================
+Threshold: 0.4930337016
+True positives: 0
+False positives: 1,445
+False negatives: 70
+Precision: 0.000000
+Recall: 0.000000
+F1: 0.000000
+ROC-AUC: 0.671003
+AP: 0.001274
+Attack FPR: 0.014332
+Benign test FPR: 0.008896
+Elapsed: 9.93s
+PCA explained variance: 0.98194844
+
+============================================================
+B3_minilm_pca
+============================================================
+Threshold: 0.0001121768
+True positives: 70
+False positives: 10,778
+False negatives: 0
+Precision: 0.006453
+Recall: 1.000000
+F1: 0.012823
+ROC-AUC: 0.954165
+AP: 0.007092
+Attack FPR: 0.106901
+Benign test FPR: 0.008475
+Elapsed: 1.74s
+
+============================================================
+B4_minilm_isolation_forest
+============================================================
+Threshold: 0.6626221423
+True positives: 1
+False positives: 1,841
+False negatives: 69
+Precision: 0.000543
+Recall: 0.014286
+F1: 0.001046
+ROC-AUC: 0.918413
+AP: 0.003858
+Attack FPR: 0.018260
+Benign test FPR: 0.007304
+Elapsed: 1.82s
+
+======================================================================
+BASELINE COMPARISON
+======================================================================
+                experiment  tp    fp  precision   recall       f1  roc_auc  average_precision  attack_fpr  validation_fpr  benign_fpr
+          B1_exact_novelty  70 20722   0.003367 1.000000 0.006711 0.897235           0.003367    0.205531        0.115512    0.117058
+ B2_tfidf_isolation_forest   0  1445   0.000000 0.000000 0.000000 0.671003           0.001274    0.014332        0.009926    0.008896
+             B3_minilm_pca  70 10778   0.006453 1.000000 0.012823 0.954165           0.007092    0.106901        0.010020    0.008475
+B4_minilm_isolation_forest   1  1841   0.000543 0.014286 0.001046 0.918413           0.003858    0.018260        0.009365    0.007304
+     E2_minilm_autoencoder  70 11332   0.006139 1.000000 0.012204 0.984482           0.020832    0.112396        0.010020    0.010395
+
+BASELINE EXPERIMENTS COMPLETED
+Results saved to: /home/wajien/projects/APT-Detection-Research/results/baselines

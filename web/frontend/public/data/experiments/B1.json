@@ -1,0 +1,95 @@
+{
+  "data": {
+    "id": "B1",
+    "name": "Exact-description novelty",
+    "group": "baseline",
+    "kind": "model",
+    "status": "completed",
+    "research_question": "Can exact novelty in verbalised event descriptions separate attack events without learning a statistical model?",
+    "hypothesis": "A purely novelty-based rule will over-alert because most attack-test descriptions are also present in benign training data.",
+    "representation": "V2 full-provenance event description (operations, entities and directed relationships)",
+    "encoder": "None",
+    "algorithm": "Exact set-membership novelty",
+    "training_strategy": "Memorise the set of 13,029 unique training descriptions.",
+    "seed": null,
+    "training_configuration": {
+      "known_descriptions": 13029,
+      "threshold": 0.5,
+      "calibration": "binary novelty rule"
+    },
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "attack_test_events": 100892,
+      "benign_test_events": 21357,
+      "primary_labels": "original edge-derived annotations",
+      "secondary_labels": "contextual connected-node indicators"
+    },
+    "results_summary": "ROC-AUC 0.897235 and Average Precision 0.003367. All 70 original positives were flagged, but 20,722 false positives produced precision of 0.337%.",
+    "interpretation": "Description novelty alone captures some attack signal, but 79.39% of attack-test descriptions were seen in training, so novelty is a weak discriminator.",
+    "limitations": "Binary scoring creates large tied blocks; the rule has no notion of semantic similarity.",
+    "source_artifacts": [
+      "results/baselines/baseline_summary.json",
+      "results/baselines/baseline_comparison.csv",
+      "results/baselines/B1_exact_novelty/attack_test_predictions.parquet"
+    ],
+    "metrics": {
+      "id": "B1",
+      "name": "Exact-description novelty",
+      "group": "baseline",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description (operations, entities and directed relationships)",
+      "encoder": "None",
+      "algorithm": "Exact set-membership novelty",
+      "research_question": "Can exact novelty in verbalised event descriptions separate attack events without learning a statistical model?",
+      "hypothesis": "A purely novelty-based rule will over-alert because most attack-test descriptions are also present in benign training data.",
+      "seed": null,
+      "roc_auc": 0.8972347305151653,
+      "average_precision": 0.003366679492112351,
+      "recall": 1.0,
+      "precision": 0.003366679492112351,
+      "f1": 0.0067107659860032596,
+      "true_positives": 70,
+      "false_positives": 20722,
+      "false_negatives": 0,
+      "true_negatives": 80100,
+      "benign_fpr": 0.11705763918153299,
+      "attack_fpr": 0.20553053896966933,
+      "contextual_recall": 0.9955555555555555,
+      "threshold": 0.5,
+      "threshold_percentile": null,
+      "training_seconds": 0.03493129300113651,
+      "operating_point": "Binary novelty rule",
+      "availability": {
+        "status": "available",
+        "artifact": "results/baselines/baseline_comparison.csv",
+        "note": null
+      },
+      "rank": 1
+    },
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/baselines/baseline_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/baselines/baseline_comparison.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/baselines/B1_exact_novelty/attack_test_predictions.parquet",
+        "status": "available"
+      }
+    ],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.652276+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "data": {
+    "objectives": [
+      {
+        "id": "O1",
+        "title": "Verbalise provenance events",
+        "description": "Convert structured process, file and network provenance records into consistent natural-language descriptions.",
+        "status": "implemented",
+        "evidence": "V1 and V2 verbalisers; 243,271 reconstructed events verbalised.",
+        "experiments": [
+          "E1"
+        ]
+      },
+      {
+        "id": "O2",
+        "title": "Generate frozen semantic embeddings",
+        "description": "Encode descriptions with a frozen pretrained sentence encoder to obtain comparable 384-dimensional vectors.",
+        "status": "implemented",
+        "evidence": "sentence-transformers/all-MiniLM-L6-v2, normalised embeddings, 256-token limit.",
+        "experiments": [
+          "E2-A",
+          "E4"
+        ]
+      },
+      {
+        "id": "O3",
+        "title": "Train a benign-only anomaly detector",
+        "description": "Train an autoencoder on benign events only and flag unusually high reconstruction errors.",
+        "status": "implemented",
+        "evidence": "E2-A to E2-D and E5-A to E5-C autoencoders.",
+        "experiments": [
+          "E2-A",
+          "E2-B",
+          "E2-C",
+          "E2-D"
+        ]
+      },
+      {
+        "id": "O4",
+        "title": "Evaluate detection on CICAPT-IIoT",
+        "description": "Measure ranking and threshold-based detection against original and contextual annotations, with explicit operating-point analysis.",
+        "status": "in_progress",
+        "evidence": "Single-seed results exist; independent scenario validation and multi-seed evidence do not.",
+        "experiments": [
+          "E2-D",
+          "E2-T",
+          "E2-R",
+          "E5-C",
+          "E7",
+          "IV-1"
+        ]
+      },
+      {
+        "id": "O5",
+        "title": "Investigate mitigation recommendations",
+        "description": "Develop evidence-grounded, human-reviewed response recommendations and evaluate mitigation separately from detection.",
+        "status": "planned",
+        "evidence": "No mitigation framework or effectiveness evaluation exists yet.",
+        "experiments": [
+          "M1"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.615592+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

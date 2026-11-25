@@ -3,19 +3,16 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const CHART_COLORS = [
-  "var(--primary)",
-  "var(--success)",
-  "var(--warning)",
-  "var(--error)",
-  "#8b5cf6",
-  "#0891b2",
-  "#db2777",
-  "#65a30d",
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
 ];
 
 export const CHART_AXIS = {
   stroke: "var(--muted-foreground)",
-  fontSize: 10,
+  fontSize: 12,
   tickLine: false,
   axisLine: false,
 } as const;
@@ -41,18 +38,18 @@ export function ChartTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-md border border-border bg-elevated px-2.5 py-2 shadow-md">
+    <div className="rounded-lg border border-border bg-elevated px-3 py-2.5 shadow-md">
       {label !== undefined && (
-        <div className="mb-1 font-mono text-[10px] text-muted-foreground">
+        <div className="mb-1 font-mono text-[12px] text-muted-foreground">
           {labelFormatter ? labelFormatter(label) : label}
         </div>
       )}
       <div className="space-y-0.5">
         {payload.map((item, index) => (
-          <div key={`${item.dataKey ?? item.name}-${index}`} className="flex items-center gap-2 text-[11px]">
+          <div key={`${item.dataKey ?? item.name}-${index}`} className="flex items-center gap-2 text-[12px]">
             <span
               className="size-1.5 rounded-full"
-              style={{ backgroundColor: item.color ?? "var(--primary)" }}
+              style={{ backgroundColor: item.color ?? "var(--chart-1)" }}
             />
             <span className="text-muted-foreground">{item.name}</span>
             <span className="ml-auto font-mono tabular text-foreground">
@@ -88,9 +85,9 @@ export function PaginationBar({
   const end = Math.min(page * pageSize, total);
   return (
     <div className={cn("flex flex-wrap items-center justify-between gap-2 border-t border-border px-3 py-2", className)}>
-      <div className="text-[11px] text-muted-foreground">
-        Showing <span className="font-mono tabular text-foreground">{start.toLocaleString()}</span>–
-        <span className="font-mono tabular text-foreground">{end.toLocaleString()}</span> of{" "}
+      <div className="text-[13px] text-muted-foreground">
+        Showing <span className="font-mono tabular text-foreground">{start.toLocaleString()}</span>{" "}
+        to <span className="font-mono tabular text-foreground">{end.toLocaleString()}</span> of{" "}
         <span className="font-mono tabular text-foreground">{total.toLocaleString()}</span>
       </div>
       <div className="flex items-center gap-1">
@@ -103,7 +100,7 @@ export function PaginationBar({
         >
           <ChevronLeft />
         </Button>
-        <span className="min-w-20 text-center font-mono text-[11px] text-muted-foreground">
+        <span className="min-w-20 text-center font-mono text-[13px] text-muted-foreground">
           {page} / {Math.max(totalPages, 1)}
         </span>
         <Button
@@ -146,36 +143,36 @@ export function ConfusionMatrix({
         tone === "neutral" && "border-border bg-elevated/60",
       )}
     >
-      <div className="font-mono text-sm font-semibold tabular text-foreground">
-        {value === null ? "—" : value.toLocaleString()}
+      <div className="font-mono text-[15px] font-medium tabular text-foreground">
+        {value === null ? "n/a" : value.toLocaleString()}
       </div>
-      <div className="text-[9px] uppercase tracking-wide text-muted-foreground">{label}</div>
+      <div className="text-[12px] text-muted-foreground">{label}</div>
     </div>
   );
 
   return (
     <div className="space-y-1.5">
-      <div className="grid grid-cols-[80px_1fr_1fr] items-center gap-1.5 text-[9px] uppercase tracking-wide text-muted-foreground">
+      <div className="grid grid-cols-[92px_1fr_1fr] items-center gap-1.5 text-[12px] text-muted-foreground">
         <div />
         <div className="text-center">Predicted positive</div>
         <div className="text-center">Predicted negative</div>
       </div>
-      <div className="grid grid-cols-[80px_1fr_1fr] items-center gap-1.5">
-        <div className="text-right text-[9px] uppercase tracking-wide text-muted-foreground">
+      <div className="grid grid-cols-[92px_1fr_1fr] items-center gap-1.5">
+        <div className="text-right text-[12px] text-muted-foreground">
           {positiveLabel}
         </div>
         {cell(tp, "good", "True positive")}
         {cell(fn, "bad", "False negative")}
       </div>
-      <div className="grid grid-cols-[80px_1fr_1fr] items-center gap-1.5">
-        <div className="text-right text-[9px] uppercase tracking-wide text-muted-foreground">
+      <div className="grid grid-cols-[92px_1fr_1fr] items-center gap-1.5">
+        <div className="text-right text-[12px] text-muted-foreground">
           {negativeLabel}
         </div>
         {cell(fp, "bad", "False positive")}
         {cell(tn, "neutral", "True negative")}
       </div>
       {!compact && (
-        <div className="pt-0.5 text-[10px] leading-relaxed text-muted-foreground">
+        <div className="pt-1 text-[12px] leading-relaxed text-muted-foreground">
           Cells show measured event counts at the displayed operating point. False positives dominate
           because original positives are only 0.069% of the attack test.
         </div>

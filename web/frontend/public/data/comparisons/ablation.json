@@ -1,0 +1,715 @@
+{
+  "data": {
+    "models": [
+      {
+        "id": "B5",
+        "name": "Operation-frequency baseline",
+        "group": "baseline",
+        "kind": "model",
+        "status": "completed",
+        "representation": "Operation-only description (operation names only)",
+        "encoder": "None",
+        "algorithm": "Negative log training-frequency score",
+        "research_question": "How much detection signal is available from operation-name frequency alone?",
+        "hypothesis": "Operation-only frequency will be weak because operation sequences are highly repetitive.",
+        "seed": null,
+        "roc_auc": 0.8261341770645296,
+        "average_precision": 0.00321159845843274,
+        "recall": 0.0,
+        "precision": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 1130,
+        "false_negatives": 70,
+        "true_negatives": 99692,
+        "benign_fpr": 0.006133820293112329,
+        "attack_fpr": 0.011207871297931007,
+        "contextual_recall": 0.10222222222222223,
+        "threshold": 4.616063979418644,
+        "threshold_percentile": 99.0,
+        "training_seconds": null,
+        "operating_point": "Validation P99 (frequency baseline)",
+        "availability": {
+          "status": "available",
+          "artifact": "results/ablation_comparison/ablation_comparison.csv",
+          "note": null
+        },
+        "rank": 5
+      },
+      {
+        "id": "E5-A",
+        "name": "Provenance ablation \u2014 operation only",
+        "group": "ablation",
+        "kind": "model",
+        "status": "completed",
+        "representation": "Operation-only description (operation names without entity attributes or relationships)",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "How much detection signal remains when only system operation names are represented?",
+        "hypothesis": "Operation-only representations will be highly ambiguous because many benign and malicious events share the same operation sequence.",
+        "seed": 42,
+        "roc_auc": 0.8263672611136458,
+        "average_precision": 0.0032185387833923397,
+        "recall": 0.0,
+        "precision": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 618,
+        "false_negatives": 70,
+        "true_negatives": 100204,
+        "benign_fpr": 0.0031839677857376973,
+        "attack_fpr": 0.006129614568248993,
+        "contextual_recall": 0.10222222222222223,
+        "threshold": 4.0604358764184667e-10,
+        "threshold_percentile": 99.0,
+        "training_seconds": 101.73515614299686,
+        "operating_point": "Validation P99",
+        "availability": {
+          "status": "available",
+          "artifact": "results/ablation_comparison/ablation_comparison.csv",
+          "note": null
+        },
+        "rank": 10
+      },
+      {
+        "id": "E5-B",
+        "name": "Provenance ablation \u2014 operations and entities",
+        "group": "ablation",
+        "kind": "model",
+        "status": "completed",
+        "representation": "Operations plus process and artifact attributes, without explicit directed relationships",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Do entity attributes resolve operation-only ambiguity without explicit directed relationships?",
+        "hypothesis": "Adding process and artifact attributes will eliminate observed description conflicts and improve detection.",
+        "seed": 42,
+        "roc_auc": 0.9827551809837423,
+        "average_precision": 0.018724070227123298,
+        "recall": 1.0,
+        "precision": 0.006267908309455587,
+        "f1": 0.012457732692649938,
+        "true_positives": 70,
+        "false_positives": 11098,
+        "false_negatives": 0,
+        "true_negatives": 89724,
+        "benign_fpr": 0.010066956969611837,
+        "attack_fpr": 0.11007518200392771,
+        "contextual_recall": 1.0,
+        "threshold": 7.502168591599911e-05,
+        "threshold_percentile": 99.0,
+        "training_seconds": 103.04762292099986,
+        "operating_point": "Validation P99",
+        "availability": {
+          "status": "available",
+          "artifact": "results/ablation_comparison/ablation_comparison.csv",
+          "note": null
+        },
+        "rank": 11
+      },
+      {
+        "id": "E5-C",
+        "name": "Provenance ablation \u2014 full provenance",
+        "group": "ablation",
+        "kind": "model",
+        "status": "completed",
+        "representation": "Operations, entity attributes and explicit directed provenance relationships",
+        "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+        "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+        "research_question": "Do explicit directed provenance relationships add detection value beyond operations and entity attributes?",
+        "hypothesis": "Full provenance will improve observed Average Precision relative to the entity-based representation.",
+        "seed": 42,
+        "roc_auc": 0.9855065646103316,
+        "average_precision": 0.021742598294833555,
+        "recall": 1.0,
+        "precision": 0.006191402794976119,
+        "f1": 0.01230661040787623,
+        "true_positives": 70,
+        "false_positives": 11236,
+        "false_negatives": 0,
+        "true_negatives": 89586,
+        "benign_fpr": 0.010488364470665356,
+        "attack_fpr": 0.11144393088809983,
+        "contextual_recall": 1.0,
+        "threshold": 4.0547158278059214e-05,
+        "threshold_percentile": 99.0,
+        "training_seconds": 101.2002000479988,
+        "operating_point": "Validation P99",
+        "availability": {
+          "status": "available",
+          "artifact": "results/ablation_comparison/ablation_comparison.csv",
+          "note": null
+        },
+        "rank": 12
+      }
+    ],
+    "statistics": [
+      {
+        "variant": "operation_only",
+        "split": "train",
+        "events": 99665,
+        "unique_descriptions": 14,
+        "mean_tokens": 8.043736517333066,
+        "maximum_tokens": 21,
+        "over_token_limit": 0,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 99665,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_only",
+        "split": "validation",
+        "events": 21357,
+        "unique_descriptions": 12,
+        "mean_tokens": 7.962962962962963,
+        "maximum_tokens": 21,
+        "over_token_limit": 0,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 21354,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_only",
+        "split": "benign_test",
+        "events": 21357,
+        "unique_descriptions": 11,
+        "mean_tokens": 7.9501334457086665,
+        "maximum_tokens": 19,
+        "over_token_limit": 0,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 21357,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_only",
+        "split": "attack_test",
+        "events": 100892,
+        "unique_descriptions": 15,
+        "mean_tokens": 8.532153193513857,
+        "maximum_tokens": 21,
+        "over_token_limit": 0,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "seen_in_training": 100891,
+        "original_positives_seen": 70,
+        "contextual_positives_seen": 225
+      },
+      {
+        "variant": "operation_entities",
+        "split": "train",
+        "events": 99665,
+        "unique_descriptions": 13020,
+        "mean_tokens": 101.40414388200472,
+        "maximum_tokens": 4272,
+        "over_token_limit": 256,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 99665,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_entities",
+        "split": "validation",
+        "events": 21357,
+        "unique_descriptions": 2610,
+        "mean_tokens": 100.15774687456103,
+        "maximum_tokens": 287,
+        "over_token_limit": 40,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18890,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_entities",
+        "split": "benign_test",
+        "events": 21357,
+        "unique_descriptions": 2657,
+        "mean_tokens": 100.00477595167861,
+        "maximum_tokens": 287,
+        "over_token_limit": 24,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18857,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "operation_entities",
+        "split": "attack_test",
+        "events": 100892,
+        "unique_descriptions": 21580,
+        "mean_tokens": 107.34571621139436,
+        "maximum_tokens": 3068,
+        "over_token_limit": 195,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "seen_in_training": 80100,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 1
+      },
+      {
+        "variant": "full_provenance",
+        "split": "train",
+        "events": 99665,
+        "unique_descriptions": 13029,
+        "mean_tokens": 119.50425926854965,
+        "maximum_tokens": 4306,
+        "over_token_limit": 327,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 99665,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "full_provenance",
+        "split": "validation",
+        "events": 21357,
+        "unique_descriptions": 2614,
+        "mean_tokens": 117.95921711850916,
+        "maximum_tokens": 321,
+        "over_token_limit": 40,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18890,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "full_provenance",
+        "split": "benign_test",
+        "events": 21357,
+        "unique_descriptions": 2658,
+        "mean_tokens": 117.7608278316243,
+        "maximum_tokens": 321,
+        "over_token_limit": 30,
+        "original_positives": 0,
+        "contextual_positives": 0,
+        "seen_in_training": 18857,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 0
+      },
+      {
+        "variant": "full_provenance",
+        "split": "attack_test",
+        "events": 100892,
+        "unique_descriptions": 21589,
+        "mean_tokens": 127.05441462157555,
+        "maximum_tokens": 3102,
+        "over_token_limit": 283,
+        "original_positives": 70,
+        "contextual_positives": 225,
+        "seen_in_training": 80100,
+        "original_positives_seen": 0,
+        "contextual_positives_seen": 1
+      }
+    ],
+    "conflicts": {
+      "operation_only": {
+        "original": {
+          "conflicting_descriptions": 1,
+          "conflicting_records": 8463,
+          "conflicting_positives": 70,
+          "positive_conflict_rate": 1.0
+        },
+        "contextual": {
+          "conflicting_descriptions": 9,
+          "conflicting_records": 99289,
+          "conflicting_positives": 225,
+          "positive_conflict_rate": 1.0
+        }
+      },
+      "operation_entities": {
+        "original": {
+          "conflicting_descriptions": 0,
+          "conflicting_records": 0,
+          "conflicting_positives": 0,
+          "positive_conflict_rate": 0.0
+        },
+        "contextual": {
+          "conflicting_descriptions": 1,
+          "conflicting_records": 3,
+          "conflicting_positives": 1,
+          "positive_conflict_rate": 0.0044444444444444444
+        }
+      },
+      "full_provenance": {
+        "original": {
+          "conflicting_descriptions": 0,
+          "conflicting_records": 0,
+          "conflicting_positives": 0,
+          "positive_conflict_rate": 0.0
+        },
+        "contextual": {
+          "conflicting_descriptions": 1,
+          "conflicting_records": 3,
+          "conflicting_positives": 1,
+          "positive_conflict_rate": 0.0044444444444444444
+        }
+      }
+    },
+    "budgets": [
+      {
+        "experiment": "E5-A",
+        "budget": 50,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 100,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 200,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 500,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 1000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 2000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 5000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-A",
+        "budget": 10000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 50,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 100,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 200,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 500,
+        "expected_true_positives": 1.0,
+        "minimum_true_positives": 1,
+        "maximum_true_positives": 1,
+        "expected_precision": 0.002,
+        "expected_recall": 0.014285714285714285
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 1000,
+        "expected_true_positives": 1.0,
+        "minimum_true_positives": 1,
+        "maximum_true_positives": 1,
+        "expected_precision": 0.001,
+        "expected_recall": 0.014285714285714285
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 2000,
+        "expected_true_positives": 53.0,
+        "minimum_true_positives": 53,
+        "maximum_true_positives": 53,
+        "expected_precision": 0.0265,
+        "expected_recall": 0.7571428571428571
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 5000,
+        "expected_true_positives": 69.0,
+        "minimum_true_positives": 69,
+        "maximum_true_positives": 69,
+        "expected_precision": 0.0138,
+        "expected_recall": 0.9857142857142858
+      },
+      {
+        "experiment": "E5-B",
+        "budget": 10000,
+        "expected_true_positives": 70.0,
+        "minimum_true_positives": 70,
+        "maximum_true_positives": 70,
+        "expected_precision": 0.007,
+        "expected_recall": 1.0
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 50,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 100,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 200,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 500,
+        "expected_true_positives": 2.0,
+        "minimum_true_positives": 2,
+        "maximum_true_positives": 2,
+        "expected_precision": 0.004,
+        "expected_recall": 0.02857142857142857
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 1000,
+        "expected_true_positives": 6.0,
+        "minimum_true_positives": 6,
+        "maximum_true_positives": 6,
+        "expected_precision": 0.006,
+        "expected_recall": 0.08571428571428572
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 2000,
+        "expected_true_positives": 69.0,
+        "minimum_true_positives": 69,
+        "maximum_true_positives": 69,
+        "expected_precision": 0.0345,
+        "expected_recall": 0.9857142857142858
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 5000,
+        "expected_true_positives": 70.0,
+        "minimum_true_positives": 70,
+        "maximum_true_positives": 70,
+        "expected_precision": 0.014,
+        "expected_recall": 1.0
+      },
+      {
+        "experiment": "E5-C",
+        "budget": 10000,
+        "expected_true_positives": 70.0,
+        "minimum_true_positives": 70,
+        "maximum_true_positives": 70,
+        "expected_precision": 0.007,
+        "expected_recall": 1.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 50,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 100,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 200,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 500,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 1000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 2000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 5000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      },
+      {
+        "experiment": "B5-Frequency",
+        "budget": 10000,
+        "expected_true_positives": 0.0,
+        "minimum_true_positives": 0,
+        "maximum_true_positives": 0,
+        "expected_precision": 0.0,
+        "expected_recall": 0.0
+      }
+    ],
+    "examples": {
+      "event_context": "Illustrative redacted event. Real provenance values, file paths and entity names are excluded from the public snapshot.",
+      "event_id": "redacted",
+      "phase": "example",
+      "source": "Redacted illustrative template",
+      "representations": [
+        {
+          "id": "E5-A",
+          "label": "Operation only",
+          "description": "Operations: execve; load; load; load.",
+          "contains": [
+            "System operation names"
+          ],
+          "omits": [
+            "Process attributes",
+            "Artifact attributes",
+            "Directed relationships"
+          ]
+        },
+        {
+          "id": "E5-B",
+          "label": "Operations and entities",
+          "description": "Operations: execve; load; load; load. Entities: Artifact; type: file; path: /example/config; permissions: 755. Process; name: service-a; executable: /usr/bin/service; UID: 1000; EUID: 1000.",
+          "contains": [
+            "System operation names",
+            "Process attributes",
+            "Artifact attributes"
+          ],
+          "omits": [
+            "Explicit directed relationships"
+          ]
+        },
+        {
+          "id": "E5-C",
+          "label": "Full provenance",
+          "description": "Relationships: P1 was triggered by P2; operation: execve. P1 used A1; operation: load. Entities: P1: Process; name: service-a; executable: /usr/bin/service; UID: 1000; EUID: 1000. P2: Process; name: service-launcher; executable: /bin/sh; UID: 0; EUID: 0. A1: Artifact; type: file; path: /example/config; permissions: 755.",
+          "contains": [
+            "System operation names",
+            "Process attributes",
+            "Artifact attributes",
+            "Explicit directed relationships"
+          ],
+          "omits": []
+        }
+      ],
+      "note": "This is an illustrative redacted template, not a real provenance event."
+    },
+    "derived": {
+      "e5c_over_e5b_ap_uplift_percent": 16.121110587043617,
+      "operation_only_conflicting_negative_events": 8393
+    },
+    "source_artifacts": [
+      "results/ablation_comparison/ablation_comparison.csv",
+      "results/ablation_comparison/alert_budget_comparison.csv",
+      "results/eda/ablation/representation_statistics.csv",
+      "results/eda/ablation/representation_conflicts.json"
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.625917+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

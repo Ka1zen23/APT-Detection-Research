@@ -1,0 +1,179 @@
+{
+  "data": {
+    "host": {
+      "operating_system": "Ubuntu 24.04.5 LTS on WSL2",
+      "host_os": "Windows host with WSL2",
+      "gpu": "NVIDIA GeForce RTX 4060 (8 GB VRAM)",
+      "python": "3.12.3",
+      "cuda": "12.8"
+    },
+    "packages": [
+      {
+        "name": "PyTorch",
+        "package": "torch",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "Hugging Face Transformers",
+        "package": "transformers",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "Sentence Transformers",
+        "package": "sentence-transformers",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "Pandas",
+        "package": "pandas",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "NumPy",
+        "package": "numpy",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "Scikit-learn",
+        "package": "scikit-learn",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "PyArrow",
+        "package": "pyarrow",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "Matplotlib",
+        "package": "matplotlib",
+        "version": null,
+        "recorded": false
+      },
+      {
+        "name": "JupyterLab",
+        "package": "jupyterlab",
+        "version": null,
+        "recorded": false
+      }
+    ],
+    "runs": [
+      {
+        "experiment": "E2-A",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 72.80788806300188,
+        "artifact": "results/e2-v2-minilm-standard/training_summary.json"
+      },
+      {
+        "experiment": "E2-B",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 23.0959918510016,
+        "artifact": "results/e2b-unique/training_summary.json"
+      },
+      {
+        "experiment": "E2-C",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 54.808253560000594,
+        "artifact": "results/e2c-weighted/training_summary.json"
+      },
+      {
+        "experiment": "E2-D",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 109.71300278799754,
+        "artifact": "results/e2d-unique-matched/training_summary.json"
+      },
+      {
+        "experiment": "E5-A",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 101.73515614299686,
+        "artifact": "results/e5a-operation-only/training_summary.json"
+      },
+      {
+        "experiment": "E5-B",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 103.04762292099986,
+        "artifact": "results/e5b-operation-entities/training_summary.json"
+      },
+      {
+        "experiment": "E5-C",
+        "seed": 42,
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "torch_version": "2.11.0+cu128",
+        "elapsed_seconds": 101.2002000479988,
+        "artifact": "results/e5c-full-provenance/training_summary.json"
+      }
+    ],
+    "seeds": {
+      "current_experiments": [
+        42
+      ],
+      "planned_reproducibility": [
+        42,
+        123,
+        456
+      ]
+    },
+    "partitions": {
+      "train": {
+        "records": 99665,
+        "unique_descriptions": 13029,
+        "start_timestamp": 1701118210.496,
+        "end_timestamp": 1701360189.944
+      },
+      "validation": {
+        "records": 21357,
+        "unique_descriptions": 2614,
+        "start_timestamp": 1701360192.944,
+        "end_timestamp": 1701411863.205
+      },
+      "benign_test": {
+        "records": 21357,
+        "unique_descriptions": 2658,
+        "start_timestamp": 1701411867.203,
+        "end_timestamp": 1701463813.813
+      },
+      "attack_test": {
+        "records": 100892,
+        "unique_descriptions": 21589,
+        "start_timestamp": 1701468825.767,
+        "end_timestamp": 1701728421.462
+      }
+    },
+    "missing_reproducibility": [
+      "Encoder revision / commit hash is not recorded in artifacts.",
+      "Dataset content hash is not stored alongside split manifests.",
+      "Only one random seed (42) is available for trained models.",
+      "Exact CUDA/cuDNN runtime versions beyond the PyTorch build are not recorded.",
+      "Ablation event-level Parquet outputs are not retained; only summaries, predictions and logs remain.",
+      "No independent attack-scenario validation set exists.",
+      "GPU determinism is not demonstrated; seeds alone do not guarantee bitwise reproducibility."
+    ],
+    "source_artifact": "requirements.txt; training_summary.json files; data/splits/cicapt-iiot/split_summary.json"
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.638229+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "data": {
+    "id": "E2-B",
+    "name": "Unique-description training",
+    "group": "autoencoder",
+    "kind": "model",
+    "status": "completed",
+    "research_question": "Does deduplicating benign training descriptions reduce frequency dominance and improve anomaly ranking?",
+    "hypothesis": "Training on unique descriptions will prevent the most frequent template from dominating the reconstruction objective.",
+    "representation": "V2 full-provenance event description",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+    "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+    "training_strategy": "Unique-description training: one sample per distinct benign description (13,029 samples).",
+    "seed": 42,
+    "training_configuration": {
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "optimizer": "Adam",
+      "max_epochs": 100,
+      "patience": 10,
+      "best_epoch": 99,
+      "train_samples": 13029,
+      "trainable_parameters": 107168,
+      "elapsed_seconds": 23.095992
+    },
+    "checkpoint_selection": "Best benign validation reconstruction loss; checkpoint restored at best epoch 99.",
+    "evaluation_configuration": {
+      "threshold": "99th percentile of benign validation reconstruction errors",
+      "threshold_value": 0.0005167383933439851,
+      "attack_test_events": 100892
+    },
+    "results_summary": "ROC-AUC 0.987755 and Average Precision 0.026071. At P99, 70/70 original positives were detected with 5,407 false positives; contextual recall 50.67%.",
+    "interpretation": "Deduplication improves ranking and reduces false positives relative to E2-A, but contextual recall falls sharply.",
+    "limitations": "Unique sampling discards frequency information; single seed; no independent validation scenario.",
+    "source_artifacts": [
+      "results/e2b-unique/training_summary.json",
+      "results/e2b-unique/evaluation/evaluation_summary.json",
+      "results/autoencoder_comparison/ranking_summary.csv",
+      "results/autoencoder_comparison/threshold_comparison.csv"
+    ],
+    "metrics": {
+      "id": "E2-B",
+      "name": "Unique-description training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Does deduplicating benign training descriptions reduce frequency dominance and improve anomaly ranking?",
+      "hypothesis": "Training on unique descriptions will prevent the most frequent template from dominating the reconstruction objective.",
+      "seed": 42,
+      "roc_auc": 0.9877550817990406,
+      "average_precision": 0.026070835700867982,
+      "recall": 1.0,
+      "precision": 0.012780719371918934,
+      "f1": 0.02523886785649901,
+      "true_positives": 70,
+      "false_positives": 5407,
+      "false_negatives": 0,
+      "true_negatives": 95415,
+      "benign_fpr": 0.005103713068314838,
+      "attack_fpr": 0.05362916823709111,
+      "contextual_recall": 0.5066666666666667,
+      "threshold": 0.0005167383933439851,
+      "threshold_percentile": 99.0,
+      "training_seconds": 23.0959918510016,
+      "operating_point": "Validation P99 (primary experimental operating point)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+        "note": null
+      },
+      "rank": 7
+    },
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/e2b-unique/training_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/e2b-unique/evaluation/evaluation_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/autoencoder_comparison/threshold_comparison.csv",
+        "status": "available"
+      }
+    ],
+    "training_summary": {
+      "experiment": "e2b-unique",
+      "seed": 42,
+      "gpu": "NVIDIA GeForce RTX 4060",
+      "torch_version": "2.11.0+cu128",
+      "train_samples": 13029,
+      "validation_samples": 21357,
+      "trainable_parameters": 107168,
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "patience": 10,
+      "min_delta": 1e-07,
+      "epochs_completed": 100,
+      "best_epoch": 99,
+      "best_validation_loss": 9.903428144752979e-05,
+      "threshold_percentile": 99,
+      "threshold": 0.0005167383933439851,
+      "validation_alerts": 173,
+      "validation_false_positive_rate": 0.008100388631362082,
+      "elapsed_seconds": 23.0959918510016,
+      "peak_gpu_memory_mib": 20.6337890625,
+      "validation_error_statistics": {
+        "min": 1.075475665857084e-06,
+        "mean": 9.903428144752979e-05,
+        "median": 0.00010225317964795977,
+        "p95": 0.00010225317964795977,
+        "p99": 0.0005167383933439851,
+        "max": 0.0010337226558476686
+      },
+      "training_strategy": "unique"
+    },
+    "evaluation_summary": {
+      "experiment": "e2b-unique",
+      "best_epoch": 99,
+      "threshold": 0.0005167383933439851,
+      "threshold_percentile": 99,
+      "benign_test": {
+        "inference": {
+          "events": 21357,
+          "elapsed_seconds": 0.11707630799719482,
+          "events_per_second": 182419.48661817829,
+          "milliseconds_per_event": 0.005481870487296663
+        },
+        "original_label": {
+          "records": 21357,
+          "positives": 0,
+          "alerts": 109,
+          "threshold": 0.0005167383933439851,
+          "true_negatives": 21248,
+          "false_positives": 109,
+          "false_negatives": 0,
+          "true_positives": 0,
+          "accuracy": 0.9948962869316852,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.005103713068314838,
+          "specificity": 0.9948962869316852,
+          "roc_auc": null,
+          "average_precision": null,
+          "pr_auc": null
+        }
+      },
+      "attack_test": {
+        "inference": {
+          "events": 100892,
+          "elapsed_seconds": 0.0785581660020398,
+          "events_per_second": 1284296.7845937277,
+          "milliseconds_per_event": 0.0007786362248943404
+        },
+        "original_label": {
+          "records": 100892,
+          "positives": 70,
+          "alerts": 5477,
+          "threshold": 0.0005167383933439851,
+          "true_negatives": 95415,
+          "false_positives": 5407,
+          "false_negatives": 0,
+          "true_positives": 70,
+          "accuracy": 0.9464080402806961,
+          "precision": 0.012780719371918934,
+          "recall": 1.0,
+          "f1": 0.02523886785649901,
+          "false_positive_rate": 0.05362916823709111,
+          "specificity": 0.9463708317629089,
+          "roc_auc": 0.9877550817990406,
+          "average_precision": 0.026070835700867982,
+          "pr_auc": 0.02548882217513753
+        },
+        "contextual_label": {
+          "records": 100892,
+          "positives": 225,
+          "alerts": 5477,
+          "threshold": 0.0005167383933439851,
+          "true_negatives": 95304,
+          "false_positives": 5363,
+          "false_negatives": 111,
+          "true_positives": 114,
+          "accuracy": 0.9457439638425247,
+          "precision": 0.02081431440569655,
+          "recall": 0.5066666666666667,
+          "f1": 0.03998596983514556,
+          "false_positive_rate": 0.053274658030933675,
+          "specificity": 0.9467253419690663,
+          "roc_auc": 0.9410442570278464,
+          "average_precision": 0.028121621614336487,
+          "pr_auc": 0.027539047829396507
+        },
+        "description_overlap": {
+          "seen": {
+            "records": 80100,
+            "positives": 0,
+            "alerts": 885,
+            "threshold": 0.0005167383933439851,
+            "true_negatives": 79215,
+            "false_positives": 885,
+            "false_negatives": 0,
+            "true_positives": 0,
+            "accuracy": 0.9889513108614232,
+            "precision": 0.0,
+            "recall": null,
+            "f1": null,
+            "false_positive_rate": 0.011048689138576779,
+            "specificity": 0.9889513108614232,
+            "roc_auc": null,
+            "average_precision": null,
+            "pr_auc": null
+          },
+          "unseen": {
+            "records": 20792,
+            "positives": 70,
+            "alerts": 4592,
+            "threshold": 0.0005167383933439851,
+            "true_negatives": 16200,
+            "false_positives": 4522,
+            "false_negatives": 0,
+            "true_positives": 70,
+            "accuracy": 0.7825125048095422,
+            "precision": 0.01524390243902439,
+            "recall": 1.0,
+            "f1": 0.03003003003003003,
+            "false_positive_rate": 0.21822217932631985,
+            "specificity": 0.7817778206736802,
+            "roc_auc": 0.943760944200091,
+            "average_precision": 0.027374274567609495,
+            "pr_auc": 0.026771401892763762
+          }
+        },
+        "original_label_tactics": [
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 69,
+            "detected_events": 69,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 1,
+            "detected_events": 1,
+            "missed_events": 0,
+            "recall": 1.0
+          }
+        ],
+        "contextual_label_tactics": [
+          {
+            "tactic": "CandC",
+            "positive_events": 8,
+            "detected_events": 3,
+            "missed_events": 5,
+            "recall": 0.375
+          },
+          {
+            "tactic": "collection",
+            "positive_events": 62,
+            "detected_events": 32,
+            "missed_events": 30,
+            "recall": 0.5161290322580645
+          },
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 75,
+            "detected_events": 69,
+            "missed_events": 6,
+            "recall": 0.92
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 23,
+            "detected_events": 3,
+            "missed_events": 20,
+            "recall": 0.13043478260869565
+          },
+          {
+            "tactic": "discovery",
+            "positive_events": 22,
+            "detected_events": 0,
+            "missed_events": 22,
+            "recall": 0.0
+          },
+          {
+            "tactic": "exfiltration",
+            "positive_events": 11,
+            "detected_events": 2,
+            "missed_events": 9,
+            "recall": 0.18181818181818182
+          },
+          {
+            "tactic": "initialAccess",
+            "positive_events": 1,
+            "detected_events": 0,
+            "missed_events": 1,
+            "recall": 0.0
+          },
+          {
+            "tactic": "lateralMovement",
+            "positive_events": 5,
+            "detected_events": 4,
+            "missed_events": 1,
+            "recall": 0.8
+          },
+          {
+            "tactic": "persistence",
+            "positive_events": 18,
+            "detected_events": 1,
+            "missed_events": 17,
+            "recall": 0.05555555555555555
+          }
+        ]
+      }
+    },
+    "figures": [
+      {
+        "key": "e2b:attack_test_contextual_label_confusion_matrix.png",
+        "run": "e2b",
+        "filename": "attack_test_contextual_label_confusion_matrix.png",
+        "title": "attack test contextual label confusion matrix"
+      },
+      {
+        "key": "e2b:attack_test_contextual_label_pr_curve.png",
+        "run": "e2b",
+        "filename": "attack_test_contextual_label_pr_curve.png",
+        "title": "attack test contextual label pr curve"
+      },
+      {
+        "key": "e2b:attack_test_contextual_label_roc_curve.png",
+        "run": "e2b",
+        "filename": "attack_test_contextual_label_roc_curve.png",
+        "title": "attack test contextual label roc curve"
+      },
+      {
+        "key": "e2b:attack_test_contextual_label_score_distribution.png",
+        "run": "e2b",
+        "filename": "attack_test_contextual_label_score_distribution.png",
+        "title": "attack test contextual label score distribution"
+      },
+      {
+        "key": "e2b:attack_test_original_label_confusion_matrix.png",
+        "run": "e2b",
+        "filename": "attack_test_original_label_confusion_matrix.png",
+        "title": "attack test original label confusion matrix"
+      },
+      {
+        "key": "e2b:attack_test_original_label_pr_curve.png",
+        "run": "e2b",
+        "filename": "attack_test_original_label_pr_curve.png",
+        "title": "attack test original label pr curve"
+      },
+      {
+        "key": "e2b:attack_test_original_label_roc_curve.png",
+        "run": "e2b",
+        "filename": "attack_test_original_label_roc_curve.png",
+        "title": "attack test original label roc curve"
+      },
+      {
+        "key": "e2b:attack_test_original_label_score_distribution.png",
+        "run": "e2b",
+        "filename": "attack_test_original_label_score_distribution.png",
+        "title": "attack test original label score distribution"
+      },
+      {
+        "key": "e2b:benign_test_original_label_confusion_matrix.png",
+        "run": "e2b",
+        "filename": "benign_test_original_label_confusion_matrix.png",
+        "title": "benign test original label confusion matrix"
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.770155+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -2,6 +2,7 @@ import {
   Activity,
   AlertTriangle,
   BarChart3,
+  BookMarked,
   BookOpen,
   ClipboardList,
   Compass,
@@ -41,7 +42,7 @@ export const navGroups: NavGroup[] = [
       { label: "Overview", to: "/overview", icon: LayoutDashboard, description: "Research status and headline evidence" },
       { label: "Research Objectives", to: "/objectives", icon: Target, description: "Objectives and completion state" },
       { label: "Methodology", to: "/methodology", icon: Workflow, description: "Pipeline, encoder and autoencoder" },
-      { label: "Dataset Explorer", to: "/dataset", icon: Database, description: "CICAPT-IIoT structure and events" },
+      { label: "Dataset Overview", to: "/dataset", icon: Database, description: "Aggregate CICAPT-IIoT structure and distributions" },
     ],
   },
   {
@@ -58,6 +59,7 @@ export const navGroups: NavGroup[] = [
     label: "Documentation",
     items: [
       { label: "Research Findings", to: "/findings", icon: ListChecks, description: "Preliminary evidence F01–F06" },
+      { label: "Metric glossary", to: "/glossary", icon: BookMarked, description: "Definitions, denominators and caveats" },
       { label: "Research Roadmap", to: "/roadmap", icon: ClipboardList, description: "Milestones and dependencies" },
       { label: "Research Journal", to: "/journal", icon: BookOpen, description: "Chronological research sessions" },
       { label: "Reports", to: "/reports", icon: FileText, description: "Available logs and planned documents" },

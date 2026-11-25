@@ -1,0 +1,394 @@
+{
+  "data": {
+    "id": "E2-C",
+    "name": "Frequency-weighted training",
+    "group": "autoencoder",
+    "kind": "model",
+    "status": "completed",
+    "research_question": "Does down-weighting frequent descriptions improve the benign reconstruction objective?",
+    "hypothesis": "Frequency weighting with 1/sqrt(frequency) will balance learning without discarding repeated benign behaviour.",
+    "representation": "V2 full-provenance event description",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+    "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+    "training_strategy": "Frequency-preserving samples with per-description weight 1/sqrt(frequency).",
+    "seed": 42,
+    "training_configuration": {
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "optimizer": "Adam",
+      "max_epochs": 100,
+      "patience": 10,
+      "best_epoch": 42,
+      "train_samples": 99665,
+      "trainable_parameters": 107168,
+      "weight_formula": "1 / sqrt(description_frequency)",
+      "elapsed_seconds": 54.808254
+    },
+    "checkpoint_selection": "Best benign validation reconstruction loss; checkpoint restored at best epoch 42.",
+    "evaluation_configuration": {
+      "threshold": "99th percentile of benign validation reconstruction errors",
+      "threshold_value": 9.1675748990383e-05,
+      "attack_test_events": 100892
+    },
+    "results_summary": "ROC-AUC 0.983191 and Average Precision 0.019920. At P99, 70/70 original positives were detected with 10,189 false positives; contextual recall 99.11%.",
+    "interpretation": "Frequency weighting retains recall but does not improve ranking over the original frequency-preserving model.",
+    "limitations": "Single seed; weighting formula was not tuned; results are sensitive to threshold choice.",
+    "source_artifacts": [
+      "results/e2c-weighted/training_summary.json",
+      "results/e2c-weighted/evaluation/evaluation_summary.json",
+      "results/autoencoder_comparison/ranking_summary.csv",
+      "results/autoencoder_comparison/threshold_comparison.csv"
+    ],
+    "metrics": {
+      "id": "E2-C",
+      "name": "Frequency-weighted training",
+      "group": "autoencoder",
+      "kind": "model",
+      "status": "completed",
+      "representation": "V2 full-provenance event description",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2 (frozen, 384 dimensions)",
+      "algorithm": "Autoencoder 384-128-32-128-384, MSE reconstruction error",
+      "research_question": "Does down-weighting frequent descriptions improve the benign reconstruction objective?",
+      "hypothesis": "Frequency weighting with 1/sqrt(frequency) will balance learning without discarding repeated benign behaviour.",
+      "seed": 42,
+      "roc_auc": 0.9831907435168628,
+      "average_precision": 0.019920058695862292,
+      "recall": 1.0,
+      "precision": 0.006823277122526562,
+      "f1": 0.013554071062058283,
+      "true_positives": 70,
+      "false_positives": 10189,
+      "false_negatives": 0,
+      "true_negatives": 90633,
+      "benign_fpr": 0.007819450297326403,
+      "attack_fpr": 0.10105929261470711,
+      "contextual_recall": 0.9911111111111112,
+      "threshold": 9.1675748990383e-05,
+      "threshold_percentile": 99.0,
+      "training_seconds": 54.808253560000594,
+      "operating_point": "Validation P99 (primary experimental operating point)",
+      "availability": {
+        "status": "available",
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv; threshold_comparison.csv",
+        "note": null
+      },
+      "rank": 8
+    },
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/e2c-weighted/training_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/e2c-weighted/evaluation/evaluation_summary.json",
+        "status": "available"
+      },
+      {
+        "artifact": "results/autoencoder_comparison/ranking_summary.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/autoencoder_comparison/threshold_comparison.csv",
+        "status": "available"
+      }
+    ],
+    "training_summary": {
+      "experiment": "e2c-weighted",
+      "seed": 42,
+      "gpu": "NVIDIA GeForce RTX 4060",
+      "torch_version": "2.11.0+cu128",
+      "train_samples": 99665,
+      "validation_samples": 21357,
+      "trainable_parameters": 107168,
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "patience": 10,
+      "min_delta": 1e-07,
+      "epochs_completed": 48,
+      "best_epoch": 42,
+      "best_validation_loss": 5.237445748207392e-06,
+      "threshold_percentile": 99,
+      "threshold": 9.1675748990383e-05,
+      "validation_alerts": 207,
+      "validation_false_positive_rate": 0.00969237252423093,
+      "elapsed_seconds": 54.808253560000594,
+      "peak_gpu_memory_mib": 20.6337890625,
+      "validation_error_statistics": {
+        "min": 1.1658385119517334e-06,
+        "mean": 5.237445748207392e-06,
+        "median": 1.63834044997202e-06,
+        "p95": 1.301397514907876e-05,
+        "p99": 9.1675748990383e-05,
+        "max": 0.000616885197814554
+      },
+      "training_strategy": "weighted",
+      "weight_formula": "1 / sqrt(description_frequency)"
+    },
+    "evaluation_summary": {
+      "experiment": "e2c-weighted",
+      "best_epoch": 42,
+      "threshold": 9.1675748990383e-05,
+      "threshold_percentile": 99,
+      "benign_test": {
+        "inference": {
+          "events": 21357,
+          "elapsed_seconds": 0.11341269400145393,
+          "events_per_second": 188312.25365060288,
+          "milliseconds_per_event": 0.005310328885211122
+        },
+        "original_label": {
+          "records": 21357,
+          "positives": 0,
+          "alerts": 167,
+          "threshold": 9.1675748990383e-05,
+          "true_negatives": 21190,
+          "false_positives": 167,
+          "false_negatives": 0,
+          "true_positives": 0,
+          "accuracy": 0.9921805497026736,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.007819450297326403,
+          "specificity": 0.9921805497026736,
+          "roc_auc": null,
+          "average_precision": null,
+          "pr_auc": null
+        }
+      },
+      "attack_test": {
+        "inference": {
+          "events": 100892,
+          "elapsed_seconds": 0.06406548599989037,
+          "events_per_second": 1574826.1084005926,
+          "milliseconds_per_event": 0.0006349907425751335
+        },
+        "original_label": {
+          "records": 100892,
+          "positives": 70,
+          "alerts": 10259,
+          "threshold": 9.1675748990383e-05,
+          "true_negatives": 90633,
+          "false_positives": 10189,
+          "false_negatives": 0,
+          "true_positives": 70,
+          "accuracy": 0.8990108234547833,
+          "precision": 0.006823277122526562,
+          "recall": 1.0,
+          "f1": 0.013554071062058283,
+          "false_positive_rate": 0.10105929261470711,
+          "specificity": 0.8989407073852929,
+          "roc_auc": 0.9831907435168628,
+          "average_precision": 0.019920058695862292,
+          "pr_auc": 0.01961814220697534
+        },
+        "contextual_label": {
+          "records": 100892,
+          "positives": 225,
+          "alerts": 10259,
+          "threshold": 9.1675748990383e-05,
+          "true_negatives": 90631,
+          "false_positives": 10036,
+          "false_negatives": 2,
+          "true_positives": 223,
+          "accuracy": 0.9005074733378265,
+          "precision": 0.021737011404620334,
+          "recall": 0.9911111111111112,
+          "f1": 0.04254101487981687,
+          "false_positive_rate": 0.09969503412240356,
+          "specificity": 0.9003049658775965,
+          "roc_auc": 0.9526346380751499,
+          "average_precision": 0.02653466644556339,
+          "pr_auc": 0.02611842507530968
+        },
+        "description_overlap": {
+          "seen": {
+            "records": 80100,
+            "positives": 0,
+            "alerts": 2283,
+            "threshold": 9.1675748990383e-05,
+            "true_negatives": 77817,
+            "false_positives": 2283,
+            "false_negatives": 0,
+            "true_positives": 0,
+            "accuracy": 0.971498127340824,
+            "precision": 0.0,
+            "recall": null,
+            "f1": null,
+            "false_positive_rate": 0.02850187265917603,
+            "specificity": 0.971498127340824,
+            "roc_auc": null,
+            "average_precision": null,
+            "pr_auc": null
+          },
+          "unseen": {
+            "records": 20792,
+            "positives": 70,
+            "alerts": 7976,
+            "threshold": 9.1675748990383e-05,
+            "true_negatives": 12816,
+            "false_positives": 7906,
+            "false_negatives": 0,
+            "true_positives": 70,
+            "accuracy": 0.6197575990765679,
+            "precision": 0.008776328986960883,
+            "recall": 1.0,
+            "f1": 0.017399950285856326,
+            "false_positive_rate": 0.3815268796448219,
+            "specificity": 0.6184731203551781,
+            "roc_auc": 0.9182731948102087,
+            "average_precision": 0.01992344581419439,
+            "pr_auc": 0.019621505419802374
+          }
+        },
+        "original_label_tactics": [
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 69,
+            "detected_events": 69,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 1,
+            "detected_events": 1,
+            "missed_events": 0,
+            "recall": 1.0
+          }
+        ],
+        "contextual_label_tactics": [
+          {
+            "tactic": "CandC",
+            "positive_events": 8,
+            "detected_events": 8,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "collection",
+            "positive_events": 62,
+            "detected_events": 62,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "credentialAccess",
+            "positive_events": 75,
+            "detected_events": 75,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "defenceEvasion",
+            "positive_events": 23,
+            "detected_events": 23,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "discovery",
+            "positive_events": 22,
+            "detected_events": 20,
+            "missed_events": 2,
+            "recall": 0.9090909090909091
+          },
+          {
+            "tactic": "exfiltration",
+            "positive_events": 11,
+            "detected_events": 11,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "initialAccess",
+            "positive_events": 1,
+            "detected_events": 1,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "lateralMovement",
+            "positive_events": 5,
+            "detected_events": 5,
+            "missed_events": 0,
+            "recall": 1.0
+          },
+          {
+            "tactic": "persistence",
+            "positive_events": 18,
+            "detected_events": 18,
+            "missed_events": 0,
+            "recall": 1.0
+          }
+        ]
+      }
+    },
+    "figures": [
+      {
+        "key": "e2c:attack_test_contextual_label_confusion_matrix.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_confusion_matrix.png",
+        "title": "attack test contextual label confusion matrix"
+      },
+      {
+        "key": "e2c:attack_test_contextual_label_pr_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_pr_curve.png",
+        "title": "attack test contextual label pr curve"
+      },
+      {
+        "key": "e2c:attack_test_contextual_label_roc_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_roc_curve.png",
+        "title": "attack test contextual label roc curve"
+      },
+      {
+        "key": "e2c:attack_test_contextual_label_score_distribution.png",
+        "run": "e2c",
+        "filename": "attack_test_contextual_label_score_distribution.png",
+        "title": "attack test contextual label score distribution"
+      },
+      {
+        "key": "e2c:attack_test_original_label_confusion_matrix.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_confusion_matrix.png",
+        "title": "attack test original label confusion matrix"
+      },
+      {
+        "key": "e2c:attack_test_original_label_pr_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_pr_curve.png",
+        "title": "attack test original label pr curve"
+      },
+      {
+        "key": "e2c:attack_test_original_label_roc_curve.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_roc_curve.png",
+        "title": "attack test original label roc curve"
+      },
+      {
+        "key": "e2c:attack_test_original_label_score_distribution.png",
+        "run": "e2c",
+        "filename": "attack_test_original_label_score_distribution.png",
+        "title": "attack test original label score distribution"
+      },
+      {
+        "key": "e2c:benign_test_original_label_confusion_matrix.png",
+        "run": "e2c",
+        "filename": "benign_test_original_label_confusion_matrix.png",
+        "title": "benign test original label confusion matrix"
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.788624+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

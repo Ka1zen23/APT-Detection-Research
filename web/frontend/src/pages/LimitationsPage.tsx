@@ -30,7 +30,7 @@ export function LimitationsPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Documentation · Limitations"
+        eyebrow="Documentation, Limitations"
         title="Methodological limitations"
         description="Constraints that bound the interpretation of every result in this repository. The dashboard must never imply production-ready APT detection or effective automated mitigation."
         actions={<Badge variant="error">{data.counts.high ?? 0} high severity</Badge>}
@@ -44,9 +44,9 @@ export function LimitationsPage() {
 
       <div className="grid gap-2 sm:grid-cols-3">
         {(["high", "medium", "low"] as const).map((level) => (
-          <Card key={level} className="p-3.5">
+          <Card key={level} className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{level} severity</span>
+              <span className="text-[12px] text-muted-foreground">{level} severity</span>
               <SeverityBadge severity={level} />
             </div>
             <div className="mt-1 font-mono text-xl font-semibold text-foreground">{data.counts[level] ?? 0}</div>
@@ -80,13 +80,13 @@ export function LimitationsPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[9px] text-muted-foreground">{limitation.id}</span>
+                    <span className="font-mono text-[12px] text-muted-foreground">{limitation.id}</span>
                     <h2 className="text-xs font-semibold text-foreground">{limitation.title}</h2>
                     <SeverityBadge severity={limitation.severity} />
                     <Badge variant="outline">{limitation.category}</Badge>
                   </div>
-                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{limitation.detail}</p>
-                  <div className="mt-2 rounded border border-success/15 bg-success/5 px-2.5 py-1.5 text-[10px] leading-relaxed text-muted-foreground">
+                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{limitation.detail}</p>
+                  <div className="mt-2 rounded border border-success/15 bg-success/5 px-2.5 py-1.5 text-[12px] leading-relaxed text-muted-foreground">
                     <span className="font-medium text-success">Mitigation / handling: </span>{limitation.mitigation}
                   </div>
                 </div>
@@ -97,9 +97,9 @@ export function LimitationsPage() {
         </div>
       </Card>
 
-      <Card className="p-4">
+      <Card className="p-5">
         <div className="text-xs font-semibold text-foreground">Research integrity note</div>
-        <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
+        <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
           Negative and ambiguous results are retained. The dashboard does not hide anomalous counts, does
           not convert contextual indicators into ground truth, and does not present retrospective
           thresholds as validated deployment choices. {titleCase("all displayed metrics remain traceable to source artifacts")}.

@@ -25,6 +25,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import {
   EmptyState,
   ErrorState,
+  InfoCallout,
   KpiCard,
   LoadingBlock,
   PageHeader,
@@ -32,6 +33,8 @@ import {
 } from "@/components/features/common";
 import { useExperiments } from "@/hooks/queries";
 import { formatDecimal, formatNumber, titleCase } from "@/lib/format";
+import { ChartFrame } from "@/components/charts/ChartFrame";
+import { ExperimentScatter } from "@/components/charts/ExperimentScatter";
 import type { ExperimentSummary } from "@/types/api";
 
 const columnHelper = createColumnHelper<ExperimentSummary>();
@@ -51,7 +54,7 @@ function SortHeader({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-1 ${align === "right" ? "ml-auto" : ""} transition-colors hover:text-foreground`}
+      className={`inline-flex min-h-8 items-center gap-1 whitespace-nowrap ${align === "right" ? "ml-auto" : ""} transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
     >
       {label}
       {sorted === "asc" ? (
@@ -101,7 +104,7 @@ export function ExperimentsPage() {
         cell: (info) => (
           <Link
             to={`/experiments/${info.getValue()}`}
-            className="font-mono text-[10px] font-medium text-primary hover:underline"
+            className="whitespace-nowrap font-mono text-[12px] font-medium text-primary hover:underline"
           >
             {info.getValue()}
           </Link>
@@ -116,11 +119,11 @@ export function ExperimentsPage() {
             <div className="max-w-[360px]">
               <Link
                 to={`/experiments/${row.id}`}
-                className="line-clamp-1 text-[11px] font-medium text-foreground hover:text-primary"
+                className="line-clamp-1 text-[13px] font-medium text-foreground hover:text-primary"
               >
                 {info.getValue()}
               </Link>
-              <div className="line-clamp-1 text-[9px] text-muted-foreground">
+              <div className="line-clamp-1 text-[12px] text-muted-foreground">
                 {row.research_question}
               </div>
             </div>
@@ -145,7 +148,7 @@ export function ExperimentsPage() {
           />
         ),
         cell: (info) => (
-          <div className="text-right font-mono text-[10px] tabular">
+          <div className="text-right font-mono text-[12px] tabular">
             {formatDecimal(info.getValue(), 4)}
           </div>
         ),
@@ -161,7 +164,7 @@ export function ExperimentsPage() {
           />
         ),
         cell: (info) => (
-          <div className="text-right font-mono text-[10px] tabular">
+          <div className="text-right font-mono text-[12px] tabular">
             {formatDecimal(info.getValue(), 4)}
           </div>
         ),
@@ -170,9 +173,9 @@ export function ExperimentsPage() {
       columnHelper.accessor("recall", {
         header: "Recall",
         cell: (info) => (
-          <div className="text-right font-mono text-[10px] tabular">
+          <div className="text-right font-mono text-[12px] tabular">
             {info.getValue() === null || info.getValue() === undefined
-              ? "—"
+              ? "n/a"
               : `${(info.getValue()! * 100).toFixed(1)}%`}
           </div>
         ),
@@ -222,7 +225,7 @@ export function ExperimentsPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Experiments · Registry"
+        eyebrow="Experiments, Registry"
         title="Experiment registry"
         description="Central record of baselines, autoencoder variants, analytical studies and representation ablations. Status is maintained in web/content/experiments.json; measured metrics are merged from result artifacts."
         actions={
@@ -232,17 +235,54 @@ export function ExperimentsPage() {
         }
       />
 
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        <KpiCard label="Registered entries" value={formatNumber(experiments.length)} detail="Models, analyses and planned work" />
-        <KpiCard label="Completed" value={formatNumber(completed)} detail="Includes two analytical studies" tone="success" />
-        <KpiCard label="Measured model rows" value={formatNumber(measured)} detail="ROC-AUC/AP loaded from artifacts" tone="accent" />
+      <InfoCallout tone="info" title="How to read this registry">
+        Status is maintained content; AP and ROC-AUC are merged from saved artifacts. n/a means no
+        measured metric, not zero. Ranking metrics do not describe a deployment threshold.{" "}
+        <Link className="font-medium text-primary underline underline-offset-4" to="/glossary">
+          Glossary
+        </Link>
+        .
+      </InfoCallout>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <KpiCard
+          label="Registered entries"
+          value={formatNumber(experiments.length)}
+          definition="Models, analyses and planned work in the registry."
+          source="web/content/experiments.json"
+        />
+        <KpiCard
+          label="Completed"
+          value={formatNumber(completed)}
+          definition="Entries marked completed, including two analytical studies."
+          tone="success"
+          source="web/content/experiments.json"
+        />
+        <KpiCard
+          label="Measured model rows"
+          value={formatNumber(measured)}
+          definition="Rows with ROC-AUC and AP loaded from saved artifacts."
+          tone="accent"
+          source="results/autoencoder_comparison/ranking_summary.csv"
+        />
         <KpiCard
           label="Next activity"
           value="E7"
-          detail="Multiple-seed reproducibility"
+          definition="Multiple-seed reproducibility with seeds 42, 123 and 456."
           tone="warning"
+          source="web/content/roadmap.json"
         />
       </div>
+
+      <ChartFrame
+        title="Ranking shape across measured models"
+        description="ROC-AUC against Average Precision. The top-right corner is better on both axes. E2-D is highlighted; the other measured models are in cool blue. A ranking metric is not a deployment recommendation."
+        source="results/autoencoder_comparison/ranking_summary.csv; results/baselines/baseline_summary.json"
+        glossaryId="average-precision"
+        footnote="Each point is one measured configuration. Hover or focus a point for its ID, group and exact values. The registry table below carries the full metadata."
+      >
+        <ExperimentScatter experiments={experiments} />
+      </ChartFrame>
 
       <Card>
         <div className="flex flex-col gap-2 border-b border-border p-3 md:flex-row md:items-center">
@@ -255,7 +295,7 @@ export function ExperimentsPage() {
               className="pl-8"
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Select
               value={statusFilter}
               onChange={(event) => setStatusFilter(event.target.value)}
@@ -293,7 +333,11 @@ export function ExperimentsPage() {
             />
           </div>
         ) : (
-          <Table>
+          <>
+            <p className="px-4 pt-3 text-[12px] text-muted-foreground sm:hidden">
+              Scroll the table horizontally to see every column.
+            </p>
+            <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
@@ -318,9 +362,10 @@ export function ExperimentsPage() {
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
+            </Table>
+          </>
         )}
-        <div className="flex flex-wrap items-center gap-3 border-t border-border px-3 py-2 text-[9px] text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-3 border-t border-border px-3 py-2 text-[12px] text-muted-foreground">
           <span className="flex items-center gap-1">
             <span className="size-1.5 rounded-full bg-success" /> measured artifact available
           </span>

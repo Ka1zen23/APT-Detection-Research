@@ -1,0 +1,179 @@
+{
+  "data": {
+    "pipeline": [
+      {
+        "id": "P01",
+        "label": "Raw CICAPT-IIoT provenance",
+        "status": "implemented",
+        "description": "Two SPADE/Auditd provenance logs: Phase 1 benign collection and Phase 2 attack scenario."
+      },
+      {
+        "id": "P02",
+        "label": "Graph reconstruction",
+        "status": "implemented",
+        "description": "Nodes and directed edges reconstructed with resolved endpoints."
+      },
+      {
+        "id": "P03",
+        "label": "Event grouping",
+        "status": "implemented",
+        "description": "Edge records grouped by event ID into 243,271 event-level units."
+      },
+      {
+        "id": "P04",
+        "label": "Natural-language verbalisation",
+        "status": "implemented",
+        "description": "Deterministic templates describe operations, entity attributes and directed relationships."
+      },
+      {
+        "id": "P05",
+        "label": "Frozen semantic encoder",
+        "status": "implemented",
+        "description": "all-MiniLM-L6-v2 produces normalised 384-dimensional embeddings."
+      },
+      {
+        "id": "P06",
+        "label": "Semantic embeddings",
+        "status": "implemented",
+        "description": "Descriptions are encoded once and cached; the encoder is never fine-tuned."
+      },
+      {
+        "id": "P07",
+        "label": "Autoencoder",
+        "status": "implemented",
+        "description": "384-128-32-128-384 MLP trained on benign embeddings with MSE reconstruction loss."
+      },
+      {
+        "id": "P08",
+        "label": "Reconstruction error",
+        "status": "implemented",
+        "description": "Per-event mean squared error across the 384 embedding dimensions."
+      },
+      {
+        "id": "P09",
+        "label": "Threshold calibration",
+        "status": "implemented",
+        "description": "Primary operating point is the 99th percentile of benign validation errors."
+      },
+      {
+        "id": "P10",
+        "label": "Anomaly detection",
+        "status": "implemented",
+        "description": "Events above the calibrated threshold are flagged for review."
+      },
+      {
+        "id": "P11",
+        "label": "Alert prioritisation",
+        "status": "implemented",
+        "description": "Events ranked by anomaly score and evaluated under fixed analyst alert budgets."
+      },
+      {
+        "id": "P12",
+        "label": "Temporal event correlation",
+        "status": "planned",
+        "description": "Future sequence-level grouping to correlate related alerts."
+      },
+      {
+        "id": "P13",
+        "label": "Incident reconstruction",
+        "status": "planned",
+        "description": "Future evidence-linked incident summaries."
+      },
+      {
+        "id": "P14",
+        "label": "Mitigation recommendations",
+        "status": "planned",
+        "description": "Future evidence-grounded recommendations, not autonomous action."
+      },
+      {
+        "id": "P15",
+        "label": "Human-reviewed response actions",
+        "status": "planned",
+        "description": "Future analyst approval workflow; effectiveness not yet evaluated."
+      }
+    ],
+    "encoder": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "parameters": "~22.7 million",
+      "frozen": true,
+      "dimensions": 384,
+      "max_tokens": 256,
+      "normalised": true,
+      "revision": null,
+      "note": "Encoder revision is not recorded in the current artifacts \u2014 a reproducibility gap."
+    },
+    "autoencoder": {
+      "architecture": [
+        384,
+        128,
+        32,
+        128,
+        384
+      ],
+      "trainable_parameters": 107168,
+      "loss": "Mean squared reconstruction error",
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "batch_size": 256,
+      "training_data": "Benign training partition only",
+      "threshold_rule": "99th percentile of benign validation reconstruction errors",
+      "activation": "ReLU on hidden layers, sigmoid-like bounded output via training; final layer linear in implementation"
+    },
+    "glossary": [
+      {
+        "term": "Embedding",
+        "plain": "A list of numbers that represents the meaning of a piece of text. Similar descriptions end up close together.",
+        "detail": "MiniLM maps each event description to 384 numbers. The vectors are L2-normalised, so cosine similarity corresponds to distance on a unit sphere."
+      },
+      {
+        "term": "Autoencoder",
+        "plain": "A small neural network that learns to copy its input through a narrow bottleneck.",
+        "detail": "The 384\u2192128\u219232 encoder compresses the embedding; the 32\u2192128\u2192384 decoder reconstructs it. Training only on benign events teaches the network what normal looks like."
+      },
+      {
+        "term": "Reconstruction error",
+        "plain": "How badly the autoencoder reproduced an event after compressing it.",
+        "detail": "The score is the mean squared difference across all 384 embedding dimensions. Higher error means the event is harder to explain using learned benign patterns."
+      },
+      {
+        "term": "Anomaly threshold",
+        "plain": "The cut-off above which an event is treated as anomalous.",
+        "detail": "The primary threshold is the 99th percentile of reconstruction errors on benign validation data. Roughly 1% of benign validation events exceed it by construction."
+      },
+      {
+        "term": "Precision",
+        "plain": "Of the events we flagged, how many were actually malicious?",
+        "detail": "Precision = true positives / (true positives + false positives). In severe imbalance, precision is low even when recall is high."
+      },
+      {
+        "term": "Recall",
+        "plain": "Of the malicious events, how many did we flag?",
+        "detail": "Recall = true positives / (true positives + false negatives). Original-label recall and contextual-label recall are reported separately."
+      },
+      {
+        "term": "ROC-AUC",
+        "plain": "How well the model ranks malicious events above benign ones across all thresholds.",
+        "detail": "0.5 is random ranking and 1.0 is perfect ranking. It does not tell you the false-positive volume at a chosen operating point."
+      },
+      {
+        "term": "Average Precision",
+        "plain": "A summary of the precision-recall curve that focuses on the positive class.",
+        "detail": "AP is more informative than ROC-AUC under severe class imbalance because it rewards precision at useful recall levels."
+      }
+    ],
+    "training_partitions": {
+      "train": "99,665 benign events",
+      "validation": "21,357 benign events used for checkpoint selection and threshold calibration",
+      "benign_test": "21,357 benign events",
+      "attack_test": "100,892 events from the attack scenario, including 70 original positives and 225 contextual positives"
+    }
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.639342+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-25T09:06:10.198677+00:00",
+  "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+  "data_mode": "static_snapshot",
+  "provenance_included": false,
+  "event_explorer_included": false,
+  "figures": 63,
+  "documents": 5,
+  "experiments": 23,
+  "curve_models": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "E2-A",
+    "E2-B",
+    "E2-C",
+    "E2-D",
+    "E5-A",
+    "E5-B",
+    "E5-C"
+  ]
+}

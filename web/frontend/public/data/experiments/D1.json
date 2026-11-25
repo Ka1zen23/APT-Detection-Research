@@ -1,0 +1,44 @@
+{
+  "data": {
+    "id": "D1",
+    "name": "Interactive research demonstration platform",
+    "group": "platform",
+    "kind": "platform",
+    "status": "in_progress",
+    "research_question": "Can research artifacts and findings be presented transparently to supervisors and reviewers?",
+    "hypothesis": "A read-only dashboard with explicit data provenance improves reviewability and methodological transparency.",
+    "representation": "Research artifacts exposed through a versioned read-only API",
+    "encoder": "Not applicable",
+    "algorithm": "React dashboard over FastAPI artifact service",
+    "training_strategy": "Not applicable",
+    "seed": null,
+    "training_configuration": {},
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "status": "Implementation in web/; research validation pending"
+    },
+    "results_summary": "Dashboard implementation underway. It does not constitute experimental evidence.",
+    "interpretation": "Supports research communication and traceability, not detection performance.",
+    "limitations": "Not a validated research outcome; no deployment claim.",
+    "source_artifacts": [
+      "web/README.md"
+    ],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "web/README.md",
+        "status": "missing"
+      }
+    ],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:09.084909+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

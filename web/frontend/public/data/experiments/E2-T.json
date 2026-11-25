@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "E2-T",
+    "name": "Threshold sensitivity analysis",
+    "group": "autoencoder",
+    "kind": "analysis",
+    "status": "completed",
+    "research_question": "How do precision, recall, false positives and contextual recall change across validation-derived thresholds?",
+    "hypothesis": "Higher percentiles will reduce false positives at the cost of contextual recall, while original positive recall may remain high.",
+    "representation": "E2-A to E2-D predictions",
+    "encoder": "Not applicable",
+    "algorithm": "Percentile sweep over benign validation reconstruction errors",
+    "training_strategy": "Analytical study; no additional model training.",
+    "seed": null,
+    "training_configuration": {
+      "percentiles": [
+        95,
+        97,
+        98,
+        99,
+        99.5,
+        99.9,
+        99.95,
+        99.99,
+        100
+      ]
+    },
+    "checkpoint_selection": "Not applicable",
+    "evaluation_configuration": {
+      "evaluated_partitions": [
+        "benign_test",
+        "attack_test"
+      ]
+    },
+    "results_summary": "For E2-D, P99 yields 70 TP / 8,628 FP and 77.33% contextual recall; P99.95 yields 70 TP / 2,339 FP and 49.33% contextual recall.",
+    "interpretation": "Threshold choice strongly trades false-positive volume against contextual recall; P99 remains the primary experimental operating point.",
+    "limitations": "P99.95 and related high-percentile points are retrospective diagnostics, not independently validated operating points.",
+    "source_artifacts": [
+      "results/autoencoder_comparison/threshold_comparison.csv",
+      "results/e2-v2-minilm-standard/threshold_analysis/retrospective_diagnostic.json"
+    ],
+    "metrics": null,
+    "warnings": [],
+    "artifact_availability": [
+      {
+        "artifact": "results/autoencoder_comparison/threshold_comparison.csv",
+        "status": "available"
+      },
+      {
+        "artifact": "results/e2-v2-minilm-standard/threshold_analysis/retrospective_diagnostic.json",
+        "status": "available"
+      }
+    ],
+    "figures": []
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:08.828518+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}

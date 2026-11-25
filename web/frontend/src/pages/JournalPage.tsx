@@ -25,12 +25,12 @@ export function JournalPage() {
     return (
       <div className="space-y-5">
         <PageHeader
-          eyebrow="Documentation · Research journal"
+          eyebrow="Documentation, Research journal"
           title={item.title}
           description={item.summary}
           actions={<Button asChild variant="outline" size="sm"><Link to="/journal"><ArrowLeft /> All entries</Link></Button>}
         >
-          <div className="flex flex-wrap items-center gap-2 text-[10px] text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-2 text-[12px] text-muted-foreground">
             <Badge variant="outline"><CalendarDays className="size-2.5" /> {formatDate(item.date)}</Badge>
             <Badge variant="success">Session {item.status}</Badge>
             {item.experiments.map((id) => <Badge key={id} variant="outline" className="font-mono">{id}</Badge>)}
@@ -51,7 +51,7 @@ export function JournalPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow="Documentation · Research journal"
+        eyebrow="Documentation, Research journal"
         title="Research journal"
         description="Chronological records of research sessions. Entries are stored as Markdown files in web/content/journal and loaded by the read-only API."
         actions={<Badge variant="outline">{list.data.entries.length} entries</Badge>}
@@ -62,7 +62,7 @@ export function JournalPage() {
             <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-[9px] text-muted-foreground">{formatDate(item.date)}</span>
+                  <span className="font-mono text-[12px] text-muted-foreground">{formatDate(item.date)}</span>
                   <Badge variant="success">{item.status}</Badge>
                 </div>
                 <Link to={`/journal/${item.slug}`} className="mt-1 block text-sm font-semibold text-foreground hover:text-primary">
@@ -80,9 +80,9 @@ export function JournalPage() {
           </Card>
         ))}
       </div>
-      <Card className="p-4">
+      <Card className="p-5">
         <CardHeader className="p-0"><CardTitle>Journal conventions</CardTitle></CardHeader>
-        <CardContent className="px-0 pb-0 pt-2 text-[11px] leading-relaxed text-muted-foreground">
+        <CardContent className="px-0 pb-0 pt-2 text-[13px] leading-relaxed text-muted-foreground">
           Entries separate activities, experiments, findings, problems, solutions, decisions, remaining
           questions and next steps. The current journal starts on 25 November 2026; no earlier session
           dates are invented.

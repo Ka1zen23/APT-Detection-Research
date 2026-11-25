@@ -46,7 +46,7 @@ export function CommandPalette({
           placeholder="Search pages, experiments, findings…"
           className="h-11 w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
         />
-        <kbd className="rounded border border-border bg-elevated px-1.5 py-0.5 font-mono text-[9px] text-muted-foreground">
+        <kbd className="rounded border border-border bg-elevated px-1.5 py-0.5 font-mono text-[12px] text-muted-foreground">
           ESC
         </kbd>
       </div>
@@ -54,7 +54,7 @@ export function CommandPalette({
         <Command.Empty className="px-3 py-6 text-center text-xs text-muted-foreground">
           No matching research item.
         </Command.Empty>
-        <Command.Group heading="Navigate" className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[9px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:text-muted-foreground">
+        <Command.Group heading="Navigate" className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[12px] [&_[cmdk-group-heading]]:text-muted-foreground">
           {flatNav.map((item) => {
             const Icon = item.icon;
             return (
@@ -66,14 +66,14 @@ export function CommandPalette({
               >
                 <Icon className="size-3.5 text-muted-foreground" />
                 <span>{item.label}</span>
-                <span className="ml-auto truncate text-[10px] text-muted-foreground">
+                <span className="ml-auto truncate text-[12px] text-muted-foreground">
                   {item.description}
                 </span>
               </Command.Item>
             );
           })}
         </Command.Group>
-        <Command.Group heading="Experiments" className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[9px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:text-muted-foreground">
+        <Command.Group heading="Experiments" className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[12px] [&_[cmdk-group-heading]]:text-muted-foreground">
           {(experiments ?? []).map((experiment) => (
             <Command.Item
               key={experiment.id}
@@ -82,15 +82,15 @@ export function CommandPalette({
               className="flex cursor-pointer items-center gap-2.5 rounded px-2 py-2 text-xs text-foreground aria-selected:bg-elevated"
             >
               <FlaskConical className="size-3.5 text-muted-foreground" />
-              <span className="font-mono text-[10px] text-muted-foreground">{experiment.id}</span>
+              <span className="font-mono text-[12px] text-muted-foreground">{experiment.id}</span>
               <span className="truncate">{experiment.name}</span>
-              <Badge variant="outline" className="ml-auto shrink-0 text-[9px]">
+              <Badge variant="outline" className="ml-auto shrink-0 text-[12px]">
                 {experiment.status.replace("_", " ")}
               </Badge>
             </Command.Item>
           ))}
         </Command.Group>
-        <Command.Group heading="Findings" className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[9px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:text-muted-foreground">
+        <Command.Group heading="Findings" className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[12px] [&_[cmdk-group-heading]]:text-muted-foreground">
           {(findings?.findings ?? []).map((finding) => (
             <Command.Item
               key={finding.id}
@@ -99,15 +99,15 @@ export function CommandPalette({
               className="flex cursor-pointer items-center gap-2.5 rounded px-2 py-2 text-xs text-foreground aria-selected:bg-elevated"
             >
               <ListChecks className="size-3.5 text-muted-foreground" />
-              <span className="font-mono text-[10px] text-muted-foreground">{finding.id}</span>
+              <span className="font-mono text-[12px] text-muted-foreground">{finding.id}</span>
               <span className="truncate">{finding.title}</span>
             </Command.Item>
           ))}
         </Command.Group>
       </Command.List>
-      <div className="border-t border-border px-3 py-2 text-[10px] text-muted-foreground">
-        Search covers curated pages, the experiment registry and preliminary findings. Event search is
-        available in Dataset Explorer.
+      <div className="border-t border-border px-3 py-2 text-[12px] text-muted-foreground">
+        Search covers curated pages, the experiment registry and preliminary findings. Individual
+        provenance event search is not included in this aggregate snapshot.
       </div>
     </Command.Dialog>
   );

@@ -1,29 +1,29 @@
 {
-  "summary": "The dashboard is a read-only presentation layer. It never trains models, never executes research scripts and never writes into research artifact directories.",
+  "summary": "The public dashboard is a static, aggregate-only Vercel snapshot. A separate local FastAPI mode remains available for full research exploration. Neither mode trains models, executes research scripts, or writes into research artifact directories.",
   "layers": [
-    {"title": "React research dashboard", "description": "TypeScript SPA with server-state caching, responsive layouts, light/dark/system themes and accessible data tables."},
-    {"title": "FastAPI read-only API", "description": "Versioned /api/v1 endpoints with Pydantic response models, bounded pagination and explicit availability states."},
-    {"title": "Artifact service", "description": "Central loader for JSON, CSV and Parquet outputs, with mtime-aware in-memory caching and allowlisted roots."},
-    {"title": "Research artifacts", "description": "Existing results/, data/processed/, data/splits/ and data/raw/ outputs remain the source of truth."},
-    {"title": "Maintained content", "description": "Manually curated experiment metadata, findings, roadmap, journal and limitation notes live in web/content/."}
+    {"title": "Static Vercel dashboard", "description": "React/Vite SPA served from Vercel with exported aggregate JSON, measured figures and allowlisted text reports. No runtime API is required."},
+    {"title": "Static export pipeline", "description": "The export_static_site.py script reads existing research services and writes aggregate JSON plus allowlisted artifacts. Event-level provenance is deliberately excluded."},
+    {"title": "Optional local FastAPI API", "description": "Used only during local research and development for full dataset exploration, including event-level pages that are not part of the public snapshot."},
+    {"title": "Artifact service", "description": "Local JSON, CSV and Parquet loaders with mtime-aware caching and allowlisted research roots."},
+    {"title": "Research artifacts", "description": "Existing results/, data/processed/, data/splits/ and data/raw/ outputs remain the source of truth for export and local analysis."},
+    {"title": "Maintained content", "description": "Manually curated experiment metadata, findings, roadmap, journal, reports and limitation notes live in web/content/."}
   ],
   "data_flow": [
     "Research artifacts on disk",
-    "Allowlisted artifact reader",
-    "Measured metric and dataset services",
-    "Versioned API envelope with source references",
-    "TanStack Query cache",
+    "Local artifact service and metric calculations",
+    "Static export of aggregate JSON, figures and reports",
+    "Vercel static CDN",
     "Dashboard views and visualisations"
   ],
   "boundaries": [
-    "No database: existing JSON, CSV and Parquet artifacts are the primary data store.",
-    "No model checkpoint loading: checkpoints are not read or executed by the dashboard.",
-    "No arbitrary filesystem access: clients never submit paths; figures and documents use fixed allowlists.",
-    "No writes to research data: the only mutable state is an in-memory cache.",
+    "The public cloud deployment contains no event-level provenance, event descriptions or node IDs.",
+    "The public cloud deployment has no runtime API, database, model checkpoints or model execution.",
+    "The local API never accepts client filesystem paths; figures and documents use fixed allowlists.",
+    "No mode writes into research data; only generated files under web/frontend/public are updated by the exporter.",
     "No fabricated curves or missing metrics: unavailable data is shown as unavailable."
   ],
   "stack": {
     "frontend": ["React", "TypeScript", "Vite", "Tailwind CSS v4", "shadcn-style components", "Lucide React", "Recharts", "React Router", "TanStack Query", "TanStack Table"],
-    "backend": ["Python", "FastAPI", "Pydantic", "Pandas", "PyArrow", "scikit-learn"]
+    "backend": ["Python", "FastAPI (local API only)", "Pydantic", "Pandas", "PyArrow", "scikit-learn"]
   }
 }

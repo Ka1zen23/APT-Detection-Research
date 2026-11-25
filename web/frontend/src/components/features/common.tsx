@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/misc";
 import { statusMeta } from "@/lib/nav";
+import { metricById } from "@/lib/metrics";
 import { cn } from "@/lib/utils";
 
 export function StatusBadge({ status, className }: { status: string; className?: string }) {
@@ -25,7 +26,6 @@ export function SeverityBadge({ severity }: { severity: string }) {
 }
 
 export function PageHeader({
-  eyebrow,
   title,
   description,
   actions,
@@ -38,19 +38,14 @@ export function PageHeader({
   children?: React.ReactNode;
 }) {
   return (
-    <header className="flex flex-col gap-4 border-b border-border pb-5">
+    <header className="flex flex-col gap-4 border-b border-border pb-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0">
-          {eyebrow && (
-            <div className="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              {eyebrow}
-            </div>
-          )}
-          <h1 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
+          <h1 className="text-[1.75rem] font-medium leading-tight tracking-tight text-foreground md:text-[2rem]">
             {title}
           </h1>
           {description && (
-            <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 max-w-[68ch] text-[15px] leading-relaxed text-muted-foreground">
               {description}
             </p>
           )}
@@ -74,11 +69,13 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div className={cn("mb-3 flex items-start justify-between gap-4", className)}>
+    <div className={cn("mb-4 flex items-start justify-between gap-4", className)}>
       <div>
-        <h2 className="text-sm font-semibold tracking-tight text-foreground">{title}</h2>
+        <h2 className="text-[18px] font-medium leading-snug tracking-tight text-foreground">{title}</h2>
         {description && (
-          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{description}</p>
+          <p className="mt-1 max-w-[70ch] text-[13px] leading-relaxed text-muted-foreground">
+            {description}
+          </p>
         )}
       </div>
       {action}
@@ -89,7 +86,10 @@ export function SectionHeading({
 export function KpiCard({
   label,
   value,
+  unit,
   detail,
+  definition,
+  metricId,
   source,
   href,
   tone = "default",
@@ -97,12 +97,16 @@ export function KpiCard({
 }: {
   label: string;
   value: React.ReactNode;
+  unit?: string;
   detail?: React.ReactNode;
+  definition?: React.ReactNode;
+  metricId?: string;
   source?: string;
   href?: string;
   tone?: "default" | "success" | "warning" | "error" | "accent";
   icon?: React.ReactNode;
 }) {
+  const resolvedDefinition = definition ?? (metricId ? metricById[metricId]?.short : undefined);
   const toneClass = {
     default: "text-foreground",
     success: "text-success",
@@ -112,26 +116,46 @@ export function KpiCard({
   }[tone];
 
   const content = (
-    <Card className="group h-full p-3.5 transition-colors hover:border-primary/30">
-      <div className="flex items-start justify-between gap-2">
-        <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-          {label}
-        </div>
-        {icon && <div className="text-muted-foreground/70">{icon}</div>}
+    <Card className="group flex h-full flex-col p-5 transition-colors hover:border-primary/40">
+      <div className="flex items-start justify-between gap-3">
+        <div className="text-[13px] font-medium leading-snug text-muted-foreground">{label}</div>
+        {icon && <div className="shrink-0 text-muted-foreground/70">{icon}</div>}
       </div>
-      <div className={cn("mt-1.5 font-mono text-xl font-semibold tracking-tight tabular", toneClass)}>
-        {value}
+      <div className="mt-4 flex flex-wrap items-baseline gap-1.5">
+        <span
+          className={cn(
+            "font-sans text-[2rem] font-medium leading-none tracking-tight tabular",
+            toneClass,
+          )}
+        >
+          {value}
+        </span>
+        {unit && <span className="text-[13px] text-muted-foreground">{unit}</span>}
       </div>
-      {detail && <div className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{detail}</div>}
-      {source && (
-        <div className="mt-2 truncate font-mono text-[9px] text-muted-foreground/70" title={source}>
-          {source}
+      {resolvedDefinition && (
+        <p className="mt-3 max-w-[42ch] text-[13px] leading-relaxed text-muted-foreground">
+          {resolvedDefinition}
+        </p>
+      )}
+      {detail && (
+        <div className="mt-2 max-w-[42ch] text-[13px] leading-relaxed text-muted-foreground">
+          {detail}
         </div>
       )}
+      {source && <SourceNote source={source} className="mt-auto pt-4" compact />}
     </Card>
   );
 
-  return href ? <Link to={href}>{content}</Link> : content;
+  return href ? (
+    <Link
+      to={href}
+      className="block h-full min-w-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    >
+      {content}
+    </Link>
+  ) : (
+    content
+  );
 }
 
 export function InfoCallout({
@@ -156,12 +180,16 @@ export function InfoCallout({
   const DefaultIcon =
     tone === "warning" ? AlertTriangle : tone === "error" ? ShieldAlert : Info;
   return (
-    <div className={cn("rounded-md border px-3.5 py-3", tones[tone], className)}>
+    <div className={cn("rounded-lg border px-4 py-3.5", tones[tone], className)}>
       <div className="flex gap-2.5">
-        {icon ? <span className="mt-0.5 shrink-0">{icon}</span> : <DefaultIcon className="mt-0.5 size-4 shrink-0" />}
+        {icon ? (
+          <span className="mt-0.5 shrink-0">{icon}</span>
+        ) : (
+          <DefaultIcon className="mt-0.5 size-4 shrink-0" />
+        )}
         <div className="min-w-0 text-foreground">
-          {title && <div className="text-xs font-semibold">{title}</div>}
-          <div className={cn("text-xs leading-relaxed", title && "mt-0.5", "text-muted-foreground")}>
+          {title && <div className="text-[13px] font-medium">{title}</div>}
+          <div className={cn("text-[13px] leading-relaxed", title && "mt-1", "text-muted-foreground")}>
             {children}
           </div>
         </div>
@@ -170,18 +198,33 @@ export function InfoCallout({
   );
 }
 
-export function SourceNote({ source, className }: { source?: string | null; className?: string }) {
+export function SourceNote({
+  source,
+  className,
+  compact = false,
+}: {
+  source?: string | null;
+  className?: string;
+  compact?: boolean;
+}) {
   if (!source) return null;
   return (
     <div
       className={cn(
-        "flex items-center gap-1.5 truncate font-mono text-[9px] text-muted-foreground/75",
+        "flex min-w-0 items-start gap-1.5 text-[12px] leading-relaxed text-muted-foreground/80",
         className,
       )}
       title={source}
     >
-      <span className="size-1 shrink-0 rounded-full bg-muted-foreground/50" />
-      {source}
+      <span className="shrink-0 font-medium text-muted-foreground">Source</span>
+      <span
+        className={cn(
+          "min-w-0 font-mono",
+          compact ? "block truncate" : "break-words",
+        )}
+      >
+        {source}
+      </span>
     </div>
   );
 }
@@ -199,7 +242,7 @@ export function LoadingBlock({ rows = 3, className }: { rows?: number; className
 export function Spinner({ label = "Loading" }: { label?: string }) {
   return (
     <div className="flex items-center gap-2 py-10 text-xs text-muted-foreground">
-      <Loader2 className="size-4 animate-spin" />
+      <Loader2 className="size-4 animate-spin motion-reduce:animate-none" />
       {label}…
     </div>
   );
@@ -220,9 +263,9 @@ export function ErrorState({
       <div className="flex items-start gap-2.5">
         <AlertTriangle className="mt-0.5 size-4 text-error" />
         <div className="min-w-0 flex-1">
-          <div className="text-xs font-semibold text-foreground">Unable to load research data</div>
-          <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{message}</div>
-          <div className="mt-2 text-[11px] text-muted-foreground">
+          <div className="text-[13px] font-medium text-foreground">Unable to load research data</div>
+          <div className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{message}</div>
+          <div className="mt-2 text-[12px] leading-relaxed text-muted-foreground">
             Confirm the read-only API is running on port 8000 and the artifact files are present.
           </div>
         </div>
@@ -250,9 +293,9 @@ export function EmptyState({
   return (
     <div className="flex flex-col items-center justify-center gap-2 rounded-md border border-dashed border-border px-6 py-10 text-center">
       {icon && <div className="text-muted-foreground/60">{icon}</div>}
-      <div className="text-xs font-semibold text-foreground">{title}</div>
+      <div className="text-[13px] font-medium text-foreground">{title}</div>
       {description && (
-        <div className="max-w-md text-xs leading-relaxed text-muted-foreground">{description}</div>
+        <div className="max-w-md text-[13px] leading-relaxed text-muted-foreground">{description}</div>
       )}
       {action}
     </div>

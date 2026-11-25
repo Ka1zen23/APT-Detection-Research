@@ -1,7 +1,7 @@
 export interface Meta {
   generated_at: string;
   last_artifact_update: string | null;
-  data_mode: "live_artifacts";
+  data_mode: "live_artifacts" | "static_snapshot";
   warnings: string[];
 }
 

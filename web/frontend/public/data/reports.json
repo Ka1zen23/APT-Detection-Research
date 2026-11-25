@@ -1,0 +1,162 @@
+{
+  "data": {
+    "reports": [
+      {
+        "id": "RP01",
+        "title": "Research proposal",
+        "category": "Proposal",
+        "status": "unavailable",
+        "description": "The approved proposal document is not present in the repository.",
+        "format": "Document",
+        "available": false
+      },
+      {
+        "id": "RP02",
+        "title": "Interim progress report",
+        "category": "Progress",
+        "status": "planned",
+        "description": "No interim report artifact has been generated yet.",
+        "format": "Document",
+        "available": false
+      },
+      {
+        "id": "RP03",
+        "title": "E5 provenance ablation summary",
+        "category": "Experimental summary",
+        "status": "available",
+        "description": "Measured comparison log for B5, E5-A, E5-B and E5-C.",
+        "format": "Text log",
+        "available": true,
+        "document_key": "e5_comparison_log",
+        "artifact": "results/ablation_comparison/comparison_log.txt"
+      },
+      {
+        "id": "RP04",
+        "title": "E2-D matched-update training log",
+        "category": "Experimental summary",
+        "status": "available",
+        "description": "Full epoch-level training log for the leading autoencoder configuration.",
+        "format": "Text log",
+        "available": true,
+        "document_key": "e2d_training_log",
+        "artifact": "results/e2d-unique-matched/training_log.txt"
+      },
+      {
+        "id": "RP05",
+        "title": "E2-D evaluation report",
+        "category": "Experimental summary",
+        "status": "available",
+        "description": "Original and contextual label evaluation with per-tactic recall and inference timing.",
+        "format": "Text log",
+        "available": true,
+        "document_key": "e2d_evaluation_log",
+        "artifact": "results/e2d-unique-matched/evaluation/evaluation_log.txt"
+      },
+      {
+        "id": "RP06",
+        "title": "Baseline experiment log",
+        "category": "Experimental summary",
+        "status": "available",
+        "description": "Measured B1-B4 results and comparison table.",
+        "format": "Text log",
+        "available": true,
+        "document_key": "baseline_log",
+        "artifact": "results/baselines/baseline_log.txt"
+      },
+      {
+        "id": "RP07",
+        "title": "Methodology document",
+        "category": "Methodology",
+        "status": "unavailable",
+        "description": "A standalone methodology document is not present. The dashboard methodology view is maintained separately in web/content.",
+        "format": "Document",
+        "available": false
+      },
+      {
+        "id": "RP08",
+        "title": "Supervisor meeting notes",
+        "category": "Meeting notes",
+        "status": "unavailable",
+        "description": "No supervisor meeting notes are stored in the repository.",
+        "format": "Document",
+        "available": false
+      },
+      {
+        "id": "RP09",
+        "title": "CICAPT-IIoT provenance log readme",
+        "category": "Dataset documentation",
+        "status": "available",
+        "description": "Original readme describing the dataset provenance log fields and collection phases.",
+        "format": "Text",
+        "available": true,
+        "document_key": "dataset_readme",
+        "artifact": "data/raw/cicapt-iiot/Provenance_Logs/Readme.txt"
+      },
+      {
+        "id": "RP10",
+        "title": "Final dissertation",
+        "category": "Dissertation",
+        "status": "planned",
+        "description": "The dissertation has not been written or deposited.",
+        "format": "PDF",
+        "available": false
+      }
+    ],
+    "available": 5,
+    "documents": [
+      {
+        "key": "baseline_log",
+        "title": "Baseline experiments log",
+        "description": "Measured B1-B4 baseline results and comparison table.",
+        "category": "experimental-summary",
+        "artifact": "results/baselines/baseline_log.txt",
+        "status": "available",
+        "media_type": "text/plain"
+      },
+      {
+        "key": "dataset_readme",
+        "title": "CICAPT-IIoT provenance log readme",
+        "description": "Original dataset readme describing the two provenance collection phases.",
+        "category": "dataset",
+        "artifact": "data/raw/cicapt-iiot/Provenance_Logs/Readme.txt",
+        "status": "available",
+        "media_type": "text/plain"
+      },
+      {
+        "key": "e2d_evaluation_log",
+        "title": "E2-D evaluation log",
+        "description": "Original and contextual label evaluation, per-tactic recall and inference timing.",
+        "category": "experimental-summary",
+        "artifact": "results/e2d-unique-matched/evaluation/evaluation_log.txt",
+        "status": "available",
+        "media_type": "text/plain"
+      },
+      {
+        "key": "e2d_training_log",
+        "title": "E2-D matched-update training log",
+        "description": "Epoch-level training log for the leading E2-D autoencoder.",
+        "category": "experimental-summary",
+        "artifact": "results/e2d-unique-matched/training_log.txt",
+        "status": "available",
+        "media_type": "text/plain"
+      },
+      {
+        "key": "e5_comparison_log",
+        "title": "E5 provenance ablation comparison log",
+        "description": "Measured comparison of B5, E5-A, E5-B and E5-C.",
+        "category": "experimental-summary",
+        "artifact": "results/ablation_comparison/comparison_log.txt",
+        "status": "available",
+        "media_type": "text/plain"
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-11-25T09:06:10.198410+00:00",
+    "last_artifact_update": "2026-11-25T09:06:02.150834+00:00",
+    "data_mode": "static_snapshot",
+    "warnings": [
+      "Static aggregate snapshot. Event-level provenance is intentionally excluded."
+    ]
+  }
+}
