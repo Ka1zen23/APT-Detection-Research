@@ -1,5 +1,8 @@
 # Deployment guide — static Vercel snapshot
 
+> **Step-by-step Vercel setup:** [VERCEL.md](VERCEL.md) — project settings, GitHub/CLI deployment,
+> verification, protection, custom domains and troubleshooting.
+
 The public research dashboard is deployed as a **static Vercel site** with aggregate data only.
 It does not include event-level provenance, a runtime API, a database, or a server container.
 

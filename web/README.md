@@ -142,8 +142,9 @@ Build Command: npm run build
 Output Directory: dist
 ```
 
-No environment variables or secrets are required. Full instructions, privacy notes, updates and
-troubleshooting are in [`web/deploy/README.md`](deploy/README.md).
+No environment variables or secrets are required. Full setup instructions are in
+[`web/deploy/VERCEL.md`](deploy/VERCEL.md); broader privacy, maintenance and troubleshooting notes are
+in [`web/deploy/README.md`](deploy/README.md).
 
 ### Static data modes
 
