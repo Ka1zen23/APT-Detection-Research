@@ -97,6 +97,12 @@ by default, and saves manually selected themes and experiment reading modes loca
 The learning examples are labelled separately from measured research outputs.
 The glossary is at `/documentation/glossary`.
 
+Research steppers read the existing roadmap and experiment artifacts. The roadmap
+keeps work on the demonstration platform separate from dissertation progress.
+An experiment step without supporting evidence is pending or unverified, rather
+than assumed complete. Tour chapters can be marked read and resumed on the same
+browser; this personal progress does not change the research roadmap.
+
 API documentation: <http://127.0.0.1:8000/api/docs>
 
 ### Production preview

@@ -399,7 +399,7 @@ export interface RoadmapMilestone {
   id: string;
   title: string;
   phase: string;
-  status: "completed" | "next" | "planned" | "in_progress";
+  status: "completed" | "next" | "planned" | "in_progress" | "blocked" | "failed";
   description: string;
   dependencies: string[];
   evidence: string[];

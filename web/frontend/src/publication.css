@@ -1,3 +1,5 @@
+@import "./research-progress.css";
+
 @font-face {
   font-family: "Inter Variable";
   src: url("@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2");

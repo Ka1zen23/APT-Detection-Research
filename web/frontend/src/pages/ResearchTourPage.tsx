@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { TeachingGraph } from "@/components/publication/TeachingGraph";
 import { AutoencoderDemo, BudgetDemo, EmbeddingDemo, ImbalanceDemo, ProvenanceDemo, ThresholdDemo } from "@/components/publication/ResearchDemos";
+import { useTourProgress } from "@/hooks/use-tour-progress";
 
 const chapters = [
   {
@@ -94,19 +95,36 @@ const chapters = [
 export function ResearchTourPage() {
   const { chapter } = useParams();
   const index = chapters.findIndex((item) => item.slug === chapter);
+  const progress = useTourProgress(chapters[index]?.slug);
+  const completed = chapters.filter(({ slug }) => progress.completed.includes(slug));
+  const resume = chapters.find(({ slug }) => slug === progress.last);
+  const remaining = chapters.length - completed.length;
   if (chapter && index === -1) return <><h1 className="pub-editorial-title">Chapter not found</h1><Link className="pub-text-link" to="/understand">Return to the chapter index</Link></>;
   if (index === -1) return <>
     <p className="pub-kicker">Research tour · 12 short chapters</p>
     <h1 className="pub-editorial-title">Understand the research</h1>
     <p className="pub-lede">Follow an event from the computer’s activity log to an analyst’s alert queue. Start at the beginning or choose any topic below.</p>
-    <div className="pub-actions"><Link className="pub-button" to="/understand/apt">Start chapter 01 <ArrowRight size={17} /></Link></div>
+    <div className="pub-actions"><Link className="pub-button" to={`/understand/${resume?.slug ?? "apt"}`}>{resume ? "Resume reading" : "Start chapter 01"} <ArrowRight size={17} /></Link></div>
+    <p className="pub-tour-count"><strong>{completed.length} of {chapters.length}</strong> chapters marked read · {remaining} remaining. Saved on this browser only.</p>
     <ol className="pub-tour-index pub-section-space">
-      {chapters.map((item, i) => <li key={item.slug}><Link to={`/understand/${item.slug}`}><span>{String(i + 1).padStart(2, "0")}</span>{item.title}<ArrowUpRight size={17} /></Link></li>)}
+      {chapters.map((item, i) => <li key={item.slug}><Link to={`/understand/${item.slug}`}><span>{String(i + 1).padStart(2, "0")}</span>{item.title}{completed.includes(item) ? <Check size={17} aria-label="Marked read" /> : <ArrowUpRight size={17} aria-hidden="true" />}</Link></li>)}
     </ol>
   </>;
   const item = chapters[index];
   const Visual = "visual" in item ? item.visual : null;
   return <article className="pub-reading">
+    <aside className="pub-tour-tracker" aria-label="Personal reading progress">
+      <div><strong>Chapter {index + 1} of {chapters.length}</strong><p aria-live="polite">{completed.length} marked read · {remaining} remaining</p></div>
+      <progress max={chapters.length} value={completed.length} aria-label="Chapters marked read" />
+      <nav aria-label="Jump to a chapter" className="pub-chapter-markers">
+        {chapters.map(({ slug, title }, i) => {
+          const done = progress.completed.includes(slug);
+          return <Link key={slug} to={`/understand/${slug}`} aria-current={i === index ? "step" : undefined} aria-label={`Chapter ${i + 1}: ${title}${done ? " · Marked read" : ""}`} data-read={done || undefined} title={title}>
+            {i + 1}{done && <Check aria-hidden="true" size={12} />}
+          </Link>;
+        })}
+      </nav>
+    </aside>
     <p className="pub-kicker">Guided research tour · {String(index + 1).padStart(2, "0")} / {chapters.length}</p>
     <h1 className="pub-editorial-title">{item.title}</h1>
     <p className="pub-lede">{item.explanation}</p>
@@ -118,6 +136,7 @@ export function ResearchTourPage() {
     <div className="pub-actions" aria-label="Related evidence">{item.links.map(([label, to]) => <Link className="pub-text-link" key={to} to={to}>{label} <ArrowUpRight size={15} /></Link>)}</div>
     <nav className="pub-tour-pager" aria-label="Chapter navigation">
       <Link className="pub-text-link" to={index > 0 ? `/understand/${chapters[index - 1].slug}` : "/understand"}><ArrowLeft size={16} />{index > 0 ? "Previous chapter" : "Chapter index"}</Link>
+      <button className="pub-segment" type="button" aria-pressed={completed.includes(item)} onClick={() => progress.toggleComplete(item.slug)}>{completed.includes(item) ? "Marked read" : "Mark as read"}</button>
       <Link className="pub-text-link" to={index < chapters.length - 1 ? `/understand/${chapters[index + 1].slug}` : "/findings"}>{index < chapters.length - 1 ? "Next chapter" : "Explore the findings"} <ArrowRight size={16} /></Link>
     </nav>
   </article>;

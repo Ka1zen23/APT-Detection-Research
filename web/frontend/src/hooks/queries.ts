@@ -58,8 +58,8 @@ export function useModelComparison() {
   return useQuery({ queryKey: queryKeys.comparison, queryFn: api.modelComparison });
 }
 
-export function useAblation() {
-  return useQuery({ queryKey: queryKeys.ablation, queryFn: api.ablation });
+export function useAblation(enabled = true) {
+  return useQuery({ queryKey: queryKeys.ablation, queryFn: api.ablation, enabled });
 }
 
 export function useDescriptionOverlap() {

@@ -7,6 +7,7 @@ import { useExperiment, useExperiments, useModelComparison, useReports } from "@
 import { formatDecimal, formatNumber, formatPercent, titleCase } from "@/lib/format";
 import { documentUrl, figureUrl } from "@/services/api";
 import { EvidenceBars } from "@/pages/PublicationFindings";
+import { ExperimentExecution } from "@/components/publication/ExperimentExecution";
 
 type View = "guided" | "technical";
 const ViewContext = createContext<View>("guided");
@@ -115,6 +116,7 @@ export function GuidedExperimentDetail({ technical }: { technical: React.ReactNo
         </div></details>
       </>}
     </article>
+    <ExperimentExecution key={data.id} experiment={data} />
     {mode === "technical" && <section className="pub-section-space" aria-label="Technical experiment record">{technical}</section>}
   </>;
 }

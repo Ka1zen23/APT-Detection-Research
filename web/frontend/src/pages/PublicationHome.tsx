@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, FlaskConical, Milestone, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import { TeachingGraph } from "@/components/publication/TeachingGraph";
 import { useAblation, useAlertBudgets, useDataset, useModelComparison, useResearchStatus, useRoadmap } from "@/hooks/queries";
+import { getResearchProgress } from "@/lib/research-progress";
+
+const CompactResearchJourney = lazy(() => import("@/components/publication/ResearchJourney").then((module) => ({ default: module.CompactResearchJourney })));
+const UpcomingExecution = lazy(() => import("@/components/publication/ExperimentExecution").then((module) => ({ default: module.UpcomingExecution })));
 
 const approach = [
   ["Observe system activity", "Record which programs interact with files and other parts of the computer.", "System provenance describes entities and how they interact. The research converts these structured records into consistent descriptions.", "/understand/system-provenance"],
@@ -28,7 +32,7 @@ function ChapterHeading({ number, label, title }: { number: string; label: strin
 export function PublicationHome() {
   const steps = useRef<HTMLDivElement>(null);
   const { data: status } = useResearchStatus();
-  const { data: roadmap } = useRoadmap();
+  const roadmap = useRoadmap();
   const { data: ablation } = useAblation();
   const { data: models } = useModelComparison();
   const { data: budgets } = useAlertBudgets("E2-D");
@@ -37,8 +41,8 @@ export function PublicationHome() {
   const e2 = (id: string) => models?.models.find((model) => model.id === id)?.average_precision;
   const budget = budgets?.rows.find((row) => row.budget === 500);
   const positives = dataset?.class_balance.find((row) => row.partition === "Attack test")?.positives;
-  const next = roadmap?.next_milestone;
-  const completed = roadmap?.milestones.find((item) => item.id === "R17" && item.status === "completed");
+  const progress = roadmap.data && getResearchProgress(roadmap.data);
+  const next = progress?.next;
   useEffect(() => {
     const element = steps.current;
     if (!element || !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -74,6 +78,11 @@ export function PublicationHome() {
       <div className="pub-wrap pub-reading-bar">
         <span>Universiti Teknologi Brunei</span><span>Preliminary research · No unseen-campaign validation</span><a href="#problem">Start reading <ArrowDown size={15} /></a>
       </div>
+      <section className="pub-wrap pub-journey-strip" aria-label="Research journey summary">
+        <Suspense fallback={<Link className="pub-text-link" to="/progress">Open research progress <ArrowRight size={16} /></Link>}>
+          {progress ? <CompactResearchJourney progress={progress} /> : <Link className="pub-text-link" to="/progress">{roadmap.isError ? "Roadmap summary unavailable · Open research progress" : "Open research progress"} <ArrowRight size={16} /></Link>}
+        </Suspense>
+      </section>
       <section id="problem" className="pub-wrap pub-home-section pub-split">
         <ChapterHeading number="01" label="THE PROBLEM" title="The same action can tell two different stories." />
         <div className="pub-prose">
@@ -109,16 +118,18 @@ export function PublicationHome() {
         </div>
       </section>
       <section className="pub-tinted">
-        <div className="pub-wrap pub-home-section pub-split">
-          <ChapterHeading number="04" label="RESEARCH PROGRESS" title={next?.id === "R18" ? "Will these results hold across runs?" : "Where the research stands."} />
-          <div className="pub-prose">
-            <p>{status?.current_activity ?? "See the roadmap for current research activity."}</p>
-            <ol className="pub-timeline">
-              {completed && <li><span>Completed</span><Link to="/experiments/ablation">{completed.title}</Link></li>}
-              {next && <li><span>Next</span><Link to="/progress">{next.title}</Link><p>{next.id === "R18" ? "Repeating selected runs with different random seeds tests how stable the results are. Testing on an independent scenario is a separate step." : next.description}</p></li>}
-            </ol>
-            <Link className="pub-text-link" to="/progress">Follow the research progress <ArrowRight size={16} /></Link>
+        <div className="pub-wrap pub-home-section">
+          <div className="pub-split">
+            <ChapterHeading number="04" label="RESEARCH PROGRESS" title={next?.id === "R18" ? "Will these results hold across runs?" : "Where the research stands."} />
+            <div className="pub-prose">
+              <p>{progress?.current?.description ?? (next?.id === "R18" ? status?.current_activity : undefined) ?? "See the roadmap for current research activity."}</p>
+              <ol className="pub-timeline">
+                {next && <li><span>Next · not reported as running</span><Link to={next.id === "R18" ? "/experiments/E7#execution-tracker" : "/progress"}>{next.title}</Link><p>{next.id === "R18" ? "Repeating selected runs with different random seeds tests how stable the results are. Testing on an independent scenario is a separate step." : next.description}</p></li>}
+              </ol>
+              <Link className="pub-text-link" to="/progress">Follow the research progress <ArrowRight size={16} /></Link>
+            </div>
           </div>
+          {next?.id === "R18" && <Suspense fallback={null}><UpcomingExecution id="E7" /></Suspense>}
         </div>
       </section>
       <section className="pub-wrap pub-home-section pub-split">
